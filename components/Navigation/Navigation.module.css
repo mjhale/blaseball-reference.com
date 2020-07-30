@@ -1,0 +1,16 @@
+.logo {
+  color: rgb(0, 0, 0);
+  font-size: 60px;
+  font-family: Lora, "Courier New", monospace, serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.hasSmallText {
+  color: red;
+  display: block;
+  font-size: 20px;
+  font-family: Lora, "Courier New", monospace, serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
