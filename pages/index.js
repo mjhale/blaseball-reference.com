@@ -1,8 +1,6 @@
 import Head from "next/head";
 import Layout from "components/Layout";
 
-import styles from "styles/Home.module.css";
-
 export default function Home() {
   return (
     <>
@@ -12,7 +10,13 @@ export default function Home() {
         </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout></Layout>
+      <Layout>
+        <h1>Blaseball Stats, Scores, and History</h1>
+        <p>
+          The complete source for current and historical blaseball players,
+          teams, scores, leaders, umps, blessings, and curses.
+        </p>
+      </Layout>
     </>
   );
 }

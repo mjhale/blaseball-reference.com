@@ -1,18 +1,75 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap");
 
+:root {
+  --bodyFont: var(--fontWeightNormal) var(--bodyFontSize, 16px) /
+    var(--bodyLineHeight, 1.5) var(--fontFamily);
+  --bodyFontSize: 16px;
+  --bodyLineHeight: 1.5;
+
+  --fontFamily: apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  --fontFamilyLogo: Lora, "Courier New", monospace, serif;
+  --fontWeightNormal: 300;
+  --fontWeightSemibold: 425;
+  --fontWeightBold: 500;
+  --fontWeightBolder: 600;
+  --fontWeightBoldest: 700;
+
+  --fontSans-xxs: 0.625rem;
+  --fontSans-xs: 0.75rem;
+  --fontSans-s: 1rem;
+  --fontSans-m: 1.25rem;
+  --fontSans-lg: 1.5rem;
+  --fontSans-xl: 2.125rem;
+  --fontSans-xxl: 3rem;
+
+  --layout-unit: 1rem;
+  --layout-xxs: calc(1 * var(--layout-unit));
+  --layout-xs: calc(1.5 * var(--layout-unit));
+  --layout-s: calc(2 * var(--layout-unit));
+  --layout-md: calc(3 * var(--layout-unit));
+  --layout-lg: calc(4 * var(--layout-unit));
+  --layout-xl: calc(6 * var(--layout-unit));
+  --layout-xxl: calc(10 * var(--layout-unit));
+
+  --space-unit: 1rem;
+  --space-xxs: calc(0.25 * var(--space-unit));
+  --space-xs: calc(0.5 * var(--space-unit));
+  --space-sm: calc(0.75 * var(--space-unit));
+  --space-md: calc(1 * var(--space-unit));
+  --space-lg: calc(1.5 * var(--space-unit));
+  --space-xl: calc(2 * var(--space-unit));
+  --space-xxl: calc(2.5 * var(--space-unit));
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font: var(--bodyFont);
+  text-rendering: optimizeLegibility;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.container {
+  margin: 0 auto;
+  max-width: 1024px;
+  padding: 0 var(--space-md);
+  width: 100%;
 }
 
-* {
-  box-sizing: border-box;
+/* Add red border to images that need alt text correction */
+img:not([alt]) {
+  border: 5px solid red;
+  opacity: 0.5;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
