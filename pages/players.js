@@ -1,8 +1,10 @@
+import jsonData from "data/players/players.json";
+
 import Head from "next/head";
+import { Heading, Text } from "@chakra-ui/core";
+
 import Layout from "components/Layout";
 import PlayerList from "components/PlayerList";
-
-import jsonData from "data/players.json";
 
 export default function Players({ players }) {
   return (
@@ -12,7 +14,13 @@ export default function Players({ players }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <h1>Blaseball Players</h1>
+        <Heading as="h1" size="lg">
+          Encyclopedia of Blaseball Players
+        </Heading>
+        <Text>
+          Search the Blaseball encyclopedia of players by the first letter of
+          the player's last name.
+        </Text>
         <PlayerList players={players} />
       </Layout>
     </>
@@ -21,10 +29,22 @@ export default function Players({ players }) {
 
 export async function getStaticProps({ params, preview = false }) {
   const data = jsonData;
+  const groupedByLastName = data.reduce((accumulator, player) => {
+    const lastName = player.name.split(" ").pop();
+    const group = lastName[0].toLocaleLowerCase();
+
+    if (!accumulator[group]) {
+      accumulator[group] = { group, children: [player] };
+    } else {
+      accumulator[group].children.push(player);
+    }
+
+    return accumulator;
+  }, {});
 
   return {
     props: {
-      players: data,
+      players: groupedByLastName,
       preview,
     },
   };
