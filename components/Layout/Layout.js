@@ -1,5 +1,4 @@
-import styles from "./Layout.module.css";
-
+import { Container } from "@chakra-ui/core";
 import Navigation from "components/Navigation";
 import { SkipNavContent } from "@reach/skip-nav";
 
@@ -7,9 +6,9 @@ export default function Layout({ children }) {
   return (
     <>
       <Navigation />
-      <main className={styles.main}>
+      <main>
         <SkipNavContent />
-        <div className="container">{children}</div>
+        <Container maxWidth="6xl">{children}</Container>
       </main>
     </>
   );

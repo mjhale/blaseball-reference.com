@@ -1,7 +1,7 @@
 import jsonData from "data/teams.json";
 
 import Head from "next/head";
-import Heading from "components/Heading";
+import { Heading, Stack } from "@chakra-ui/core";
 import Layout from "components/Layout";
 import TeamCardList from "components/TeamCardList";
 
@@ -13,8 +13,12 @@ export default function Teams({ teams }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <Heading>Active Blaseball Franchises</Heading>
-        <TeamCardList teams={teams} />
+        <Stack spacing={4}>
+          <Heading as="h1" size="lg">
+            Active Blaseball Franchises
+          </Heading>
+          <TeamCardList teams={teams} />
+        </Stack>
       </Layout>
     </>
   );

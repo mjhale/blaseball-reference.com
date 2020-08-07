@@ -1,22 +1,42 @@
-import Link from "next/link";
-import {
-  StyledCard,
-  StyledBigEmoji,
-  StyledHighlight,
-  StyledTeamName,
-} from "./TeamCard.styled";
+import { Box, Heading, Link, Text } from "@chakra-ui/core";
+import NextLink from "next/link";
 
 export default function TeamCard({ team }) {
   return (
-    <Link href="teams/[teamId]" as={`teams/${team._id}`} passHref>
-      <StyledCard backgroundColor={team?.mainColor}>
-        <StyledHighlight highlightColor={team?.mainColor}>
-          <StyledBigEmoji role="emoji">
+    <NextLink href="teams/[teamId]" as={`teams/${team._id}`} passHref>
+      <Link
+        _hover={{ boxShadow: "md" }}
+        alignItems="center"
+        bgColor="hsl(35, 100%, 98%)"
+        border="1px"
+        borderColor="gray.200"
+        display="flex"
+        flexDirection="row"
+        height={24}
+        justifyContent="flex-start"
+        minWidth="300px"
+      >
+        <Box
+          alignItems="center"
+          bgColor={team.mainColor}
+          borderRight="1px"
+          borderRightColor="gray.200"
+          display="flex"
+          height="full"
+          justifyContent="center"
+          mr="3"
+          width="20"
+        >
+          <Text as="span" display="block" fontSize="2xl" role="emoji">
             {String.fromCodePoint(team.emoji)}
-          </StyledBigEmoji>
-        </StyledHighlight>
-        <StyledTeamName>{team.fullName}</StyledTeamName>
-      </StyledCard>
-    </Link>
+          </Text>
+        </Box>
+        <Box textAlign="left">
+          <Heading as="h2" size="md">
+            {team.fullName}
+          </Heading>
+        </Box>
+      </Link>
+    </NextLink>
   );
 }

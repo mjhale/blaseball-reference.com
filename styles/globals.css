@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap");
-
-:root {
+/* :root {
   --bodyFont: var(--fontWeightNormal) var(--bodyFontSize, 16px) /
     var(--bodyLineHeight, 1.5) var(--fontFamily);
   --bodyFontSize: 16px;
@@ -40,36 +38,10 @@
   --space-lg: calc(1.5 * var(--space-unit));
   --space-xl: calc(2 * var(--space-unit));
   --space-xxl: calc(2.5 * var(--space-unit));
-}
-
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font: var(--bodyFont);
-  text-rendering: optimizeLegibility;
-}
-
-.container {
-  margin: 0 auto;
-  max-width: 1024px;
-  padding: 0 var(--space-md);
-  width: 100%;
-}
+} */
 
 /* Add red border to images that need alt text correction */
 img:not([alt]) {
   border: 5px solid red;
   opacity: 0.5;
-}
-
-.visually-hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
 }

@@ -1,60 +1,92 @@
-import { useState } from "react";
-import styles from "./Navigation.module.css";
-
-import Link from "next/link";
+import { Box, Container, Heading, Flex, Link, Text } from "@chakra-ui/core";
+import NextLink from "next/link";
 import { SkipNavLink } from "@reach/skip-nav";
 
+const MenuItem = ({ children, href }) => (
+  <NextLink href={href} passHref>
+    <Link mt={{ base: 4, md: 0 }} ml={{ md: 6 }} display="block">
+      {children}
+    </Link>
+  </NextLink>
+);
+
 export default function Navigation() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const handleToggle = () => setIsOpen(!isOpen);
+
   return (
-<<<<<<< HEAD
     <>
-      <header>
-        <h1 className={styles.logo}>
-          Blaseball <span className={styles.hasSmallText}>Reference</span>
-        </h1>
-        <p style={{ textAlign: "center" }}>Coming soon.</p>
-      </header>
-      <p>
-        Visit{" "}
-        <a href="https://dev.blaseball-reference.com" className={styles.link}>
-          dev.blaseball-reference.com
-        </a>{" "}
-        to view the latest updates.
-      </p>
-    </>
-=======
-    <header className={styles.header}>
       <SkipNavLink />
+      <Container maxWidth="6xl">
+        <Flex
+          as="nav"
+          align="center"
+          justify="space-between"
+          wrap="wrap"
+          py={8}
+          bg="white"
+        >
+          <Flex align="center">
+            <Heading as="h1" size="lg">
+              <NextLink href="/" passHref>
+                <Link
+                  _hover={{ textDecoration: "none" }}
+                  display="block"
+                  fontFamily="heading"
+                  lineHeight="0.9"
+                  textTransform="uppercase"
+                  textDecoration="none"
+                >
+                  <Text
+                    as="span"
+                    fontFamily="inherit"
+                    fontSize="4xl"
+                    fontWeight="bold"
+                    textTransform="inherit"
+                  >
+                    Blaseball
+                  </Text>
+                  <Text
+                    as="span"
+                    color="hsl(0, 100%, 50%)"
+                    display="block"
+                    fontFamily="inherit"
+                    fontSize="xl"
+                    textTransform="inherit"
+                  >
+                    Reference
+                  </Text>
+                </Link>
+              </NextLink>
+            </Heading>
+          </Flex>
 
-      <nav className="container">
-        <div className={styles.links}>
-          <Link href="/">
-            <a className={styles.logo}>
-              <h1>
-                Blaseball{" "}
-                <span className={styles.logoSmallText}>Reference</span>
-              </h1>
-            </a>
-          </Link>
-
-          <Link href="/players">
-            <a className={styles.link}>Players</a>
-          </Link>
-          <Link href="/teams">
-            <a className={styles.link}>Teams</a>
-          </Link>
-          <Link href="/seasons">
-            <a className={styles.link}>Seasons</a>
-          </Link>
-          <Link href="/playoffs">
-            <a className={styles.link}>Playoffs</a>
-          </Link>
-          <Link href="/about">
-            <a className={styles.link}>About</a>
-          </Link>
-        </div>
-      </nav>
-    </header>
->>>>>>> e734243... Add skeleton pages and styles
+          <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
+            <svg
+              fill="black"
+              width="12px"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Menu</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+          </Box>
+          <Box
+            alignItems={{ sm: "center", md: "right" }}
+            display={{ sm: isOpen ? "block" : "none", md: "flex" }}
+            width={{ sm: "full", md: "auto" }}
+            justifyContent={{ md: "flex-end" }}
+            flexGrow={1}
+          >
+            <MenuItem href="/players">Players</MenuItem>
+            <MenuItem href="/teams">Teams</MenuItem>
+            <MenuItem href="/seasons">Seasons</MenuItem>
+            <MenuItem href="/playoffs">Playoffs</MenuItem>
+            <MenuItem href="/game-viewer">Game Viewer</MenuItem>
+          </Box>
+        </Flex>
+      </Container>
+    </>
   );
 }
