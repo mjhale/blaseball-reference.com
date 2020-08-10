@@ -39,8 +39,8 @@
 		"groundouts": 391,
 		"hitsAllowed": 360,
 		"hitsAllowedPerNine": 11.25,
-		"homeRuns": 68,
-		"homeRunsPerNine": 2.125,
+		"homeRuns": 69,
+		"homeRunsPerNine": 2.15625,
 		"inningsPitched": 288,
 		"losses": 22,
 		"numberOfPitches": 0,
@@ -100,8 +100,8 @@
 			"groundouts": 255,
 			"hitsAllowed": 232,
 			"hitsAllowedPerNine": 11.664804469273744,
-			"homeRuns": 43,
-			"homeRunsPerNine": 2.1620111731843576,
+			"homeRuns": 44,
+			"homeRunsPerNine": 2.212290502793296,
 			"inningsPitched": 179,
 			"losses": 14,
 			"numberOfPitches": 0,
@@ -119,5 +119,6 @@
 			"wins": 6
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "dan-bong"
 }

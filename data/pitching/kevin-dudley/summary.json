@@ -33,8 +33,8 @@
 		"battersFaced": 1143,
 		"basesOnBalls": 115,
 		"basesOnBallsPerNine": 3.4731543624161074,
-		"earnedRuns": 116,
-		"earnedRunAverage": 3.5033557046979866,
+		"earnedRuns": 122,
+		"earnedRunAverage": 3.684563758389262,
 		"flyouts": 171,
 		"groundouts": 431,
 		"hitsAllowed": 254,
@@ -65,8 +65,8 @@
 			"battersFaced": 430,
 			"basesOnBalls": 35,
 			"basesOnBallsPerNine": 2.763157894736842,
-			"earnedRuns": 42,
-			"earnedRunAverage": 3.3157894736842106,
+			"earnedRuns": 45,
+			"earnedRunAverage": 3.5526315789473686,
 			"flyouts": 74,
 			"groundouts": 151,
 			"hitsAllowed": 100,
@@ -94,8 +94,8 @@
 			"battersFaced": 713,
 			"basesOnBalls": 80,
 			"basesOnBallsPerNine": 3.9130434782608696,
-			"earnedRuns": 74,
-			"earnedRunAverage": 3.619565217391304,
+			"earnedRuns": 77,
+			"earnedRunAverage": 3.766304347826087,
 			"flyouts": 97,
 			"groundouts": 280,
 			"hitsAllowed": 154,
@@ -178,5 +178,6 @@
 			"winningPercentage": 0,
 			"wins": 0
 		}
-	}
+	},
+	"slug": "kevin-dudley"
 }

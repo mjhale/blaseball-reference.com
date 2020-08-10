@@ -33,8 +33,8 @@
 		"battersFaced": 1113,
 		"basesOnBalls": 61,
 		"basesOnBallsPerNine": 1.8673469387755102,
-		"earnedRuns": 129,
-		"earnedRunAverage": 3.9489795918367347,
+		"earnedRuns": 131,
+		"earnedRunAverage": 4.010204081632653,
 		"flyouts": 174,
 		"groundouts": 425,
 		"hitsAllowed": 278,
@@ -65,8 +65,8 @@
 			"battersFaced": 462,
 			"basesOnBalls": 19,
 			"basesOnBallsPerNine": 1.3902439024390245,
-			"earnedRuns": 53,
-			"earnedRunAverage": 3.8780487804878048,
+			"earnedRuns": 54,
+			"earnedRunAverage": 3.951219512195122,
 			"flyouts": 69,
 			"groundouts": 176,
 			"hitsAllowed": 112,
@@ -94,8 +94,8 @@
 			"battersFaced": 651,
 			"basesOnBalls": 42,
 			"basesOnBallsPerNine": 2.2105263157894735,
-			"earnedRuns": 76,
-			"earnedRunAverage": 4,
+			"earnedRuns": 77,
+			"earnedRunAverage": 4.052631578947368,
 			"flyouts": 105,
 			"groundouts": 249,
 			"hitsAllowed": 166,
@@ -149,5 +149,6 @@
 			"winningPercentage": 1,
 			"wins": 1
 		}
-	}
+	},
+	"slug": "king-weatherman"
 }

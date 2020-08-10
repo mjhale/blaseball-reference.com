@@ -33,8 +33,8 @@
 		"battersFaced": 1185,
 		"basesOnBalls": 85,
 		"basesOnBallsPerNine": 2.6288659793814433,
-		"earnedRuns": 142,
-		"earnedRunAverage": 4.391752577319588,
+		"earnedRuns": 143,
+		"earnedRunAverage": 4.422680412371134,
 		"flyouts": 150,
 		"groundouts": 389,
 		"hitsAllowed": 335,
@@ -94,8 +94,8 @@
 			"battersFaced": 692,
 			"basesOnBalls": 45,
 			"basesOnBallsPerNine": 2.3011363636363638,
-			"earnedRuns": 68,
-			"earnedRunAverage": 3.477272727272727,
+			"earnedRuns": 69,
+			"earnedRunAverage": 3.528409090909091,
 			"flyouts": 92,
 			"groundouts": 232,
 			"hitsAllowed": 192,
@@ -119,5 +119,6 @@
 			"wins": 10
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "alejandro-leaf"
 }

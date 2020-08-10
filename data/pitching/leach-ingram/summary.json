@@ -33,8 +33,8 @@
 		"battersFaced": 1310,
 		"basesOnBalls": 219,
 		"basesOnBallsPerNine": 6.989361702127659,
-		"earnedRuns": 234,
-		"earnedRunAverage": 7.468085106382978,
+		"earnedRuns": 247,
+		"earnedRunAverage": 7.882978723404255,
 		"flyouts": 179,
 		"groundouts": 362,
 		"hitsAllowed": 333,
@@ -65,8 +65,8 @@
 			"battersFaced": 516,
 			"basesOnBalls": 83,
 			"basesOnBallsPerNine": 6.981308411214953,
-			"earnedRuns": 93,
-			"earnedRunAverage": 7.822429906542056,
+			"earnedRuns": 96,
+			"earnedRunAverage": 8.074766355140186,
 			"flyouts": 74,
 			"groundouts": 138,
 			"hitsAllowed": 129,
@@ -94,8 +94,8 @@
 			"battersFaced": 794,
 			"basesOnBalls": 136,
 			"basesOnBallsPerNine": 6.994285714285715,
-			"earnedRuns": 141,
-			"earnedRunAverage": 7.251428571428572,
+			"earnedRuns": 151,
+			"earnedRunAverage": 7.765714285714286,
 			"flyouts": 105,
 			"groundouts": 224,
 			"hitsAllowed": 204,
@@ -119,5 +119,6 @@
 			"wins": 4
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "leach-ingram"
 }

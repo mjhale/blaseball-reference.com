@@ -33,8 +33,8 @@
 		"battersFaced": 1065,
 		"basesOnBalls": 10,
 		"basesOnBallsPerNine": 0.2875399361022364,
-		"earnedRuns": 78,
-		"earnedRunAverage": 2.242811501597444,
+		"earnedRuns": 79,
+		"earnedRunAverage": 2.2715654952076676,
 		"flyouts": 169,
 		"groundouts": 383,
 		"hitsAllowed": 255,
@@ -94,8 +94,8 @@
 			"battersFaced": 649,
 			"basesOnBalls": 3,
 			"basesOnBallsPerNine": 0.140625,
-			"earnedRuns": 52,
-			"earnedRunAverage": 2.4375,
+			"earnedRuns": 53,
+			"earnedRunAverage": 2.484375,
 			"flyouts": 108,
 			"groundouts": 240,
 			"hitsAllowed": 163,
@@ -178,5 +178,6 @@
 			"winningPercentage": 0,
 			"wins": 0
 		}
-	}
+	},
+	"slug": "leach-herman"
 }

@@ -33,8 +33,8 @@
 		"battersFaced": 1225,
 		"basesOnBalls": 69,
 		"basesOnBallsPerNine": 2.1267123287671232,
-		"earnedRuns": 234,
-		"earnedRunAverage": 7.212328767123288,
+		"earnedRuns": 236,
+		"earnedRunAverage": 7.273972602739726,
 		"flyouts": 171,
 		"groundouts": 395,
 		"hitsAllowed": 362,
@@ -94,8 +94,8 @@
 			"battersFaced": 731,
 			"basesOnBalls": 44,
 			"basesOnBallsPerNine": 2.2247191011235956,
-			"earnedRuns": 136,
-			"earnedRunAverage": 6.876404494382022,
+			"earnedRuns": 138,
+			"earnedRunAverage": 6.977528089887641,
 			"flyouts": 108,
 			"groundouts": 225,
 			"hitsAllowed": 214,
@@ -119,5 +119,6 @@
 			"wins": 3
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "lars-taylor"
 }

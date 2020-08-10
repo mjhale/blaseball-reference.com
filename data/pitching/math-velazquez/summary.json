@@ -33,8 +33,8 @@
 		"battersFaced": 1114,
 		"basesOnBalls": 12,
 		"basesOnBallsPerNine": 0.3698630136986301,
-		"earnedRuns": 135,
-		"earnedRunAverage": 4.160958904109589,
+		"earnedRuns": 137,
+		"earnedRunAverage": 4.222602739726027,
 		"flyouts": 143,
 		"groundouts": 378,
 		"hitsAllowed": 326,
@@ -94,8 +94,8 @@
 			"battersFaced": 695,
 			"basesOnBalls": 10,
 			"basesOnBallsPerNine": 0.5056179775280899,
-			"earnedRuns": 98,
-			"earnedRunAverage": 4.955056179775281,
+			"earnedRuns": 100,
+			"earnedRunAverage": 5.056179775280899,
 			"flyouts": 87,
 			"groundouts": 222,
 			"hitsAllowed": 216,
@@ -119,5 +119,6 @@
 			"wins": 10
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "math-velazquez"
 }

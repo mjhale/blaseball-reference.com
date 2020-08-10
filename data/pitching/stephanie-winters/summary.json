@@ -33,8 +33,8 @@
 		"battersFaced": 1209,
 		"basesOnBalls": 153,
 		"basesOnBallsPerNine": 4.882978723404255,
-		"earnedRuns": 172,
-		"earnedRunAverage": 5.48936170212766,
+		"earnedRuns": 175,
+		"earnedRunAverage": 5.585106382978723,
 		"flyouts": 167,
 		"groundouts": 394,
 		"hitsAllowed": 300,
@@ -65,8 +65,8 @@
 			"battersFaced": 452,
 			"basesOnBalls": 53,
 			"basesOnBallsPerNine": 4.457943925233645,
-			"earnedRuns": 56,
-			"earnedRunAverage": 4.710280373831775,
+			"earnedRuns": 58,
+			"earnedRunAverage": 4.878504672897196,
 			"flyouts": 64,
 			"groundouts": 155,
 			"hitsAllowed": 108,
@@ -94,8 +94,8 @@
 			"battersFaced": 757,
 			"basesOnBalls": 100,
 			"basesOnBallsPerNine": 5.142857142857142,
-			"earnedRuns": 116,
-			"earnedRunAverage": 5.965714285714285,
+			"earnedRuns": 117,
+			"earnedRunAverage": 6.017142857142857,
 			"flyouts": 103,
 			"groundouts": 239,
 			"hitsAllowed": 192,
@@ -119,5 +119,6 @@
 			"wins": 8
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "stephanie-winters"
 }

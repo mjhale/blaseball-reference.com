@@ -33,8 +33,8 @@
 		"battersFaced": 1271,
 		"basesOnBalls": 122,
 		"basesOnBallsPerNine": 3.6357615894039736,
-		"earnedRuns": 177,
-		"earnedRunAverage": 5.274834437086093,
+		"earnedRuns": 184,
+		"earnedRunAverage": 5.483443708609271,
 		"flyouts": 170,
 		"groundouts": 440,
 		"hitsAllowed": 338,
@@ -65,8 +65,8 @@
 			"battersFaced": 464,
 			"basesOnBalls": 55,
 			"basesOnBallsPerNine": 4.583333333333334,
-			"earnedRuns": 59,
-			"earnedRunAverage": 4.916666666666667,
+			"earnedRuns": 63,
+			"earnedRunAverage": 5.25,
 			"flyouts": 60,
 			"groundouts": 153,
 			"hitsAllowed": 121,
@@ -94,8 +94,8 @@
 			"battersFaced": 807,
 			"basesOnBalls": 67,
 			"basesOnBallsPerNine": 3.1082474226804124,
-			"earnedRuns": 118,
-			"earnedRunAverage": 5.474226804123711,
+			"earnedRuns": 121,
+			"earnedRunAverage": 5.61340206185567,
 			"flyouts": 110,
 			"groundouts": 287,
 			"hitsAllowed": 217,
@@ -149,5 +149,6 @@
 			"winningPercentage": 0.5,
 			"wins": 1
 		}
-	}
+	},
+	"slug": "zeboriah-wilson"
 }

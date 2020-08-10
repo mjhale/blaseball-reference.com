@@ -34,14 +34,14 @@
 			"battersFaced": 1247,
 			"basesOnBalls": 110,
 			"basesOnBallsPerNine": 3.1935483870967745,
-			"earnedRuns": 202,
-			"earnedRunAverage": 5.864516129032258,
+			"earnedRuns": 203,
+			"earnedRunAverage": 5.893548387096774,
 			"flyouts": 185,
 			"groundouts": 427,
 			"hitsAllowed": 335,
 			"hitsAllowedPerNine": 9.725806451612902,
-			"homeRuns": 51,
-			"homeRunsPerNine": 1.4806451612903226,
+			"homeRuns": 52,
+			"homeRunsPerNine": 1.5096774193548388,
 			"inningsPitched": 310,
 			"losses": 15,
 			"numberOfPitches": 0,
@@ -95,14 +95,14 @@
 				"battersFaced": 754,
 				"basesOnBalls": 62,
 				"basesOnBallsPerNine": 2.983957219251337,
-				"earnedRuns": 120,
-				"earnedRunAverage": 5.775401069518717,
+				"earnedRuns": 121,
+				"earnedRunAverage": 5.823529411764706,
 				"flyouts": 96,
 				"groundouts": 269,
 				"hitsAllowed": 210,
 				"hitsAllowedPerNine": 10.106951871657754,
-				"homeRuns": 29,
-				"homeRunsPerNine": 1.3957219251336899,
+				"homeRuns": 30,
+				"homeRunsPerNine": 1.4438502673796791,
 				"inningsPitched": 187,
 				"losses": 10,
 				"numberOfPitches": 0,
@@ -150,7 +150,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "owen-picklestein"
 	},
 	"740d5fef-d59f-4dac-9a75-739ec07f91cf": {
 		"careerPostseason": {
@@ -187,8 +188,8 @@
 			"battersFaced": 1247,
 			"basesOnBalls": 73,
 			"basesOnBallsPerNine": 2.099041533546326,
-			"earnedRuns": 184,
-			"earnedRunAverage": 5.2907348242811505,
+			"earnedRuns": 186,
+			"earnedRunAverage": 5.348242811501597,
 			"flyouts": 189,
 			"groundouts": 408,
 			"hitsAllowed": 357,
@@ -248,8 +249,8 @@
 				"battersFaced": 769,
 				"basesOnBalls": 50,
 				"basesOnBallsPerNine": 2.4064171122994655,
-				"earnedRuns": 129,
-				"earnedRunAverage": 6.208556149732621,
+				"earnedRuns": 131,
+				"earnedRunAverage": 6.304812834224599,
 				"flyouts": 116,
 				"groundouts": 239,
 				"hitsAllowed": 231,
@@ -332,7 +333,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "conner-haley"
 	},
 	"d5b6b11d-3924-4634-bd50-76553f1f162b": {
 		"careerPostseason": {
@@ -369,8 +371,8 @@
 			"battersFaced": 588,
 			"basesOnBalls": 10,
 			"basesOnBallsPerNine": 0.5454545454545454,
-			"earnedRuns": 51,
-			"earnedRunAverage": 2.7818181818181817,
+			"earnedRuns": 52,
+			"earnedRunAverage": 2.8363636363636364,
 			"flyouts": 82,
 			"groundouts": 200,
 			"hitsAllowed": 136,
@@ -430,8 +432,8 @@
 				"battersFaced": 165,
 				"basesOnBalls": 3,
 				"basesOnBallsPerNine": 0.627906976744186,
-				"earnedRuns": 16,
-				"earnedRunAverage": 3.3488372093023258,
+				"earnedRuns": 17,
+				"earnedRunAverage": 3.558139534883721,
 				"flyouts": 15,
 				"groundouts": 51,
 				"hitsAllowed": 47,
@@ -485,7 +487,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "ogden-mendoza"
 	},
 	"df4da81a-917b-434f-b309-f00423ee4967": {
 		"careerPostseason": {
@@ -522,14 +525,14 @@
 			"battersFaced": 1233,
 			"basesOnBalls": 87,
 			"basesOnBallsPerNine": 2.776595744680851,
-			"earnedRuns": 225,
-			"earnedRunAverage": 7.180851063829787,
+			"earnedRuns": 235,
+			"earnedRunAverage": 7.5,
 			"flyouts": 157,
 			"groundouts": 390,
 			"hitsAllowed": 381,
 			"hitsAllowedPerNine": 12.159574468085106,
-			"homeRuns": 61,
-			"homeRunsPerNine": 1.946808510638298,
+			"homeRuns": 62,
+			"homeRunsPerNine": 1.9787234042553192,
 			"inningsPitched": 282,
 			"losses": 28,
 			"numberOfPitches": 0,
@@ -554,14 +557,14 @@
 				"battersFaced": 446,
 				"basesOnBalls": 29,
 				"basesOnBallsPerNine": 2.584158415841584,
-				"earnedRuns": 71,
-				"earnedRunAverage": 6.326732673267327,
+				"earnedRuns": 78,
+				"earnedRunAverage": 6.9504950495049505,
 				"flyouts": 62,
 				"groundouts": 146,
 				"hitsAllowed": 137,
 				"hitsAllowedPerNine": 12.207920792079209,
-				"homeRuns": 23,
-				"homeRunsPerNine": 2.0495049504950495,
+				"homeRuns": 24,
+				"homeRunsPerNine": 2.1386138613861387,
 				"inningsPitched": 101,
 				"losses": 13,
 				"numberOfPitches": 0,
@@ -583,8 +586,8 @@
 				"battersFaced": 787,
 				"basesOnBalls": 58,
 				"basesOnBallsPerNine": 2.883977900552486,
-				"earnedRuns": 154,
-				"earnedRunAverage": 7.657458563535911,
+				"earnedRuns": 157,
+				"earnedRunAverage": 7.806629834254144,
 				"flyouts": 95,
 				"groundouts": 244,
 				"hitsAllowed": 244,
@@ -608,7 +611,8 @@
 				"wins": 5
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "eugenia-bickle"
 	},
 	"167751d5-210c-4a6e-9568-e92d61bab185": {
 		"careerPostseason": {
@@ -645,8 +649,8 @@
 			"battersFaced": 1172,
 			"basesOnBalls": 25,
 			"basesOnBallsPerNine": 0.6987577639751552,
-			"earnedRuns": 157,
-			"earnedRunAverage": 4.388198757763975,
+			"earnedRuns": 159,
+			"earnedRunAverage": 4.444099378881988,
 			"flyouts": 166,
 			"groundouts": 441,
 			"hitsAllowed": 295,
@@ -706,8 +710,8 @@
 				"battersFaced": 679,
 				"basesOnBalls": 13,
 				"basesOnBallsPerNine": 0.625668449197861,
-				"earnedRuns": 96,
-				"earnedRunAverage": 4.620320855614973,
+				"earnedRuns": 98,
+				"earnedRunAverage": 4.716577540106952,
 				"flyouts": 108,
 				"groundouts": 251,
 				"hitsAllowed": 178,
@@ -731,36 +735,37 @@
 				"wins": 12
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "jacob-winner"
 	},
 	"73265ee3-bb35-40d1-b696-1f241a6f5966": {
 		"careerPostseason": {
-			"appearances": 1,
-			"battersFaced": 40,
-			"basesOnBalls": 1,
-			"basesOnBallsPerNine": 0.9,
-			"earnedRuns": 6,
-			"earnedRunAverage": 5.4,
-			"flyouts": 4,
-			"groundouts": 11,
-			"hitsAllowed": 12,
-			"hitsAllowedPerNine": 10.799999999999999,
+			"appearances": 2,
+			"battersFaced": 77,
+			"basesOnBalls": 4,
+			"basesOnBallsPerNine": 2,
+			"earnedRuns": 11,
+			"earnedRunAverage": 5.5,
+			"flyouts": 7,
+			"groundouts": 24,
+			"hitsAllowed": 24,
+			"hitsAllowedPerNine": 12,
 			"homeRuns": 0,
 			"homeRunsPerNine": 0,
-			"inningsPitched": 10,
-			"losses": 0,
+			"inningsPitched": 18,
+			"losses": 1,
 			"numberOfPitches": 0,
 			"qualityStarts": 0,
 			"shutouts": 0,
-			"strikeouts": 4,
-			"strikeoutToWalkRatio": 4,
-			"strikeoutsPerNine": 3.6,
-			"strikeoutRate": 0.1,
+			"strikeouts": 6,
+			"strikeoutToWalkRatio": 1.5,
+			"strikeoutsPerNine": 3,
+			"strikeoutRate": 0.07792207792207792,
 			"team": null,
 			"teamName": null,
-			"walksAndHitsPerInningPitched": 1.3,
-			"walkRate": 0.025,
-			"winningPercentage": 1,
+			"walksAndHitsPerInningPitched": 1.5555555555555556,
+			"walkRate": 0.05194805194805195,
+			"winningPercentage": 0.5,
 			"wins": 1
 		},
 		"careerSeason": {
@@ -856,35 +861,36 @@
 		},
 		"postseasons": {
 			"2": {
-				"appearances": 1,
-				"battersFaced": 40,
-				"basesOnBalls": 1,
-				"basesOnBallsPerNine": 0.9,
-				"earnedRuns": 6,
-				"earnedRunAverage": 5.4,
-				"flyouts": 4,
-				"groundouts": 11,
-				"hitsAllowed": 12,
-				"hitsAllowedPerNine": 10.799999999999999,
+				"appearances": 2,
+				"battersFaced": 77,
+				"basesOnBalls": 4,
+				"basesOnBallsPerNine": 2,
+				"earnedRuns": 11,
+				"earnedRunAverage": 5.5,
+				"flyouts": 7,
+				"groundouts": 24,
+				"hitsAllowed": 24,
+				"hitsAllowedPerNine": 12,
 				"homeRuns": 0,
 				"homeRunsPerNine": 0,
-				"inningsPitched": 10,
-				"losses": 0,
+				"inningsPitched": 18,
+				"losses": 1,
 				"numberOfPitches": 0,
 				"qualityStarts": 0,
 				"shutouts": 0,
-				"strikeouts": 4,
-				"strikeoutToWalkRatio": 4,
-				"strikeoutsPerNine": 3.6,
-				"strikeoutRate": 0.1,
+				"strikeouts": 6,
+				"strikeoutToWalkRatio": 1.5,
+				"strikeoutsPerNine": 3,
+				"strikeoutRate": 0.07792207792207792,
 				"team": "b72f3061-f573-40d7-832a-5ad475bd7909",
 				"teamName": "San Francisco Lovers",
-				"walksAndHitsPerInningPitched": 1.3,
-				"walkRate": 0.025,
-				"winningPercentage": 1,
+				"walksAndHitsPerInningPitched": 1.5555555555555556,
+				"walkRate": 0.05194805194805195,
+				"winningPercentage": 0.5,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "parker-meng"
 	},
 	"f2a27a7e-bf04-4d31-86f5-16bfa3addbe7": {
 		"careerPostseason": {
@@ -921,8 +927,8 @@
 			"battersFaced": 1168,
 			"basesOnBalls": 74,
 			"basesOnBallsPerNine": 2.1009463722397475,
-			"earnedRuns": 117,
-			"earnedRunAverage": 3.321766561514196,
+			"earnedRuns": 116,
+			"earnedRunAverage": 3.2933753943217665,
 			"flyouts": 220,
 			"groundouts": 417,
 			"hitsAllowed": 265,
@@ -953,8 +959,8 @@
 				"battersFaced": 461,
 				"basesOnBalls": 22,
 				"basesOnBallsPerNine": 1.546875,
-				"earnedRuns": 44,
-				"earnedRunAverage": 3.09375,
+				"earnedRuns": 43,
+				"earnedRunAverage": 3.0234375,
 				"flyouts": 84,
 				"groundouts": 174,
 				"hitsAllowed": 110,
@@ -1007,7 +1013,8 @@
 				"wins": 13
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "winnie-hess"
 	},
 	"36786f44-9066-4028-98d9-4fa84465ab9e": {
 		"careerPostseason": {
@@ -1044,14 +1051,14 @@
 			"battersFaced": 1279,
 			"basesOnBalls": 125,
 			"basesOnBallsPerNine": 3.737541528239203,
-			"earnedRuns": 192,
-			"earnedRunAverage": 5.740863787375416,
+			"earnedRuns": 200,
+			"earnedRunAverage": 5.980066445182724,
 			"flyouts": 186,
 			"groundouts": 383,
 			"hitsAllowed": 345,
 			"hitsAllowedPerNine": 10.3156146179402,
-			"homeRuns": 44,
-			"homeRunsPerNine": 1.3156146179401995,
+			"homeRuns": 45,
+			"homeRunsPerNine": 1.345514950166113,
 			"inningsPitched": 301,
 			"losses": 17,
 			"numberOfPitches": 0,
@@ -1076,14 +1083,14 @@
 				"battersFaced": 472,
 				"basesOnBalls": 38,
 				"basesOnBallsPerNine": 3.137614678899083,
-				"earnedRuns": 76,
-				"earnedRunAverage": 6.275229357798165,
+				"earnedRuns": 81,
+				"earnedRunAverage": 6.6880733944954125,
 				"flyouts": 71,
 				"groundouts": 140,
 				"hitsAllowed": 139,
 				"hitsAllowedPerNine": 11.477064220183486,
-				"homeRuns": 22,
-				"homeRunsPerNine": 1.8165137614678901,
+				"homeRuns": 23,
+				"homeRunsPerNine": 1.8990825688073396,
 				"inningsPitched": 109,
 				"losses": 10,
 				"numberOfPitches": 0,
@@ -1105,8 +1112,8 @@
 				"battersFaced": 807,
 				"basesOnBalls": 87,
 				"basesOnBallsPerNine": 4.078125,
-				"earnedRuns": 116,
-				"earnedRunAverage": 5.4375,
+				"earnedRuns": 119,
+				"earnedRunAverage": 5.578125,
 				"flyouts": 115,
 				"groundouts": 243,
 				"hitsAllowed": 206,
@@ -1189,36 +1196,37 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "beasley-gloom"
 	},
 	"b082ca6e-eb11-4eab-8d6a-30f8be522ec4": {
 		"careerPostseason": {
-			"appearances": 2,
-			"battersFaced": 73,
-			"basesOnBalls": 9,
-			"basesOnBallsPerNine": 4.764705882352941,
-			"earnedRuns": 11,
-			"earnedRunAverage": 5.823529411764706,
-			"flyouts": 17,
-			"groundouts": 24,
-			"hitsAllowed": 19,
-			"hitsAllowedPerNine": 10.058823529411764,
-			"homeRuns": 0,
-			"homeRunsPerNine": 0,
-			"inningsPitched": 17,
-			"losses": 1,
+			"appearances": 3,
+			"battersFaced": 106,
+			"basesOnBalls": 14,
+			"basesOnBallsPerNine": 5.040000000000001,
+			"earnedRuns": 18,
+			"earnedRunAverage": 6.48,
+			"flyouts": 22,
+			"groundouts": 37,
+			"hitsAllowed": 25,
+			"hitsAllowedPerNine": 9,
+			"homeRuns": 3,
+			"homeRunsPerNine": 1.08,
+			"inningsPitched": 25,
+			"losses": 2,
 			"numberOfPitches": 0,
 			"qualityStarts": 0,
 			"shutouts": 0,
-			"strikeouts": 6,
-			"strikeoutToWalkRatio": 0.6666666666666666,
-			"strikeoutsPerNine": 3.1764705882352944,
-			"strikeoutRate": 0.0821917808219178,
+			"strikeouts": 8,
+			"strikeoutToWalkRatio": 0.5714285714285714,
+			"strikeoutsPerNine": 2.88,
+			"strikeoutRate": 0.07547169811320754,
 			"team": null,
 			"teamName": null,
-			"walksAndHitsPerInningPitched": 1.6470588235294117,
-			"walkRate": 0.1232876712328767,
-			"winningPercentage": 0.5,
+			"walksAndHitsPerInningPitched": 1.56,
+			"walkRate": 0.1320754716981132,
+			"winningPercentage": 0.3333333333333333,
 			"wins": 1
 		},
 		"careerSeason": {
@@ -1232,8 +1240,8 @@
 			"groundouts": 458,
 			"hitsAllowed": 226,
 			"hitsAllowedPerNine": 6.519230769230769,
-			"homeRuns": 31,
-			"homeRunsPerNine": 0.8942307692307692,
+			"homeRuns": 32,
+			"homeRunsPerNine": 0.923076923076923,
 			"inningsPitched": 312,
 			"losses": 12,
 			"numberOfPitches": 0,
@@ -1293,8 +1301,8 @@
 				"groundouts": 281,
 				"hitsAllowed": 145,
 				"hitsAllowedPerNine": 6.796875,
-				"homeRuns": 20,
-				"homeRunsPerNine": 0.9375,
+				"homeRuns": 21,
+				"homeRunsPerNine": 0.984375,
 				"inningsPitched": 192,
 				"losses": 8,
 				"numberOfPitches": 0,
@@ -1343,35 +1351,36 @@
 				"wins": 0
 			},
 			"2": {
-				"appearances": 1,
-				"battersFaced": 35,
-				"basesOnBalls": 0,
-				"basesOnBallsPerNine": 0,
-				"earnedRuns": 2,
-				"earnedRunAverage": 2,
-				"flyouts": 8,
-				"groundouts": 14,
-				"hitsAllowed": 10,
-				"hitsAllowedPerNine": 10,
-				"homeRuns": 0,
-				"homeRunsPerNine": 0,
-				"inningsPitched": 9,
-				"losses": 0,
+				"appearances": 2,
+				"battersFaced": 68,
+				"basesOnBalls": 5,
+				"basesOnBallsPerNine": 2.6470588235294117,
+				"earnedRuns": 9,
+				"earnedRunAverage": 4.764705882352941,
+				"flyouts": 13,
+				"groundouts": 27,
+				"hitsAllowed": 16,
+				"hitsAllowedPerNine": 8.470588235294118,
+				"homeRuns": 3,
+				"homeRunsPerNine": 1.5882352941176472,
+				"inningsPitched": 17,
+				"losses": 1,
 				"numberOfPitches": 0,
 				"qualityStarts": 0,
 				"shutouts": 0,
-				"strikeouts": 3,
-				"strikeoutToWalkRatio": 0,
-				"strikeoutsPerNine": 3,
-				"strikeoutRate": 0.08571428571428572,
+				"strikeouts": 5,
+				"strikeoutToWalkRatio": 1,
+				"strikeoutsPerNine": 2.6470588235294117,
+				"strikeoutRate": 0.07352941176470588,
 				"team": "23e4cbc1-e9cd-47fa-a35b-bfa06f726cb7",
 				"teamName": "Philly Pies",
-				"walksAndHitsPerInningPitched": 1.1111111111111112,
-				"walkRate": 0,
-				"winningPercentage": 1,
+				"walksAndHitsPerInningPitched": 1.2352941176470589,
+				"walkRate": 0.07352941176470588,
+				"winningPercentage": 0.5,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "nicholas-mora"
 	},
 	"3a8c52d7-4124-4a65-a20d-d51abcbe6540": {
 		"careerPostseason": {
@@ -1494,51 +1503,52 @@
 				"wins": 8
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "theodore-holloway"
 	},
 	"378c07b0-5645-44b5-869f-497d144c7b35": {
 		"careerPostseason": {
-			"appearances": 1,
-			"battersFaced": 36,
-			"basesOnBalls": 5,
-			"basesOnBallsPerNine": 4.5,
-			"earnedRuns": 0,
-			"earnedRunAverage": 0,
-			"flyouts": 3,
-			"groundouts": 16,
-			"hitsAllowed": 6,
-			"hitsAllowedPerNine": 5.3999999999999995,
-			"homeRuns": 0,
-			"homeRunsPerNine": 0,
-			"inningsPitched": 10,
-			"losses": 0,
+			"appearances": 3,
+			"battersFaced": 105,
+			"basesOnBalls": 11,
+			"basesOnBallsPerNine": 3.96,
+			"earnedRuns": 9,
+			"earnedRunAverage": 3.24,
+			"flyouts": 20,
+			"groundouts": 36,
+			"hitsAllowed": 25,
+			"hitsAllowedPerNine": 9,
+			"homeRuns": 2,
+			"homeRunsPerNine": 0.72,
+			"inningsPitched": 25,
+			"losses": 1,
 			"numberOfPitches": 0,
 			"qualityStarts": 1,
 			"shutouts": 1,
-			"strikeouts": 5,
-			"strikeoutToWalkRatio": 1,
-			"strikeoutsPerNine": 4.5,
-			"strikeoutRate": 0.1388888888888889,
+			"strikeouts": 9,
+			"strikeoutToWalkRatio": 0.8181818181818182,
+			"strikeoutsPerNine": 3.2399999999999998,
+			"strikeoutRate": 0.08571428571428572,
 			"team": null,
 			"teamName": null,
-			"walksAndHitsPerInningPitched": 1.1,
-			"walkRate": 0.1388888888888889,
-			"winningPercentage": 1,
-			"wins": 1
+			"walksAndHitsPerInningPitched": 1.44,
+			"walkRate": 0.10476190476190476,
+			"winningPercentage": 0.6666666666666666,
+			"wins": 2
 		},
 		"careerSeason": {
 			"appearances": 33,
 			"battersFaced": 1316,
 			"basesOnBalls": 161,
 			"basesOnBallsPerNine": 4.798013245033112,
-			"earnedRuns": 201,
-			"earnedRunAverage": 5.990066225165563,
+			"earnedRuns": 203,
+			"earnedRunAverage": 6.049668874172186,
 			"flyouts": 165,
 			"groundouts": 402,
 			"hitsAllowed": 359,
 			"hitsAllowedPerNine": 10.698675496688741,
-			"homeRuns": 23,
-			"homeRunsPerNine": 0.685430463576159,
+			"homeRuns": 26,
+			"homeRunsPerNine": 0.7748344370860927,
 			"inningsPitched": 302,
 			"losses": 18,
 			"numberOfPitches": 0,
@@ -1563,14 +1573,14 @@
 				"battersFaced": 518,
 				"basesOnBalls": 76,
 				"basesOnBallsPerNine": 6.107142857142858,
-				"earnedRuns": 99,
-				"earnedRunAverage": 7.955357142857143,
+				"earnedRuns": 96,
+				"earnedRunAverage": 7.714285714285714,
 				"flyouts": 62,
 				"groundouts": 162,
 				"hitsAllowed": 138,
 				"hitsAllowedPerNine": 11.089285714285715,
-				"homeRuns": 11,
-				"homeRunsPerNine": 0.8839285714285714,
+				"homeRuns": 13,
+				"homeRunsPerNine": 1.0446428571428572,
 				"inningsPitched": 112,
 				"losses": 10,
 				"numberOfPitches": 0,
@@ -1592,14 +1602,14 @@
 				"battersFaced": 798,
 				"basesOnBalls": 85,
 				"basesOnBallsPerNine": 4.026315789473684,
-				"earnedRuns": 102,
-				"earnedRunAverage": 4.831578947368421,
+				"earnedRuns": 107,
+				"earnedRunAverage": 5.068421052631579,
 				"flyouts": 103,
 				"groundouts": 240,
 				"hitsAllowed": 221,
 				"hitsAllowedPerNine": 10.46842105263158,
-				"homeRuns": 12,
-				"homeRunsPerNine": 0.5684210526315789,
+				"homeRuns": 13,
+				"homeRunsPerNine": 0.6157894736842106,
 				"inningsPitched": 190,
 				"losses": 8,
 				"numberOfPitches": 0,
@@ -1619,35 +1629,36 @@
 		},
 		"postseasons": {
 			"2": {
-				"appearances": 1,
-				"battersFaced": 36,
-				"basesOnBalls": 5,
-				"basesOnBallsPerNine": 4.5,
-				"earnedRuns": 0,
-				"earnedRunAverage": 0,
-				"flyouts": 3,
-				"groundouts": 16,
-				"hitsAllowed": 6,
-				"hitsAllowedPerNine": 5.3999999999999995,
-				"homeRuns": 0,
-				"homeRunsPerNine": 0,
-				"inningsPitched": 10,
-				"losses": 0,
+				"appearances": 3,
+				"battersFaced": 105,
+				"basesOnBalls": 11,
+				"basesOnBallsPerNine": 3.96,
+				"earnedRuns": 9,
+				"earnedRunAverage": 3.24,
+				"flyouts": 20,
+				"groundouts": 36,
+				"hitsAllowed": 25,
+				"hitsAllowedPerNine": 9,
+				"homeRuns": 2,
+				"homeRunsPerNine": 0.72,
+				"inningsPitched": 25,
+				"losses": 1,
 				"numberOfPitches": 0,
 				"qualityStarts": 1,
 				"shutouts": 1,
-				"strikeouts": 5,
-				"strikeoutToWalkRatio": 1,
-				"strikeoutsPerNine": 4.5,
-				"strikeoutRate": 0.1388888888888889,
+				"strikeouts": 9,
+				"strikeoutToWalkRatio": 0.8181818181818182,
+				"strikeoutsPerNine": 3.2399999999999998,
+				"strikeoutRate": 0.08571428571428572,
 				"team": "36569151-a2fb-43c1-9df7-2df512424c82",
 				"teamName": "New York Millennials",
-				"walksAndHitsPerInningPitched": 1.1,
-				"walkRate": 0.1388888888888889,
-				"winningPercentage": 1,
-				"wins": 1
+				"walksAndHitsPerInningPitched": 1.44,
+				"walkRate": 0.10476190476190476,
+				"winningPercentage": 0.6666666666666666,
+				"wins": 2
 			}
-		}
+		},
+		"slug": "fynn-doyle"
 	},
 	"d46abb00-c546-4952-9218-4f16084e3238": {
 		"careerPostseason": {
@@ -1684,8 +1695,8 @@
 			"battersFaced": 1275,
 			"basesOnBalls": 87,
 			"basesOnBallsPerNine": 2.709342560553633,
-			"earnedRuns": 206,
-			"earnedRunAverage": 6.41522491349481,
+			"earnedRuns": 209,
+			"earnedRunAverage": 6.508650519031142,
 			"flyouts": 174,
 			"groundouts": 402,
 			"hitsAllowed": 380,
@@ -1716,8 +1727,8 @@
 				"battersFaced": 490,
 				"basesOnBalls": 34,
 				"basesOnBallsPerNine": 2.6608695652173915,
-				"earnedRuns": 76,
-				"earnedRunAverage": 5.947826086956522,
+				"earnedRuns": 77,
+				"earnedRunAverage": 6.026086956521739,
 				"flyouts": 70,
 				"groundouts": 151,
 				"hitsAllowed": 141,
@@ -1745,8 +1756,8 @@
 				"battersFaced": 785,
 				"basesOnBalls": 53,
 				"basesOnBallsPerNine": 2.741379310344828,
-				"earnedRuns": 130,
-				"earnedRunAverage": 6.724137931034483,
+				"earnedRuns": 132,
+				"earnedRunAverage": 6.827586206896552,
 				"flyouts": 104,
 				"groundouts": 251,
 				"hitsAllowed": 239,
@@ -1800,7 +1811,8 @@
 				"winningPercentage": 1,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "atlas-guerra"
 	},
 	"7007cbd3-7c7b-44fd-9d6b-393e82b1c06e": {
 		"careerPostseason": {
@@ -1837,8 +1849,8 @@
 			"battersFaced": 1111,
 			"basesOnBalls": 35,
 			"basesOnBallsPerNine": 1.0641891891891893,
-			"earnedRuns": 119,
-			"earnedRunAverage": 3.6182432432432434,
+			"earnedRuns": 122,
+			"earnedRunAverage": 3.7094594594594597,
 			"flyouts": 142,
 			"groundouts": 403,
 			"hitsAllowed": 264,
@@ -1898,8 +1910,8 @@
 				"battersFaced": 676,
 				"basesOnBalls": 19,
 				"basesOnBallsPerNine": 0.9293478260869565,
-				"earnedRuns": 67,
-				"earnedRunAverage": 3.277173913043478,
+				"earnedRuns": 70,
+				"earnedRunAverage": 3.4239130434782608,
 				"flyouts": 85,
 				"groundouts": 258,
 				"hitsAllowed": 156,
@@ -1923,7 +1935,8 @@
 				"wins": 9
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "rafael-davids"
 	},
 	"a691f2ba-9b69-41f8-892c-1acd42c336e4": {
 		"careerPostseason": {
@@ -1960,8 +1973,8 @@
 			"battersFaced": 1087,
 			"basesOnBalls": 12,
 			"basesOnBallsPerNine": 0.34615384615384615,
-			"earnedRuns": 77,
-			"earnedRunAverage": 2.2211538461538463,
+			"earnedRuns": 79,
+			"earnedRunAverage": 2.2788461538461537,
 			"flyouts": 156,
 			"groundouts": 397,
 			"hitsAllowed": 241,
@@ -1992,8 +2005,8 @@
 				"battersFaced": 408,
 				"basesOnBalls": 5,
 				"basesOnBallsPerNine": 0.375,
-				"earnedRuns": 24,
-				"earnedRunAverage": 1.8,
+				"earnedRuns": 25,
+				"earnedRunAverage": 1.875,
 				"flyouts": 57,
 				"groundouts": 153,
 				"hitsAllowed": 80,
@@ -2021,8 +2034,8 @@
 				"battersFaced": 679,
 				"basesOnBalls": 7,
 				"basesOnBallsPerNine": 0.328125,
-				"earnedRuns": 53,
-				"earnedRunAverage": 2.484375,
+				"earnedRuns": 54,
+				"earnedRunAverage": 2.53125,
 				"flyouts": 99,
 				"groundouts": 244,
 				"hitsAllowed": 161,
@@ -2076,7 +2089,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "jenkins-good"
 	},
 	"b6aa8ce8-2587-4627-83c1-2a48d44afaee": {
 		"careerPostseason": {
@@ -2113,8 +2127,8 @@
 			"battersFaced": 1157,
 			"basesOnBalls": 92,
 			"basesOnBallsPerNine": 2.8067796610169493,
-			"earnedRuns": 139,
-			"earnedRunAverage": 4.240677966101695,
+			"earnedRuns": 142,
+			"earnedRunAverage": 4.332203389830508,
 			"flyouts": 180,
 			"groundouts": 417,
 			"hitsAllowed": 285,
@@ -2174,8 +2188,8 @@
 				"battersFaced": 713,
 				"basesOnBalls": 53,
 				"basesOnBallsPerNine": 2.6797752808988764,
-				"earnedRuns": 84,
-				"earnedRunAverage": 4.247191011235955,
+				"earnedRuns": 87,
+				"earnedRunAverage": 4.398876404494382,
 				"flyouts": 119,
 				"groundouts": 258,
 				"hitsAllowed": 187,
@@ -2199,45 +2213,46 @@
 				"wins": 10
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "inky-rutledge"
 	},
 	"2720559e-9173-4042-aaa0-d3852b72ab2e": {
 		"careerPostseason": {
-			"appearances": 2,
-			"battersFaced": 64,
-			"basesOnBalls": 0,
-			"basesOnBallsPerNine": 0,
-			"earnedRuns": 3,
-			"earnedRunAverage": 1.35,
-			"flyouts": 8,
-			"groundouts": 23,
-			"hitsAllowed": 13,
-			"hitsAllowedPerNine": 5.8500000000000005,
-			"homeRuns": 2,
-			"homeRunsPerNine": 0.9,
-			"inningsPitched": 20,
+			"appearances": 4,
+			"battersFaced": 136,
+			"basesOnBalls": 1,
+			"basesOnBallsPerNine": 0.23076923076923075,
+			"earnedRuns": 12,
+			"earnedRunAverage": 2.769230769230769,
+			"flyouts": 19,
+			"groundouts": 42,
+			"hitsAllowed": 34,
+			"hitsAllowedPerNine": 7.846153846153847,
+			"homeRuns": 6,
+			"homeRunsPerNine": 1.3846153846153846,
+			"inningsPitched": 39,
 			"losses": 0,
 			"numberOfPitches": 0,
 			"qualityStarts": 1,
 			"shutouts": 1,
-			"strikeouts": 16,
-			"strikeoutToWalkRatio": 0,
-			"strikeoutsPerNine": 7.2,
-			"strikeoutRate": 0.25,
+			"strikeouts": 27,
+			"strikeoutToWalkRatio": 27,
+			"strikeoutsPerNine": 6.230769230769231,
+			"strikeoutRate": 0.19852941176470587,
 			"team": null,
 			"teamName": null,
-			"walksAndHitsPerInningPitched": 0.65,
-			"walkRate": 0,
+			"walksAndHitsPerInningPitched": 0.8974358974358975,
+			"walkRate": 0.007352941176470588,
 			"winningPercentage": 1,
-			"wins": 2
+			"wins": 4
 		},
 		"careerSeason": {
 			"appearances": 33,
 			"battersFaced": 1054,
 			"basesOnBalls": 14,
 			"basesOnBallsPerNine": 0.41447368421052627,
-			"earnedRuns": 87,
-			"earnedRunAverage": 2.575657894736842,
+			"earnedRuns": 88,
+			"earnedRunAverage": 2.6052631578947367,
 			"flyouts": 159,
 			"groundouts": 424,
 			"hitsAllowed": 230,
@@ -2297,8 +2312,8 @@
 				"battersFaced": 663,
 				"basesOnBalls": 12,
 				"basesOnBallsPerNine": 0.5744680851063829,
-				"earnedRuns": 54,
-				"earnedRunAverage": 2.5851063829787235,
+				"earnedRuns": 55,
+				"earnedRunAverage": 2.632978723404255,
 				"flyouts": 100,
 				"groundouts": 257,
 				"hitsAllowed": 150,
@@ -2353,35 +2368,36 @@
 				"wins": 1
 			},
 			"2": {
-				"appearances": 1,
-				"battersFaced": 30,
-				"basesOnBalls": 0,
-				"basesOnBallsPerNine": 0,
-				"earnedRuns": 0,
-				"earnedRunAverage": 0,
-				"flyouts": 3,
-				"groundouts": 9,
-				"hitsAllowed": 5,
-				"hitsAllowedPerNine": 4.5,
-				"homeRuns": 0,
-				"homeRunsPerNine": 0,
-				"inningsPitched": 10,
+				"appearances": 3,
+				"battersFaced": 102,
+				"basesOnBalls": 1,
+				"basesOnBallsPerNine": 0.3103448275862069,
+				"earnedRuns": 9,
+				"earnedRunAverage": 2.793103448275862,
+				"flyouts": 14,
+				"groundouts": 28,
+				"hitsAllowed": 26,
+				"hitsAllowedPerNine": 8.068965517241379,
+				"homeRuns": 4,
+				"homeRunsPerNine": 1.2413793103448276,
+				"inningsPitched": 29,
 				"losses": 0,
 				"numberOfPitches": 0,
 				"qualityStarts": 1,
 				"shutouts": 1,
-				"strikeouts": 11,
-				"strikeoutToWalkRatio": 0,
-				"strikeoutsPerNine": 9.9,
-				"strikeoutRate": 0.36666666666666664,
+				"strikeouts": 22,
+				"strikeoutToWalkRatio": 22,
+				"strikeoutsPerNine": 6.827586206896552,
+				"strikeoutRate": 0.21568627450980393,
 				"team": "747b8e4a-7e50-4638-a973-ea7950a3e739",
 				"teamName": "Hades Tigers",
-				"walksAndHitsPerInningPitched": 0.5,
-				"walkRate": 0,
+				"walksAndHitsPerInningPitched": 0.9310344827586207,
+				"walkRate": 0.00980392156862745,
 				"winningPercentage": 1,
-				"wins": 1
+				"wins": 3
 			}
-		}
+		},
+		"slug": "hiroto-wilcox"
 	},
 	"8903a74f-f322-41d2-bd75-dbf7563c4abb": {
 		"careerPostseason": {
@@ -2418,14 +2434,14 @@
 			"battersFaced": 1197,
 			"basesOnBalls": 80,
 			"basesOnBallsPerNine": 2.4657534246575343,
-			"earnedRuns": 182,
-			"earnedRunAverage": 5.609589041095891,
+			"earnedRuns": 183,
+			"earnedRunAverage": 5.640410958904109,
 			"flyouts": 173,
 			"groundouts": 379,
 			"hitsAllowed": 332,
 			"hitsAllowedPerNine": 10.232876712328768,
-			"homeRuns": 46,
-			"homeRunsPerNine": 1.417808219178082,
+			"homeRuns": 47,
+			"homeRunsPerNine": 1.4486301369863015,
 			"inningsPitched": 292,
 			"losses": 25,
 			"numberOfPitches": 0,
@@ -2456,8 +2472,8 @@
 				"groundouts": 144,
 				"hitsAllowed": 133,
 				"hitsAllowedPerNine": 10.408695652173913,
-				"homeRuns": 13,
-				"homeRunsPerNine": 1.017391304347826,
+				"homeRuns": 14,
+				"homeRunsPerNine": 1.0956521739130436,
 				"inningsPitched": 115,
 				"losses": 10,
 				"numberOfPitches": 0,
@@ -2479,8 +2495,8 @@
 				"battersFaced": 725,
 				"basesOnBalls": 52,
 				"basesOnBallsPerNine": 2.6440677966101696,
-				"earnedRuns": 107,
-				"earnedRunAverage": 5.440677966101695,
+				"earnedRuns": 108,
+				"earnedRunAverage": 5.491525423728813,
 				"flyouts": 111,
 				"groundouts": 235,
 				"hitsAllowed": 199,
@@ -2504,7 +2520,8 @@
 				"wins": 5
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "francisca-sasquatch"
 	},
 	"1ffb1153-909d-44c7-9df1-6ed3a9a45bbd": {
 		"careerPostseason": {
@@ -2627,7 +2644,8 @@
 				"wins": 7
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "montgomery-bullock"
 	},
 	"0d5300f6-0966-430f-903f-a4c2338abf00": {
 		"careerPostseason": {
@@ -2664,14 +2682,14 @@
 			"battersFaced": 1200,
 			"basesOnBalls": 96,
 			"basesOnBallsPerNine": 2.8704318936877073,
-			"earnedRuns": 176,
-			"earnedRunAverage": 5.262458471760797,
+			"earnedRuns": 171,
+			"earnedRunAverage": 5.112956810631229,
 			"flyouts": 169,
 			"groundouts": 415,
 			"hitsAllowed": 299,
 			"hitsAllowedPerNine": 8.940199335548172,
-			"homeRuns": 44,
-			"homeRunsPerNine": 1.3156146179401995,
+			"homeRuns": 45,
+			"homeRunsPerNine": 1.345514950166113,
 			"inningsPitched": 301,
 			"losses": 24,
 			"numberOfPitches": 0,
@@ -2696,8 +2714,8 @@
 				"battersFaced": 483,
 				"basesOnBalls": 38,
 				"basesOnBallsPerNine": 2.9739130434782606,
-				"earnedRuns": 79,
-				"earnedRunAverage": 6.182608695652174,
+				"earnedRuns": 77,
+				"earnedRunAverage": 6.026086956521739,
 				"flyouts": 47,
 				"groundouts": 164,
 				"hitsAllowed": 128,
@@ -2725,14 +2743,14 @@
 				"battersFaced": 717,
 				"basesOnBalls": 58,
 				"basesOnBallsPerNine": 2.806451612903226,
-				"earnedRuns": 97,
-				"earnedRunAverage": 4.693548387096774,
+				"earnedRuns": 94,
+				"earnedRunAverage": 4.548387096774194,
 				"flyouts": 122,
 				"groundouts": 251,
 				"hitsAllowed": 171,
 				"hitsAllowedPerNine": 8.274193548387096,
-				"homeRuns": 26,
-				"homeRunsPerNine": 1.258064516129032,
+				"homeRuns": 27,
+				"homeRunsPerNine": 1.306451612903226,
 				"inningsPitched": 186,
 				"losses": 12,
 				"numberOfPitches": 0,
@@ -2750,7 +2768,8 @@
 				"wins": 8
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "lee-davenport"
 	},
 	"6f9de777-e812-4c84-915c-ef283c9f0cde": {
 		"careerPostseason": {
@@ -2793,8 +2812,8 @@
 			"groundouts": 396,
 			"hitsAllowed": 327,
 			"hitsAllowedPerNine": 9.745033112582782,
-			"homeRuns": 56,
-			"homeRunsPerNine": 1.6688741721854305,
+			"homeRuns": 57,
+			"homeRunsPerNine": 1.6986754966887416,
 			"inningsPitched": 302,
 			"losses": 20,
 			"numberOfPitches": 0,
@@ -2854,8 +2873,8 @@
 				"groundouts": 247,
 				"hitsAllowed": 201,
 				"hitsAllowedPerNine": 9.93956043956044,
-				"homeRuns": 36,
-				"homeRunsPerNine": 1.7802197802197801,
+				"homeRuns": 37,
+				"homeRunsPerNine": 1.8296703296703296,
 				"inningsPitched": 182,
 				"losses": 14,
 				"numberOfPitches": 0,
@@ -2873,7 +2892,8 @@
 				"wins": 6
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "arturo-huerta"
 	},
 	"03f920cc-411f-44ef-ae66-98a44e883291": {
 		"careerPostseason": {
@@ -2916,8 +2936,8 @@
 			"groundouts": 402,
 			"hitsAllowed": 256,
 			"hitsAllowedPerNine": 7.384615384615384,
-			"homeRuns": 22,
-			"homeRunsPerNine": 0.6346153846153846,
+			"homeRuns": 23,
+			"homeRunsPerNine": 0.6634615384615384,
 			"inningsPitched": 312,
 			"losses": 10,
 			"numberOfPitches": 0,
@@ -2977,8 +2997,8 @@
 				"groundouts": 248,
 				"hitsAllowed": 155,
 				"hitsAllowedPerNine": 7.342105263157895,
-				"homeRuns": 12,
-				"homeRunsPerNine": 0.5684210526315789,
+				"homeRuns": 13,
+				"homeRunsPerNine": 0.6157894736842106,
 				"inningsPitched": 190,
 				"losses": 3,
 				"numberOfPitches": 0,
@@ -3026,7 +3046,8 @@
 				"winningPercentage": 0.5,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "cornelius-games"
 	},
 	"3af96a6b-866c-4b03-bc14-090acf6ecee5": {
 		"careerPostseason": {
@@ -3063,8 +3084,8 @@
 			"battersFaced": 1132,
 			"basesOnBalls": 69,
 			"basesOnBallsPerNine": 2.112244897959184,
-			"earnedRuns": 112,
-			"earnedRunAverage": 3.4285714285714284,
+			"earnedRuns": 119,
+			"earnedRunAverage": 3.642857142857143,
 			"flyouts": 147,
 			"groundouts": 432,
 			"hitsAllowed": 271,
@@ -3095,8 +3116,8 @@
 				"battersFaced": 494,
 				"basesOnBalls": 53,
 				"basesOnBallsPerNine": 4.076923076923077,
-				"earnedRuns": 63,
-				"earnedRunAverage": 4.846153846153846,
+				"earnedRuns": 67,
+				"earnedRunAverage": 5.153846153846154,
 				"flyouts": 58,
 				"groundouts": 171,
 				"hitsAllowed": 119,
@@ -3124,8 +3145,8 @@
 				"battersFaced": 638,
 				"basesOnBalls": 16,
 				"basesOnBallsPerNine": 0.8135593220338984,
-				"earnedRuns": 49,
-				"earnedRunAverage": 2.4915254237288136,
+				"earnedRuns": 52,
+				"earnedRunAverage": 2.6440677966101696,
 				"flyouts": 89,
 				"groundouts": 261,
 				"hitsAllowed": 152,
@@ -3149,7 +3170,8 @@
 				"wins": 13
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "axel-trololol"
 	},
 	"7158d158-e7bf-4e9b-9259-62e5b25e3de8": {
 		"careerPostseason": {
@@ -3186,8 +3208,8 @@
 			"battersFaced": 1164,
 			"basesOnBalls": 16,
 			"basesOnBallsPerNine": 0.5017421602787456,
-			"earnedRuns": 166,
-			"earnedRunAverage": 5.205574912891986,
+			"earnedRuns": 175,
+			"earnedRunAverage": 5.487804878048781,
 			"flyouts": 147,
 			"groundouts": 368,
 			"hitsAllowed": 340,
@@ -3218,8 +3240,8 @@
 				"battersFaced": 470,
 				"basesOnBalls": 9,
 				"basesOnBallsPerNine": 0.6639344262295082,
-				"earnedRuns": 57,
-				"earnedRunAverage": 4.204918032786885,
+				"earnedRuns": 61,
+				"earnedRunAverage": 4.5,
 				"flyouts": 60,
 				"groundouts": 147,
 				"hitsAllowed": 127,
@@ -3247,8 +3269,8 @@
 				"battersFaced": 694,
 				"basesOnBalls": 7,
 				"basesOnBallsPerNine": 0.38181818181818183,
-				"earnedRuns": 109,
-				"earnedRunAverage": 5.945454545454545,
+				"earnedRuns": 114,
+				"earnedRunAverage": 6.218181818181818,
 				"flyouts": 87,
 				"groundouts": 221,
 				"hitsAllowed": 213,
@@ -3272,7 +3294,8 @@
 				"wins": 5
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "karato-bean"
 	},
 	"db33a54c-3934-478f-bad4-fc313ac2580e": {
 		"careerPostseason": {
@@ -3395,51 +3418,52 @@
 				"wins": 10
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "percival-wheeler"
 	},
 	"9965eed5-086c-4977-9470-fe410f92d353": {
 		"careerPostseason": {
-			"appearances": 0,
-			"battersFaced": 0,
-			"basesOnBalls": 0,
-			"basesOnBallsPerNine": 0,
-			"earnedRuns": 0,
-			"earnedRunAverage": 0,
-			"flyouts": 0,
-			"groundouts": 0,
-			"hitsAllowed": 0,
-			"hitsAllowedPerNine": 0,
-			"homeRuns": 0,
-			"homeRunsPerNine": 0,
-			"inningsPitched": 0,
+			"appearances": 1,
+			"battersFaced": 34,
+			"basesOnBalls": 1,
+			"basesOnBallsPerNine": 0.9,
+			"earnedRuns": 2,
+			"earnedRunAverage": 1.8,
+			"flyouts": 5,
+			"groundouts": 9,
+			"hitsAllowed": 7,
+			"hitsAllowedPerNine": 6.3,
+			"homeRuns": 2,
+			"homeRunsPerNine": 1.8,
+			"inningsPitched": 10,
 			"losses": 0,
 			"numberOfPitches": 0,
 			"qualityStarts": 0,
 			"shutouts": 0,
-			"strikeouts": 0,
-			"strikeoutToWalkRatio": 0,
-			"strikeoutsPerNine": 0,
-			"strikeoutRate": 0,
+			"strikeouts": 11,
+			"strikeoutToWalkRatio": 11,
+			"strikeoutsPerNine": 9.9,
+			"strikeoutRate": 0.3235294117647059,
 			"team": null,
 			"teamName": null,
-			"walksAndHitsPerInningPitched": 0,
-			"walkRate": 0,
+			"walksAndHitsPerInningPitched": 0.8,
+			"walkRate": 0.029411764705882353,
 			"winningPercentage": 1,
-			"wins": 0
+			"wins": 1
 		},
 		"careerSeason": {
 			"appearances": 33,
 			"battersFaced": 1169,
 			"basesOnBalls": 29,
 			"basesOnBallsPerNine": 0.8446601941747572,
-			"earnedRuns": 138,
-			"earnedRunAverage": 4.019417475728155,
+			"earnedRuns": 139,
+			"earnedRunAverage": 4.048543689320389,
 			"flyouts": 175,
 			"groundouts": 370,
 			"hitsAllowed": 344,
 			"hitsAllowedPerNine": 10.019417475728156,
-			"homeRuns": 25,
-			"homeRunsPerNine": 0.7281553398058253,
+			"homeRuns": 26,
+			"homeRunsPerNine": 0.7572815533980582,
 			"inningsPitched": 309,
 			"losses": 14,
 			"numberOfPitches": 0,
@@ -3493,14 +3517,14 @@
 				"battersFaced": 697,
 				"basesOnBalls": 16,
 				"basesOnBallsPerNine": 0.7783783783783784,
-				"earnedRuns": 95,
-				"earnedRunAverage": 4.621621621621622,
+				"earnedRuns": 96,
+				"earnedRunAverage": 4.6702702702702705,
 				"flyouts": 123,
 				"groundouts": 201,
 				"hitsAllowed": 222,
 				"hitsAllowedPerNine": 10.799999999999999,
-				"homeRuns": 19,
-				"homeRunsPerNine": 0.9243243243243244,
+				"homeRuns": 20,
+				"homeRunsPerNine": 0.972972972972973,
 				"inningsPitched": 185,
 				"losses": 10,
 				"numberOfPitches": 0,
@@ -3518,7 +3542,38 @@
 				"wins": 10
 			}
 		},
-		"postseasons": {}
+		"postseasons": {
+			"2": {
+				"appearances": 1,
+				"battersFaced": 34,
+				"basesOnBalls": 1,
+				"basesOnBallsPerNine": 0.9,
+				"earnedRuns": 2,
+				"earnedRunAverage": 1.8,
+				"flyouts": 5,
+				"groundouts": 9,
+				"hitsAllowed": 7,
+				"hitsAllowedPerNine": 6.3,
+				"homeRuns": 2,
+				"homeRunsPerNine": 1.8,
+				"inningsPitched": 10,
+				"losses": 0,
+				"numberOfPitches": 0,
+				"qualityStarts": 0,
+				"shutouts": 0,
+				"strikeouts": 11,
+				"strikeoutToWalkRatio": 11,
+				"strikeoutsPerNine": 9.9,
+				"strikeoutRate": 0.3235294117647059,
+				"team": "36569151-a2fb-43c1-9df7-2df512424c82",
+				"teamName": "New York Millennials",
+				"walksAndHitsPerInningPitched": 0.8,
+				"walkRate": 0.029411764705882353,
+				"winningPercentage": 1,
+				"wins": 1
+			}
+		},
+		"slug": "bates-bentley"
 	},
 	"c182f33c-aea5-48a2-97ed-dc74fa29b3c0": {
 		"careerPostseason": {
@@ -3555,8 +3610,8 @@
 			"battersFaced": 1172,
 			"basesOnBalls": 59,
 			"basesOnBallsPerNine": 1.7582781456953642,
-			"earnedRuns": 153,
-			"earnedRunAverage": 4.559602649006623,
+			"earnedRuns": 154,
+			"earnedRunAverage": 4.589403973509934,
 			"flyouts": 177,
 			"groundouts": 394,
 			"hitsAllowed": 319,
@@ -3616,8 +3671,8 @@
 				"battersFaced": 708,
 				"basesOnBalls": 39,
 				"basesOnBallsPerNine": 1.9608938547486032,
-				"earnedRuns": 107,
-				"earnedRunAverage": 5.379888268156424,
+				"earnedRuns": 108,
+				"earnedRunAverage": 5.430167597765363,
 				"flyouts": 107,
 				"groundouts": 227,
 				"hitsAllowed": 200,
@@ -3671,7 +3726,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "swamuel-mora"
 	},
 	"bf122660-df52-4fc4-9e70-ee185423ff93": {
 		"careerPostseason": {
@@ -3708,14 +3764,14 @@
 			"battersFaced": 1129,
 			"basesOnBalls": 69,
 			"basesOnBallsPerNine": 2.14878892733564,
-			"earnedRuns": 119,
-			"earnedRunAverage": 3.7058823529411766,
+			"earnedRuns": 120,
+			"earnedRunAverage": 3.737024221453287,
 			"flyouts": 173,
 			"groundouts": 418,
 			"hitsAllowed": 270,
 			"hitsAllowedPerNine": 8.408304498269896,
-			"homeRuns": 29,
-			"homeRunsPerNine": 0.903114186851211,
+			"homeRuns": 30,
+			"homeRunsPerNine": 0.9342560553633218,
 			"inningsPitched": 289,
 			"losses": 16,
 			"numberOfPitches": 0,
@@ -3769,14 +3825,14 @@
 				"battersFaced": 670,
 				"basesOnBalls": 40,
 				"basesOnBallsPerNine": 2.130177514792899,
-				"earnedRuns": 77,
-				"earnedRunAverage": 4.100591715976331,
+				"earnedRuns": 78,
+				"earnedRunAverage": 4.153846153846154,
 				"flyouts": 94,
 				"groundouts": 254,
 				"hitsAllowed": 161,
 				"hitsAllowedPerNine": 8.57396449704142,
-				"homeRuns": 16,
-				"homeRunsPerNine": 0.8520710059171598,
+				"homeRuns": 17,
+				"homeRunsPerNine": 0.9053254437869822,
 				"inningsPitched": 169,
 				"losses": 11,
 				"numberOfPitches": 0,
@@ -3853,7 +3909,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "walton-sports"
 	},
 	"20fd71e7-4fa0-4132-9f47-06a314ed539a": {
 		"careerPostseason": {
@@ -3890,8 +3947,8 @@
 			"battersFaced": 1225,
 			"basesOnBalls": 69,
 			"basesOnBallsPerNine": 2.1267123287671232,
-			"earnedRuns": 234,
-			"earnedRunAverage": 7.212328767123288,
+			"earnedRuns": 236,
+			"earnedRunAverage": 7.273972602739726,
 			"flyouts": 171,
 			"groundouts": 395,
 			"hitsAllowed": 362,
@@ -3951,8 +4008,8 @@
 				"battersFaced": 731,
 				"basesOnBalls": 44,
 				"basesOnBallsPerNine": 2.2247191011235956,
-				"earnedRuns": 136,
-				"earnedRunAverage": 6.876404494382022,
+				"earnedRuns": 138,
+				"earnedRunAverage": 6.977528089887641,
 				"flyouts": 108,
 				"groundouts": 225,
 				"hitsAllowed": 214,
@@ -3976,36 +4033,37 @@
 				"wins": 3
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "lars-taylor"
 	},
 	"7aeb8e0b-f6fb-4a9e-bba2-335dada5f0a3": {
 		"careerPostseason": {
-			"appearances": 2,
-			"battersFaced": 63,
+			"appearances": 3,
+			"battersFaced": 96,
 			"basesOnBalls": 0,
 			"basesOnBallsPerNine": 0,
-			"earnedRuns": 8,
-			"earnedRunAverage": 3.789473684210526,
-			"flyouts": 14,
-			"groundouts": 28,
-			"hitsAllowed": 17,
-			"hitsAllowedPerNine": 8.052631578947368,
-			"homeRuns": 2,
-			"homeRunsPerNine": 0.9473684210526315,
-			"inningsPitched": 19,
-			"losses": 1,
+			"earnedRuns": 15,
+			"earnedRunAverage": 5.1923076923076925,
+			"flyouts": 16,
+			"groundouts": 42,
+			"hitsAllowed": 28,
+			"hitsAllowedPerNine": 9.692307692307692,
+			"homeRuns": 4,
+			"homeRunsPerNine": 1.3846153846153846,
+			"inningsPitched": 26,
+			"losses": 2,
 			"numberOfPitches": 0,
 			"qualityStarts": 0,
 			"shutouts": 0,
-			"strikeouts": 7,
+			"strikeouts": 13,
 			"strikeoutToWalkRatio": 0,
-			"strikeoutsPerNine": 3.31578947368421,
-			"strikeoutRate": 0.1111111111111111,
+			"strikeoutsPerNine": 4.5,
+			"strikeoutRate": 0.13541666666666666,
 			"team": null,
 			"teamName": null,
-			"walksAndHitsPerInningPitched": 0.8947368421052632,
+			"walksAndHitsPerInningPitched": 1.0769230769230769,
 			"walkRate": 0,
-			"winningPercentage": 0.5,
+			"winningPercentage": 0.3333333333333333,
 			"wins": 1
 		},
 		"careerSeason": {
@@ -4013,8 +4071,8 @@
 			"battersFaced": 1033,
 			"basesOnBalls": 2,
 			"basesOnBallsPerNine": 0.05769230769230769,
-			"earnedRuns": 69,
-			"earnedRunAverage": 1.9903846153846154,
+			"earnedRuns": 72,
+			"earnedRunAverage": 2.076923076923077,
 			"flyouts": 151,
 			"groundouts": 420,
 			"hitsAllowed": 208,
@@ -4074,8 +4132,8 @@
 				"battersFaced": 622,
 				"basesOnBalls": 2,
 				"basesOnBallsPerNine": 0.0962566844919786,
-				"earnedRuns": 42,
-				"earnedRunAverage": 2.021390374331551,
+				"earnedRuns": 45,
+				"earnedRunAverage": 2.165775401069519,
 				"flyouts": 88,
 				"groundouts": 238,
 				"hitsAllowed": 121,
@@ -4130,35 +4188,36 @@
 				"wins": 0
 			},
 			"2": {
-				"appearances": 1,
-				"battersFaced": 29,
+				"appearances": 2,
+				"battersFaced": 62,
 				"basesOnBalls": 0,
 				"basesOnBallsPerNine": 0,
-				"earnedRuns": 2,
-				"earnedRunAverage": 1.8,
-				"flyouts": 9,
-				"groundouts": 12,
-				"hitsAllowed": 6,
-				"hitsAllowedPerNine": 5.3999999999999995,
-				"homeRuns": 0,
-				"homeRunsPerNine": 0,
-				"inningsPitched": 10,
-				"losses": 0,
+				"earnedRuns": 9,
+				"earnedRunAverage": 4.764705882352941,
+				"flyouts": 11,
+				"groundouts": 26,
+				"hitsAllowed": 17,
+				"hitsAllowedPerNine": 9,
+				"homeRuns": 2,
+				"homeRunsPerNine": 1.0588235294117647,
+				"inningsPitched": 17,
+				"losses": 1,
 				"numberOfPitches": 0,
 				"qualityStarts": 0,
 				"shutouts": 0,
-				"strikeouts": 3,
+				"strikeouts": 9,
 				"strikeoutToWalkRatio": 0,
-				"strikeoutsPerNine": 2.6999999999999997,
-				"strikeoutRate": 0.10344827586206896,
+				"strikeoutsPerNine": 4.764705882352941,
+				"strikeoutRate": 0.14516129032258066,
 				"team": "747b8e4a-7e50-4638-a973-ea7950a3e739",
 				"teamName": "Hades Tigers",
-				"walksAndHitsPerInningPitched": 0.6,
+				"walksAndHitsPerInningPitched": 1,
 				"walkRate": 0,
-				"winningPercentage": 1,
+				"winningPercentage": 0.5,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "dunlap-figueroa"
 	},
 	"09f2787a-3352-41a6-8810-d80e97b253b5": {
 		"careerPostseason": {
@@ -4281,7 +4340,8 @@
 				"wins": 10
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "curry-aliciakeyes"
 	},
 	"20be1c34-071d-40c6-8824-dde2af184b4d": {
 		"careerPostseason": {
@@ -4318,8 +4378,8 @@
 			"battersFaced": 1091,
 			"basesOnBalls": 29,
 			"basesOnBallsPerNine": 0.90625,
-			"earnedRuns": 113,
-			"earnedRunAverage": 3.53125,
+			"earnedRuns": 115,
+			"earnedRunAverage": 3.59375,
 			"flyouts": 152,
 			"groundouts": 385,
 			"hitsAllowed": 293,
@@ -4379,8 +4439,8 @@
 				"battersFaced": 658,
 				"basesOnBalls": 17,
 				"basesOnBallsPerNine": 0.894736842105263,
-				"earnedRuns": 73,
-				"earnedRunAverage": 3.8421052631578947,
+				"earnedRuns": 75,
+				"earnedRunAverage": 3.9473684210526314,
 				"flyouts": 97,
 				"groundouts": 219,
 				"hitsAllowed": 187,
@@ -4404,7 +4464,8 @@
 				"wins": 10
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "qais-dogwalker"
 	},
 	"d0d7b8fe-bad8-481f-978e-cb659304ed49": {
 		"careerPostseason": {
@@ -4441,8 +4502,8 @@
 			"battersFaced": 1137,
 			"basesOnBalls": 39,
 			"basesOnBallsPerNine": 1.125,
-			"earnedRuns": 136,
-			"earnedRunAverage": 3.923076923076923,
+			"earnedRuns": 141,
+			"earnedRunAverage": 4.0673076923076925,
 			"flyouts": 163,
 			"groundouts": 445,
 			"hitsAllowed": 275,
@@ -4473,8 +4534,8 @@
 				"battersFaced": 443,
 				"basesOnBalls": 11,
 				"basesOnBallsPerNine": 0.8181818181818182,
-				"earnedRuns": 50,
-				"earnedRunAverage": 3.71900826446281,
+				"earnedRuns": 53,
+				"earnedRunAverage": 3.9421487603305785,
 				"flyouts": 55,
 				"groundouts": 187,
 				"hitsAllowed": 105,
@@ -4502,8 +4563,8 @@
 				"battersFaced": 694,
 				"basesOnBalls": 28,
 				"basesOnBallsPerNine": 1.319371727748691,
-				"earnedRuns": 86,
-				"earnedRunAverage": 4.052356020942408,
+				"earnedRuns": 88,
+				"earnedRunAverage": 4.146596858638744,
 				"flyouts": 108,
 				"groundouts": 258,
 				"hitsAllowed": 170,
@@ -4527,7 +4588,8 @@
 				"wins": 13
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "adalberto-tosser"
 	},
 	"30218684-7fa1-41a5-a3b3-5d9cd97dd36b": {
 		"careerPostseason": {
@@ -4564,14 +4626,14 @@
 			"battersFaced": 1147,
 			"basesOnBalls": 126,
 			"basesOnBallsPerNine": 3.870307167235495,
-			"earnedRuns": 121,
-			"earnedRunAverage": 3.7167235494880546,
+			"earnedRuns": 129,
+			"earnedRunAverage": 3.962457337883959,
 			"flyouts": 155,
 			"groundouts": 417,
 			"hitsAllowed": 261,
 			"hitsAllowedPerNine": 8.017064846416382,
-			"homeRuns": 28,
-			"homeRunsPerNine": 0.8600682593856656,
+			"homeRuns": 29,
+			"homeRunsPerNine": 0.8907849829351536,
 			"inningsPitched": 293,
 			"losses": 13,
 			"numberOfPitches": 0,
@@ -4596,8 +4658,8 @@
 				"battersFaced": 457,
 				"basesOnBalls": 52,
 				"basesOnBallsPerNine": 3.9661016949152543,
-				"earnedRuns": 48,
-				"earnedRunAverage": 3.6610169491525424,
+				"earnedRuns": 51,
+				"earnedRunAverage": 3.889830508474576,
 				"flyouts": 62,
 				"groundouts": 161,
 				"hitsAllowed": 100,
@@ -4625,14 +4687,14 @@
 				"battersFaced": 690,
 				"basesOnBalls": 74,
 				"basesOnBallsPerNine": 3.805714285714286,
-				"earnedRuns": 73,
-				"earnedRunAverage": 3.7542857142857144,
+				"earnedRuns": 78,
+				"earnedRunAverage": 4.011428571428572,
 				"flyouts": 93,
 				"groundouts": 256,
 				"hitsAllowed": 161,
 				"hitsAllowedPerNine": 8.280000000000001,
-				"homeRuns": 14,
-				"homeRunsPerNine": 0.72,
+				"homeRuns": 15,
+				"homeRunsPerNine": 0.7714285714285715,
 				"inningsPitched": 175,
 				"losses": 9,
 				"numberOfPitches": 0,
@@ -4650,7 +4712,8 @@
 				"wins": 11
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "jordan-hildebert"
 	},
 	"60026a9d-fc9a-4f5a-94fd-2225398fa3da": {
 		"careerPostseason": {
@@ -4687,8 +4750,8 @@
 			"battersFaced": 1152,
 			"basesOnBalls": 56,
 			"basesOnBallsPerNine": 1.6524590163934425,
-			"earnedRuns": 124,
-			"earnedRunAverage": 3.6590163934426227,
+			"earnedRuns": 127,
+			"earnedRunAverage": 3.7475409836065574,
 			"flyouts": 162,
 			"groundouts": 419,
 			"hitsAllowed": 301,
@@ -4719,8 +4782,8 @@
 				"battersFaced": 450,
 				"basesOnBalls": 23,
 				"basesOnBallsPerNine": 1.7542372881355932,
-				"earnedRuns": 38,
-				"earnedRunAverage": 2.8983050847457625,
+				"earnedRuns": 39,
+				"earnedRunAverage": 2.9745762711864407,
 				"flyouts": 59,
 				"groundouts": 164,
 				"hitsAllowed": 104,
@@ -4748,8 +4811,8 @@
 				"battersFaced": 702,
 				"basesOnBalls": 33,
 				"basesOnBallsPerNine": 1.5882352941176472,
-				"earnedRuns": 86,
-				"earnedRunAverage": 4.13903743315508,
+				"earnedRuns": 88,
+				"earnedRunAverage": 4.235294117647059,
 				"flyouts": 103,
 				"groundouts": 255,
 				"hitsAllowed": 197,
@@ -4832,7 +4895,8 @@
 				"winningPercentage": 1,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "bright-zimmerman"
 	},
 	"24f6829e-7bb4-4e1e-8b59-a07514657e72": {
 		"careerPostseason": {
@@ -4869,8 +4933,8 @@
 			"battersFaced": 1113,
 			"basesOnBalls": 61,
 			"basesOnBallsPerNine": 1.8673469387755102,
-			"earnedRuns": 129,
-			"earnedRunAverage": 3.9489795918367347,
+			"earnedRuns": 131,
+			"earnedRunAverage": 4.010204081632653,
 			"flyouts": 174,
 			"groundouts": 425,
 			"hitsAllowed": 278,
@@ -4901,8 +4965,8 @@
 				"battersFaced": 462,
 				"basesOnBalls": 19,
 				"basesOnBallsPerNine": 1.3902439024390245,
-				"earnedRuns": 53,
-				"earnedRunAverage": 3.8780487804878048,
+				"earnedRuns": 54,
+				"earnedRunAverage": 3.951219512195122,
 				"flyouts": 69,
 				"groundouts": 176,
 				"hitsAllowed": 112,
@@ -4930,8 +4994,8 @@
 				"battersFaced": 651,
 				"basesOnBalls": 42,
 				"basesOnBallsPerNine": 2.2105263157894735,
-				"earnedRuns": 76,
-				"earnedRunAverage": 4,
+				"earnedRuns": 77,
+				"earnedRunAverage": 4.052631578947368,
 				"flyouts": 105,
 				"groundouts": 249,
 				"hitsAllowed": 166,
@@ -4985,7 +5049,8 @@
 				"winningPercentage": 1,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "king-weatherman"
 	},
 	"042962c8-4d8b-44a6-b854-6ccef3d82716": {
 		"careerPostseason": {
@@ -5022,8 +5087,8 @@
 			"battersFaced": 1104,
 			"basesOnBalls": 67,
 			"basesOnBallsPerNine": 2.1010452961672472,
-			"earnedRuns": 133,
-			"earnedRunAverage": 4.170731707317073,
+			"earnedRuns": 138,
+			"earnedRunAverage": 4.327526132404182,
 			"flyouts": 173,
 			"groundouts": 360,
 			"hitsAllowed": 276,
@@ -5054,8 +5119,8 @@
 				"battersFaced": 444,
 				"basesOnBalls": 17,
 				"basesOnBallsPerNine": 1.3189655172413792,
-				"earnedRuns": 49,
-				"earnedRunAverage": 3.8017241379310347,
+				"earnedRuns": 51,
+				"earnedRunAverage": 3.956896551724138,
 				"flyouts": 74,
 				"groundouts": 143,
 				"hitsAllowed": 115,
@@ -5083,8 +5148,8 @@
 				"battersFaced": 660,
 				"basesOnBalls": 50,
 				"basesOnBallsPerNine": 2.631578947368421,
-				"earnedRuns": 84,
-				"earnedRunAverage": 4.421052631578948,
+				"earnedRuns": 87,
+				"earnedRunAverage": 4.578947368421052,
 				"flyouts": 99,
 				"groundouts": 217,
 				"hitsAllowed": 161,
@@ -5138,7 +5203,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "ronan-jaylee"
 	},
 	"65273615-22d5-4df1-9a73-707b23e828d5": {
 		"careerPostseason": {
@@ -5175,8 +5241,8 @@
 			"battersFaced": 1148,
 			"basesOnBalls": 85,
 			"basesOnBallsPerNine": 2.7031802120141344,
-			"earnedRuns": 134,
-			"earnedRunAverage": 4.261484098939929,
+			"earnedRuns": 137,
+			"earnedRunAverage": 4.3568904593639575,
 			"flyouts": 153,
 			"groundouts": 401,
 			"hitsAllowed": 293,
@@ -5207,8 +5273,8 @@
 				"battersFaced": 464,
 				"basesOnBalls": 36,
 				"basesOnBallsPerNine": 2.793103448275862,
-				"earnedRuns": 50,
-				"earnedRunAverage": 3.8793103448275863,
+				"earnedRuns": 53,
+				"earnedRunAverage": 4.112068965517241,
 				"flyouts": 62,
 				"groundouts": 172,
 				"hitsAllowed": 113,
@@ -5261,7 +5327,8 @@
 				"wins": 7
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "burke-gonzales"
 	},
 	"d8742d68-8fce-4d52-9a49-f4e33bd2a6fc": {
 		"careerPostseason": {
@@ -5298,8 +5365,8 @@
 			"battersFaced": 1266,
 			"basesOnBalls": 201,
 			"basesOnBallsPerNine": 6.325174825174825,
-			"earnedRuns": 183,
-			"earnedRunAverage": 5.758741258741258,
+			"earnedRuns": 186,
+			"earnedRunAverage": 5.853146853146853,
 			"flyouts": 159,
 			"groundouts": 391,
 			"hitsAllowed": 303,
@@ -5330,8 +5397,8 @@
 				"battersFaced": 520,
 				"basesOnBalls": 77,
 				"basesOnBallsPerNine": 5.974137931034483,
-				"earnedRuns": 66,
-				"earnedRunAverage": 5.120689655172414,
+				"earnedRuns": 67,
+				"earnedRunAverage": 5.198275862068965,
 				"flyouts": 61,
 				"groundouts": 166,
 				"hitsAllowed": 123,
@@ -5359,8 +5426,8 @@
 				"battersFaced": 746,
 				"basesOnBalls": 124,
 				"basesOnBallsPerNine": 6.564705882352941,
-				"earnedRuns": 117,
-				"earnedRunAverage": 6.194117647058824,
+				"earnedRuns": 119,
+				"earnedRunAverage": 6.3,
 				"flyouts": 98,
 				"groundouts": 225,
 				"hitsAllowed": 180,
@@ -5414,7 +5481,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "ortiz-morse"
 	},
 	"41949d4d-b151-4f46-8bf7-73119a48fac8": {
 		"careerPostseason": {
@@ -5451,8 +5519,8 @@
 			"battersFaced": 1121,
 			"basesOnBalls": 83,
 			"basesOnBallsPerNine": 2.558219178082192,
-			"earnedRuns": 122,
-			"earnedRunAverage": 3.76027397260274,
+			"earnedRuns": 124,
+			"earnedRunAverage": 3.8219178082191783,
 			"flyouts": 164,
 			"groundouts": 391,
 			"hitsAllowed": 263,
@@ -5483,8 +5551,8 @@
 				"battersFaced": 470,
 				"basesOnBalls": 40,
 				"basesOnBallsPerNine": 3.1578947368421053,
-				"earnedRuns": 57,
-				"earnedRunAverage": 4.5,
+				"earnedRuns": 58,
+				"earnedRunAverage": 4.578947368421052,
 				"flyouts": 67,
 				"groundouts": 153,
 				"hitsAllowed": 116,
@@ -5512,8 +5580,8 @@
 				"battersFaced": 651,
 				"basesOnBalls": 43,
 				"basesOnBallsPerNine": 2.1741573033707864,
-				"earnedRuns": 65,
-				"earnedRunAverage": 3.2865168539325844,
+				"earnedRuns": 66,
+				"earnedRunAverage": 3.337078651685393,
 				"flyouts": 97,
 				"groundouts": 238,
 				"hitsAllowed": 147,
@@ -5537,7 +5605,8 @@
 				"wins": 13
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "ron-monstera"
 	},
 	"f741dc01-2bae-4459-bfc0-f97536193eea": {
 		"careerPostseason": {
@@ -5574,8 +5643,8 @@
 			"battersFaced": 1185,
 			"basesOnBalls": 85,
 			"basesOnBallsPerNine": 2.6288659793814433,
-			"earnedRuns": 142,
-			"earnedRunAverage": 4.391752577319588,
+			"earnedRuns": 143,
+			"earnedRunAverage": 4.422680412371134,
 			"flyouts": 150,
 			"groundouts": 389,
 			"hitsAllowed": 335,
@@ -5635,8 +5704,8 @@
 				"battersFaced": 692,
 				"basesOnBalls": 45,
 				"basesOnBallsPerNine": 2.3011363636363638,
-				"earnedRuns": 68,
-				"earnedRunAverage": 3.477272727272727,
+				"earnedRuns": 69,
+				"earnedRunAverage": 3.528409090909091,
 				"flyouts": 92,
 				"groundouts": 232,
 				"hitsAllowed": 192,
@@ -5660,7 +5729,8 @@
 				"wins": 10
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "alejandro-leaf"
 	},
 	"089af518-e27c-4256-adc8-62e3f4b30f43": {
 		"careerPostseason": {
@@ -5783,7 +5853,8 @@
 				"wins": 13
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "silvia-rugrat"
 	},
 	"9ba361a1-16d5-4f30-b590-fc4fc2fb53d2": {
 		"careerPostseason": {
@@ -5820,8 +5891,8 @@
 			"battersFaced": 1144,
 			"basesOnBalls": 75,
 			"basesOnBallsPerNine": 2.3684210526315788,
-			"earnedRuns": 126,
-			"earnedRunAverage": 3.9789473684210526,
+			"earnedRuns": 132,
+			"earnedRunAverage": 4.168421052631579,
 			"flyouts": 167,
 			"groundouts": 392,
 			"hitsAllowed": 293,
@@ -5881,8 +5952,8 @@
 				"battersFaced": 670,
 				"basesOnBalls": 37,
 				"basesOnBallsPerNine": 1.9137931034482758,
-				"earnedRuns": 65,
-				"earnedRunAverage": 3.3620689655172415,
+				"earnedRuns": 71,
+				"earnedRunAverage": 3.6724137931034484,
 				"flyouts": 100,
 				"groundouts": 243,
 				"hitsAllowed": 165,
@@ -5965,7 +6036,8 @@
 				"winningPercentage": 1,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "mooney-doctor"
 	},
 	"94baa9ac-ff96-4f56-a987-10358e917d91": {
 		"careerPostseason": {
@@ -6147,7 +6219,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "gabriel-griffith"
 	},
 	"5e4dfa16-f1b9-400f-b8ef-a1613c2b026a": {
 		"careerPostseason": {
@@ -6329,7 +6402,8 @@
 				"winningPercentage": 1,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "snyder-briggs"
 	},
 	"0cc5bd39-e90d-42f9-9dd8-7e703f316436": {
 		"careerPostseason": {
@@ -6452,7 +6526,8 @@
 				"wins": 8
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "don-elliott"
 	},
 	"89ec77d8-c186-4027-bd45-f407b4800c2c": {
 		"careerPostseason": {
@@ -6575,7 +6650,8 @@
 				"wins": 13
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "james-mora"
 	},
 	"bca38809-81de-42ff-94e3-1c0ebfb1e797": {
 		"careerPostseason": {
@@ -6612,8 +6688,8 @@
 			"battersFaced": 182,
 			"basesOnBalls": 9,
 			"basesOnBallsPerNine": 1.653061224489796,
-			"earnedRuns": 18,
-			"earnedRunAverage": 3.306122448979592,
+			"earnedRuns": 21,
+			"earnedRunAverage": 3.857142857142857,
 			"flyouts": 37,
 			"groundouts": 68,
 			"hitsAllowed": 44,
@@ -6644,8 +6720,8 @@
 				"battersFaced": 182,
 				"basesOnBalls": 9,
 				"basesOnBallsPerNine": 1.653061224489796,
-				"earnedRuns": 18,
-				"earnedRunAverage": 3.306122448979592,
+				"earnedRuns": 21,
+				"earnedRunAverage": 3.857142857142857,
 				"flyouts": 37,
 				"groundouts": 68,
 				"hitsAllowed": 44,
@@ -6669,7 +6745,8 @@
 				"wins": 3
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "famous-oconnor"
 	},
 	"16aff709-e855-47c8-8818-b9ba66e90fe8": {
 		"careerPostseason": {
@@ -6706,14 +6783,14 @@
 			"battersFaced": 1136,
 			"basesOnBalls": 94,
 			"basesOnBallsPerNine": 2.97887323943662,
-			"earnedRuns": 140,
-			"earnedRunAverage": 4.436619718309859,
+			"earnedRuns": 143,
+			"earnedRunAverage": 4.53169014084507,
 			"flyouts": 147,
 			"groundouts": 404,
 			"hitsAllowed": 284,
 			"hitsAllowedPerNine": 9,
-			"homeRuns": 44,
-			"homeRunsPerNine": 1.3943661971830985,
+			"homeRuns": 45,
+			"homeRunsPerNine": 1.426056338028169,
 			"inningsPitched": 284,
 			"losses": 18,
 			"numberOfPitches": 0,
@@ -6767,14 +6844,14 @@
 				"battersFaced": 705,
 				"basesOnBalls": 63,
 				"basesOnBallsPerNine": 3.277456647398844,
-				"earnedRuns": 88,
-				"earnedRunAverage": 4.578034682080925,
+				"earnedRuns": 91,
+				"earnedRunAverage": 4.734104046242774,
 				"flyouts": 79,
 				"groundouts": 250,
 				"hitsAllowed": 177,
 				"hitsAllowedPerNine": 9.208092485549132,
-				"homeRuns": 24,
-				"homeRunsPerNine": 1.2485549132947975,
+				"homeRuns": 25,
+				"homeRunsPerNine": 1.300578034682081,
 				"inningsPitched": 173,
 				"losses": 12,
 				"numberOfPitches": 0,
@@ -6822,7 +6899,8 @@
 				"winningPercentage": 1,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "mullen-peterson"
 	},
 	"80a2f015-9d40-426b-a4f6-b9911ba3add8": {
 		"careerPostseason": {
@@ -6945,7 +7023,8 @@
 				"wins": 0
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "paul-barnes"
 	},
 	"7663c3ca-40a1-4f13-a430-14637dce797a": {
 		"careerPostseason": {
@@ -6982,14 +7061,14 @@
 			"battersFaced": 1208,
 			"basesOnBalls": 72,
 			"basesOnBallsPerNine": 2.314285714285714,
-			"earnedRuns": 233,
-			"earnedRunAverage": 7.489285714285714,
+			"earnedRuns": 234,
+			"earnedRunAverage": 7.521428571428571,
 			"flyouts": 151,
 			"groundouts": 399,
 			"hitsAllowed": 375,
 			"hitsAllowedPerNine": 12.053571428571427,
-			"homeRuns": 55,
-			"homeRunsPerNine": 1.7678571428571428,
+			"homeRuns": 56,
+			"homeRunsPerNine": 1.8,
 			"inningsPitched": 280,
 			"losses": 24,
 			"numberOfPitches": 0,
@@ -7043,14 +7122,14 @@
 				"battersFaced": 761,
 				"basesOnBalls": 48,
 				"basesOnBallsPerNine": 2.541176470588235,
-				"earnedRuns": 171,
-				"earnedRunAverage": 9.052941176470588,
+				"earnedRuns": 172,
+				"earnedRunAverage": 9.105882352941176,
 				"flyouts": 93,
 				"groundouts": 238,
 				"hitsAllowed": 251,
 				"hitsAllowedPerNine": 13.288235294117648,
-				"homeRuns": 43,
-				"homeRunsPerNine": 2.276470588235294,
+				"homeRuns": 44,
+				"homeRunsPerNine": 2.3294117647058825,
 				"inningsPitched": 170,
 				"losses": 16,
 				"numberOfPitches": 0,
@@ -7068,7 +7147,8 @@
 				"wins": 3
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "polkadot-zavala"
 	},
 	"f70dd57b-55c4-4a62-a5ea-7cc4bf9d8ac1": {
 		"careerPostseason": {
@@ -7105,14 +7185,14 @@
 			"battersFaced": 1143,
 			"basesOnBalls": 109,
 			"basesOnBallsPerNine": 3.516129032258065,
-			"earnedRuns": 131,
-			"earnedRunAverage": 4.225806451612903,
+			"earnedRuns": 134,
+			"earnedRunAverage": 4.32258064516129,
 			"flyouts": 187,
 			"groundouts": 379,
 			"hitsAllowed": 278,
 			"hitsAllowedPerNine": 8.96774193548387,
-			"homeRuns": 28,
-			"homeRunsPerNine": 0.903225806451613,
+			"homeRuns": 30,
+			"homeRunsPerNine": 0.967741935483871,
 			"inningsPitched": 279,
 			"losses": 23,
 			"numberOfPitches": 0,
@@ -7137,14 +7217,14 @@
 				"battersFaced": 438,
 				"basesOnBalls": 41,
 				"basesOnBallsPerNine": 3.416666666666667,
-				"earnedRuns": 51,
-				"earnedRunAverage": 4.25,
+				"earnedRuns": 53,
+				"earnedRunAverage": 4.416666666666667,
 				"flyouts": 67,
 				"groundouts": 156,
 				"hitsAllowed": 97,
 				"hitsAllowedPerNine": 8.083333333333334,
-				"homeRuns": 13,
-				"homeRunsPerNine": 1.0833333333333333,
+				"homeRuns": 15,
+				"homeRunsPerNine": 1.25,
 				"inningsPitched": 108,
 				"losses": 10,
 				"numberOfPitches": 0,
@@ -7166,8 +7246,8 @@
 				"battersFaced": 705,
 				"basesOnBalls": 68,
 				"basesOnBallsPerNine": 3.578947368421052,
-				"earnedRuns": 80,
-				"earnedRunAverage": 4.2105263157894735,
+				"earnedRuns": 81,
+				"earnedRunAverage": 4.2631578947368425,
 				"flyouts": 120,
 				"groundouts": 223,
 				"hitsAllowed": 181,
@@ -7191,7 +7271,8 @@
 				"wins": 6
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "tillman-henderson"
 	},
 	"814bae61-071a-449b-981e-e7afc839d6d6": {
 		"careerPostseason": {
@@ -7228,14 +7309,14 @@
 			"battersFaced": 1185,
 			"basesOnBalls": 126,
 			"basesOnBallsPerNine": 3.9929577464788735,
-			"earnedRuns": 188,
-			"earnedRunAverage": 5.957746478873239,
+			"earnedRuns": 189,
+			"earnedRunAverage": 5.98943661971831,
 			"flyouts": 144,
 			"groundouts": 409,
 			"hitsAllowed": 295,
 			"hitsAllowedPerNine": 9.348591549295776,
-			"homeRuns": 40,
-			"homeRunsPerNine": 1.267605633802817,
+			"homeRuns": 42,
+			"homeRunsPerNine": 1.3309859154929577,
 			"inningsPitched": 284,
 			"losses": 17,
 			"numberOfPitches": 0,
@@ -7289,14 +7370,14 @@
 				"battersFaced": 720,
 				"basesOnBalls": 77,
 				"basesOnBallsPerNine": 4.076470588235294,
-				"earnedRuns": 110,
-				"earnedRunAverage": 5.823529411764706,
+				"earnedRuns": 111,
+				"earnedRunAverage": 5.876470588235295,
 				"flyouts": 80,
 				"groundouts": 252,
 				"hitsAllowed": 182,
 				"hitsAllowedPerNine": 9.635294117647058,
-				"homeRuns": 21,
-				"homeRunsPerNine": 1.111764705882353,
+				"homeRuns": 23,
+				"homeRunsPerNine": 1.2176470588235293,
 				"inningsPitched": 170,
 				"losses": 11,
 				"numberOfPitches": 0,
@@ -7373,7 +7454,8 @@
 				"winningPercentage": 0.5,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "ruslan-greatness"
 	},
 	"a647388d-fc59-4c1b-90d3-8c1826e07775": {
 		"careerPostseason": {
@@ -7410,14 +7492,14 @@
 			"battersFaced": 1210,
 			"basesOnBalls": 195,
 			"basesOnBallsPerNine": 6.548507462686567,
-			"earnedRuns": 206,
-			"earnedRunAverage": 6.917910447761194,
+			"earnedRuns": 210,
+			"earnedRunAverage": 7.052238805970149,
 			"flyouts": 188,
 			"groundouts": 338,
 			"hitsAllowed": 298,
 			"hitsAllowedPerNine": 10.007462686567164,
-			"homeRuns": 22,
-			"homeRunsPerNine": 0.7388059701492538,
+			"homeRuns": 23,
+			"homeRunsPerNine": 0.7723880597014925,
 			"inningsPitched": 268,
 			"losses": 19,
 			"numberOfPitches": 0,
@@ -7442,8 +7524,8 @@
 				"battersFaced": 485,
 				"basesOnBalls": 73,
 				"basesOnBallsPerNine": 6.19811320754717,
-				"earnedRuns": 81,
-				"earnedRunAverage": 6.877358490566038,
+				"earnedRuns": 82,
+				"earnedRunAverage": 6.962264150943396,
 				"flyouts": 67,
 				"groundouts": 127,
 				"hitsAllowed": 124,
@@ -7471,14 +7553,14 @@
 				"battersFaced": 725,
 				"basesOnBalls": 122,
 				"basesOnBallsPerNine": 6.777777777777778,
-				"earnedRuns": 125,
-				"earnedRunAverage": 6.944444444444445,
+				"earnedRuns": 128,
+				"earnedRunAverage": 7.111111111111111,
 				"flyouts": 121,
 				"groundouts": 211,
 				"hitsAllowed": 174,
 				"hitsAllowedPerNine": 9.666666666666668,
-				"homeRuns": 15,
-				"homeRunsPerNine": 0.8333333333333333,
+				"homeRuns": 16,
+				"homeRunsPerNine": 0.8888888888888888,
 				"inningsPitched": 162,
 				"losses": 13,
 				"numberOfPitches": 0,
@@ -7526,7 +7608,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "chambers-simmons"
 	},
 	"333067fd-c2b4-4045-a9a4-e87a8d0332d0": {
 		"careerPostseason": {
@@ -7563,8 +7646,8 @@
 			"battersFaced": 1116,
 			"basesOnBalls": 51,
 			"basesOnBallsPerNine": 1.5559322033898304,
-			"earnedRuns": 127,
-			"earnedRunAverage": 3.8745762711864407,
+			"earnedRuns": 128,
+			"earnedRunAverage": 3.905084745762712,
 			"flyouts": 171,
 			"groundouts": 403,
 			"hitsAllowed": 278,
@@ -7624,8 +7707,8 @@
 				"battersFaced": 677,
 				"basesOnBalls": 32,
 				"basesOnBallsPerNine": 1.6363636363636365,
-				"earnedRuns": 87,
-				"earnedRunAverage": 4.448863636363637,
+				"earnedRuns": 88,
+				"earnedRunAverage": 4.5,
 				"flyouts": 103,
 				"groundouts": 245,
 				"hitsAllowed": 170,
@@ -7649,7 +7732,8 @@
 				"wins": 9
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "miguel-james"
 	},
 	"bd9d1d6e-7822-4ad9-bac4-89b8afd8a630": {
 		"careerPostseason": {
@@ -7686,14 +7770,14 @@
 			"battersFaced": 1033,
 			"basesOnBalls": 68,
 			"basesOnBallsPerNine": 2.409448818897638,
-			"earnedRuns": 122,
-			"earnedRunAverage": 4.322834645669292,
+			"earnedRuns": 127,
+			"earnedRunAverage": 4.5,
 			"flyouts": 164,
 			"groundouts": 319,
 			"hitsAllowed": 295,
 			"hitsAllowedPerNine": 10.452755905511811,
-			"homeRuns": 26,
-			"homeRunsPerNine": 0.9212598425196851,
+			"homeRuns": 28,
+			"homeRunsPerNine": 0.9921259842519685,
 			"inningsPitched": 254,
 			"losses": 12,
 			"numberOfPitches": 0,
@@ -7718,8 +7802,8 @@
 				"battersFaced": 461,
 				"basesOnBalls": 36,
 				"basesOnBallsPerNine": 2.9454545454545453,
-				"earnedRuns": 61,
-				"earnedRunAverage": 4.990909090909091,
+				"earnedRuns": 64,
+				"earnedRunAverage": 5.236363636363636,
 				"flyouts": 89,
 				"groundouts": 130,
 				"hitsAllowed": 130,
@@ -7747,14 +7831,14 @@
 				"battersFaced": 572,
 				"basesOnBalls": 32,
 				"basesOnBallsPerNine": 2,
-				"earnedRuns": 61,
-				"earnedRunAverage": 3.8125,
+				"earnedRuns": 63,
+				"earnedRunAverage": 3.9375,
 				"flyouts": 75,
 				"groundouts": 189,
 				"hitsAllowed": 165,
 				"hitsAllowedPerNine": 10.3125,
-				"homeRuns": 11,
-				"homeRunsPerNine": 0.6875,
+				"homeRuns": 13,
+				"homeRunsPerNine": 0.8125,
 				"inningsPitched": 144,
 				"losses": 6,
 				"numberOfPitches": 0,
@@ -7772,7 +7856,8 @@
 				"wins": 9
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "derrick-krueger"
 	},
 	"f4a5d734-0ade-4410-abb6-c0cd5a7a1c26": {
 		"careerPostseason": {
@@ -7954,7 +8039,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "agan-harrison"
 	},
 	"ceb8f8cd-80b2-47f0-b43e-4d885fa48aa4": {
 		"careerPostseason": {
@@ -7991,14 +8077,14 @@
 			"battersFaced": 1190,
 			"basesOnBalls": 95,
 			"basesOnBallsPerNine": 2.9895104895104896,
-			"earnedRuns": 194,
-			"earnedRunAverage": 6.104895104895105,
+			"earnedRuns": 195,
+			"earnedRunAverage": 6.136363636363637,
 			"flyouts": 143,
 			"groundouts": 394,
 			"hitsAllowed": 318,
 			"hitsAllowedPerNine": 10.006993006993007,
-			"homeRuns": 42,
-			"homeRunsPerNine": 1.3216783216783217,
+			"homeRuns": 43,
+			"homeRunsPerNine": 1.3531468531468531,
 			"inningsPitched": 286,
 			"losses": 21,
 			"numberOfPitches": 0,
@@ -8052,14 +8138,14 @@
 				"battersFaced": 715,
 				"basesOnBalls": 58,
 				"basesOnBallsPerNine": 3.052631578947368,
-				"earnedRuns": 121,
-				"earnedRunAverage": 6.368421052631579,
+				"earnedRuns": 122,
+				"earnedRunAverage": 6.421052631578948,
 				"flyouts": 93,
 				"groundouts": 230,
 				"hitsAllowed": 197,
 				"hitsAllowedPerNine": 10.36842105263158,
-				"homeRuns": 27,
-				"homeRunsPerNine": 1.4210526315789473,
+				"homeRuns": 28,
+				"homeRunsPerNine": 1.4736842105263157,
 				"inningsPitched": 171,
 				"losses": 14,
 				"numberOfPitches": 0,
@@ -8077,51 +8163,52 @@
 				"wins": 5
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "donia-bailey"
 	},
 	"b3e512df-c411-4100-9544-0ceadddb28cf": {
 		"careerPostseason": {
-			"appearances": 3,
-			"battersFaced": 118,
-			"basesOnBalls": 3,
-			"basesOnBallsPerNine": 0.9310344827586207,
-			"earnedRuns": 13,
-			"earnedRunAverage": 4.0344827586206895,
-			"flyouts": 13,
-			"groundouts": 44,
-			"hitsAllowed": 32,
-			"hitsAllowedPerNine": 9.931034482758621,
-			"homeRuns": 5,
-			"homeRunsPerNine": 1.5517241379310347,
-			"inningsPitched": 29,
+			"appearances": 4,
+			"battersFaced": 154,
+			"basesOnBalls": 5,
+			"basesOnBallsPerNine": 1.1842105263157894,
+			"earnedRuns": 18,
+			"earnedRunAverage": 4.2631578947368425,
+			"flyouts": 22,
+			"groundouts": 56,
+			"hitsAllowed": 42,
+			"hitsAllowedPerNine": 9.947368421052632,
+			"homeRuns": 6,
+			"homeRunsPerNine": 1.4210526315789473,
+			"inningsPitched": 38,
 			"losses": 2,
 			"numberOfPitches": 0,
 			"qualityStarts": 1,
 			"shutouts": 0,
-			"strikeouts": 18,
-			"strikeoutToWalkRatio": 6,
-			"strikeoutsPerNine": 5.586206896551724,
-			"strikeoutRate": 0.15254237288135594,
+			"strikeouts": 21,
+			"strikeoutToWalkRatio": 4.2,
+			"strikeoutsPerNine": 4.973684210526316,
+			"strikeoutRate": 0.13636363636363635,
 			"team": null,
 			"teamName": null,
-			"walksAndHitsPerInningPitched": 1.206896551724138,
-			"walkRate": 0.025423728813559324,
-			"winningPercentage": 0.3333333333333333,
-			"wins": 1
+			"walksAndHitsPerInningPitched": 1.236842105263158,
+			"walkRate": 0.032467532467532464,
+			"winningPercentage": 0.5,
+			"wins": 2
 		},
 		"careerSeason": {
 			"appearances": 31,
 			"battersFaced": 1075,
 			"basesOnBalls": 31,
 			"basesOnBallsPerNine": 0.9587628865979381,
-			"earnedRuns": 117,
-			"earnedRunAverage": 3.618556701030928,
+			"earnedRuns": 118,
+			"earnedRunAverage": 3.649484536082474,
 			"flyouts": 151,
 			"groundouts": 407,
 			"hitsAllowed": 253,
 			"hitsAllowedPerNine": 7.824742268041238,
-			"homeRuns": 35,
-			"homeRunsPerNine": 1.0824742268041236,
+			"homeRuns": 36,
+			"homeRunsPerNine": 1.1134020618556701,
 			"inningsPitched": 291,
 			"losses": 10,
 			"numberOfPitches": 0,
@@ -8146,14 +8233,14 @@
 				"battersFaced": 439,
 				"basesOnBalls": 12,
 				"basesOnBallsPerNine": 0.9557522123893805,
-				"earnedRuns": 51,
-				"earnedRunAverage": 4.061946902654867,
+				"earnedRuns": 52,
+				"earnedRunAverage": 4.1415929203539825,
 				"flyouts": 59,
 				"groundouts": 157,
 				"hitsAllowed": 115,
 				"hitsAllowedPerNine": 9.15929203539823,
-				"homeRuns": 16,
-				"homeRunsPerNine": 1.2743362831858407,
+				"homeRuns": 17,
+				"homeRunsPerNine": 1.3539823008849559,
 				"inningsPitched": 113,
 				"losses": 4,
 				"numberOfPitches": 0,
@@ -8231,35 +8318,36 @@
 				"wins": 0
 			},
 			"2": {
-				"appearances": 2,
-				"battersFaced": 80,
-				"basesOnBalls": 2,
-				"basesOnBallsPerNine": 0.9,
-				"earnedRuns": 7,
-				"earnedRunAverage": 3.15,
-				"flyouts": 10,
-				"groundouts": 28,
-				"hitsAllowed": 21,
-				"hitsAllowedPerNine": 9.450000000000001,
-				"homeRuns": 2,
-				"homeRunsPerNine": 0.9,
-				"inningsPitched": 20,
+				"appearances": 3,
+				"battersFaced": 116,
+				"basesOnBalls": 4,
+				"basesOnBallsPerNine": 1.2413793103448276,
+				"earnedRuns": 12,
+				"earnedRunAverage": 3.7241379310344827,
+				"flyouts": 19,
+				"groundouts": 40,
+				"hitsAllowed": 31,
+				"hitsAllowedPerNine": 9.620689655172413,
+				"homeRuns": 3,
+				"homeRunsPerNine": 0.9310344827586207,
+				"inningsPitched": 29,
 				"losses": 1,
 				"numberOfPitches": 0,
 				"qualityStarts": 0,
 				"shutouts": 0,
-				"strikeouts": 13,
-				"strikeoutToWalkRatio": 6.5,
-				"strikeoutsPerNine": 5.8500000000000005,
-				"strikeoutRate": 0.1625,
+				"strikeouts": 16,
+				"strikeoutToWalkRatio": 4,
+				"strikeoutsPerNine": 4.9655172413793105,
+				"strikeoutRate": 0.13793103448275862,
 				"team": "747b8e4a-7e50-4638-a973-ea7950a3e739",
 				"teamName": "Hades Tigers",
-				"walksAndHitsPerInningPitched": 1.15,
-				"walkRate": 0.025,
-				"winningPercentage": 0.5,
-				"wins": 1
+				"walksAndHitsPerInningPitched": 1.206896551724138,
+				"walkRate": 0.034482758620689655,
+				"winningPercentage": 0.6666666666666666,
+				"wins": 2
 			}
-		}
+		},
+		"slug": "famous-owens"
 	},
 	"40db1b0b-6d04-4851-adab-dd6320ad2ed9": {
 		"careerPostseason": {
@@ -8353,7 +8441,8 @@
 				"wins": 0
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "scrap-murphy"
 	},
 	"e16c3f28-eecd-4571-be1a-606bbac36b2b": {
 		"careerPostseason": {
@@ -8390,14 +8479,14 @@
 			"battersFaced": 1234,
 			"basesOnBalls": 127,
 			"basesOnBallsPerNine": 4.010526315789473,
-			"earnedRuns": 194,
-			"earnedRunAverage": 6.126315789473685,
+			"earnedRuns": 195,
+			"earnedRunAverage": 6.157894736842105,
 			"flyouts": 149,
 			"groundouts": 395,
 			"hitsAllowed": 350,
 			"hitsAllowedPerNine": 11.052631578947368,
-			"homeRuns": 25,
-			"homeRunsPerNine": 0.7894736842105263,
+			"homeRuns": 26,
+			"homeRunsPerNine": 0.8210526315789475,
 			"inningsPitched": 285,
 			"losses": 17,
 			"numberOfPitches": 0,
@@ -8428,8 +8517,8 @@
 				"groundouts": 153,
 				"hitsAllowed": 145,
 				"hitsAllowedPerNine": 12.19626168224299,
-				"homeRuns": 7,
-				"homeRunsPerNine": 0.5887850467289719,
+				"homeRuns": 8,
+				"homeRunsPerNine": 0.6728971962616822,
 				"inningsPitched": 107,
 				"losses": 8,
 				"numberOfPitches": 0,
@@ -8451,8 +8540,8 @@
 				"battersFaced": 752,
 				"basesOnBalls": 81,
 				"basesOnBallsPerNine": 4.095505617977528,
-				"earnedRuns": 110,
-				"earnedRunAverage": 5.561797752808989,
+				"earnedRuns": 111,
+				"earnedRunAverage": 5.612359550561798,
 				"flyouts": 100,
 				"groundouts": 242,
 				"hitsAllowed": 205,
@@ -8476,36 +8565,37 @@
 				"wins": 10
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "comfort-glover"
 	},
 	"18af933a-4afa-4cba-bda5-45160f3af99b": {
 		"careerPostseason": {
-			"appearances": 2,
-			"battersFaced": 65,
-			"basesOnBalls": 1,
-			"basesOnBallsPerNine": 0.47368421052631576,
-			"earnedRuns": 6,
-			"earnedRunAverage": 2.8421052631578947,
-			"flyouts": 12,
-			"groundouts": 28,
-			"hitsAllowed": 13,
-			"hitsAllowedPerNine": 6.157894736842105,
-			"homeRuns": 2,
-			"homeRunsPerNine": 0.9473684210526315,
-			"inningsPitched": 19,
-			"losses": 1,
+			"appearances": 3,
+			"battersFaced": 110,
+			"basesOnBalls": 12,
+			"basesOnBallsPerNine": 3.8571428571428568,
+			"earnedRuns": 18,
+			"earnedRunAverage": 5.785714285714286,
+			"flyouts": 17,
+			"groundouts": 40,
+			"hitsAllowed": 23,
+			"hitsAllowedPerNine": 7.392857142857142,
+			"homeRuns": 4,
+			"homeRunsPerNine": 1.2857142857142856,
+			"inningsPitched": 28,
+			"losses": 2,
 			"numberOfPitches": 0,
 			"qualityStarts": 1,
 			"shutouts": 0,
-			"strikeouts": 6,
-			"strikeoutToWalkRatio": 6,
-			"strikeoutsPerNine": 2.8421052631578947,
-			"strikeoutRate": 0.09230769230769231,
+			"strikeouts": 12,
+			"strikeoutToWalkRatio": 1,
+			"strikeoutsPerNine": 3.8571428571428568,
+			"strikeoutRate": 0.10909090909090909,
 			"team": null,
 			"teamName": null,
-			"walksAndHitsPerInningPitched": 0.7368421052631579,
-			"walkRate": 0.015384615384615385,
-			"winningPercentage": 0.5,
+			"walksAndHitsPerInningPitched": 1.25,
+			"walkRate": 0.10909090909090909,
+			"winningPercentage": 0.3333333333333333,
 			"wins": 1
 		},
 		"careerSeason": {
@@ -8601,35 +8691,36 @@
 		},
 		"postseasons": {
 			"2": {
-				"appearances": 2,
-				"battersFaced": 65,
-				"basesOnBalls": 1,
-				"basesOnBallsPerNine": 0.47368421052631576,
-				"earnedRuns": 6,
-				"earnedRunAverage": 2.8421052631578947,
-				"flyouts": 12,
-				"groundouts": 28,
-				"hitsAllowed": 13,
-				"hitsAllowedPerNine": 6.157894736842105,
-				"homeRuns": 2,
-				"homeRunsPerNine": 0.9473684210526315,
-				"inningsPitched": 19,
-				"losses": 1,
+				"appearances": 3,
+				"battersFaced": 110,
+				"basesOnBalls": 12,
+				"basesOnBallsPerNine": 3.8571428571428568,
+				"earnedRuns": 18,
+				"earnedRunAverage": 5.785714285714286,
+				"flyouts": 17,
+				"groundouts": 40,
+				"hitsAllowed": 23,
+				"hitsAllowedPerNine": 7.392857142857142,
+				"homeRuns": 4,
+				"homeRunsPerNine": 1.2857142857142856,
+				"inningsPitched": 28,
+				"losses": 2,
 				"numberOfPitches": 0,
 				"qualityStarts": 1,
 				"shutouts": 0,
-				"strikeouts": 6,
-				"strikeoutToWalkRatio": 6,
-				"strikeoutsPerNine": 2.8421052631578947,
-				"strikeoutRate": 0.09230769230769231,
+				"strikeouts": 12,
+				"strikeoutToWalkRatio": 1,
+				"strikeoutsPerNine": 3.8571428571428568,
+				"strikeoutRate": 0.10909090909090909,
 				"team": "36569151-a2fb-43c1-9df7-2df512424c82",
 				"teamName": "New York Millennials",
-				"walksAndHitsPerInningPitched": 0.7368421052631579,
-				"walkRate": 0.015384615384615385,
-				"winningPercentage": 0.5,
+				"walksAndHitsPerInningPitched": 1.25,
+				"walkRate": 0.10909090909090909,
+				"winningPercentage": 0.3333333333333333,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "felix-garbage"
 	},
 	"316abea7-9890-4fb8-aaea-86b35e24d9be": {
 		"careerPostseason": {
@@ -8666,8 +8757,8 @@
 			"battersFaced": 1132,
 			"basesOnBalls": 44,
 			"basesOnBallsPerNine": 1.3943661971830985,
-			"earnedRuns": 162,
-			"earnedRunAverage": 5.133802816901408,
+			"earnedRuns": 166,
+			"earnedRunAverage": 5.26056338028169,
 			"flyouts": 143,
 			"groundouts": 390,
 			"hitsAllowed": 326,
@@ -8727,8 +8818,8 @@
 				"battersFaced": 662,
 				"basesOnBalls": 27,
 				"basesOnBallsPerNine": 1.4378698224852071,
-				"earnedRuns": 89,
-				"earnedRunAverage": 4.739644970414201,
+				"earnedRuns": 93,
+				"earnedRunAverage": 4.952662721893491,
 				"flyouts": 86,
 				"groundouts": 225,
 				"hitsAllowed": 187,
@@ -8752,7 +8843,8 @@
 				"wins": 5
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "kennedy-rodgers"
 	},
 	"542af915-79c5-431c-a271-f7185e37c6ae": {
 		"careerPostseason": {
@@ -8905,7 +8997,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "oliver-notarobot"
 	},
 	"97dfc1f6-ac94-4cdc-b0d5-1cb9f8984aa5": {
 		"careerPostseason": {
@@ -9028,7 +9121,8 @@
 				"wins": 11
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "brock-forbes"
 	},
 	"1732e623-ffc2-40f0-87ba-fdcf97131f1f": {
 		"careerPostseason": {
@@ -9065,14 +9159,14 @@
 			"battersFaced": 1108,
 			"basesOnBalls": 26,
 			"basesOnBallsPerNine": 0.7476038338658146,
-			"earnedRuns": 107,
-			"earnedRunAverage": 3.07667731629393,
+			"earnedRuns": 113,
+			"earnedRunAverage": 3.2492012779552715,
 			"flyouts": 156,
 			"groundouts": 435,
 			"hitsAllowed": 266,
 			"hitsAllowedPerNine": 7.648562300319489,
-			"homeRuns": 27,
-			"homeRunsPerNine": 0.7763578274760383,
+			"homeRuns": 28,
+			"homeRunsPerNine": 0.805111821086262,
 			"inningsPitched": 313,
 			"losses": 13,
 			"numberOfPitches": 0,
@@ -9126,14 +9220,14 @@
 				"battersFaced": 688,
 				"basesOnBalls": 22,
 				"basesOnBallsPerNine": 1.0259067357512954,
-				"earnedRuns": 70,
-				"earnedRunAverage": 3.2642487046632125,
+				"earnedRuns": 76,
+				"earnedRunAverage": 3.5440414507772022,
 				"flyouts": 113,
 				"groundouts": 260,
 				"hitsAllowed": 167,
 				"hitsAllowedPerNine": 7.7875647668393775,
-				"homeRuns": 15,
-				"homeRunsPerNine": 0.6994818652849741,
+				"homeRuns": 16,
+				"homeRunsPerNine": 0.7461139896373057,
 				"inningsPitched": 193,
 				"losses": 12,
 				"numberOfPitches": 0,
@@ -9210,7 +9304,8 @@
 				"winningPercentage": 0.5,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "betsy-trombone"
 	},
 	"ff5a37d9-a6dd-49aa-b6fb-b935fd670820": {
 		"careerPostseason": {
@@ -9363,7 +9458,8 @@
 				"winningPercentage": 0.5,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "dunn-keyes"
 	},
 	"5703141c-25d9-46d0-b680-0cf9cfbf4777": {
 		"careerPostseason": {
@@ -9486,36 +9582,37 @@
 				"wins": 11
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "sandoval-crossing"
 	},
 	"ae4acebd-edb5-4d20-bf69-f2d5151312ff": {
 		"careerPostseason": {
-			"appearances": 2,
-			"battersFaced": 67,
-			"basesOnBalls": 0,
-			"basesOnBallsPerNine": 0,
-			"earnedRuns": 7,
-			"earnedRunAverage": 3.15,
-			"flyouts": 18,
-			"groundouts": 21,
-			"hitsAllowed": 16,
-			"hitsAllowedPerNine": 7.2,
-			"homeRuns": 2,
-			"homeRunsPerNine": 0.9,
-			"inningsPitched": 20,
-			"losses": 0,
+			"appearances": 3,
+			"battersFaced": 107,
+			"basesOnBalls": 2,
+			"basesOnBallsPerNine": 0.6206896551724138,
+			"earnedRuns": 15,
+			"earnedRunAverage": 4.655172413793103,
+			"flyouts": 24,
+			"groundouts": 34,
+			"hitsAllowed": 29,
+			"hitsAllowedPerNine": 9,
+			"homeRuns": 5,
+			"homeRunsPerNine": 1.5517241379310347,
+			"inningsPitched": 29,
+			"losses": 1,
 			"numberOfPitches": 0,
-			"qualityStarts": 0,
+			"qualityStarts": 1,
 			"shutouts": 0,
-			"strikeouts": 8,
-			"strikeoutToWalkRatio": 0,
-			"strikeoutsPerNine": 3.6,
-			"strikeoutRate": 0.11940298507462686,
+			"strikeouts": 14,
+			"strikeoutToWalkRatio": 7,
+			"strikeoutsPerNine": 4.344827586206897,
+			"strikeoutRate": 0.1308411214953271,
 			"team": null,
 			"teamName": null,
-			"walksAndHitsPerInningPitched": 0.8,
-			"walkRate": 0,
-			"winningPercentage": 1,
+			"walksAndHitsPerInningPitched": 1.0689655172413792,
+			"walkRate": 0.018691588785046728,
+			"winningPercentage": 0.6666666666666666,
 			"wins": 2
 		},
 		"careerSeason": {
@@ -9523,8 +9620,8 @@
 			"battersFaced": 1149,
 			"basesOnBalls": 85,
 			"basesOnBallsPerNine": 2.6288659793814433,
-			"earnedRuns": 155,
-			"earnedRunAverage": 4.793814432989691,
+			"earnedRuns": 157,
+			"earnedRunAverage": 4.855670103092783,
 			"flyouts": 152,
 			"groundouts": 350,
 			"hitsAllowed": 295,
@@ -9584,8 +9681,8 @@
 				"battersFaced": 674,
 				"basesOnBalls": 9,
 				"basesOnBallsPerNine": 0.43548387096774194,
-				"earnedRuns": 78,
-				"earnedRunAverage": 3.774193548387097,
+				"earnedRuns": 80,
+				"earnedRunAverage": 3.870967741935484,
 				"flyouts": 93,
 				"groundouts": 214,
 				"hitsAllowed": 180,
@@ -9611,35 +9708,36 @@
 		},
 		"postseasons": {
 			"2": {
-				"appearances": 2,
-				"battersFaced": 67,
-				"basesOnBalls": 0,
-				"basesOnBallsPerNine": 0,
-				"earnedRuns": 7,
-				"earnedRunAverage": 3.15,
-				"flyouts": 18,
-				"groundouts": 21,
-				"hitsAllowed": 16,
-				"hitsAllowedPerNine": 7.2,
-				"homeRuns": 2,
-				"homeRunsPerNine": 0.9,
-				"inningsPitched": 20,
-				"losses": 0,
+				"appearances": 3,
+				"battersFaced": 107,
+				"basesOnBalls": 2,
+				"basesOnBallsPerNine": 0.6206896551724138,
+				"earnedRuns": 15,
+				"earnedRunAverage": 4.655172413793103,
+				"flyouts": 24,
+				"groundouts": 34,
+				"hitsAllowed": 29,
+				"hitsAllowedPerNine": 9,
+				"homeRuns": 5,
+				"homeRunsPerNine": 1.5517241379310347,
+				"inningsPitched": 29,
+				"losses": 1,
 				"numberOfPitches": 0,
-				"qualityStarts": 0,
+				"qualityStarts": 1,
 				"shutouts": 0,
-				"strikeouts": 8,
-				"strikeoutToWalkRatio": 0,
-				"strikeoutsPerNine": 3.6,
-				"strikeoutRate": 0.11940298507462686,
+				"strikeouts": 14,
+				"strikeoutToWalkRatio": 7,
+				"strikeoutsPerNine": 4.344827586206897,
+				"strikeoutRate": 0.1308411214953271,
 				"team": "36569151-a2fb-43c1-9df7-2df512424c82",
 				"teamName": "New York Millennials",
-				"walksAndHitsPerInningPitched": 0.8,
-				"walkRate": 0,
-				"winningPercentage": 1,
+				"walksAndHitsPerInningPitched": 1.0689655172413792,
+				"walkRate": 0.018691588785046728,
+				"winningPercentage": 0.6666666666666666,
 				"wins": 2
 			}
-		}
+		},
+		"slug": "theodore-cervantes"
 	},
 	"773712f6-d76d-4caa-8a9b-56fe1d1a5a68": {
 		"careerPostseason": {
@@ -9676,14 +9774,14 @@
 			"battersFaced": 570,
 			"basesOnBalls": 87,
 			"basesOnBallsPerNine": 5.592857142857143,
-			"earnedRuns": 44,
-			"earnedRunAverage": 2.8285714285714287,
+			"earnedRuns": 47,
+			"earnedRunAverage": 3.0214285714285714,
 			"flyouts": 78,
 			"groundouts": 206,
 			"hitsAllowed": 103,
 			"hitsAllowedPerNine": 6.621428571428572,
-			"homeRuns": 10,
-			"homeRunsPerNine": 0.6428571428571428,
+			"homeRuns": 11,
+			"homeRunsPerNine": 0.7071428571428571,
 			"inningsPitched": 140,
 			"losses": 4,
 			"numberOfPitches": 0,
@@ -9708,14 +9806,14 @@
 				"battersFaced": 435,
 				"basesOnBalls": 68,
 				"basesOnBallsPerNine": 5.614678899082569,
-				"earnedRuns": 37,
-				"earnedRunAverage": 3.055045871559633,
+				"earnedRuns": 39,
+				"earnedRunAverage": 3.220183486238532,
 				"flyouts": 63,
 				"groundouts": 160,
 				"hitsAllowed": 75,
 				"hitsAllowedPerNine": 6.192660550458715,
-				"homeRuns": 8,
-				"homeRunsPerNine": 0.6605504587155964,
+				"homeRuns": 9,
+				"homeRunsPerNine": 0.7431192660550459,
 				"inningsPitched": 109,
 				"losses": 3,
 				"numberOfPitches": 0,
@@ -9737,8 +9835,8 @@
 				"battersFaced": 135,
 				"basesOnBalls": 19,
 				"basesOnBallsPerNine": 5.516129032258065,
-				"earnedRuns": 7,
-				"earnedRunAverage": 2.032258064516129,
+				"earnedRuns": 8,
+				"earnedRunAverage": 2.3225806451612905,
 				"flyouts": 15,
 				"groundouts": 46,
 				"hitsAllowed": 28,
@@ -9762,7 +9860,8 @@
 				"wins": 2
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "natha-kath"
 	},
 	"b7ca8f3f-2fdc-477b-84f4-157f2802e9b5": {
 		"careerPostseason": {
@@ -9799,8 +9898,8 @@
 			"battersFaced": 1065,
 			"basesOnBalls": 10,
 			"basesOnBallsPerNine": 0.2875399361022364,
-			"earnedRuns": 78,
-			"earnedRunAverage": 2.242811501597444,
+			"earnedRuns": 79,
+			"earnedRunAverage": 2.2715654952076676,
 			"flyouts": 169,
 			"groundouts": 383,
 			"hitsAllowed": 255,
@@ -9860,8 +9959,8 @@
 				"battersFaced": 649,
 				"basesOnBalls": 3,
 				"basesOnBallsPerNine": 0.140625,
-				"earnedRuns": 52,
-				"earnedRunAverage": 2.4375,
+				"earnedRuns": 53,
+				"earnedRunAverage": 2.484375,
 				"flyouts": 108,
 				"groundouts": 240,
 				"hitsAllowed": 163,
@@ -9944,7 +10043,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "leach-herman"
 	},
 	"2ae8cbfc-2155-4647-9996-3f2591091baf": {
 		"careerPostseason": {
@@ -9981,14 +10081,14 @@
 			"battersFaced": 1320,
 			"basesOnBalls": 244,
 			"basesOnBallsPerNine": 7.759717314487633,
-			"earnedRuns": 219,
-			"earnedRunAverage": 6.964664310954063,
+			"earnedRuns": 223,
+			"earnedRunAverage": 7.091872791519434,
 			"flyouts": 153,
 			"groundouts": 378,
 			"hitsAllowed": 343,
 			"hitsAllowedPerNine": 10.908127208480565,
-			"homeRuns": 37,
-			"homeRunsPerNine": 1.1766784452296821,
+			"homeRuns": 39,
+			"homeRunsPerNine": 1.2402826855123676,
 			"inningsPitched": 283,
 			"losses": 18,
 			"numberOfPitches": 0,
@@ -10013,14 +10113,14 @@
 				"battersFaced": 517,
 				"basesOnBalls": 98,
 				"basesOnBallsPerNine": 8.166666666666668,
-				"earnedRuns": 83,
-				"earnedRunAverage": 6.916666666666667,
+				"earnedRuns": 85,
+				"earnedRunAverage": 7.083333333333333,
 				"flyouts": 64,
 				"groundouts": 137,
 				"hitsAllowed": 133,
 				"hitsAllowedPerNine": 11.083333333333332,
-				"homeRuns": 13,
-				"homeRunsPerNine": 1.0833333333333333,
+				"homeRuns": 15,
+				"homeRunsPerNine": 1.25,
 				"inningsPitched": 108,
 				"losses": 7,
 				"numberOfPitches": 0,
@@ -10042,8 +10142,8 @@
 				"battersFaced": 803,
 				"basesOnBalls": 146,
 				"basesOnBallsPerNine": 7.508571428571429,
-				"earnedRuns": 136,
-				"earnedRunAverage": 6.994285714285715,
+				"earnedRuns": 138,
+				"earnedRunAverage": 7.097142857142857,
 				"flyouts": 89,
 				"groundouts": 241,
 				"hitsAllowed": 210,
@@ -10126,7 +10226,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "forrest-bookbaby"
 	},
 	"af6b3edc-ed52-4edc-b0c9-14e0a5ae0ee3": {
 		"careerPostseason": {
@@ -10163,8 +10264,8 @@
 			"battersFaced": 1063,
 			"basesOnBalls": 12,
 			"basesOnBallsPerNine": 0.35526315789473684,
-			"earnedRuns": 107,
-			"earnedRunAverage": 3.1677631578947367,
+			"earnedRuns": 109,
+			"earnedRunAverage": 3.226973684210526,
 			"flyouts": 183,
 			"groundouts": 401,
 			"hitsAllowed": 258,
@@ -10224,8 +10325,8 @@
 				"battersFaced": 648,
 				"basesOnBalls": 11,
 				"basesOnBallsPerNine": 0.5439560439560439,
-				"earnedRuns": 73,
-				"earnedRunAverage": 3.60989010989011,
+				"earnedRuns": 75,
+				"earnedRunAverage": 3.708791208791209,
 				"flyouts": 113,
 				"groundouts": 249,
 				"hitsAllowed": 163,
@@ -10249,7 +10350,8 @@
 				"wins": 11
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "rivers-clembons"
 	},
 	"7b55d484-6ea9-4670-8145-986cb9e32412": {
 		"careerPostseason": {
@@ -10286,8 +10388,8 @@
 			"battersFaced": 1168,
 			"basesOnBalls": 130,
 			"basesOnBallsPerNine": 4.1637010676156585,
-			"earnedRuns": 151,
-			"earnedRunAverage": 4.8362989323843415,
+			"earnedRuns": 160,
+			"earnedRunAverage": 5.124555160142349,
 			"flyouts": 184,
 			"groundouts": 353,
 			"hitsAllowed": 318,
@@ -10318,8 +10420,8 @@
 				"battersFaced": 473,
 				"basesOnBalls": 44,
 				"basesOnBallsPerNine": 3.6,
-				"earnedRuns": 65,
-				"earnedRunAverage": 5.318181818181818,
+				"earnedRuns": 66,
+				"earnedRunAverage": 5.4,
 				"flyouts": 57,
 				"groundouts": 148,
 				"hitsAllowed": 128,
@@ -10347,8 +10449,8 @@
 				"battersFaced": 695,
 				"basesOnBalls": 86,
 				"basesOnBallsPerNine": 4.526315789473684,
-				"earnedRuns": 86,
-				"earnedRunAverage": 4.526315789473684,
+				"earnedRuns": 94,
+				"earnedRunAverage": 4.947368421052632,
 				"flyouts": 127,
 				"groundouts": 205,
 				"hitsAllowed": 190,
@@ -10372,7 +10474,8 @@
 				"wins": 10
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "stevenson-heat"
 	},
 	"32551e28-3a40-47ae-aed1-ff5bc66be879": {
 		"careerPostseason": {
@@ -10409,8 +10512,8 @@
 			"battersFaced": 1114,
 			"basesOnBalls": 12,
 			"basesOnBallsPerNine": 0.3698630136986301,
-			"earnedRuns": 135,
-			"earnedRunAverage": 4.160958904109589,
+			"earnedRuns": 137,
+			"earnedRunAverage": 4.222602739726027,
 			"flyouts": 143,
 			"groundouts": 378,
 			"hitsAllowed": 326,
@@ -10470,8 +10573,8 @@
 				"battersFaced": 695,
 				"basesOnBalls": 10,
 				"basesOnBallsPerNine": 0.5056179775280899,
-				"earnedRuns": 98,
-				"earnedRunAverage": 4.955056179775281,
+				"earnedRuns": 100,
+				"earnedRunAverage": 5.056179775280899,
 				"flyouts": 87,
 				"groundouts": 222,
 				"hitsAllowed": 216,
@@ -10495,45 +10598,46 @@
 				"wins": 10
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "math-velazquez"
 	},
 	"9abe02fb-2b5a-432f-b0af-176be6bd62cf": {
 		"careerPostseason": {
-			"appearances": 3,
-			"battersFaced": 115,
-			"basesOnBalls": 6,
-			"basesOnBallsPerNine": 2,
-			"earnedRuns": 13,
-			"earnedRunAverage": 4.333333333333333,
-			"flyouts": 20,
-			"groundouts": 37,
-			"hitsAllowed": 35,
-			"hitsAllowedPerNine": 11.666666666666666,
-			"homeRuns": 3,
-			"homeRunsPerNine": 1,
-			"inningsPitched": 27,
+			"appearances": 4,
+			"battersFaced": 146,
+			"basesOnBalls": 8,
+			"basesOnBallsPerNine": 1.945945945945946,
+			"earnedRuns": 14,
+			"earnedRunAverage": 3.4054054054054053,
+			"flyouts": 26,
+			"groundouts": 57,
+			"hitsAllowed": 38,
+			"hitsAllowedPerNine": 9.243243243243242,
+			"homeRuns": 4,
+			"homeRunsPerNine": 0.972972972972973,
+			"inningsPitched": 37,
 			"losses": 2,
 			"numberOfPitches": 0,
-			"qualityStarts": 3,
+			"qualityStarts": 4,
 			"shutouts": 0,
 			"strikeouts": 9,
-			"strikeoutToWalkRatio": 1.5,
-			"strikeoutsPerNine": 3,
-			"strikeoutRate": 0.0782608695652174,
+			"strikeoutToWalkRatio": 1.125,
+			"strikeoutsPerNine": 2.1891891891891895,
+			"strikeoutRate": 0.06164383561643835,
 			"team": null,
 			"teamName": null,
-			"walksAndHitsPerInningPitched": 1.5185185185185186,
-			"walkRate": 0.05217391304347826,
-			"winningPercentage": 0.3333333333333333,
-			"wins": 1
+			"walksAndHitsPerInningPitched": 1.2432432432432432,
+			"walkRate": 0.0547945205479452,
+			"winningPercentage": 0.5,
+			"wins": 2
 		},
 		"careerSeason": {
 			"appearances": 32,
 			"battersFaced": 1128,
 			"basesOnBalls": 60,
 			"basesOnBallsPerNine": 1.8,
-			"earnedRuns": 130,
-			"earnedRunAverage": 3.9,
+			"earnedRuns": 133,
+			"earnedRunAverage": 3.99,
 			"flyouts": 161,
 			"groundouts": 423,
 			"hitsAllowed": 283,
@@ -10564,8 +10668,8 @@
 				"battersFaced": 429,
 				"basesOnBalls": 21,
 				"basesOnBallsPerNine": 1.672566371681416,
-				"earnedRuns": 45,
-				"earnedRunAverage": 3.584070796460177,
+				"earnedRuns": 47,
+				"earnedRunAverage": 3.743362831858407,
 				"flyouts": 57,
 				"groundouts": 172,
 				"hitsAllowed": 102,
@@ -10593,8 +10697,8 @@
 				"battersFaced": 699,
 				"basesOnBalls": 39,
 				"basesOnBallsPerNine": 1.8770053475935828,
-				"earnedRuns": 85,
-				"earnedRunAverage": 4.090909090909091,
+				"earnedRuns": 86,
+				"earnedRunAverage": 4.13903743315508,
 				"flyouts": 104,
 				"groundouts": 251,
 				"hitsAllowed": 181,
@@ -10649,35 +10753,36 @@
 				"wins": 0
 			},
 			"2": {
-				"appearances": 2,
-				"battersFaced": 76,
-				"basesOnBalls": 3,
-				"basesOnBallsPerNine": 1.5,
-				"earnedRuns": 9,
-				"earnedRunAverage": 4.5,
-				"flyouts": 15,
-				"groundouts": 23,
-				"hitsAllowed": 25,
-				"hitsAllowedPerNine": 12.5,
-				"homeRuns": 2,
-				"homeRunsPerNine": 1,
-				"inningsPitched": 18,
+				"appearances": 3,
+				"battersFaced": 107,
+				"basesOnBalls": 5,
+				"basesOnBallsPerNine": 1.6071428571428572,
+				"earnedRuns": 10,
+				"earnedRunAverage": 3.2142857142857144,
+				"flyouts": 21,
+				"groundouts": 43,
+				"hitsAllowed": 28,
+				"hitsAllowedPerNine": 9,
+				"homeRuns": 3,
+				"homeRunsPerNine": 0.9642857142857142,
+				"inningsPitched": 28,
 				"losses": 1,
 				"numberOfPitches": 0,
-				"qualityStarts": 2,
+				"qualityStarts": 3,
 				"shutouts": 0,
 				"strikeouts": 6,
-				"strikeoutToWalkRatio": 2,
-				"strikeoutsPerNine": 3,
-				"strikeoutRate": 0.07894736842105263,
+				"strikeoutToWalkRatio": 1.2,
+				"strikeoutsPerNine": 1.9285714285714284,
+				"strikeoutRate": 0.056074766355140186,
 				"team": "747b8e4a-7e50-4638-a973-ea7950a3e739",
 				"teamName": "Hades Tigers",
-				"walksAndHitsPerInningPitched": 1.5555555555555556,
-				"walkRate": 0.039473684210526314,
-				"winningPercentage": 0.5,
-				"wins": 1
+				"walksAndHitsPerInningPitched": 1.1785714285714286,
+				"walkRate": 0.04672897196261682,
+				"winningPercentage": 0.6666666666666666,
+				"wins": 2
 			}
-		}
+		},
+		"slug": "nagomi-meng"
 	},
 	"7c5ae357-e079-4427-a90f-97d164c7262e": {
 		"careerPostseason": {
@@ -10714,8 +10819,8 @@
 			"battersFaced": 1189,
 			"basesOnBalls": 147,
 			"basesOnBallsPerNine": 4.6749116607773855,
-			"earnedRuns": 177,
-			"earnedRunAverage": 5.628975265017668,
+			"earnedRuns": 186,
+			"earnedRunAverage": 5.915194346289753,
 			"flyouts": 169,
 			"groundouts": 368,
 			"hitsAllowed": 305,
@@ -10746,8 +10851,8 @@
 				"battersFaced": 473,
 				"basesOnBalls": 57,
 				"basesOnBallsPerNine": 4.839622641509434,
-				"earnedRuns": 78,
-				"earnedRunAverage": 6.622641509433962,
+				"earnedRuns": 79,
+				"earnedRunAverage": 6.7075471698113205,
 				"flyouts": 67,
 				"groundouts": 140,
 				"hitsAllowed": 133,
@@ -10775,8 +10880,8 @@
 				"battersFaced": 716,
 				"basesOnBalls": 90,
 				"basesOnBallsPerNine": 4.576271186440678,
-				"earnedRuns": 99,
-				"earnedRunAverage": 5.033898305084746,
+				"earnedRuns": 107,
+				"earnedRunAverage": 5.440677966101695,
 				"flyouts": 102,
 				"groundouts": 228,
 				"hitsAllowed": 172,
@@ -10830,7 +10935,8 @@
 				"winningPercentage": 0.5,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "milo-brown"
 	},
 	"a199a681-decf-4433-b6ab-5454450bbe5e": {
 		"careerPostseason": {
@@ -10867,8 +10973,8 @@
 			"battersFaced": 1310,
 			"basesOnBalls": 219,
 			"basesOnBallsPerNine": 6.989361702127659,
-			"earnedRuns": 234,
-			"earnedRunAverage": 7.468085106382978,
+			"earnedRuns": 247,
+			"earnedRunAverage": 7.882978723404255,
 			"flyouts": 179,
 			"groundouts": 362,
 			"hitsAllowed": 333,
@@ -10899,8 +11005,8 @@
 				"battersFaced": 516,
 				"basesOnBalls": 83,
 				"basesOnBallsPerNine": 6.981308411214953,
-				"earnedRuns": 93,
-				"earnedRunAverage": 7.822429906542056,
+				"earnedRuns": 96,
+				"earnedRunAverage": 8.074766355140186,
 				"flyouts": 74,
 				"groundouts": 138,
 				"hitsAllowed": 129,
@@ -10928,8 +11034,8 @@
 				"battersFaced": 794,
 				"basesOnBalls": 136,
 				"basesOnBallsPerNine": 6.994285714285715,
-				"earnedRuns": 141,
-				"earnedRunAverage": 7.251428571428572,
+				"earnedRuns": 151,
+				"earnedRunAverage": 7.765714285714286,
 				"flyouts": 105,
 				"groundouts": 224,
 				"hitsAllowed": 204,
@@ -10953,7 +11059,8 @@
 				"wins": 4
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "leach-ingram"
 	},
 	"9397ed91-608e-4b13-98ea-e94c795f651e": {
 		"careerPostseason": {
@@ -10990,8 +11097,8 @@
 			"battersFaced": 1106,
 			"basesOnBalls": 40,
 			"basesOnBallsPerNine": 1.1538461538461537,
-			"earnedRuns": 109,
-			"earnedRunAverage": 3.144230769230769,
+			"earnedRuns": 111,
+			"earnedRunAverage": 3.201923076923077,
 			"flyouts": 176,
 			"groundouts": 406,
 			"hitsAllowed": 277,
@@ -11051,8 +11158,8 @@
 				"battersFaced": 669,
 				"basesOnBalls": 24,
 				"basesOnBallsPerNine": 1.1368421052631579,
-				"earnedRuns": 72,
-				"earnedRunAverage": 3.4105263157894736,
+				"earnedRuns": 74,
+				"earnedRunAverage": 3.5052631578947366,
 				"flyouts": 122,
 				"groundouts": 240,
 				"hitsAllowed": 171,
@@ -11076,7 +11183,8 @@
 				"wins": 16
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "yeong-ho-garcia"
 	},
 	"1513aab6-142c-48c6-b43e-fbda65fd64e8": {
 		"careerPostseason": {
@@ -11113,14 +11221,14 @@
 			"battersFaced": 1161,
 			"basesOnBalls": 35,
 			"basesOnBallsPerNine": 1.0294117647058822,
-			"earnedRuns": 141,
-			"earnedRunAverage": 4.147058823529412,
+			"earnedRuns": 142,
+			"earnedRunAverage": 4.176470588235294,
 			"flyouts": 178,
 			"groundouts": 377,
 			"hitsAllowed": 324,
 			"hitsAllowedPerNine": 9.529411764705882,
-			"homeRuns": 29,
-			"homeRunsPerNine": 0.8529411764705882,
+			"homeRuns": 30,
+			"homeRunsPerNine": 0.8823529411764706,
 			"inningsPitched": 306,
 			"losses": 14,
 			"numberOfPitches": 0,
@@ -11174,14 +11282,14 @@
 				"battersFaced": 717,
 				"basesOnBalls": 23,
 				"basesOnBallsPerNine": 1.0952380952380951,
-				"earnedRuns": 87,
-				"earnedRunAverage": 4.142857142857143,
+				"earnedRuns": 88,
+				"earnedRunAverage": 4.190476190476191,
 				"flyouts": 111,
 				"groundouts": 233,
 				"hitsAllowed": 200,
 				"hitsAllowedPerNine": 9.523809523809524,
-				"homeRuns": 17,
-				"homeRunsPerNine": 0.8095238095238095,
+				"homeRuns": 18,
+				"homeRunsPerNine": 0.8571428571428571,
 				"inningsPitched": 189,
 				"losses": 10,
 				"numberOfPitches": 0,
@@ -11229,7 +11337,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "caleb-alvarado"
 	},
 	"c6a277c3-d2b5-4363-839b-950896a5ec5e": {
 		"careerPostseason": {
@@ -11266,14 +11375,14 @@
 			"battersFaced": 1209,
 			"basesOnBalls": 127,
 			"basesOnBallsPerNine": 4.024647887323944,
-			"earnedRuns": 195,
-			"earnedRunAverage": 6.179577464788732,
+			"earnedRuns": 198,
+			"earnedRunAverage": 6.274647887323944,
 			"flyouts": 175,
 			"groundouts": 394,
 			"hitsAllowed": 333,
 			"hitsAllowedPerNine": 10.552816901408452,
-			"homeRuns": 53,
-			"homeRunsPerNine": 1.6795774647887325,
+			"homeRuns": 56,
+			"homeRunsPerNine": 1.7746478873239435,
 			"inningsPitched": 284,
 			"losses": 21,
 			"numberOfPitches": 0,
@@ -11304,8 +11413,8 @@
 				"groundouts": 154,
 				"hitsAllowed": 148,
 				"hitsAllowedPerNine": 12.220183486238533,
-				"homeRuns": 23,
-				"homeRunsPerNine": 1.8990825688073396,
+				"homeRuns": 25,
+				"homeRunsPerNine": 2.064220183486239,
 				"inningsPitched": 109,
 				"losses": 9,
 				"numberOfPitches": 0,
@@ -11327,14 +11436,14 @@
 				"battersFaced": 704,
 				"basesOnBalls": 66,
 				"basesOnBallsPerNine": 3.3942857142857146,
-				"earnedRuns": 98,
-				"earnedRunAverage": 5.04,
+				"earnedRuns": 101,
+				"earnedRunAverage": 5.194285714285714,
 				"flyouts": 104,
 				"groundouts": 240,
 				"hitsAllowed": 185,
 				"hitsAllowedPerNine": 9.514285714285714,
-				"homeRuns": 30,
-				"homeRunsPerNine": 1.542857142857143,
+				"homeRuns": 31,
+				"homeRunsPerNine": 1.594285714285714,
 				"inningsPitched": 175,
 				"losses": 12,
 				"numberOfPitches": 0,
@@ -11352,7 +11461,8 @@
 				"wins": 8
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "mike-townsend"
 	},
 	"b348c037-eefc-4b81-8edd-dfa96188a97e": {
 		"careerPostseason": {
@@ -11389,14 +11499,14 @@
 			"battersFaced": 1194,
 			"basesOnBalls": 148,
 			"basesOnBallsPerNine": 4.951672862453531,
-			"earnedRuns": 175,
-			"earnedRunAverage": 5.855018587360595,
+			"earnedRuns": 196,
+			"earnedRunAverage": 6.557620817843866,
 			"flyouts": 155,
 			"groundouts": 397,
 			"hitsAllowed": 309,
 			"hitsAllowedPerNine": 10.338289962825279,
-			"homeRuns": 42,
-			"homeRunsPerNine": 1.4052044609665428,
+			"homeRuns": 43,
+			"homeRunsPerNine": 1.4386617100371746,
 			"inningsPitched": 269,
 			"losses": 23,
 			"numberOfPitches": 0,
@@ -11450,14 +11560,14 @@
 				"battersFaced": 728,
 				"basesOnBalls": 89,
 				"basesOnBallsPerNine": 4.914110429447852,
-				"earnedRuns": 111,
-				"earnedRunAverage": 6.128834355828221,
+				"earnedRuns": 132,
+				"earnedRunAverage": 7.288343558282208,
 				"flyouts": 97,
 				"groundouts": 233,
 				"hitsAllowed": 197,
 				"hitsAllowedPerNine": 10.877300613496931,
-				"homeRuns": 26,
-				"homeRunsPerNine": 1.4355828220858895,
+				"homeRuns": 27,
+				"homeRunsPerNine": 1.4907975460122698,
 				"inningsPitched": 163,
 				"losses": 14,
 				"numberOfPitches": 0,
@@ -11534,7 +11644,8 @@
 				"winningPercentage": 1,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "lowe-forbes"
 	},
 	"3e008f60-6842-42e7-b125-b88c7e5c1a95": {
 		"careerPostseason": {
@@ -11571,8 +11682,8 @@
 			"battersFaced": 1271,
 			"basesOnBalls": 122,
 			"basesOnBallsPerNine": 3.6357615894039736,
-			"earnedRuns": 177,
-			"earnedRunAverage": 5.274834437086093,
+			"earnedRuns": 184,
+			"earnedRunAverage": 5.483443708609271,
 			"flyouts": 170,
 			"groundouts": 440,
 			"hitsAllowed": 338,
@@ -11603,8 +11714,8 @@
 				"battersFaced": 464,
 				"basesOnBalls": 55,
 				"basesOnBallsPerNine": 4.583333333333334,
-				"earnedRuns": 59,
-				"earnedRunAverage": 4.916666666666667,
+				"earnedRuns": 63,
+				"earnedRunAverage": 5.25,
 				"flyouts": 60,
 				"groundouts": 153,
 				"hitsAllowed": 121,
@@ -11632,8 +11743,8 @@
 				"battersFaced": 807,
 				"basesOnBalls": 67,
 				"basesOnBallsPerNine": 3.1082474226804124,
-				"earnedRuns": 118,
-				"earnedRunAverage": 5.474226804123711,
+				"earnedRuns": 121,
+				"earnedRunAverage": 5.61340206185567,
 				"flyouts": 110,
 				"groundouts": 287,
 				"hitsAllowed": 217,
@@ -11687,7 +11798,8 @@
 				"winningPercentage": 0.5,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "zeboriah-wilson"
 	},
 	"3d3be7b8-1cbf-450d-8503-fce0daf46cbf": {
 		"careerPostseason": {
@@ -11810,7 +11922,8 @@
 				"wins": 10
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "zack-sanders"
 	},
 	"338694b7-6256-4724-86b6-3884299a5d9e": {
 		"careerPostseason": {
@@ -11847,8 +11960,8 @@
 			"battersFaced": 1059,
 			"basesOnBalls": 2,
 			"basesOnBallsPerNine": 0.05825242718446602,
-			"earnedRuns": 77,
-			"earnedRunAverage": 2.2427184466019416,
+			"earnedRuns": 80,
+			"earnedRunAverage": 2.3300970873786406,
 			"flyouts": 139,
 			"groundouts": 380,
 			"hitsAllowed": 222,
@@ -11879,8 +11992,8 @@
 				"battersFaced": 412,
 				"basesOnBalls": 1,
 				"basesOnBallsPerNine": 0.07258064516129031,
-				"earnedRuns": 24,
-				"earnedRunAverage": 1.7419354838709677,
+				"earnedRuns": 25,
+				"earnedRunAverage": 1.814516129032258,
 				"flyouts": 61,
 				"groundouts": 155,
 				"hitsAllowed": 76,
@@ -11908,8 +12021,8 @@
 				"battersFaced": 647,
 				"basesOnBalls": 1,
 				"basesOnBallsPerNine": 0.04864864864864865,
-				"earnedRuns": 53,
-				"earnedRunAverage": 2.5783783783783782,
+				"earnedRuns": 55,
+				"earnedRunAverage": 2.675675675675676,
 				"flyouts": 78,
 				"groundouts": 225,
 				"hitsAllowed": 146,
@@ -11963,7 +12076,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "polkadot-patterson"
 	},
 	"9786b2c9-1205-4718-b0f7-fc000ce91106": {
 		"careerPostseason": {
@@ -12000,8 +12114,8 @@
 			"battersFaced": 1143,
 			"basesOnBalls": 115,
 			"basesOnBallsPerNine": 3.4731543624161074,
-			"earnedRuns": 116,
-			"earnedRunAverage": 3.5033557046979866,
+			"earnedRuns": 122,
+			"earnedRunAverage": 3.684563758389262,
 			"flyouts": 171,
 			"groundouts": 431,
 			"hitsAllowed": 254,
@@ -12032,8 +12146,8 @@
 				"battersFaced": 430,
 				"basesOnBalls": 35,
 				"basesOnBallsPerNine": 2.763157894736842,
-				"earnedRuns": 42,
-				"earnedRunAverage": 3.3157894736842106,
+				"earnedRuns": 45,
+				"earnedRunAverage": 3.5526315789473686,
 				"flyouts": 74,
 				"groundouts": 151,
 				"hitsAllowed": 100,
@@ -12061,8 +12175,8 @@
 				"battersFaced": 713,
 				"basesOnBalls": 80,
 				"basesOnBallsPerNine": 3.9130434782608696,
-				"earnedRuns": 74,
-				"earnedRunAverage": 3.619565217391304,
+				"earnedRuns": 77,
+				"earnedRunAverage": 3.766304347826087,
 				"flyouts": 97,
 				"groundouts": 280,
 				"hitsAllowed": 154,
@@ -12145,7 +12259,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "kevin-dudley"
 	},
 	"ad1e670a-f346-4bf7-a02f-a91649c41ccb": {
 		"careerPostseason": {
@@ -12182,8 +12297,8 @@
 			"battersFaced": 1209,
 			"basesOnBalls": 153,
 			"basesOnBallsPerNine": 4.882978723404255,
-			"earnedRuns": 172,
-			"earnedRunAverage": 5.48936170212766,
+			"earnedRuns": 175,
+			"earnedRunAverage": 5.585106382978723,
 			"flyouts": 167,
 			"groundouts": 394,
 			"hitsAllowed": 300,
@@ -12214,8 +12329,8 @@
 				"battersFaced": 452,
 				"basesOnBalls": 53,
 				"basesOnBallsPerNine": 4.457943925233645,
-				"earnedRuns": 56,
-				"earnedRunAverage": 4.710280373831775,
+				"earnedRuns": 58,
+				"earnedRunAverage": 4.878504672897196,
 				"flyouts": 64,
 				"groundouts": 155,
 				"hitsAllowed": 108,
@@ -12243,8 +12358,8 @@
 				"battersFaced": 757,
 				"basesOnBalls": 100,
 				"basesOnBallsPerNine": 5.142857142857142,
-				"earnedRuns": 116,
-				"earnedRunAverage": 5.965714285714285,
+				"earnedRuns": 117,
+				"earnedRunAverage": 6.017142857142857,
 				"flyouts": 103,
 				"groundouts": 239,
 				"hitsAllowed": 192,
@@ -12268,7 +12383,8 @@
 				"wins": 8
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "stephanie-winters"
 	},
 	"e6502bc7-5b76-4939-9fb8-132057390b30": {
 		"careerPostseason": {
@@ -12450,7 +12566,8 @@
 				"winningPercentage": 1,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "greer-lott"
 	},
 	"d2d76815-cbdc-4c4b-9c9e-32ebf2297cc7": {
 		"careerPostseason": {
@@ -12487,8 +12604,8 @@
 			"battersFaced": 1107,
 			"basesOnBalls": 25,
 			"basesOnBallsPerNine": 0.7550335570469799,
-			"earnedRuns": 128,
-			"earnedRunAverage": 3.865771812080537,
+			"earnedRuns": 129,
+			"earnedRunAverage": 3.8959731543624163,
 			"flyouts": 163,
 			"groundouts": 418,
 			"hitsAllowed": 282,
@@ -12548,8 +12665,8 @@
 				"battersFaced": 686,
 				"basesOnBalls": 16,
 				"basesOnBallsPerNine": 0.7619047619047619,
-				"earnedRuns": 69,
-				"earnedRunAverage": 3.2857142857142856,
+				"earnedRuns": 70,
+				"earnedRunAverage": 3.3333333333333335,
 				"flyouts": 101,
 				"groundouts": 259,
 				"hitsAllowed": 165,
@@ -12573,36 +12690,37 @@
 				"wins": 15
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "denzel-scott"
 	},
 	"afc90398-b891-4cdf-9dea-af8a3a79d793": {
 		"careerPostseason": {
-			"appearances": 3,
-			"battersFaced": 109,
-			"basesOnBalls": 5,
-			"basesOnBallsPerNine": 1.6071428571428572,
-			"earnedRuns": 20,
-			"earnedRunAverage": 6.428571428571429,
-			"flyouts": 16,
-			"groundouts": 55,
-			"hitsAllowed": 25,
-			"hitsAllowedPerNine": 8.035714285714286,
-			"homeRuns": 5,
-			"homeRunsPerNine": 1.6071428571428572,
-			"inningsPitched": 28,
-			"losses": 1,
+			"appearances": 4,
+			"battersFaced": 145,
+			"basesOnBalls": 10,
+			"basesOnBallsPerNine": 2.571428571428571,
+			"earnedRuns": 30,
+			"earnedRunAverage": 7.714285714285714,
+			"flyouts": 22,
+			"groundouts": 65,
+			"hitsAllowed": 37,
+			"hitsAllowedPerNine": 9.514285714285714,
+			"homeRuns": 7,
+			"homeRunsPerNine": 1.8,
+			"inningsPitched": 35,
+			"losses": 2,
 			"numberOfPitches": 0,
 			"qualityStarts": 0,
 			"shutouts": 0,
-			"strikeouts": 7,
-			"strikeoutToWalkRatio": 1.4,
-			"strikeoutsPerNine": 2.25,
-			"strikeoutRate": 0.06422018348623854,
+			"strikeouts": 8,
+			"strikeoutToWalkRatio": 0.8,
+			"strikeoutsPerNine": 2.057142857142857,
+			"strikeoutRate": 0.05517241379310345,
 			"team": null,
 			"teamName": null,
-			"walksAndHitsPerInningPitched": 1.0714285714285714,
-			"walkRate": 0.045871559633027525,
-			"winningPercentage": 0.6666666666666666,
+			"walksAndHitsPerInningPitched": 1.3428571428571427,
+			"walkRate": 0.06896551724137931,
+			"winningPercentage": 0.5,
 			"wins": 2
 		},
 		"careerSeason": {
@@ -12610,8 +12728,8 @@
 			"battersFaced": 1204,
 			"basesOnBalls": 82,
 			"basesOnBallsPerNine": 2.476510067114094,
-			"earnedRuns": 157,
-			"earnedRunAverage": 4.741610738255034,
+			"earnedRuns": 160,
+			"earnedRunAverage": 4.832214765100671,
 			"flyouts": 139,
 			"groundouts": 409,
 			"hitsAllowed": 324,
@@ -12642,8 +12760,8 @@
 				"battersFaced": 468,
 				"basesOnBalls": 31,
 				"basesOnBallsPerNine": 2.447368421052632,
-				"earnedRuns": 67,
-				"earnedRunAverage": 5.2894736842105265,
+				"earnedRuns": 68,
+				"earnedRunAverage": 5.368421052631579,
 				"flyouts": 54,
 				"groundouts": 166,
 				"hitsAllowed": 130,
@@ -12671,8 +12789,8 @@
 				"battersFaced": 736,
 				"basesOnBalls": 51,
 				"basesOnBallsPerNine": 2.4945652173913047,
-				"earnedRuns": 90,
-				"earnedRunAverage": 4.4021739130434785,
+				"earnedRuns": 92,
+				"earnedRunAverage": 4.5,
 				"flyouts": 85,
 				"groundouts": 243,
 				"hitsAllowed": 194,
@@ -12727,35 +12845,36 @@
 				"wins": 1
 			},
 			"2": {
-				"appearances": 2,
-				"battersFaced": 75,
-				"basesOnBalls": 2,
-				"basesOnBallsPerNine": 0.9473684210526315,
-				"earnedRuns": 16,
-				"earnedRunAverage": 7.578947368421052,
-				"flyouts": 13,
-				"groundouts": 34,
-				"hitsAllowed": 21,
-				"hitsAllowedPerNine": 9.947368421052632,
-				"homeRuns": 4,
-				"homeRunsPerNine": 1.894736842105263,
-				"inningsPitched": 19,
-				"losses": 1,
+				"appearances": 3,
+				"battersFaced": 111,
+				"basesOnBalls": 7,
+				"basesOnBallsPerNine": 2.423076923076923,
+				"earnedRuns": 26,
+				"earnedRunAverage": 9,
+				"flyouts": 19,
+				"groundouts": 44,
+				"hitsAllowed": 33,
+				"hitsAllowedPerNine": 11.423076923076923,
+				"homeRuns": 6,
+				"homeRunsPerNine": 2.076923076923077,
+				"inningsPitched": 26,
+				"losses": 2,
 				"numberOfPitches": 0,
 				"qualityStarts": 0,
 				"shutouts": 0,
-				"strikeouts": 4,
-				"strikeoutToWalkRatio": 2,
-				"strikeoutsPerNine": 1.894736842105263,
-				"strikeoutRate": 0.05333333333333334,
+				"strikeouts": 5,
+				"strikeoutToWalkRatio": 0.7142857142857143,
+				"strikeoutsPerNine": 1.7307692307692308,
+				"strikeoutRate": 0.04504504504504504,
 				"team": "747b8e4a-7e50-4638-a973-ea7950a3e739",
 				"teamName": "Hades Tigers",
-				"walksAndHitsPerInningPitched": 1.2105263157894737,
-				"walkRate": 0.02666666666666667,
-				"winningPercentage": 0.5,
+				"walksAndHitsPerInningPitched": 1.5384615384615385,
+				"walkRate": 0.06306306306306306,
+				"winningPercentage": 0.3333333333333333,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "yazmin-mason"
 	},
 	"e3c514ae-f813-470e-9c91-d5baf5ffcf16": {
 		"careerPostseason": {
@@ -12792,14 +12911,14 @@
 			"battersFaced": 1160,
 			"basesOnBalls": 94,
 			"basesOnBallsPerNine": 2.9477351916376304,
-			"earnedRuns": 172,
-			"earnedRunAverage": 5.393728222996516,
+			"earnedRuns": 176,
+			"earnedRunAverage": 5.519163763066202,
 			"flyouts": 177,
 			"groundouts": 403,
 			"hitsAllowed": 295,
 			"hitsAllowedPerNine": 9.250871080139373,
-			"homeRuns": 43,
-			"homeRunsPerNine": 1.3484320557491287,
+			"homeRuns": 44,
+			"homeRunsPerNine": 1.3797909407665505,
 			"inningsPitched": 287,
 			"losses": 18,
 			"numberOfPitches": 0,
@@ -12824,14 +12943,14 @@
 				"battersFaced": 458,
 				"basesOnBalls": 45,
 				"basesOnBallsPerNine": 3.8571428571428568,
-				"earnedRuns": 74,
-				"earnedRunAverage": 6.3428571428571425,
+				"earnedRuns": 77,
+				"earnedRunAverage": 6.6,
 				"flyouts": 63,
 				"groundouts": 151,
 				"hitsAllowed": 121,
 				"hitsAllowedPerNine": 10.37142857142857,
-				"homeRuns": 13,
-				"homeRunsPerNine": 1.1142857142857143,
+				"homeRuns": 14,
+				"homeRunsPerNine": 1.2,
 				"inningsPitched": 105,
 				"losses": 10,
 				"numberOfPitches": 0,
@@ -12853,8 +12972,8 @@
 				"battersFaced": 702,
 				"basesOnBalls": 49,
 				"basesOnBallsPerNine": 2.423076923076923,
-				"earnedRuns": 98,
-				"earnedRunAverage": 4.846153846153846,
+				"earnedRuns": 99,
+				"earnedRunAverage": 4.895604395604396,
 				"flyouts": 114,
 				"groundouts": 252,
 				"hitsAllowed": 174,
@@ -12878,7 +12997,8 @@
 				"wins": 12
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "tot-clark"
 	},
 	"f3c07eaf-3d6c-4cc3-9e54-cbecc9c08286": {
 		"careerPostseason": {
@@ -12892,8 +13012,8 @@
 			"groundouts": 42,
 			"hitsAllowed": 29,
 			"hitsAllowedPerNine": 9,
-			"homeRuns": 3,
-			"homeRunsPerNine": 0.9310344827586207,
+			"homeRuns": 4,
+			"homeRunsPerNine": 1.2413793103448276,
 			"inningsPitched": 29,
 			"losses": 2,
 			"numberOfPitches": 0,
@@ -12915,14 +13035,14 @@
 			"battersFaced": 1317,
 			"basesOnBalls": 194,
 			"basesOnBallsPerNine": 5.724590163934426,
-			"earnedRuns": 182,
-			"earnedRunAverage": 5.370491803278688,
+			"earnedRuns": 183,
+			"earnedRunAverage": 5.4,
 			"flyouts": 172,
 			"groundouts": 420,
 			"hitsAllowed": 315,
 			"hitsAllowedPerNine": 9.295081967213115,
-			"homeRuns": 35,
-			"homeRunsPerNine": 1.0327868852459017,
+			"homeRuns": 37,
+			"homeRunsPerNine": 1.0918032786885246,
 			"inningsPitched": 305,
 			"losses": 19,
 			"numberOfPitches": 0,
@@ -12953,8 +13073,8 @@
 				"groundouts": 168,
 				"hitsAllowed": 121,
 				"hitsAllowedPerNine": 8.78225806451613,
-				"homeRuns": 17,
-				"homeRunsPerNine": 1.2338709677419355,
+				"homeRuns": 18,
+				"homeRunsPerNine": 1.306451612903226,
 				"inningsPitched": 124,
 				"losses": 5,
 				"numberOfPitches": 0,
@@ -12976,14 +13096,14 @@
 				"battersFaced": 798,
 				"basesOnBalls": 127,
 				"basesOnBallsPerNine": 6.314917127071823,
-				"earnedRuns": 122,
-				"earnedRunAverage": 6.066298342541437,
+				"earnedRuns": 123,
+				"earnedRunAverage": 6.116022099447513,
 				"flyouts": 108,
 				"groundouts": 252,
 				"hitsAllowed": 194,
 				"hitsAllowedPerNine": 9.646408839779005,
-				"homeRuns": 18,
-				"homeRunsPerNine": 0.8950276243093922,
+				"homeRuns": 19,
+				"homeRunsPerNine": 0.9447513812154695,
 				"inningsPitched": 181,
 				"losses": 14,
 				"numberOfPitches": 0,
@@ -13013,8 +13133,8 @@
 				"groundouts": 31,
 				"hitsAllowed": 20,
 				"hitsAllowedPerNine": 9.473684210526315,
-				"homeRuns": 3,
-				"homeRunsPerNine": 1.4210526315789473,
+				"homeRuns": 4,
+				"homeRunsPerNine": 1.894736842105263,
 				"inningsPitched": 19,
 				"losses": 2,
 				"numberOfPitches": 0,
@@ -13060,7 +13180,8 @@
 				"winningPercentage": 1,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "campos-arias"
 	},
 	"3c331c87-1634-46c4-87ce-e4b9c59e2969": {
 		"careerPostseason": {
@@ -13213,7 +13334,8 @@
 				"winningPercentage": 0.5,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "yosh-carpenter"
 	},
 	"138fccc3-e66f-4b07-8327-d4b6f372f654": {
 		"careerPostseason": {
@@ -13250,8 +13372,8 @@
 			"battersFaced": 1117,
 			"basesOnBalls": 4,
 			"basesOnBallsPerNine": 0.11726384364820848,
-			"earnedRuns": 133,
-			"earnedRunAverage": 3.8990228013029316,
+			"earnedRuns": 134,
+			"earnedRunAverage": 3.9283387622149837,
 			"flyouts": 160,
 			"groundouts": 360,
 			"hitsAllowed": 315,
@@ -13282,8 +13404,8 @@
 				"battersFaced": 407,
 				"basesOnBalls": 2,
 				"basesOnBallsPerNine": 0.15789473684210525,
-				"earnedRuns": 42,
-				"earnedRunAverage": 3.3157894736842106,
+				"earnedRuns": 43,
+				"earnedRunAverage": 3.3947368421052633,
 				"flyouts": 48,
 				"groundouts": 142,
 				"hitsAllowed": 106,
@@ -13336,7 +13458,8 @@
 				"wins": 16
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "oscar-vaughan"
 	},
 	"9820f2c5-f9da-4a07-b610-c2dd7bee2ef6": {
 		"careerPostseason": {
@@ -13379,8 +13502,8 @@
 			"groundouts": 391,
 			"hitsAllowed": 360,
 			"hitsAllowedPerNine": 11.25,
-			"homeRuns": 68,
-			"homeRunsPerNine": 2.125,
+			"homeRuns": 69,
+			"homeRunsPerNine": 2.15625,
 			"inningsPitched": 288,
 			"losses": 22,
 			"numberOfPitches": 0,
@@ -13440,8 +13563,8 @@
 				"groundouts": 255,
 				"hitsAllowed": 232,
 				"hitsAllowedPerNine": 11.664804469273744,
-				"homeRuns": 43,
-				"homeRunsPerNine": 2.1620111731843576,
+				"homeRuns": 44,
+				"homeRunsPerNine": 2.212290502793296,
 				"inningsPitched": 179,
 				"losses": 14,
 				"numberOfPitches": 0,
@@ -13459,7 +13582,8 @@
 				"wins": 6
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "dan-bong"
 	},
 	"bd549bfe-b395-4dc0-8546-5c04c08e24a5": {
 		"careerPostseason": {
@@ -13496,8 +13620,8 @@
 			"battersFaced": 909,
 			"basesOnBalls": 34,
 			"basesOnBallsPerNine": 1.280334728033473,
-			"earnedRuns": 109,
-			"earnedRunAverage": 4.104602510460251,
+			"earnedRuns": 110,
+			"earnedRunAverage": 4.142259414225942,
 			"flyouts": 122,
 			"groundouts": 345,
 			"hitsAllowed": 220,
@@ -13557,8 +13681,8 @@
 				"battersFaced": 460,
 				"basesOnBalls": 17,
 				"basesOnBallsPerNine": 1.2240000000000002,
-				"earnedRuns": 52,
-				"earnedRunAverage": 3.744,
+				"earnedRuns": 53,
+				"earnedRunAverage": 3.816,
 				"flyouts": 70,
 				"groundouts": 177,
 				"hitsAllowed": 108,
@@ -13582,37 +13706,38 @@
 				"wins": 5
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "sam-solis"
 	},
 	"81d7d022-19d6-427d-aafc-031fcb79b29e": {
 		"careerPostseason": {
-			"appearances": 2,
-			"battersFaced": 93,
+			"appearances": 3,
+			"battersFaced": 128,
 			"basesOnBalls": 3,
-			"basesOnBallsPerNine": 1.1739130434782608,
-			"earnedRuns": 8,
-			"earnedRunAverage": 3.130434782608696,
-			"flyouts": 10,
-			"groundouts": 42,
-			"hitsAllowed": 23,
-			"hitsAllowedPerNine": 9,
-			"homeRuns": 3,
-			"homeRunsPerNine": 1.1739130434782608,
-			"inningsPitched": 23,
+			"basesOnBallsPerNine": 0.8709677419354839,
+			"earnedRuns": 16,
+			"earnedRunAverage": 4.645161290322581,
+			"flyouts": 14,
+			"groundouts": 56,
+			"hitsAllowed": 35,
+			"hitsAllowedPerNine": 10.161290322580646,
+			"homeRuns": 4,
+			"homeRunsPerNine": 1.161290322580645,
+			"inningsPitched": 31,
 			"losses": 1,
 			"numberOfPitches": 0,
 			"qualityStarts": 1,
 			"shutouts": 0,
-			"strikeouts": 10,
-			"strikeoutToWalkRatio": 3.3333333333333335,
-			"strikeoutsPerNine": 3.9130434782608696,
-			"strikeoutRate": 0.10752688172043011,
+			"strikeouts": 15,
+			"strikeoutToWalkRatio": 5,
+			"strikeoutsPerNine": 4.35483870967742,
+			"strikeoutRate": 0.1171875,
 			"team": null,
 			"teamName": null,
-			"walksAndHitsPerInningPitched": 1.1304347826086956,
-			"walkRate": 0.03225806451612903,
-			"winningPercentage": 0.5,
-			"wins": 1
+			"walksAndHitsPerInningPitched": 1.2258064516129032,
+			"walkRate": 0.0234375,
+			"winningPercentage": 0.6666666666666666,
+			"wins": 2
 		},
 		"careerSeason": {
 			"appearances": 32,
@@ -13625,8 +13750,8 @@
 			"groundouts": 398,
 			"hitsAllowed": 267,
 			"hitsAllowedPerNine": 7.930693069306931,
-			"homeRuns": 32,
-			"homeRunsPerNine": 0.9504950495049505,
+			"homeRuns": 33,
+			"homeRunsPerNine": 0.9801980198019802,
 			"inningsPitched": 303,
 			"losses": 10,
 			"numberOfPitches": 0,
@@ -13686,8 +13811,8 @@
 				"groundouts": 253,
 				"hitsAllowed": 159,
 				"hitsAllowedPerNine": 7.453125,
-				"homeRuns": 18,
-				"homeRunsPerNine": 0.84375,
+				"homeRuns": 19,
+				"homeRunsPerNine": 0.890625,
 				"inningsPitched": 192,
 				"losses": 4,
 				"numberOfPitches": 0,
@@ -13707,35 +13832,36 @@
 		},
 		"postseasons": {
 			"2": {
-				"appearances": 2,
-				"battersFaced": 93,
+				"appearances": 3,
+				"battersFaced": 128,
 				"basesOnBalls": 3,
-				"basesOnBallsPerNine": 1.1739130434782608,
-				"earnedRuns": 8,
-				"earnedRunAverage": 3.130434782608696,
-				"flyouts": 10,
-				"groundouts": 42,
-				"hitsAllowed": 23,
-				"hitsAllowedPerNine": 9,
-				"homeRuns": 3,
-				"homeRunsPerNine": 1.1739130434782608,
-				"inningsPitched": 23,
+				"basesOnBallsPerNine": 0.8709677419354839,
+				"earnedRuns": 16,
+				"earnedRunAverage": 4.645161290322581,
+				"flyouts": 14,
+				"groundouts": 56,
+				"hitsAllowed": 35,
+				"hitsAllowedPerNine": 10.161290322580646,
+				"homeRuns": 4,
+				"homeRunsPerNine": 1.161290322580645,
+				"inningsPitched": 31,
 				"losses": 1,
 				"numberOfPitches": 0,
 				"qualityStarts": 1,
 				"shutouts": 0,
-				"strikeouts": 10,
-				"strikeoutToWalkRatio": 3.3333333333333335,
-				"strikeoutsPerNine": 3.9130434782608696,
-				"strikeoutRate": 0.10752688172043011,
+				"strikeouts": 15,
+				"strikeoutToWalkRatio": 5,
+				"strikeoutsPerNine": 4.35483870967742,
+				"strikeoutRate": 0.1171875,
 				"team": "36569151-a2fb-43c1-9df7-2df512424c82",
 				"teamName": "New York Millennials",
-				"walksAndHitsPerInningPitched": 1.1304347826086956,
-				"walkRate": 0.03225806451612903,
-				"winningPercentage": 0.5,
-				"wins": 1
+				"walksAndHitsPerInningPitched": 1.2258064516129032,
+				"walkRate": 0.0234375,
+				"winningPercentage": 0.6666666666666666,
+				"wins": 2
 			}
-		}
+		},
+		"slug": "patty-fox"
 	},
 	"0bb35615-63f2-4492-80ec-b6b322dc5450": {
 		"careerPostseason": {
@@ -13858,7 +13984,8 @@
 				"wins": 6
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "sexton-wheeler"
 	},
 	"6b8d128f-ed51-496d-a965-6614476f8256": {
 		"careerPostseason": {
@@ -14040,7 +14167,8 @@
 				"winningPercentage": 1,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "orville-manco"
 	},
 	"f9c0d3cb-d8be-4f53-94c9-fc53bcbce520": {
 		"careerPostseason": {
@@ -14077,8 +14205,8 @@
 			"battersFaced": 817,
 			"basesOnBalls": 10,
 			"basesOnBallsPerNine": 0.41284403669724773,
-			"earnedRuns": 89,
-			"earnedRunAverage": 3.6743119266055047,
+			"earnedRuns": 91,
+			"earnedRunAverage": 3.756880733944954,
 			"flyouts": 114,
 			"groundouts": 280,
 			"hitsAllowed": 218,
@@ -14138,8 +14266,8 @@
 				"battersFaced": 386,
 				"basesOnBalls": 9,
 				"basesOnBallsPerNine": 0.7788461538461539,
-				"earnedRuns": 37,
-				"earnedRunAverage": 3.201923076923077,
+				"earnedRuns": 39,
+				"earnedRunAverage": 3.375,
 				"flyouts": 59,
 				"groundouts": 144,
 				"hitsAllowed": 92,
@@ -14193,7 +14321,8 @@
 				"winningPercentage": 1,
 				"wins": 2
 			}
-		}
+		},
+		"slug": "matteo-prestige"
 	},
 	"8adb084b-19fe-4295-bcd2-f92afdb62bd7": {
 		"careerPostseason": {
@@ -14230,14 +14359,14 @@
 			"battersFaced": 1174,
 			"basesOnBalls": 135,
 			"basesOnBallsPerNine": 4.466911764705882,
-			"earnedRuns": 139,
-			"earnedRunAverage": 4.599264705882353,
+			"earnedRuns": 149,
+			"earnedRunAverage": 4.930147058823529,
 			"flyouts": 164,
 			"groundouts": 357,
 			"hitsAllowed": 306,
 			"hitsAllowedPerNine": 10.125,
-			"homeRuns": 32,
-			"homeRunsPerNine": 1.0588235294117647,
+			"homeRuns": 34,
+			"homeRunsPerNine": 1.125,
 			"inningsPitched": 272,
 			"losses": 20,
 			"numberOfPitches": 0,
@@ -14262,14 +14391,14 @@
 				"battersFaced": 449,
 				"basesOnBalls": 45,
 				"basesOnBallsPerNine": 3.7850467289719627,
-				"earnedRuns": 53,
-				"earnedRunAverage": 4.457943925233645,
+				"earnedRuns": 55,
+				"earnedRunAverage": 4.626168224299065,
 				"flyouts": 63,
 				"groundouts": 146,
 				"hitsAllowed": 114,
 				"hitsAllowedPerNine": 9.58878504672897,
-				"homeRuns": 16,
-				"homeRunsPerNine": 1.3457943925233644,
+				"homeRuns": 18,
+				"homeRunsPerNine": 1.514018691588785,
 				"inningsPitched": 107,
 				"losses": 7,
 				"numberOfPitches": 0,
@@ -14291,8 +14420,8 @@
 				"battersFaced": 725,
 				"basesOnBalls": 90,
 				"basesOnBallsPerNine": 4.909090909090908,
-				"earnedRuns": 86,
-				"earnedRunAverage": 4.6909090909090905,
+				"earnedRuns": 94,
+				"earnedRunAverage": 5.127272727272727,
 				"flyouts": 101,
 				"groundouts": 211,
 				"hitsAllowed": 192,
@@ -14316,7 +14445,8 @@
 				"wins": 7
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "logan-rodriguez"
 	},
 	"43d5da5f-c6a1-42f1-ab7f-50ea956b6cd5": {
 		"careerPostseason": {
@@ -14353,8 +14483,8 @@
 			"battersFaced": 1260,
 			"basesOnBalls": 111,
 			"basesOnBallsPerNine": 3.421232876712329,
-			"earnedRuns": 166,
-			"earnedRunAverage": 5.116438356164384,
+			"earnedRuns": 167,
+			"earnedRunAverage": 5.147260273972603,
 			"flyouts": 159,
 			"groundouts": 406,
 			"hitsAllowed": 358,
@@ -14385,8 +14515,8 @@
 				"battersFaced": 480,
 				"basesOnBalls": 45,
 				"basesOnBallsPerNine": 3.7850467289719627,
-				"earnedRuns": 65,
-				"earnedRunAverage": 5.4672897196261685,
+				"earnedRuns": 66,
+				"earnedRunAverage": 5.5514018691588785,
 				"flyouts": 57,
 				"groundouts": 146,
 				"hitsAllowed": 138,
@@ -14469,7 +14599,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "justice-spoon"
 	},
 	"2da49de2-34e5-49d0-b752-af2a2ee061be": {
 		"careerPostseason": {
@@ -14506,14 +14637,14 @@
 			"battersFaced": 980,
 			"basesOnBalls": 148,
 			"basesOnBallsPerNine": 5.573221757322175,
-			"earnedRuns": 145,
-			"earnedRunAverage": 5.460251046025105,
+			"earnedRuns": 143,
+			"earnedRunAverage": 5.384937238493724,
 			"flyouts": 154,
 			"groundouts": 300,
 			"hitsAllowed": 224,
 			"hitsAllowedPerNine": 8.435146443514645,
-			"homeRuns": 22,
-			"homeRunsPerNine": 0.8284518828451883,
+			"homeRuns": 23,
+			"homeRunsPerNine": 0.8661087866108786,
 			"inningsPitched": 239,
 			"losses": 12,
 			"numberOfPitches": 0,
@@ -14538,8 +14669,8 @@
 				"battersFaced": 255,
 				"basesOnBalls": 38,
 				"basesOnBallsPerNine": 5.606557377049181,
-				"earnedRuns": 40,
-				"earnedRunAverage": 5.901639344262295,
+				"earnedRuns": 37,
+				"earnedRunAverage": 5.459016393442623,
 				"flyouts": 40,
 				"groundouts": 76,
 				"hitsAllowed": 60,
@@ -14567,14 +14698,14 @@
 				"battersFaced": 725,
 				"basesOnBalls": 110,
 				"basesOnBallsPerNine": 5.561797752808989,
-				"earnedRuns": 105,
-				"earnedRunAverage": 5.308988764044944,
+				"earnedRuns": 106,
+				"earnedRunAverage": 5.359550561797753,
 				"flyouts": 114,
 				"groundouts": 224,
 				"hitsAllowed": 164,
 				"hitsAllowedPerNine": 8.292134831460675,
-				"homeRuns": 16,
-				"homeRunsPerNine": 0.8089887640449438,
+				"homeRuns": 17,
+				"homeRunsPerNine": 0.8595505617977528,
 				"inningsPitched": 178,
 				"losses": 9,
 				"numberOfPitches": 0,
@@ -14592,7 +14723,8 @@
 				"wins": 10
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "cory-twelve"
 	},
 	"f2c477fb-28ea-4fcb-943a-9fab22df3da0": {
 		"careerPostseason": {
@@ -14629,8 +14761,8 @@
 			"battersFaced": 769,
 			"basesOnBalls": 111,
 			"basesOnBallsPerNine": 5.6440677966101696,
-			"earnedRuns": 116,
-			"earnedRunAverage": 5.898305084745763,
+			"earnedRuns": 118,
+			"earnedRunAverage": 6,
 			"flyouts": 112,
 			"groundouts": 231,
 			"hitsAllowed": 203,
@@ -14661,8 +14793,8 @@
 				"battersFaced": 769,
 				"basesOnBalls": 111,
 				"basesOnBallsPerNine": 5.6440677966101696,
-				"earnedRuns": 116,
-				"earnedRunAverage": 5.898305084745763,
+				"earnedRuns": 118,
+				"earnedRunAverage": 6,
 				"flyouts": 112,
 				"groundouts": 231,
 				"hitsAllowed": 203,
@@ -14716,7 +14848,8 @@
 				"winningPercentage": 0.5,
 				"wins": 1
 			}
-		}
+		},
+		"slug": "sandford-garner"
 	},
 	"21d52455-6c2c-4ee4-8673-ab46b4b926b4": {
 		"careerPostseason": {
@@ -14759,8 +14892,8 @@
 			"groundouts": 208,
 			"hitsAllowed": 137,
 			"hitsAllowedPerNine": 8.50344827586207,
-			"homeRuns": 15,
-			"homeRunsPerNine": 0.9310344827586207,
+			"homeRuns": 16,
+			"homeRunsPerNine": 0.993103448275862,
 			"inningsPitched": 145,
 			"losses": 15,
 			"numberOfPitches": 0,
@@ -14791,8 +14924,8 @@
 				"groundouts": 208,
 				"hitsAllowed": 137,
 				"hitsAllowedPerNine": 8.50344827586207,
-				"homeRuns": 15,
-				"homeRunsPerNine": 0.9310344827586207,
+				"homeRuns": 16,
+				"homeRunsPerNine": 0.993103448275862,
 				"inningsPitched": 145,
 				"losses": 15,
 				"numberOfPitches": 0,
@@ -14810,7 +14943,8 @@
 				"wins": 2
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "emmett-owens"
 	},
 	"ae81e172-801a-4236-929a-b990fc7190ce": {
 		"careerPostseason": {
@@ -14847,8 +14981,8 @@
 			"battersFaced": 514,
 			"basesOnBalls": 9,
 			"basesOnBallsPerNine": 0.5364238410596026,
-			"earnedRuns": 39,
-			"earnedRunAverage": 2.3245033112582782,
+			"earnedRuns": 38,
+			"earnedRunAverage": 2.2649006622516556,
 			"flyouts": 75,
 			"groundouts": 200,
 			"hitsAllowed": 110,
@@ -14879,8 +15013,8 @@
 				"battersFaced": 514,
 				"basesOnBalls": 9,
 				"basesOnBallsPerNine": 0.5364238410596026,
-				"earnedRuns": 39,
-				"earnedRunAverage": 2.3245033112582782,
+				"earnedRuns": 38,
+				"earnedRunAverage": 2.2649006622516556,
 				"flyouts": 75,
 				"groundouts": 200,
 				"hitsAllowed": 110,
@@ -14934,7 +15068,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "august-sky"
 	},
 	"34267632-8c32-4a8b-b5e6-ce1568bb0639": {
 		"careerPostseason": {
@@ -14971,8 +15106,8 @@
 			"battersFaced": 362,
 			"basesOnBalls": 56,
 			"basesOnBallsPerNine": 6.072289156626505,
-			"earnedRuns": 63,
-			"earnedRunAverage": 6.831325301204819,
+			"earnedRuns": 61,
+			"earnedRunAverage": 6.614457831325301,
 			"flyouts": 46,
 			"groundouts": 119,
 			"hitsAllowed": 91,
@@ -15003,8 +15138,8 @@
 				"battersFaced": 362,
 				"basesOnBalls": 56,
 				"basesOnBallsPerNine": 6.072289156626505,
-				"earnedRuns": 63,
-				"earnedRunAverage": 6.831325301204819,
+				"earnedRuns": 61,
+				"earnedRunAverage": 6.614457831325301,
 				"flyouts": 46,
 				"groundouts": 119,
 				"hitsAllowed": 91,
@@ -15058,7 +15193,8 @@
 				"winningPercentage": 0,
 				"wins": 0
 			}
-		}
+		},
+		"slug": "gunther-o'brian"
 	},
 	"a5f8ce83-02b2-498c-9e48-533a1d81aebf": {
 		"careerPostseason": {
@@ -15152,7 +15288,8 @@
 				"wins": 3
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "evelton-mcblase"
 	},
 	"c6e2e389-ed04-4626-a5ba-fe398fe89568": {
 		"careerPostseason": {
@@ -15246,6 +15383,7 @@
 				"wins": 0
 			}
 		},
-		"postseasons": {}
+		"postseasons": {},
+		"slug": "henry-marshallow"
 	}
 }

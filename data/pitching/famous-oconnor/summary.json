@@ -33,8 +33,8 @@
 		"battersFaced": 182,
 		"basesOnBalls": 9,
 		"basesOnBallsPerNine": 1.653061224489796,
-		"earnedRuns": 18,
-		"earnedRunAverage": 3.306122448979592,
+		"earnedRuns": 21,
+		"earnedRunAverage": 3.857142857142857,
 		"flyouts": 37,
 		"groundouts": 68,
 		"hitsAllowed": 44,
@@ -65,8 +65,8 @@
 			"battersFaced": 182,
 			"basesOnBalls": 9,
 			"basesOnBallsPerNine": 1.653061224489796,
-			"earnedRuns": 18,
-			"earnedRunAverage": 3.306122448979592,
+			"earnedRuns": 21,
+			"earnedRunAverage": 3.857142857142857,
 			"flyouts": 37,
 			"groundouts": 68,
 			"hitsAllowed": 44,
@@ -90,5 +90,6 @@
 			"wins": 3
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "famous-oconnor"
 }

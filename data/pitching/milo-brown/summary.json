@@ -33,8 +33,8 @@
 		"battersFaced": 1189,
 		"basesOnBalls": 147,
 		"basesOnBallsPerNine": 4.6749116607773855,
-		"earnedRuns": 177,
-		"earnedRunAverage": 5.628975265017668,
+		"earnedRuns": 186,
+		"earnedRunAverage": 5.915194346289753,
 		"flyouts": 169,
 		"groundouts": 368,
 		"hitsAllowed": 305,
@@ -65,8 +65,8 @@
 			"battersFaced": 473,
 			"basesOnBalls": 57,
 			"basesOnBallsPerNine": 4.839622641509434,
-			"earnedRuns": 78,
-			"earnedRunAverage": 6.622641509433962,
+			"earnedRuns": 79,
+			"earnedRunAverage": 6.7075471698113205,
 			"flyouts": 67,
 			"groundouts": 140,
 			"hitsAllowed": 133,
@@ -94,8 +94,8 @@
 			"battersFaced": 716,
 			"basesOnBalls": 90,
 			"basesOnBallsPerNine": 4.576271186440678,
-			"earnedRuns": 99,
-			"earnedRunAverage": 5.033898305084746,
+			"earnedRuns": 107,
+			"earnedRunAverage": 5.440677966101695,
 			"flyouts": 102,
 			"groundouts": 228,
 			"hitsAllowed": 172,
@@ -149,5 +149,6 @@
 			"winningPercentage": 0.5,
 			"wins": 1
 		}
-	}
+	},
+	"slug": "milo-brown"
 }

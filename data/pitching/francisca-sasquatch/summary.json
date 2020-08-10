@@ -33,14 +33,14 @@
 		"battersFaced": 1197,
 		"basesOnBalls": 80,
 		"basesOnBallsPerNine": 2.4657534246575343,
-		"earnedRuns": 182,
-		"earnedRunAverage": 5.609589041095891,
+		"earnedRuns": 183,
+		"earnedRunAverage": 5.640410958904109,
 		"flyouts": 173,
 		"groundouts": 379,
 		"hitsAllowed": 332,
 		"hitsAllowedPerNine": 10.232876712328768,
-		"homeRuns": 46,
-		"homeRunsPerNine": 1.417808219178082,
+		"homeRuns": 47,
+		"homeRunsPerNine": 1.4486301369863015,
 		"inningsPitched": 292,
 		"losses": 25,
 		"numberOfPitches": 0,
@@ -71,8 +71,8 @@
 			"groundouts": 144,
 			"hitsAllowed": 133,
 			"hitsAllowedPerNine": 10.408695652173913,
-			"homeRuns": 13,
-			"homeRunsPerNine": 1.017391304347826,
+			"homeRuns": 14,
+			"homeRunsPerNine": 1.0956521739130436,
 			"inningsPitched": 115,
 			"losses": 10,
 			"numberOfPitches": 0,
@@ -94,8 +94,8 @@
 			"battersFaced": 725,
 			"basesOnBalls": 52,
 			"basesOnBallsPerNine": 2.6440677966101696,
-			"earnedRuns": 107,
-			"earnedRunAverage": 5.440677966101695,
+			"earnedRuns": 108,
+			"earnedRunAverage": 5.491525423728813,
 			"flyouts": 111,
 			"groundouts": 235,
 			"hitsAllowed": 199,
@@ -119,5 +119,6 @@
 			"wins": 5
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "francisca-sasquatch"
 }

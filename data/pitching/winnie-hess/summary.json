@@ -33,8 +33,8 @@
 		"battersFaced": 1168,
 		"basesOnBalls": 74,
 		"basesOnBallsPerNine": 2.1009463722397475,
-		"earnedRuns": 117,
-		"earnedRunAverage": 3.321766561514196,
+		"earnedRuns": 116,
+		"earnedRunAverage": 3.2933753943217665,
 		"flyouts": 220,
 		"groundouts": 417,
 		"hitsAllowed": 265,
@@ -65,8 +65,8 @@
 			"battersFaced": 461,
 			"basesOnBalls": 22,
 			"basesOnBallsPerNine": 1.546875,
-			"earnedRuns": 44,
-			"earnedRunAverage": 3.09375,
+			"earnedRuns": 43,
+			"earnedRunAverage": 3.0234375,
 			"flyouts": 84,
 			"groundouts": 174,
 			"hitsAllowed": 110,
@@ -119,5 +119,6 @@
 			"wins": 13
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "winnie-hess"
 }

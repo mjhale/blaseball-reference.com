@@ -33,8 +33,8 @@
 		"battersFaced": 769,
 		"basesOnBalls": 111,
 		"basesOnBallsPerNine": 5.6440677966101696,
-		"earnedRuns": 116,
-		"earnedRunAverage": 5.898305084745763,
+		"earnedRuns": 118,
+		"earnedRunAverage": 6,
 		"flyouts": 112,
 		"groundouts": 231,
 		"hitsAllowed": 203,
@@ -65,8 +65,8 @@
 			"battersFaced": 769,
 			"basesOnBalls": 111,
 			"basesOnBallsPerNine": 5.6440677966101696,
-			"earnedRuns": 116,
-			"earnedRunAverage": 5.898305084745763,
+			"earnedRuns": 118,
+			"earnedRunAverage": 6,
 			"flyouts": 112,
 			"groundouts": 231,
 			"hitsAllowed": 203,
@@ -120,5 +120,6 @@
 			"winningPercentage": 0.5,
 			"wins": 1
 		}
-	}
+	},
+	"slug": "sandford-garner"
 }

@@ -33,8 +33,8 @@
 		"battersFaced": 1104,
 		"basesOnBalls": 67,
 		"basesOnBallsPerNine": 2.1010452961672472,
-		"earnedRuns": 133,
-		"earnedRunAverage": 4.170731707317073,
+		"earnedRuns": 138,
+		"earnedRunAverage": 4.327526132404182,
 		"flyouts": 173,
 		"groundouts": 360,
 		"hitsAllowed": 276,
@@ -65,8 +65,8 @@
 			"battersFaced": 444,
 			"basesOnBalls": 17,
 			"basesOnBallsPerNine": 1.3189655172413792,
-			"earnedRuns": 49,
-			"earnedRunAverage": 3.8017241379310347,
+			"earnedRuns": 51,
+			"earnedRunAverage": 3.956896551724138,
 			"flyouts": 74,
 			"groundouts": 143,
 			"hitsAllowed": 115,
@@ -94,8 +94,8 @@
 			"battersFaced": 660,
 			"basesOnBalls": 50,
 			"basesOnBallsPerNine": 2.631578947368421,
-			"earnedRuns": 84,
-			"earnedRunAverage": 4.421052631578948,
+			"earnedRuns": 87,
+			"earnedRunAverage": 4.578947368421052,
 			"flyouts": 99,
 			"groundouts": 217,
 			"hitsAllowed": 161,
@@ -149,5 +149,6 @@
 			"winningPercentage": 0,
 			"wins": 0
 		}
-	}
+	},
+	"slug": "ronan-jaylee"
 }

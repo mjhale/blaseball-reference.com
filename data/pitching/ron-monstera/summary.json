@@ -33,8 +33,8 @@
 		"battersFaced": 1121,
 		"basesOnBalls": 83,
 		"basesOnBallsPerNine": 2.558219178082192,
-		"earnedRuns": 122,
-		"earnedRunAverage": 3.76027397260274,
+		"earnedRuns": 124,
+		"earnedRunAverage": 3.8219178082191783,
 		"flyouts": 164,
 		"groundouts": 391,
 		"hitsAllowed": 263,
@@ -65,8 +65,8 @@
 			"battersFaced": 470,
 			"basesOnBalls": 40,
 			"basesOnBallsPerNine": 3.1578947368421053,
-			"earnedRuns": 57,
-			"earnedRunAverage": 4.5,
+			"earnedRuns": 58,
+			"earnedRunAverage": 4.578947368421052,
 			"flyouts": 67,
 			"groundouts": 153,
 			"hitsAllowed": 116,
@@ -94,8 +94,8 @@
 			"battersFaced": 651,
 			"basesOnBalls": 43,
 			"basesOnBallsPerNine": 2.1741573033707864,
-			"earnedRuns": 65,
-			"earnedRunAverage": 3.2865168539325844,
+			"earnedRuns": 66,
+			"earnedRunAverage": 3.337078651685393,
 			"flyouts": 97,
 			"groundouts": 238,
 			"hitsAllowed": 147,
@@ -119,5 +119,6 @@
 			"wins": 13
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "ron-monstera"
 }

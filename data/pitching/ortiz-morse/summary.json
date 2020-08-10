@@ -33,8 +33,8 @@
 		"battersFaced": 1266,
 		"basesOnBalls": 201,
 		"basesOnBallsPerNine": 6.325174825174825,
-		"earnedRuns": 183,
-		"earnedRunAverage": 5.758741258741258,
+		"earnedRuns": 186,
+		"earnedRunAverage": 5.853146853146853,
 		"flyouts": 159,
 		"groundouts": 391,
 		"hitsAllowed": 303,
@@ -65,8 +65,8 @@
 			"battersFaced": 520,
 			"basesOnBalls": 77,
 			"basesOnBallsPerNine": 5.974137931034483,
-			"earnedRuns": 66,
-			"earnedRunAverage": 5.120689655172414,
+			"earnedRuns": 67,
+			"earnedRunAverage": 5.198275862068965,
 			"flyouts": 61,
 			"groundouts": 166,
 			"hitsAllowed": 123,
@@ -94,8 +94,8 @@
 			"battersFaced": 746,
 			"basesOnBalls": 124,
 			"basesOnBallsPerNine": 6.564705882352941,
-			"earnedRuns": 117,
-			"earnedRunAverage": 6.194117647058824,
+			"earnedRuns": 119,
+			"earnedRunAverage": 6.3,
 			"flyouts": 98,
 			"groundouts": 225,
 			"hitsAllowed": 180,
@@ -149,5 +149,6 @@
 			"winningPercentage": 0,
 			"wins": 0
 		}
-	}
+	},
+	"slug": "ortiz-morse"
 }

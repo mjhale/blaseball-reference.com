@@ -33,8 +33,8 @@
 		"battersFaced": 1275,
 		"basesOnBalls": 87,
 		"basesOnBallsPerNine": 2.709342560553633,
-		"earnedRuns": 206,
-		"earnedRunAverage": 6.41522491349481,
+		"earnedRuns": 209,
+		"earnedRunAverage": 6.508650519031142,
 		"flyouts": 174,
 		"groundouts": 402,
 		"hitsAllowed": 380,
@@ -65,8 +65,8 @@
 			"battersFaced": 490,
 			"basesOnBalls": 34,
 			"basesOnBallsPerNine": 2.6608695652173915,
-			"earnedRuns": 76,
-			"earnedRunAverage": 5.947826086956522,
+			"earnedRuns": 77,
+			"earnedRunAverage": 6.026086956521739,
 			"flyouts": 70,
 			"groundouts": 151,
 			"hitsAllowed": 141,
@@ -94,8 +94,8 @@
 			"battersFaced": 785,
 			"basesOnBalls": 53,
 			"basesOnBallsPerNine": 2.741379310344828,
-			"earnedRuns": 130,
-			"earnedRunAverage": 6.724137931034483,
+			"earnedRuns": 132,
+			"earnedRunAverage": 6.827586206896552,
 			"flyouts": 104,
 			"groundouts": 251,
 			"hitsAllowed": 239,
@@ -149,5 +149,6 @@
 			"winningPercentage": 1,
 			"wins": 1
 		}
-	}
+	},
+	"slug": "atlas-guerra"
 }

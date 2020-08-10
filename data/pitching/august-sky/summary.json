@@ -33,8 +33,8 @@
 		"battersFaced": 514,
 		"basesOnBalls": 9,
 		"basesOnBallsPerNine": 0.5364238410596026,
-		"earnedRuns": 39,
-		"earnedRunAverage": 2.3245033112582782,
+		"earnedRuns": 38,
+		"earnedRunAverage": 2.2649006622516556,
 		"flyouts": 75,
 		"groundouts": 200,
 		"hitsAllowed": 110,
@@ -65,8 +65,8 @@
 			"battersFaced": 514,
 			"basesOnBalls": 9,
 			"basesOnBallsPerNine": 0.5364238410596026,
-			"earnedRuns": 39,
-			"earnedRunAverage": 2.3245033112582782,
+			"earnedRuns": 38,
+			"earnedRunAverage": 2.2649006622516556,
 			"flyouts": 75,
 			"groundouts": 200,
 			"hitsAllowed": 110,
@@ -120,5 +120,6 @@
 			"winningPercentage": 0,
 			"wins": 0
 		}
-	}
+	},
+	"slug": "august-sky"
 }

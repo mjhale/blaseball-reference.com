@@ -39,8 +39,8 @@
 		"groundouts": 402,
 		"hitsAllowed": 256,
 		"hitsAllowedPerNine": 7.384615384615384,
-		"homeRuns": 22,
-		"homeRunsPerNine": 0.6346153846153846,
+		"homeRuns": 23,
+		"homeRunsPerNine": 0.6634615384615384,
 		"inningsPitched": 312,
 		"losses": 10,
 		"numberOfPitches": 0,
@@ -100,8 +100,8 @@
 			"groundouts": 248,
 			"hitsAllowed": 155,
 			"hitsAllowedPerNine": 7.342105263157895,
-			"homeRuns": 12,
-			"homeRunsPerNine": 0.5684210526315789,
+			"homeRuns": 13,
+			"homeRunsPerNine": 0.6157894736842106,
 			"inningsPitched": 190,
 			"losses": 3,
 			"numberOfPitches": 0,
@@ -149,5 +149,6 @@
 			"winningPercentage": 0.5,
 			"wins": 1
 		}
-	}
+	},
+	"slug": "cornelius-games"
 }

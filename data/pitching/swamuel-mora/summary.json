@@ -33,8 +33,8 @@
 		"battersFaced": 1172,
 		"basesOnBalls": 59,
 		"basesOnBallsPerNine": 1.7582781456953642,
-		"earnedRuns": 153,
-		"earnedRunAverage": 4.559602649006623,
+		"earnedRuns": 154,
+		"earnedRunAverage": 4.589403973509934,
 		"flyouts": 177,
 		"groundouts": 394,
 		"hitsAllowed": 319,
@@ -94,8 +94,8 @@
 			"battersFaced": 708,
 			"basesOnBalls": 39,
 			"basesOnBallsPerNine": 1.9608938547486032,
-			"earnedRuns": 107,
-			"earnedRunAverage": 5.379888268156424,
+			"earnedRuns": 108,
+			"earnedRunAverage": 5.430167597765363,
 			"flyouts": 107,
 			"groundouts": 227,
 			"hitsAllowed": 200,
@@ -149,5 +149,6 @@
 			"winningPercentage": 0,
 			"wins": 0
 		}
-	}
+	},
+	"slug": "swamuel-mora"
 }

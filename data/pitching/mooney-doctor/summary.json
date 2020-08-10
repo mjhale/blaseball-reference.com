@@ -33,8 +33,8 @@
 		"battersFaced": 1144,
 		"basesOnBalls": 75,
 		"basesOnBallsPerNine": 2.3684210526315788,
-		"earnedRuns": 126,
-		"earnedRunAverage": 3.9789473684210526,
+		"earnedRuns": 132,
+		"earnedRunAverage": 4.168421052631579,
 		"flyouts": 167,
 		"groundouts": 392,
 		"hitsAllowed": 293,
@@ -94,8 +94,8 @@
 			"battersFaced": 670,
 			"basesOnBalls": 37,
 			"basesOnBallsPerNine": 1.9137931034482758,
-			"earnedRuns": 65,
-			"earnedRunAverage": 3.3620689655172415,
+			"earnedRuns": 71,
+			"earnedRunAverage": 3.6724137931034484,
 			"flyouts": 100,
 			"groundouts": 243,
 			"hitsAllowed": 165,
@@ -178,5 +178,6 @@
 			"winningPercentage": 1,
 			"wins": 1
 		}
-	}
+	},
+	"slug": "mooney-doctor"
 }

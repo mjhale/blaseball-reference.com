@@ -33,8 +33,8 @@
 		"battersFaced": 1137,
 		"basesOnBalls": 39,
 		"basesOnBallsPerNine": 1.125,
-		"earnedRuns": 136,
-		"earnedRunAverage": 3.923076923076923,
+		"earnedRuns": 141,
+		"earnedRunAverage": 4.0673076923076925,
 		"flyouts": 163,
 		"groundouts": 445,
 		"hitsAllowed": 275,
@@ -65,8 +65,8 @@
 			"battersFaced": 443,
 			"basesOnBalls": 11,
 			"basesOnBallsPerNine": 0.8181818181818182,
-			"earnedRuns": 50,
-			"earnedRunAverage": 3.71900826446281,
+			"earnedRuns": 53,
+			"earnedRunAverage": 3.9421487603305785,
 			"flyouts": 55,
 			"groundouts": 187,
 			"hitsAllowed": 105,
@@ -94,8 +94,8 @@
 			"battersFaced": 694,
 			"basesOnBalls": 28,
 			"basesOnBallsPerNine": 1.319371727748691,
-			"earnedRuns": 86,
-			"earnedRunAverage": 4.052356020942408,
+			"earnedRuns": 88,
+			"earnedRunAverage": 4.146596858638744,
 			"flyouts": 108,
 			"groundouts": 258,
 			"hitsAllowed": 170,
@@ -119,5 +119,6 @@
 			"wins": 13
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "adalberto-tosser"
 }

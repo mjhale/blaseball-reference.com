@@ -33,8 +33,8 @@
 		"battersFaced": 1106,
 		"basesOnBalls": 40,
 		"basesOnBallsPerNine": 1.1538461538461537,
-		"earnedRuns": 109,
-		"earnedRunAverage": 3.144230769230769,
+		"earnedRuns": 111,
+		"earnedRunAverage": 3.201923076923077,
 		"flyouts": 176,
 		"groundouts": 406,
 		"hitsAllowed": 277,
@@ -94,8 +94,8 @@
 			"battersFaced": 669,
 			"basesOnBalls": 24,
 			"basesOnBallsPerNine": 1.1368421052631579,
-			"earnedRuns": 72,
-			"earnedRunAverage": 3.4105263157894736,
+			"earnedRuns": 74,
+			"earnedRunAverage": 3.5052631578947366,
 			"flyouts": 122,
 			"groundouts": 240,
 			"hitsAllowed": 171,
@@ -119,5 +119,6 @@
 			"wins": 16
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "yeong-ho-garcia"
 }

@@ -33,8 +33,8 @@
 		"battersFaced": 1063,
 		"basesOnBalls": 12,
 		"basesOnBallsPerNine": 0.35526315789473684,
-		"earnedRuns": 107,
-		"earnedRunAverage": 3.1677631578947367,
+		"earnedRuns": 109,
+		"earnedRunAverage": 3.226973684210526,
 		"flyouts": 183,
 		"groundouts": 401,
 		"hitsAllowed": 258,
@@ -94,8 +94,8 @@
 			"battersFaced": 648,
 			"basesOnBalls": 11,
 			"basesOnBallsPerNine": 0.5439560439560439,
-			"earnedRuns": 73,
-			"earnedRunAverage": 3.60989010989011,
+			"earnedRuns": 75,
+			"earnedRunAverage": 3.708791208791209,
 			"flyouts": 113,
 			"groundouts": 249,
 			"hitsAllowed": 163,
@@ -119,5 +119,6 @@
 			"wins": 11
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "rivers-clembons"
 }

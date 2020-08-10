@@ -39,8 +39,8 @@
 		"groundouts": 208,
 		"hitsAllowed": 137,
 		"hitsAllowedPerNine": 8.50344827586207,
-		"homeRuns": 15,
-		"homeRunsPerNine": 0.9310344827586207,
+		"homeRuns": 16,
+		"homeRunsPerNine": 0.993103448275862,
 		"inningsPitched": 145,
 		"losses": 15,
 		"numberOfPitches": 0,
@@ -71,8 +71,8 @@
 			"groundouts": 208,
 			"hitsAllowed": 137,
 			"hitsAllowedPerNine": 8.50344827586207,
-			"homeRuns": 15,
-			"homeRunsPerNine": 0.9310344827586207,
+			"homeRuns": 16,
+			"homeRunsPerNine": 0.993103448275862,
 			"inningsPitched": 145,
 			"losses": 15,
 			"numberOfPitches": 0,
@@ -90,5 +90,6 @@
 			"wins": 2
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "emmett-owens"
 }

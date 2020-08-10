@@ -33,8 +33,8 @@
 		"battersFaced": 362,
 		"basesOnBalls": 56,
 		"basesOnBallsPerNine": 6.072289156626505,
-		"earnedRuns": 63,
-		"earnedRunAverage": 6.831325301204819,
+		"earnedRuns": 61,
+		"earnedRunAverage": 6.614457831325301,
 		"flyouts": 46,
 		"groundouts": 119,
 		"hitsAllowed": 91,
@@ -65,8 +65,8 @@
 			"battersFaced": 362,
 			"basesOnBalls": 56,
 			"basesOnBallsPerNine": 6.072289156626505,
-			"earnedRuns": 63,
-			"earnedRunAverage": 6.831325301204819,
+			"earnedRuns": 61,
+			"earnedRunAverage": 6.614457831325301,
 			"flyouts": 46,
 			"groundouts": 119,
 			"hitsAllowed": 91,
@@ -120,5 +120,6 @@
 			"winningPercentage": 0,
 			"wins": 0
 		}
-	}
+	},
+	"slug": "gunther-o'brian"
 }

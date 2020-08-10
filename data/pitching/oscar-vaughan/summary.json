@@ -33,8 +33,8 @@
 		"battersFaced": 1117,
 		"basesOnBalls": 4,
 		"basesOnBallsPerNine": 0.11726384364820848,
-		"earnedRuns": 133,
-		"earnedRunAverage": 3.8990228013029316,
+		"earnedRuns": 134,
+		"earnedRunAverage": 3.9283387622149837,
 		"flyouts": 160,
 		"groundouts": 360,
 		"hitsAllowed": 315,
@@ -65,8 +65,8 @@
 			"battersFaced": 407,
 			"basesOnBalls": 2,
 			"basesOnBallsPerNine": 0.15789473684210525,
-			"earnedRuns": 42,
-			"earnedRunAverage": 3.3157894736842106,
+			"earnedRuns": 43,
+			"earnedRunAverage": 3.3947368421052633,
 			"flyouts": 48,
 			"groundouts": 142,
 			"hitsAllowed": 106,
@@ -119,5 +119,6 @@
 			"wins": 16
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "oscar-vaughan"
 }

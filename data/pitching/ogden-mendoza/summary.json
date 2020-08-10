@@ -33,8 +33,8 @@
 		"battersFaced": 588,
 		"basesOnBalls": 10,
 		"basesOnBallsPerNine": 0.5454545454545454,
-		"earnedRuns": 51,
-		"earnedRunAverage": 2.7818181818181817,
+		"earnedRuns": 52,
+		"earnedRunAverage": 2.8363636363636364,
 		"flyouts": 82,
 		"groundouts": 200,
 		"hitsAllowed": 136,
@@ -94,8 +94,8 @@
 			"battersFaced": 165,
 			"basesOnBalls": 3,
 			"basesOnBallsPerNine": 0.627906976744186,
-			"earnedRuns": 16,
-			"earnedRunAverage": 3.3488372093023258,
+			"earnedRuns": 17,
+			"earnedRunAverage": 3.558139534883721,
 			"flyouts": 15,
 			"groundouts": 51,
 			"hitsAllowed": 47,
@@ -149,5 +149,6 @@
 			"winningPercentage": 0,
 			"wins": 0
 		}
-	}
+	},
+	"slug": "ogden-mendoza"
 }

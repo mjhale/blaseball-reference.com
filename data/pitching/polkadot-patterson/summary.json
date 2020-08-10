@@ -33,8 +33,8 @@
 		"battersFaced": 1059,
 		"basesOnBalls": 2,
 		"basesOnBallsPerNine": 0.05825242718446602,
-		"earnedRuns": 77,
-		"earnedRunAverage": 2.2427184466019416,
+		"earnedRuns": 80,
+		"earnedRunAverage": 2.3300970873786406,
 		"flyouts": 139,
 		"groundouts": 380,
 		"hitsAllowed": 222,
@@ -65,8 +65,8 @@
 			"battersFaced": 412,
 			"basesOnBalls": 1,
 			"basesOnBallsPerNine": 0.07258064516129031,
-			"earnedRuns": 24,
-			"earnedRunAverage": 1.7419354838709677,
+			"earnedRuns": 25,
+			"earnedRunAverage": 1.814516129032258,
 			"flyouts": 61,
 			"groundouts": 155,
 			"hitsAllowed": 76,
@@ -94,8 +94,8 @@
 			"battersFaced": 647,
 			"basesOnBalls": 1,
 			"basesOnBallsPerNine": 0.04864864864864865,
-			"earnedRuns": 53,
-			"earnedRunAverage": 2.5783783783783782,
+			"earnedRuns": 55,
+			"earnedRunAverage": 2.675675675675676,
 			"flyouts": 78,
 			"groundouts": 225,
 			"hitsAllowed": 146,
@@ -149,5 +149,6 @@
 			"winningPercentage": 0,
 			"wins": 0
 		}
-	}
+	},
+	"slug": "polkadot-patterson"
 }

@@ -33,8 +33,8 @@
 		"battersFaced": 1152,
 		"basesOnBalls": 56,
 		"basesOnBallsPerNine": 1.6524590163934425,
-		"earnedRuns": 124,
-		"earnedRunAverage": 3.6590163934426227,
+		"earnedRuns": 127,
+		"earnedRunAverage": 3.7475409836065574,
 		"flyouts": 162,
 		"groundouts": 419,
 		"hitsAllowed": 301,
@@ -65,8 +65,8 @@
 			"battersFaced": 450,
 			"basesOnBalls": 23,
 			"basesOnBallsPerNine": 1.7542372881355932,
-			"earnedRuns": 38,
-			"earnedRunAverage": 2.8983050847457625,
+			"earnedRuns": 39,
+			"earnedRunAverage": 2.9745762711864407,
 			"flyouts": 59,
 			"groundouts": 164,
 			"hitsAllowed": 104,
@@ -94,8 +94,8 @@
 			"battersFaced": 702,
 			"basesOnBalls": 33,
 			"basesOnBallsPerNine": 1.5882352941176472,
-			"earnedRuns": 86,
-			"earnedRunAverage": 4.13903743315508,
+			"earnedRuns": 88,
+			"earnedRunAverage": 4.235294117647059,
 			"flyouts": 103,
 			"groundouts": 255,
 			"hitsAllowed": 197,
@@ -178,5 +178,6 @@
 			"winningPercentage": 1,
 			"wins": 1
 		}
-	}
+	},
+	"slug": "bright-zimmerman"
 }

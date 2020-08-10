@@ -33,8 +33,8 @@
 		"battersFaced": 1247,
 		"basesOnBalls": 73,
 		"basesOnBallsPerNine": 2.099041533546326,
-		"earnedRuns": 184,
-		"earnedRunAverage": 5.2907348242811505,
+		"earnedRuns": 186,
+		"earnedRunAverage": 5.348242811501597,
 		"flyouts": 189,
 		"groundouts": 408,
 		"hitsAllowed": 357,
@@ -94,8 +94,8 @@
 			"battersFaced": 769,
 			"basesOnBalls": 50,
 			"basesOnBallsPerNine": 2.4064171122994655,
-			"earnedRuns": 129,
-			"earnedRunAverage": 6.208556149732621,
+			"earnedRuns": 131,
+			"earnedRunAverage": 6.304812834224599,
 			"flyouts": 116,
 			"groundouts": 239,
 			"hitsAllowed": 231,
@@ -178,5 +178,6 @@
 			"winningPercentage": 0,
 			"wins": 0
 		}
-	}
+	},
+	"slug": "conner-haley"
 }

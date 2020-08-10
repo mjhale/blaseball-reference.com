@@ -33,8 +33,8 @@
 		"battersFaced": 1260,
 		"basesOnBalls": 111,
 		"basesOnBallsPerNine": 3.421232876712329,
-		"earnedRuns": 166,
-		"earnedRunAverage": 5.116438356164384,
+		"earnedRuns": 167,
+		"earnedRunAverage": 5.147260273972603,
 		"flyouts": 159,
 		"groundouts": 406,
 		"hitsAllowed": 358,
@@ -65,8 +65,8 @@
 			"battersFaced": 480,
 			"basesOnBalls": 45,
 			"basesOnBallsPerNine": 3.7850467289719627,
-			"earnedRuns": 65,
-			"earnedRunAverage": 5.4672897196261685,
+			"earnedRuns": 66,
+			"earnedRunAverage": 5.5514018691588785,
 			"flyouts": 57,
 			"groundouts": 146,
 			"hitsAllowed": 138,
@@ -149,5 +149,6 @@
 			"winningPercentage": 0,
 			"wins": 0
 		}
-	}
+	},
+	"slug": "justice-spoon"
 }

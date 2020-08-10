@@ -33,8 +33,8 @@
 		"battersFaced": 1132,
 		"basesOnBalls": 44,
 		"basesOnBallsPerNine": 1.3943661971830985,
-		"earnedRuns": 162,
-		"earnedRunAverage": 5.133802816901408,
+		"earnedRuns": 166,
+		"earnedRunAverage": 5.26056338028169,
 		"flyouts": 143,
 		"groundouts": 390,
 		"hitsAllowed": 326,
@@ -94,8 +94,8 @@
 			"battersFaced": 662,
 			"basesOnBalls": 27,
 			"basesOnBallsPerNine": 1.4378698224852071,
-			"earnedRuns": 89,
-			"earnedRunAverage": 4.739644970414201,
+			"earnedRuns": 93,
+			"earnedRunAverage": 4.952662721893491,
 			"flyouts": 86,
 			"groundouts": 225,
 			"hitsAllowed": 187,
@@ -119,5 +119,6 @@
 			"wins": 5
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "kennedy-rodgers"
 }

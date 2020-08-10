@@ -33,14 +33,14 @@
 		"battersFaced": 1234,
 		"basesOnBalls": 127,
 		"basesOnBallsPerNine": 4.010526315789473,
-		"earnedRuns": 194,
-		"earnedRunAverage": 6.126315789473685,
+		"earnedRuns": 195,
+		"earnedRunAverage": 6.157894736842105,
 		"flyouts": 149,
 		"groundouts": 395,
 		"hitsAllowed": 350,
 		"hitsAllowedPerNine": 11.052631578947368,
-		"homeRuns": 25,
-		"homeRunsPerNine": 0.7894736842105263,
+		"homeRuns": 26,
+		"homeRunsPerNine": 0.8210526315789475,
 		"inningsPitched": 285,
 		"losses": 17,
 		"numberOfPitches": 0,
@@ -71,8 +71,8 @@
 			"groundouts": 153,
 			"hitsAllowed": 145,
 			"hitsAllowedPerNine": 12.19626168224299,
-			"homeRuns": 7,
-			"homeRunsPerNine": 0.5887850467289719,
+			"homeRuns": 8,
+			"homeRunsPerNine": 0.6728971962616822,
 			"inningsPitched": 107,
 			"losses": 8,
 			"numberOfPitches": 0,
@@ -94,8 +94,8 @@
 			"battersFaced": 752,
 			"basesOnBalls": 81,
 			"basesOnBallsPerNine": 4.095505617977528,
-			"earnedRuns": 110,
-			"earnedRunAverage": 5.561797752808989,
+			"earnedRuns": 111,
+			"earnedRunAverage": 5.612359550561798,
 			"flyouts": 100,
 			"groundouts": 242,
 			"hitsAllowed": 205,
@@ -119,5 +119,6 @@
 			"wins": 10
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "comfort-glover"
 }

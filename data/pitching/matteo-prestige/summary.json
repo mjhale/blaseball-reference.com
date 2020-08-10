@@ -33,8 +33,8 @@
 		"battersFaced": 817,
 		"basesOnBalls": 10,
 		"basesOnBallsPerNine": 0.41284403669724773,
-		"earnedRuns": 89,
-		"earnedRunAverage": 3.6743119266055047,
+		"earnedRuns": 91,
+		"earnedRunAverage": 3.756880733944954,
 		"flyouts": 114,
 		"groundouts": 280,
 		"hitsAllowed": 218,
@@ -94,8 +94,8 @@
 			"battersFaced": 386,
 			"basesOnBalls": 9,
 			"basesOnBallsPerNine": 0.7788461538461539,
-			"earnedRuns": 37,
-			"earnedRunAverage": 3.201923076923077,
+			"earnedRuns": 39,
+			"earnedRunAverage": 3.375,
 			"flyouts": 59,
 			"groundouts": 144,
 			"hitsAllowed": 92,
@@ -149,5 +149,6 @@
 			"winningPercentage": 1,
 			"wins": 2
 		}
-	}
+	},
+	"slug": "matteo-prestige"
 }

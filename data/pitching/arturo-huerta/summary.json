@@ -39,8 +39,8 @@
 		"groundouts": 396,
 		"hitsAllowed": 327,
 		"hitsAllowedPerNine": 9.745033112582782,
-		"homeRuns": 56,
-		"homeRunsPerNine": 1.6688741721854305,
+		"homeRuns": 57,
+		"homeRunsPerNine": 1.6986754966887416,
 		"inningsPitched": 302,
 		"losses": 20,
 		"numberOfPitches": 0,
@@ -100,8 +100,8 @@
 			"groundouts": 247,
 			"hitsAllowed": 201,
 			"hitsAllowedPerNine": 9.93956043956044,
-			"homeRuns": 36,
-			"homeRunsPerNine": 1.7802197802197801,
+			"homeRuns": 37,
+			"homeRunsPerNine": 1.8296703296703296,
 			"inningsPitched": 182,
 			"losses": 14,
 			"numberOfPitches": 0,
@@ -119,5 +119,6 @@
 			"wins": 6
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "arturo-huerta"
 }

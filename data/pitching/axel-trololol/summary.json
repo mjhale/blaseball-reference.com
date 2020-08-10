@@ -33,8 +33,8 @@
 		"battersFaced": 1132,
 		"basesOnBalls": 69,
 		"basesOnBallsPerNine": 2.112244897959184,
-		"earnedRuns": 112,
-		"earnedRunAverage": 3.4285714285714284,
+		"earnedRuns": 119,
+		"earnedRunAverage": 3.642857142857143,
 		"flyouts": 147,
 		"groundouts": 432,
 		"hitsAllowed": 271,
@@ -65,8 +65,8 @@
 			"battersFaced": 494,
 			"basesOnBalls": 53,
 			"basesOnBallsPerNine": 4.076923076923077,
-			"earnedRuns": 63,
-			"earnedRunAverage": 4.846153846153846,
+			"earnedRuns": 67,
+			"earnedRunAverage": 5.153846153846154,
 			"flyouts": 58,
 			"groundouts": 171,
 			"hitsAllowed": 119,
@@ -94,8 +94,8 @@
 			"battersFaced": 638,
 			"basesOnBalls": 16,
 			"basesOnBallsPerNine": 0.8135593220338984,
-			"earnedRuns": 49,
-			"earnedRunAverage": 2.4915254237288136,
+			"earnedRuns": 52,
+			"earnedRunAverage": 2.6440677966101696,
 			"flyouts": 89,
 			"groundouts": 261,
 			"hitsAllowed": 152,
@@ -119,5 +119,6 @@
 			"wins": 13
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "axel-trololol"
 }

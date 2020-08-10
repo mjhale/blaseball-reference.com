@@ -33,8 +33,8 @@
 		"battersFaced": 1164,
 		"basesOnBalls": 16,
 		"basesOnBallsPerNine": 0.5017421602787456,
-		"earnedRuns": 166,
-		"earnedRunAverage": 5.205574912891986,
+		"earnedRuns": 175,
+		"earnedRunAverage": 5.487804878048781,
 		"flyouts": 147,
 		"groundouts": 368,
 		"hitsAllowed": 340,
@@ -65,8 +65,8 @@
 			"battersFaced": 470,
 			"basesOnBalls": 9,
 			"basesOnBallsPerNine": 0.6639344262295082,
-			"earnedRuns": 57,
-			"earnedRunAverage": 4.204918032786885,
+			"earnedRuns": 61,
+			"earnedRunAverage": 4.5,
 			"flyouts": 60,
 			"groundouts": 147,
 			"hitsAllowed": 127,
@@ -94,8 +94,8 @@
 			"battersFaced": 694,
 			"basesOnBalls": 7,
 			"basesOnBallsPerNine": 0.38181818181818183,
-			"earnedRuns": 109,
-			"earnedRunAverage": 5.945454545454545,
+			"earnedRuns": 114,
+			"earnedRunAverage": 6.218181818181818,
 			"flyouts": 87,
 			"groundouts": 221,
 			"hitsAllowed": 213,
@@ -119,5 +119,6 @@
 			"wins": 5
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "karato-bean"
 }

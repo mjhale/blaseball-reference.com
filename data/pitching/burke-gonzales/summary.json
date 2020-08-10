@@ -33,8 +33,8 @@
 		"battersFaced": 1148,
 		"basesOnBalls": 85,
 		"basesOnBallsPerNine": 2.7031802120141344,
-		"earnedRuns": 134,
-		"earnedRunAverage": 4.261484098939929,
+		"earnedRuns": 137,
+		"earnedRunAverage": 4.3568904593639575,
 		"flyouts": 153,
 		"groundouts": 401,
 		"hitsAllowed": 293,
@@ -65,8 +65,8 @@
 			"battersFaced": 464,
 			"basesOnBalls": 36,
 			"basesOnBallsPerNine": 2.793103448275862,
-			"earnedRuns": 50,
-			"earnedRunAverage": 3.8793103448275863,
+			"earnedRuns": 53,
+			"earnedRunAverage": 4.112068965517241,
 			"flyouts": 62,
 			"groundouts": 172,
 			"hitsAllowed": 113,
@@ -119,5 +119,6 @@
 			"wins": 7
 		}
 	},
-	"postseasons": {}
+	"postseasons": {},
+	"slug": "burke-gonzales"
 }
