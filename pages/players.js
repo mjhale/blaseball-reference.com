@@ -2,15 +2,21 @@ import jsonData from "data/players/players.json";
 
 import Head from "next/head";
 import { Heading, Text } from "@chakra-ui/core";
-
 import Layout from "components/Layout";
 import PlayerList from "components/PlayerList";
 
-export default function Players({ players }) {
+export default function PlayersPage({ players }) {
   return (
     <>
       <Head>
-        <title>Blaseball Players - Blaseball-Reference.com</title>
+        <title>
+          Blaseball Encyclopedia of Players - Blaseball-Reference.com
+        </title>
+        <meta
+          property="og:title"
+          content="Blaseball Encyclopedia of Players - Blaseball-Reference.com"
+          key="title"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
