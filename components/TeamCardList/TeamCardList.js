@@ -16,7 +16,7 @@ export default function TeamCardList({ teams }) {
         .sort((a, b) => a.fullName.localeCompare(b.fullName))
         .map((team) => {
           return (
-            <ListItem key={team._id}>
+            <ListItem key={team.id}>
               <TeamCard team={team} />
             </ListItem>
           );

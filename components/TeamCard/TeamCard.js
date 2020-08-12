@@ -3,7 +3,7 @@ import NextLink from "next/link";
 
 export default function TeamCard({ team }) {
   return (
-    <NextLink href="teams/[teamId]" as={`teams/${team._id}`} passHref>
+    <NextLink href="teams/[teamSlug]" as={`teams/${team.slug}`} passHref>
       <Link
         _hover={{ boxShadow: "md" }}
         alignItems="center"

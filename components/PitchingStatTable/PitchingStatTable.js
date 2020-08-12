@@ -1,236 +1,16 @@
-import { useTable } from "react-table";
-
+import Table from "components/Table";
 import { Tooltip } from "@chakra-ui/core";
-import {
-  StyledTable,
-  StyledTableCell,
-  StyledTableFootCell,
-  StyledTableHead,
-  StyledTableHeadCell,
-  StyledTableRow,
-} from "components/Table/Table.styled";
 
 export default function PitchingStatTable({
   isPostseason = false,
   pitchingStats,
 }) {
-  const careerTotals = isPostseason
-    ? pitchingStats.careerPostseason
-    : pitchingStats.careerSeason;
-
-  const columns = React.useMemo(
-    () => [
-      {
-        accessor: "season",
-        Header: (
-          <Tooltip hasArrow label="Year" placement="top">
-            Yr
-          </Tooltip>
-        ),
-        Cell: ({ value }) => {
-          return isPostseason
-            ? Number(value) + 1
-            : [0, 1].includes(Number(value))
-            ? `${Number(value) + 1}*`
-            : Number(value) + 1;
-        },
-      },
-      {
-        accessor: "teamName",
-        Header: (
-          <Tooltip hasArrow label="Team" placement="top">
-            Tm
-          </Tooltip>
-        ),
-      },
-      {
-        accessor: "wins",
-        Header: (
-          <Tooltip hasArrow label="Wins" placement="top">
-            W
-          </Tooltip>
-        ),
-        Footer: careerTotals.wins,
-      },
-      {
-        accessor: "losses",
-        Header: (
-          <Tooltip hasArrow label="Losses" placement="top">
-            L
-          </Tooltip>
-        ),
-        Footer: careerTotals.losses,
-      },
-      {
-        accessor: "winningPercentage",
-        Header: (
-          <Tooltip hasArrow label="Winning Percentage" placement="top">
-            W-L%
-          </Tooltip>
-        ),
-        Footer: Number.parseFloat(careerTotals.winningPercentage).toFixed(2),
-        Cell: ({ value }) => Number.parseFloat(value).toFixed(2),
-      },
-      {
-        accessor: "earnedRunAverage",
-        Header: (
-          <Tooltip hasArrow label="Earned Run Average" placement="top">
-            ERA
-          </Tooltip>
-        ),
-        Footer: Number.parseFloat(careerTotals.earnedRunAverage).toFixed(2),
-        Cell: ({ value }) => Number.parseFloat(value).toFixed(2),
-      },
-      {
-        accessor: "appearances",
-        Header: (
-          <Tooltip hasArrow label="Games Played" placement="top">
-            G
-          </Tooltip>
-        ),
-        Footer: careerTotals.appearances,
-      },
-      {
-        accessor: "shutouts",
-        Header: (
-          <Tooltip hasArrow label="Shutouts" placement="top">
-            SHO
-          </Tooltip>
-        ),
-        Footer: careerTotals.shutouts,
-      },
-      {
-        accessor: "inningsPitched",
-        Header: (
-          <Tooltip hasArrow label="Innings Pitched" placement="top">
-            IP
-          </Tooltip>
-        ),
-        Footer: careerTotals.inningsPitched,
-      },
-      {
-        accessor: "hitsAllowed",
-        Header: (
-          <Tooltip hasArrow label="Hits Allowed" placement="top">
-            H
-          </Tooltip>
-        ),
-        Footer: careerTotals.hitsAllowed,
-      },
-      {
-        accessor: "earnedRuns",
-        Header: (
-          <Tooltip hasArrow label="Earned Runs" placement="top">
-            R
-          </Tooltip>
-        ),
-        Footer: careerTotals.earnedRuns,
-      },
-      {
-        accessor: "homeRuns",
-        Header: (
-          <Tooltip hasArrow label="Home Runs" placement="top">
-            HR
-          </Tooltip>
-        ),
-        Footer: careerTotals.homeRuns,
-      },
-      {
-        accessor: "basesOnBalls",
-        Header: (
-          <Tooltip hasArrow label="Bases on Balls (Walks)" placement="top">
-            BB
-          </Tooltip>
-        ),
-        Footer: careerTotals.basesOnBalls,
-      },
-      {
-        accessor: "strikeouts",
-        Header: (
-          <Tooltip hasArrow label="Strikeouts" placement="top">
-            SO
-          </Tooltip>
-        ),
-        Footer: careerTotals.strikeouts,
-      },
-      {
-        accessor: "battersFaced",
-        Header: (
-          <Tooltip hasArrow label="Batters Faced" placement="top">
-            BF
-          </Tooltip>
-        ),
-        Footer: careerTotals.battersFaced,
-      },
-      {
-        accessor: "walksAndHitsPerInningPitched",
-        Header: (
-          <Tooltip
-            hasArrow
-            label="Walks and Hits Per Inning Pitched"
-            placement="top"
-          >
-            WHIP
-          </Tooltip>
-        ),
-        Footer: Number.parseFloat(
-          careerTotals.walksAndHitsPerInningPitched
-        ).toFixed(3),
-        Cell: ({ value }) => Number.parseFloat(value).toFixed(3),
-      },
-      {
-        accessor: "hitsAllowedPerNine",
-        Header: (
-          <Tooltip hasArrow label="Hits Per 9 Innings" placement="top">
-            H9
-          </Tooltip>
-        ),
-        Footer: Number.parseFloat(careerTotals.hitsAllowedPerNine).toFixed(1),
-        Cell: ({ value }) => Number.parseFloat(value).toFixed(1),
-      },
-      {
-        accessor: "homeRunsPerNine",
-        Header: (
-          <Tooltip hasArrow label="Home Runs Per 9 Innings" placement="top">
-            HR9
-          </Tooltip>
-        ),
-        Footer: Number.parseFloat(careerTotals.homeRunsPerNine).toFixed(1),
-        Cell: ({ value }) => Number.parseFloat(value).toFixed(1),
-      },
-      {
-        accessor: "basesOnBallsPerNine",
-        Header: (
-          <Tooltip hasArrow label="Walks Per 9 Innings" placement="top">
-            BB9
-          </Tooltip>
-        ),
-        Footer: Number.parseFloat(careerTotals.basesOnBallsPerNine).toFixed(1),
-        Cell: ({ value }) => Number.parseFloat(value).toFixed(1),
-      },
-      {
-        accessor: "strikeoutsPerNine",
-        Header: (
-          <Tooltip hasArrow label="Strikeouts Per 9 Innings" placement="top">
-            SO9
-          </Tooltip>
-        ),
-        Footer: Number.parseFloat(careerTotals.strikeoutsPerNine).toFixed(1),
-        Cell: ({ value }) => Number.parseFloat(value).toFixed(1),
-      },
-      {
-        accessor: "strikeoutToWalkRatio",
-        Header: (
-          <Tooltip hasArrow label="Strikeout-to-Walk Ratio" placement="top">
-            SO/BB
-          </Tooltip>
-        ),
-        Footer: Number.parseFloat(careerTotals.strikeoutToWalkRatio).toFixed(2),
-        Cell: ({ value }) => Number.parseFloat(value).toFixed(2),
-      },
-    ],
-    []
-  );
+  const careerTotals =
+    pitchingStats.careerPostseason || pitchingStats.careerSeason
+      ? isPostseason
+        ? pitchingStats.careerPostseason
+        : pitchingStats.careerSeason
+      : null;
 
   const data = React.useMemo(() => {
     const seasons = isPostseason
@@ -247,57 +27,249 @@ export default function PitchingStatTable({
       });
   }, []);
 
-  const tableInstance = useTable({ columns, data });
-
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    footerGroups,
-    rows,
-    prepareRow,
-  } = tableInstance;
-
-  return (
-    <StyledTable {...getTableProps()}>
-      <StyledTableHead>
-        {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <StyledTableHeadCell {...column.getHeaderProps()}>
-                {column.render("Header")}
-              </StyledTableHeadCell>
-            ))}
-          </tr>
-        ))}
-      </StyledTableHead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
-          prepareRow(row);
-          return (
-            <StyledTableRow {...row.getRowProps()}>
-              {row.cells.map((cell) => {
-                return (
-                  <StyledTableCell {...cell.getCellProps()}>
-                    {cell.render("Cell")}
-                  </StyledTableCell>
-                );
-              })}
-            </StyledTableRow>
-          );
-        })}
-      </tbody>
-      <tfoot>
-        {footerGroups.map((group) => (
-          <tr {...group.getFooterGroupProps()}>
-            {group.headers.map((column) => (
-              <StyledTableFootCell {...column.getFooterProps()}>
-                {column.render("Footer")}
-              </StyledTableFootCell>
-            ))}
-          </tr>
-        ))}
-      </tfoot>
-    </StyledTable>
+  const columns = React.useMemo(
+    () =>
+      [
+        {
+          accessor: "season",
+          Header: (
+            <Tooltip hasArrow label="Year" placement="top">
+              Yr
+            </Tooltip>
+          ),
+          Cell: ({ value }) => {
+            return isPostseason
+              ? Number(value) + 1
+              : [0, 1].includes(Number(value))
+              ? `${Number(value) + 1}*`
+              : Number(value) + 1;
+          },
+        },
+        {
+          accessor: "teamName",
+          Header: (
+            <Tooltip hasArrow label="Team" placement="top">
+              Tm
+            </Tooltip>
+          ),
+        },
+      ].concat(commonPitchingStatColumns(careerTotals)),
+    []
   );
+
+  return <Table columns={columns} data={data} />;
+}
+
+export function commonPitchingStatColumns(summaryData = null) {
+  return [
+    {
+      accessor: "wins",
+      Header: (
+        <Tooltip hasArrow label="Wins" placement="top">
+          W
+        </Tooltip>
+      ),
+      Footer: () => summaryData?.wins ?? null,
+    },
+    {
+      accessor: "losses",
+      Header: (
+        <Tooltip hasArrow label="Losses" placement="top">
+          L
+        </Tooltip>
+      ),
+      Footer: () => summaryData?.losses ?? null,
+    },
+    {
+      accessor: "winningPercentage",
+      Header: (
+        <Tooltip hasArrow label="Winning Percentage" placement="top">
+          W-L%
+        </Tooltip>
+      ),
+      Footer: () =>
+        summaryData
+          ? Number.parseFloat(summaryData.winningPercentage).toFixed(2)
+          : null,
+      Cell: ({ value }) => Number.parseFloat(value).toFixed(2),
+    },
+    {
+      accessor: "earnedRunAverage",
+      Header: (
+        <Tooltip hasArrow label="Earned Run Average" placement="top">
+          ERA
+        </Tooltip>
+      ),
+      Footer: () =>
+        summaryData
+          ? Number.parseFloat(summaryData.earnedRunAverage).toFixed(2)
+          : null,
+      Cell: ({ value }) => Number.parseFloat(value).toFixed(2),
+    },
+    {
+      accessor: "appearances",
+      Header: (
+        <Tooltip hasArrow label="Games Played" placement="top">
+          G
+        </Tooltip>
+      ),
+      Footer: () => summaryData?.appearances ?? null,
+    },
+    {
+      accessor: "shutouts",
+      Header: (
+        <Tooltip hasArrow label="Shutouts" placement="top">
+          SHO
+        </Tooltip>
+      ),
+      Footer: () => summaryData?.shutouts ?? null,
+    },
+    {
+      accessor: "inningsPitched",
+      Header: (
+        <Tooltip hasArrow label="Innings Pitched" placement="top">
+          IP
+        </Tooltip>
+      ),
+      Footer: () => summaryData?.inningsPitched ?? null,
+    },
+    {
+      accessor: "hitsAllowed",
+      Header: (
+        <Tooltip hasArrow label="Hits Allowed" placement="top">
+          H
+        </Tooltip>
+      ),
+      Footer: () => summaryData?.hitsAllowed ?? null,
+    },
+    {
+      accessor: "earnedRuns",
+      Header: (
+        <Tooltip hasArrow label="Earned Runs" placement="top">
+          R
+        </Tooltip>
+      ),
+      Footer: () => summaryData?.earnedRuns ?? null,
+    },
+    {
+      accessor: "homeRuns",
+      Header: (
+        <Tooltip hasArrow label="Home Runs" placement="top">
+          HR
+        </Tooltip>
+      ),
+      Footer: () => summaryData?.homeRuns ?? null,
+    },
+    {
+      accessor: "basesOnBalls",
+      Header: (
+        <Tooltip hasArrow label="Bases on Balls (Walks)" placement="top">
+          BB
+        </Tooltip>
+      ),
+      Footer: () => summaryData?.basesOnBalls ?? null,
+    },
+    {
+      accessor: "strikeouts",
+      Header: (
+        <Tooltip hasArrow label="Strikeouts" placement="top">
+          SO
+        </Tooltip>
+      ),
+      Footer: () => summaryData?.strikeouts ?? null,
+    },
+    {
+      accessor: "battersFaced",
+      Header: (
+        <Tooltip hasArrow label="Batters Faced" placement="top">
+          BF
+        </Tooltip>
+      ),
+      Footer: () => summaryData?.battersFaced ?? null,
+    },
+    {
+      accessor: "walksAndHitsPerInningPitched",
+      Header: (
+        <Tooltip
+          hasArrow
+          label="Walks and Hits Per Inning Pitched"
+          placement="top"
+        >
+          WHIP
+        </Tooltip>
+      ),
+      Footer: () =>
+        summaryData
+          ? Number.parseFloat(summaryData.walksAndHitsPerInningPitched).toFixed(
+              3
+            )
+          : null,
+      Cell: ({ value }) => Number.parseFloat(value).toFixed(3),
+    },
+    {
+      accessor: "hitsAllowedPerNine",
+      Header: (
+        <Tooltip hasArrow label="Hits Per 9 Innings" placement="top">
+          H9
+        </Tooltip>
+      ),
+      Footer: () =>
+        summaryData
+          ? Number.parseFloat(summaryData.hitsAllowedPerNine).toFixed(1)
+          : null,
+      Cell: ({ value }) => Number.parseFloat(value).toFixed(1),
+    },
+    {
+      accessor: "homeRunsPerNine",
+      Header: (
+        <Tooltip hasArrow label="Home Runs Per 9 Innings" placement="top">
+          HR9
+        </Tooltip>
+      ),
+      Footer: () =>
+        summaryData
+          ? Number.parseFloat(summaryData.homeRunsPerNine).toFixed(1)
+          : null,
+      Cell: ({ value }) => Number.parseFloat(value).toFixed(1),
+    },
+    {
+      accessor: "basesOnBallsPerNine",
+      Header: (
+        <Tooltip hasArrow label="Walks Per 9 Innings" placement="top">
+          BB9
+        </Tooltip>
+      ),
+      Footer: () =>
+        summaryData
+          ? Number.parseFloat(summaryData.basesOnBallsPerNine).toFixed(1)
+          : null,
+      Cell: ({ value }) => Number.parseFloat(value).toFixed(1),
+    },
+    {
+      accessor: "strikeoutsPerNine",
+      Header: (
+        <Tooltip hasArrow label="Strikeouts Per 9 Innings" placement="top">
+          SO9
+        </Tooltip>
+      ),
+      Footer: () =>
+        summaryData
+          ? Number.parseFloat(summaryData.strikeoutsPerNine).toFixed(1)
+          : null,
+      Cell: ({ value }) => Number.parseFloat(value).toFixed(1),
+    },
+    {
+      accessor: "strikeoutToWalkRatio",
+      Header: (
+        <Tooltip hasArrow label="Strikeout-to-Walk Ratio" placement="top">
+          SO/BB
+        </Tooltip>
+      ),
+      Footer: () =>
+        summaryData
+          ? Number.parseFloat(summaryData.strikeoutToWalkRatio).toFixed(2)
+          : null,
+      Cell: ({ value }) => Number.parseFloat(value).toFixed(2),
+    },
+  ];
 }
