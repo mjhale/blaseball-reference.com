@@ -87,9 +87,7 @@ export default function Navigation() {
           >
             <MenuItem href="/players">Players</MenuItem>
             <MenuItem href="/teams">Teams</MenuItem>
-            <MenuItem href="/seasons">Seasons</MenuItem>
-            <MenuItem href="/playoffs">Playoffs</MenuItem>
-            <MenuItem href="/game-viewer">Game Viewer</MenuItem>
+            <MenuItem href="/leaders">Leaders</MenuItem>
           </Box>
         </Flex>
       </Container>
