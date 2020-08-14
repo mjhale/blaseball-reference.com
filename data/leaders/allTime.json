@@ -1,0 +1,1984 @@
+{
+	"batting": {
+		"battingAverage": [
+			{
+				"playerId": "c83a13f6-ee66-4b1c-9747-faa67395a6f1",
+				"playerName": "Zi Delacruz",
+				"playerSlug": "zi-delacruz",
+				"value": 0.4117647058823529
+			},
+			{
+				"playerId": "21cbbfaa-100e-48c5-9cea-7118b0d08a34",
+				"playerName": "Juice Collins",
+				"playerSlug": "juice-collins",
+				"value": 0.38613861386138615
+			},
+			{
+				"playerId": "bd4c6837-eeaa-4675-ae48-061efa0fd11a",
+				"playerName": "Workman Gloom",
+				"playerSlug": "workman-gloom",
+				"value": 0.37456445993031356
+			},
+			{
+				"playerId": "4b3e8e9b-6de1-4840-8751-b1fb45dc5605",
+				"playerName": "Thomas Dracaena",
+				"playerSlug": "thomas-dracaena",
+				"value": 0.3744075829383886
+			},
+			{
+				"playerId": "86d4e22b-f107-4bcf-9625-32d387fcb521",
+				"playerName": "York Silk",
+				"playerSlug": "york-silk",
+				"value": 0.35968379446640314
+			},
+			{
+				"playerId": "cbd19e6f-3d08-4734-b23f-585330028665",
+				"playerName": "Knight Urlacher",
+				"playerSlug": "knight-urlacher",
+				"value": 0.3503521126760563
+			},
+			{
+				"playerId": "9c3273a0-2711-4958-b716-bfcf60857013",
+				"playerName": "Kathy Mathews",
+				"playerSlug": "kathy-mathews",
+				"value": 0.34464285714285714
+			},
+			{
+				"playerId": "64b055d1-b691-4e0c-8583-fc08ba663846",
+				"playerName": "Theodore Passon",
+				"playerSlug": "theodore-passon",
+				"value": 0.34334763948497854
+			},
+			{
+				"playerId": "51c5473a-7545-4a9a-920d-d9b718d0e8d1",
+				"playerName": "Jacob Haynes",
+				"playerSlug": "jacob-haynes",
+				"value": 0.34201954397394135
+			},
+			{
+				"playerId": "58c9e294-bd49-457c-883f-fb3162fc668e",
+				"playerName": "Kichiro Guerra",
+				"playerSlug": "kichiro-guerra",
+				"value": 0.3407079646017699
+			}
+		],
+		"caughtStealing": [
+			{
+				"playerId": "1e8b09bd-fbdd-444e-bd7e-10326bd57156",
+				"playerName": "Fletcher Yamamoto",
+				"playerSlug": "fletcher-yamamoto",
+				"value": 27
+			},
+			{
+				"playerId": "0f61d948-4f0c-4550-8410-ae1c7f9f5613",
+				"playerName": "Tamara Crankit",
+				"playerSlug": "tamara-crankit",
+				"value": 20
+			},
+			{
+				"playerId": "81a0889a-4606-4f49-b419-866b57331383",
+				"playerName": "Summers Pony",
+				"playerSlug": "summers-pony",
+				"value": 18
+			},
+			{
+				"playerId": "4ecee7be-93e4-4f04-b114-6b333e0e6408",
+				"playerName": "Sutton Dreamy",
+				"playerSlug": "sutton-dreamy",
+				"value": 18
+			},
+			{
+				"playerId": "5dbf11c0-994a-4482-bd1e-99379148ee45",
+				"playerName": "Conrad Vaughan",
+				"playerSlug": "conrad-vaughan",
+				"value": 17
+			},
+			{
+				"playerId": "b8ab86c6-9054-4832-9b96-508dbd4eb624",
+				"playerName": "Esme Ramsey",
+				"playerSlug": "esme-ramsey",
+				"value": 16
+			},
+			{
+				"playerId": "2175cda0-a427-40fd-b497-347edcc1cd61",
+				"playerName": "Hotbox Sato",
+				"playerSlug": "hotbox-sato",
+				"value": 16
+			},
+			{
+				"playerId": "8b53ce82-4b1a-48f0-999d-1774b3719202",
+				"playerName": "Oliver Mueller",
+				"playerSlug": "oliver-mueller",
+				"value": 15
+			},
+			{
+				"playerId": "678170e4-0688-436d-a02d-c0467f9af8c0",
+				"playerName": "Baby Doyle",
+				"playerSlug": "baby-doyle",
+				"value": 15
+			},
+			{
+				"playerId": "51c5473a-7545-4a9a-920d-d9b718d0e8d1",
+				"playerName": "Jacob Haynes",
+				"playerSlug": "jacob-haynes",
+				"value": 14
+			}
+		],
+		"doublesHit": [
+			{
+				"playerId": "b39b5aae-8571-4c90-887a-6a00f2a2f6fd",
+				"playerName": "Dickerson Morse",
+				"playerSlug": "dickerson-morse",
+				"value": 21
+			},
+			{
+				"playerId": "503a235f-9fa6-41b5-8514-9475c944273f",
+				"playerName": "Reese Clark",
+				"playerSlug": "reese-clark",
+				"value": 21
+			},
+			{
+				"playerId": "7310c32f-8f32-40f2-b086-54555a2c0e86",
+				"playerName": "Dominic Marijuana",
+				"playerSlug": "dominic-marijuana",
+				"value": 20
+			},
+			{
+				"playerId": "413b3ddb-d933-4567-a60e-6d157480239d",
+				"playerName": "Winnie Mccall",
+				"playerSlug": "winnie-mccall",
+				"value": 19
+			},
+			{
+				"playerId": "58c9e294-bd49-457c-883f-fb3162fc668e",
+				"playerName": "Kichiro Guerra",
+				"playerSlug": "kichiro-guerra",
+				"value": 18
+			},
+			{
+				"playerId": "0f61d948-4f0c-4550-8410-ae1c7f9f5613",
+				"playerName": "Tamara Crankit",
+				"playerSlug": "tamara-crankit",
+				"value": 18
+			},
+			{
+				"playerId": "4ca52626-58cd-449d-88bb-f6d631588640",
+				"playerName": "Velasquez Alstott",
+				"playerSlug": "velasquez-alstott",
+				"value": 18
+			},
+			{
+				"playerId": "32c9bce6-6e52-40fa-9f64-3629b3d026a8",
+				"playerName": "Ren Morin",
+				"playerSlug": "ren-morin",
+				"value": 18
+			},
+			{
+				"playerId": "1e8b09bd-fbdd-444e-bd7e-10326bd57156",
+				"playerName": "Fletcher Yamamoto",
+				"playerSlug": "fletcher-yamamoto",
+				"value": 18
+			},
+			{
+				"playerId": "d1a7c13f-8e78-4d2e-9cae-ebf3a5fcdb5d",
+				"playerName": "Elijah Bates",
+				"playerSlug": "elijah-bates",
+				"value": 17
+			}
+		],
+		"groundIntoDoublePlays": [
+			{
+				"playerId": "5ff66eae-7111-4e3b-a9b8-a9579165b0a5",
+				"playerName": "Daniel Duffy",
+				"playerSlug": "daniel-duffy",
+				"value": 13
+			},
+			{
+				"playerId": "90c2cec7-0ed5-426a-9de8-754f34d59b39",
+				"playerName": "Tot Fox",
+				"playerSlug": "tot-fox",
+				"value": 13
+			},
+			{
+				"playerId": "c22e3af5-9001-465f-b450-864d7db2b4a0",
+				"playerName": "Logan Horseman",
+				"playerSlug": "logan-horseman",
+				"value": 13
+			},
+			{
+				"playerId": "cd68d3a6-7fbc-445d-90f1-970c955e32f4",
+				"playerName": "Miguel Wheeler",
+				"playerSlug": "miguel-wheeler",
+				"value": 11
+			},
+			{
+				"playerId": "bbf9543f-f100-445a-a467-81d7aab12236",
+				"playerName": "Farrell Seagull",
+				"playerSlug": "farrell-seagull",
+				"value": 10
+			},
+			{
+				"playerId": "15ae64cd-f698-4b00-9d61-c9fffd037ae2",
+				"playerName": "Mickey Woods",
+				"playerSlug": "mickey-woods",
+				"value": 10
+			},
+			{
+				"playerId": "70ccff1e-6b53-40e2-8844-0a28621cb33e",
+				"playerName": "Moody Cookbook",
+				"playerSlug": "moody-cookbook",
+				"value": 10
+			},
+			{
+				"playerId": "84a2b5f6-4955-4007-9299-3d35ae7135d3",
+				"playerName": "Kennedy Loser",
+				"playerSlug": "kennedy-loser",
+				"value": 10
+			},
+			{
+				"playerId": "cf8e152e-2d27-4dcc-ba2b-68127de4e6a4",
+				"playerName": "Hendricks Richardson",
+				"playerSlug": "hendricks-richardson",
+				"value": 10
+			},
+			{
+				"playerId": "fa477c92-39b6-4a52-b065-40af2f29840a",
+				"playerName": "Howell Franklin",
+				"playerSlug": "howell-franklin",
+				"value": 9
+			}
+		],
+		"hits": [
+			{
+				"playerId": "4b3e8e9b-6de1-4840-8751-b1fb45dc5605",
+				"playerName": "Thomas Dracaena",
+				"playerSlug": "thomas-dracaena",
+				"value": 237
+			},
+			{
+				"playerId": "58c9e294-bd49-457c-883f-fb3162fc668e",
+				"playerName": "Kichiro Guerra",
+				"playerSlug": "kichiro-guerra",
+				"value": 231
+			},
+			{
+				"playerId": "7310c32f-8f32-40f2-b086-54555a2c0e86",
+				"playerName": "Dominic Marijuana",
+				"playerSlug": "dominic-marijuana",
+				"value": 224
+			},
+			{
+				"playerId": "0f61d948-4f0c-4550-8410-ae1c7f9f5613",
+				"playerName": "Tamara Crankit",
+				"playerSlug": "tamara-crankit",
+				"value": 218
+			},
+			{
+				"playerId": "44c92d97-bb39-469d-a13b-f2dd9ae644d1",
+				"playerName": "Francisco Preston",
+				"playerSlug": "francisco-preston",
+				"value": 218
+			},
+			{
+				"playerId": "b39b5aae-8571-4c90-887a-6a00f2a2f6fd",
+				"playerName": "Dickerson Morse",
+				"playerSlug": "dickerson-morse",
+				"value": 215
+			},
+			{
+				"playerId": "bd4c6837-eeaa-4675-ae48-061efa0fd11a",
+				"playerName": "Workman Gloom",
+				"playerSlug": "workman-gloom",
+				"value": 215
+			},
+			{
+				"playerId": "88cd6efa-dbf2-4309-aabe-ec1d6f21f98a",
+				"playerName": "Hewitt Best",
+				"playerSlug": "hewitt-best",
+				"value": 213
+			},
+			{
+				"playerId": "198fd9c8-cb75-482d-873e-e6b91d42a446",
+				"playerName": "Ren Hunter",
+				"playerSlug": "ren-hunter",
+				"value": 211
+			},
+			{
+				"playerId": "5a26fc61-d75d-4c01-9ce2-1880ffb5550f",
+				"playerName": "Randy Dennis",
+				"playerSlug": "randy-dennis",
+				"value": 211
+			}
+		],
+		"homeRunsHit": [
+			{
+				"playerId": "4b3e8e9b-6de1-4840-8751-b1fb45dc5605",
+				"playerName": "Thomas Dracaena",
+				"playerSlug": "thomas-dracaena",
+				"value": 53
+			},
+			{
+				"playerId": "198fd9c8-cb75-482d-873e-e6b91d42a446",
+				"playerName": "Ren Hunter",
+				"playerSlug": "ren-hunter",
+				"value": 51
+			},
+			{
+				"playerId": "083d09d4-7ed3-4100-b021-8fbe30dd43e8",
+				"playerName": "Jessica Telephone",
+				"playerSlug": "jessica-telephone",
+				"value": 49
+			},
+			{
+				"playerId": "44c92d97-bb39-469d-a13b-f2dd9ae644d1",
+				"playerName": "Francisco Preston",
+				"playerSlug": "francisco-preston",
+				"value": 48
+			},
+			{
+				"playerId": "d74a2473-1f29-40fa-a41e-66fa2281dfca",
+				"playerName": "Landry Violence",
+				"playerSlug": "landry-violence",
+				"value": 42
+			},
+			{
+				"playerId": "4ffd2e50-bb5b-45d0-b7c4-e24d41b2ff5d",
+				"playerName": "Schneider Bendie",
+				"playerSlug": "schneider-bendie",
+				"value": 42
+			},
+			{
+				"playerId": "d89da2d2-674c-4b85-8959-a4bd406f760a",
+				"playerName": "Fish Summer",
+				"playerSlug": "fish-summer",
+				"value": 42
+			},
+			{
+				"playerId": "d8ee256f-e3d0-46cb-8c77-b1f88d8c9df9",
+				"playerName": "Comfort Septemberish",
+				"playerSlug": "comfort-septemberish",
+				"value": 41
+			},
+			{
+				"playerId": "efafe75e-2f00-4418-914c-9b6675d39264",
+				"playerName": "Aldon Cashmoney",
+				"playerSlug": "aldon-cashmoney",
+				"value": 41
+			},
+			{
+				"playerId": "63df8701-1871-4987-87d7-b55d4f1df2e9",
+				"playerName": "Mcdowell Sasquatch",
+				"playerSlug": "mcdowell-sasquatch",
+				"value": 41
+			}
+		],
+		"onBasePercentage": [
+			{
+				"playerId": "bd4c6837-eeaa-4675-ae48-061efa0fd11a",
+				"playerName": "Workman Gloom",
+				"playerSlug": "workman-gloom",
+				"value": 0.434375
+			},
+			{
+				"playerId": "c83a13f6-ee66-4b1c-9747-faa67395a6f1",
+				"playerName": "Zi Delacruz",
+				"playerSlug": "zi-delacruz",
+				"value": 0.425
+			},
+			{
+				"playerId": "cbd19e6f-3d08-4734-b23f-585330028665",
+				"playerName": "Knight Urlacher",
+				"playerSlug": "knight-urlacher",
+				"value": 0.422360248447205
+			},
+			{
+				"playerId": "4b3e8e9b-6de1-4840-8751-b1fb45dc5605",
+				"playerName": "Thomas Dracaena",
+				"playerSlug": "thomas-dracaena",
+				"value": 0.42151162790697677
+			},
+			{
+				"playerId": "86d4e22b-f107-4bcf-9625-32d387fcb521",
+				"playerName": "York Silk",
+				"playerSlug": "york-silk",
+				"value": 0.41964285714285715
+			},
+			{
+				"playerId": "21cbbfaa-100e-48c5-9cea-7118b0d08a34",
+				"playerName": "Juice Collins",
+				"playerSlug": "juice-collins",
+				"value": 0.41509433962264153
+			},
+			{
+				"playerId": "64b055d1-b691-4e0c-8583-fc08ba663846",
+				"playerName": "Theodore Passon",
+				"playerSlug": "theodore-passon",
+				"value": 0.4115384615384615
+			},
+			{
+				"playerId": "51c5473a-7545-4a9a-920d-d9b718d0e8d1",
+				"playerName": "Jacob Haynes",
+				"playerSlug": "jacob-haynes",
+				"value": 0.4032258064516129
+			},
+			{
+				"playerId": "c0732e36-3731-4f1a-abdc-daa9563b6506",
+				"playerName": "Nagomi Mcdaniel",
+				"playerSlug": "nagomi-mcdaniel",
+				"value": 0.3987138263665595
+			},
+			{
+				"playerId": "76c4853b-7fbc-4688-8cda-c5b8de1724e4",
+				"playerName": "Lars Mendoza",
+				"playerSlug": "lars-mendoza",
+				"value": 0.39344262295081966
+			}
+		],
+		"runsBattedIn": [
+			{
+				"playerId": "44c92d97-bb39-469d-a13b-f2dd9ae644d1",
+				"playerName": "Francisco Preston",
+				"playerSlug": "francisco-preston",
+				"value": 146
+			},
+			{
+				"playerId": "198fd9c8-cb75-482d-873e-e6b91d42a446",
+				"playerName": "Ren Hunter",
+				"playerSlug": "ren-hunter",
+				"value": 139
+			},
+			{
+				"playerId": "4b3e8e9b-6de1-4840-8751-b1fb45dc5605",
+				"playerName": "Thomas Dracaena",
+				"playerSlug": "thomas-dracaena",
+				"value": 139
+			},
+			{
+				"playerId": "083d09d4-7ed3-4100-b021-8fbe30dd43e8",
+				"playerName": "Jessica Telephone",
+				"playerSlug": "jessica-telephone",
+				"value": 127
+			},
+			{
+				"playerId": "4ffd2e50-bb5b-45d0-b7c4-e24d41b2ff5d",
+				"playerName": "Schneider Bendie",
+				"playerSlug": "schneider-bendie",
+				"value": 116
+			},
+			{
+				"playerId": "33fbfe23-37bd-4e37-a481-a87eadb8192d",
+				"playerName": "Whit Steakknife",
+				"playerSlug": "whit-steakknife",
+				"value": 115
+			},
+			{
+				"playerId": "81a0889a-4606-4f49-b419-866b57331383",
+				"playerName": "Summers Pony",
+				"playerSlug": "summers-pony",
+				"value": 112
+			},
+			{
+				"playerId": "7932c7c7-babb-4245-b9f5-cdadb97c99fb",
+				"playerName": "Randy Castillo",
+				"playerSlug": "randy-castillo",
+				"value": 112
+			},
+			{
+				"playerId": "d74a2473-1f29-40fa-a41e-66fa2281dfca",
+				"playerName": "Landry Violence",
+				"playerSlug": "landry-violence",
+				"value": 108
+			},
+			{
+				"playerId": "5ff66eae-7111-4e3b-a9b8-a9579165b0a5",
+				"playerName": "Daniel Duffy",
+				"playerSlug": "daniel-duffy",
+				"value": 108
+			}
+		],
+		"sluggingPercentage": [
+			{
+				"playerId": "4b3e8e9b-6de1-4840-8751-b1fb45dc5605",
+				"playerName": "Thomas Dracaena",
+				"playerSlug": "thomas-dracaena",
+				"value": 0.7187993680884676
+			},
+			{
+				"playerId": "262c49c6-8301-487d-8356-747023fa46a9",
+				"playerName": "Alexandria Dracaena",
+				"playerSlug": "alexandria-dracaena",
+				"value": 0.6896551724137931
+			},
+			{
+				"playerId": "083d09d4-7ed3-4100-b021-8fbe30dd43e8",
+				"playerName": "Jessica Telephone",
+				"playerSlug": "jessica-telephone",
+				"value": 0.6809917355371901
+			},
+			{
+				"playerId": "bd4c6837-eeaa-4675-ae48-061efa0fd11a",
+				"playerName": "Workman Gloom",
+				"playerSlug": "workman-gloom",
+				"value": 0.6794425087108014
+			},
+			{
+				"playerId": "44c92d97-bb39-469d-a13b-f2dd9ae644d1",
+				"playerName": "Francisco Preston",
+				"playerSlug": "francisco-preston",
+				"value": 0.652241112828439
+			},
+			{
+				"playerId": "efafe75e-2f00-4418-914c-9b6675d39264",
+				"playerName": "Aldon Cashmoney",
+				"playerSlug": "aldon-cashmoney",
+				"value": 0.6510851419031719
+			},
+			{
+				"playerId": "472f50c0-ef98-4d05-91d0-d6359eec3946",
+				"playerName": "Rhys Trombone",
+				"playerSlug": "rhys-trombone",
+				"value": 0.6425531914893617
+			},
+			{
+				"playerId": "198fd9c8-cb75-482d-873e-e6b91d42a446",
+				"playerName": "Ren Hunter",
+				"playerSlug": "ren-hunter",
+				"value": 0.6417033773861968
+			},
+			{
+				"playerId": "b86237bb-ade6-4b1d-9199-a3cc354118d9",
+				"playerName": "Hurley Pacheco",
+				"playerSlug": "hurley-pacheco",
+				"value": 0.6196319018404908
+			},
+			{
+				"playerId": "d89da2d2-674c-4b85-8959-a4bd406f760a",
+				"playerName": "Fish Summer",
+				"playerSlug": "fish-summer",
+				"value": 0.6059701492537314
+			}
+		],
+		"stolenBases": [
+			{
+				"playerId": "88cd6efa-dbf2-4309-aabe-ec1d6f21f98a",
+				"playerName": "Hewitt Best",
+				"playerSlug": "hewitt-best",
+				"value": 18
+			},
+			{
+				"playerId": "493a83de-6bcf-41a1-97dd-cc5e150548a3",
+				"playerName": "Boyfriend Monreal",
+				"playerSlug": "boyfriend-monreal",
+				"value": 15
+			},
+			{
+				"playerId": "a5adc84c-80b8-49e4-9962-8b4ade99a922",
+				"playerName": "Richardson Turquoise",
+				"playerSlug": "richardson-turquoise",
+				"value": 14
+			},
+			{
+				"playerId": "d23a1f7e-0071-444e-8361-6ae01f13036f",
+				"playerName": "Edric Tosser",
+				"playerSlug": "edric-tosser",
+				"value": 13
+			},
+			{
+				"playerId": "17392be2-7344-48a0-b4db-8a040a7fb532",
+				"playerName": "Washer Barajas",
+				"playerSlug": "washer-barajas",
+				"value": 13
+			},
+			{
+				"playerId": "d74a2473-1f29-40fa-a41e-66fa2281dfca",
+				"playerName": "Landry Violence",
+				"playerSlug": "landry-violence",
+				"value": 12
+			},
+			{
+				"playerId": "2f3d7bc7-6ffb-40c3-a94f-5e626be413c9",
+				"playerName": "Elijah Valenzuela",
+				"playerSlug": "elijah-valenzuela",
+				"value": 12
+			},
+			{
+				"playerId": "4e6ad1a1-7c71-49de-8bd5-c286712faf9e",
+				"playerName": "Sutton Picklestein",
+				"playerSlug": "sutton-picklestein",
+				"value": 12
+			},
+			{
+				"playerId": "d47dd08e-833c-4302-a965-a391d345455c",
+				"playerName": "Stu Trololol",
+				"playerSlug": "stu-trololol",
+				"value": 12
+			},
+			{
+				"playerId": "1e8b09bd-fbdd-444e-bd7e-10326bd57156",
+				"playerName": "Fletcher Yamamoto",
+				"playerSlug": "fletcher-yamamoto",
+				"value": 12
+			}
+		],
+		"strikeouts": [
+			{
+				"playerId": "7e9a514a-7850-4ed0-93ab-f3a6e2f41c03",
+				"playerName": "Nolanestophia Patterson",
+				"playerSlug": "nolanestophia-patterson",
+				"value": 176
+			},
+			{
+				"playerId": "12577256-bc4e-4955-81d6-b422d895fb12",
+				"playerName": "Jasmine Washington",
+				"playerSlug": "jasmine-washington",
+				"value": 174
+			},
+			{
+				"playerId": "1301ee81-406e-43d9-b2bb-55ca6e0f7765",
+				"playerName": "Malik Destiny",
+				"playerSlug": "malik-destiny",
+				"value": 168
+			},
+			{
+				"playerId": "425f3f84-bab0-4cf2-91c1-96e78cf5cd02",
+				"playerName": "Luis Acevedo",
+				"playerSlug": "luis-acevedo",
+				"value": 166
+			},
+			{
+				"playerId": "c0177f76-67fc-4316-b650-894159dede45",
+				"playerName": "Paula Mason",
+				"playerSlug": "paula-mason",
+				"value": 158
+			},
+			{
+				"playerId": "1a93a2d2-b5b6-479b-a595-703e4a2f3885",
+				"playerName": "Pedro Davids",
+				"playerSlug": "pedro-davids",
+				"value": 156
+			},
+			{
+				"playerId": "27c68d7f-5e40-4afa-8b6f-9df47b79e7dd",
+				"playerName": "Basilio Preston",
+				"playerSlug": "basilio-preston",
+				"value": 156
+			},
+			{
+				"playerId": "aa6c2662-75f8-4506-aa06-9a0993313216",
+				"playerName": "Eizabeth Elliott",
+				"playerSlug": "eizabeth-elliott",
+				"value": 156
+			},
+			{
+				"playerId": "ea44bd36-65b4-4f3b-ac71-78d87a540b48",
+				"playerName": "Wanda Pothos",
+				"playerSlug": "wanda-pothos",
+				"value": 153
+			},
+			{
+				"playerId": "80de2b05-e0d4-4d33-9297-9951b2b5c950",
+				"playerName": "Alyssa Harrell",
+				"playerSlug": "alyssa-harrell",
+				"value": 151
+			}
+		],
+		"triplesHit": [
+			{
+				"playerId": "c83f0fe0-44d1-4342-81e8-944bb38f8e23",
+				"playerName": "Langley Wheeler",
+				"playerSlug": "langley-wheeler",
+				"value": 44
+			},
+			{
+				"playerId": "ce0e57a7-89f5-41ea-80f9-6e649dd54089",
+				"playerName": "Yong Wright",
+				"playerSlug": "yong-wright",
+				"value": 44
+			},
+			{
+				"playerId": "d47dd08e-833c-4302-a965-a391d345455c",
+				"playerName": "Stu Trololol",
+				"playerSlug": "stu-trololol",
+				"value": 43
+			},
+			{
+				"playerId": "bd4c6837-eeaa-4675-ae48-061efa0fd11a",
+				"playerName": "Workman Gloom",
+				"playerSlug": "workman-gloom",
+				"value": 43
+			},
+			{
+				"playerId": "80e474a3-7d2b-431d-8192-2f1e27162607",
+				"playerName": "Summers Preston",
+				"playerSlug": "summers-preston",
+				"value": 42
+			},
+			{
+				"playerId": "cd417f8a-ce01-4ab2-921d-42e2e445bbe2",
+				"playerName": "Eizabeth Guerra",
+				"playerSlug": "eizabeth-guerra",
+				"value": 41
+			},
+			{
+				"playerId": "493a83de-6bcf-41a1-97dd-cc5e150548a3",
+				"playerName": "Boyfriend Monreal",
+				"playerSlug": "boyfriend-monreal",
+				"value": 41
+			},
+			{
+				"playerId": "4e6ad1a1-7c71-49de-8bd5-c286712faf9e",
+				"playerName": "Sutton Picklestein",
+				"playerSlug": "sutton-picklestein",
+				"value": 39
+			},
+			{
+				"playerId": "bfd9ff52-9bf6-4aaf-a859-d308d8f29616",
+				"playerName": "Declan Suzanne",
+				"playerSlug": "declan-suzanne",
+				"value": 38
+			},
+			{
+				"playerId": "0eddd056-9d72-4804-bd60-53144b785d5c",
+				"playerName": "Caleb Novak",
+				"playerSlug": "caleb-novak",
+				"value": 37
+			}
+		]
+	},
+	"pitching": {
+		"basesOnBalls": [
+			{
+				"playerId": "2ae8cbfc-2155-4647-9996-3f2591091baf",
+				"playerName": "Forrest Bookbaby",
+				"playerSlug": "forrest-bookbaby",
+				"value": 244
+			},
+			{
+				"playerId": "a199a681-decf-4433-b6ab-5454450bbe5e",
+				"playerName": "Leach Ingram",
+				"playerSlug": "leach-ingram",
+				"value": 219
+			},
+			{
+				"playerId": "d8742d68-8fce-4d52-9a49-f4e33bd2a6fc",
+				"playerName": "Ortiz Morse",
+				"playerSlug": "ortiz-morse",
+				"value": 201
+			},
+			{
+				"playerId": "a647388d-fc59-4c1b-90d3-8c1826e07775",
+				"playerName": "Chambers Simmons",
+				"playerSlug": "chambers-simmons",
+				"value": 195
+			},
+			{
+				"playerId": "f3c07eaf-3d6c-4cc3-9e54-cbecc9c08286",
+				"playerName": "Campos Arias",
+				"playerSlug": "campos-arias",
+				"value": 194
+			},
+			{
+				"playerId": "378c07b0-5645-44b5-869f-497d144c7b35",
+				"playerName": "Fynn Doyle",
+				"playerSlug": "fynn-doyle",
+				"value": 161
+			},
+			{
+				"playerId": "ad1e670a-f346-4bf7-a02f-a91649c41ccb",
+				"playerName": "Stephanie Winters",
+				"playerSlug": "stephanie-winters",
+				"value": 153
+			},
+			{
+				"playerId": "b348c037-eefc-4b81-8edd-dfa96188a97e",
+				"playerName": "Lowe Forbes",
+				"playerSlug": "lowe-forbes",
+				"value": 148
+			},
+			{
+				"playerId": "2da49de2-34e5-49d0-b752-af2a2ee061be",
+				"playerName": "Cory Twelve",
+				"playerSlug": "cory-twelve",
+				"value": 148
+			},
+			{
+				"playerId": "7c5ae357-e079-4427-a90f-97d164c7262e",
+				"playerName": "Milo Brown",
+				"playerSlug": "milo-brown",
+				"value": 147
+			}
+		],
+		"basesOnBallsPerNine": [
+			{
+				"playerId": "7aeb8e0b-f6fb-4a9e-bba2-335dada5f0a3",
+				"playerName": "Dunlap Figueroa",
+				"playerSlug": "dunlap-figueroa",
+				"value": 0.05769230769230769
+			},
+			{
+				"playerId": "338694b7-6256-4724-86b6-3884299a5d9e",
+				"playerName": "PolkaDot Patterson",
+				"playerSlug": "polkadot-patterson",
+				"value": 0.05825242718446602
+			},
+			{
+				"playerId": "138fccc3-e66f-4b07-8327-d4b6f372f654",
+				"playerName": "Oscar Vaughan",
+				"playerSlug": "oscar-vaughan",
+				"value": 0.11726384364820848
+			},
+			{
+				"playerId": "5703141c-25d9-46d0-b680-0cf9cfbf4777",
+				"playerName": "Sandoval Crossing",
+				"playerSlug": "sandoval-crossing",
+				"value": 0.23300970873786409
+			},
+			{
+				"playerId": "03f920cc-411f-44ef-ae66-98a44e883291",
+				"playerName": "Cornelius Games",
+				"playerSlug": "cornelius-games",
+				"value": 0.25961538461538464
+			},
+			{
+				"playerId": "b7ca8f3f-2fdc-477b-84f4-157f2802e9b5",
+				"playerName": "Leach Herman",
+				"playerSlug": "leach-herman",
+				"value": 0.2875399361022364
+			},
+			{
+				"playerId": "97dfc1f6-ac94-4cdc-b0d5-1cb9f8984aa5",
+				"playerName": "Brock Forbes",
+				"playerSlug": "brock-forbes",
+				"value": 0.29605263157894735
+			},
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 0.34615384615384615
+			},
+			{
+				"playerId": "af6b3edc-ed52-4edc-b0c9-14e0a5ae0ee3",
+				"playerName": "Rivers Clembons",
+				"playerSlug": "rivers-clembons",
+				"value": 0.35526315789473684
+			},
+			{
+				"playerId": "32551e28-3a40-47ae-aed1-ff5bc66be879",
+				"playerName": "Math Velazquez",
+				"playerSlug": "math-velazquez",
+				"value": 0.3698630136986301
+			}
+		],
+		"earnedRuns": [
+			{
+				"playerId": "a199a681-decf-4433-b6ab-5454450bbe5e",
+				"playerName": "Leach Ingram",
+				"playerSlug": "leach-ingram",
+				"value": 247
+			},
+			{
+				"playerId": "20fd71e7-4fa0-4132-9f47-06a314ed539a",
+				"playerName": "Lars Taylor",
+				"playerSlug": "lars-taylor",
+				"value": 236
+			},
+			{
+				"playerId": "df4da81a-917b-434f-b309-f00423ee4967",
+				"playerName": "Eugenia Bickle",
+				"playerSlug": "eugenia-bickle",
+				"value": 235
+			},
+			{
+				"playerId": "7663c3ca-40a1-4f13-a430-14637dce797a",
+				"playerName": "PolkaDot Zavala",
+				"playerSlug": "polkadot-zavala",
+				"value": 234
+			},
+			{
+				"playerId": "2ae8cbfc-2155-4647-9996-3f2591091baf",
+				"playerName": "Forrest Bookbaby",
+				"playerSlug": "forrest-bookbaby",
+				"value": 223
+			},
+			{
+				"playerId": "a647388d-fc59-4c1b-90d3-8c1826e07775",
+				"playerName": "Chambers Simmons",
+				"playerSlug": "chambers-simmons",
+				"value": 210
+			},
+			{
+				"playerId": "d46abb00-c546-4952-9218-4f16084e3238",
+				"playerName": "Atlas Guerra",
+				"playerSlug": "atlas-guerra",
+				"value": 209
+			},
+			{
+				"playerId": "9820f2c5-f9da-4a07-b610-c2dd7bee2ef6",
+				"playerName": "Dan Bong",
+				"playerSlug": "dan-bong",
+				"value": 209
+			},
+			{
+				"playerId": "dfd5ccbb-90ed-4bfe-83e0-dae9cc763f10",
+				"playerName": "Owen Picklestein",
+				"playerSlug": "owen-picklestein",
+				"value": 203
+			}
+		],
+		"earnedRunAverage": [
+			{
+				"playerId": "7aeb8e0b-f6fb-4a9e-bba2-335dada5f0a3",
+				"playerName": "Dunlap Figueroa",
+				"playerSlug": "dunlap-figueroa",
+				"value": 2.076923076923077
+			},
+			{
+				"playerId": "ae81e172-801a-4236-929a-b990fc7190ce",
+				"playerName": "August Sky",
+				"playerSlug": "august-sky",
+				"value": 2.2649006622516556
+			},
+			{
+				"playerId": "b7ca8f3f-2fdc-477b-84f4-157f2802e9b5",
+				"playerName": "Leach Herman",
+				"playerSlug": "leach-herman",
+				"value": 2.2715654952076676
+			},
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 2.2788461538461537
+			},
+			{
+				"playerId": "338694b7-6256-4724-86b6-3884299a5d9e",
+				"playerName": "PolkaDot Patterson",
+				"playerSlug": "polkadot-patterson",
+				"value": 2.3300970873786406
+			},
+			{
+				"playerId": "089af518-e27c-4256-adc8-62e3f4b30f43",
+				"playerName": "Silvia Rugrat",
+				"playerSlug": "silvia-rugrat",
+				"value": 2.486842105263158
+			},
+			{
+				"playerId": "2720559e-9173-4042-aaa0-d3852b72ab2e",
+				"playerName": "Hiroto Wilcox",
+				"playerSlug": "hiroto-wilcox",
+				"value": 2.6052631578947367
+			},
+			{
+				"playerId": "03f920cc-411f-44ef-ae66-98a44e883291",
+				"playerName": "Cornelius Games",
+				"playerSlug": "cornelius-games",
+				"value": 2.625
+			},
+			{
+				"playerId": "d5b6b11d-3924-4634-bd50-76553f1f162b",
+				"playerName": "Ogden Mendoza",
+				"playerSlug": "ogden-mendoza",
+				"value": 2.8363636363636364
+			},
+			{
+				"playerId": "773712f6-d76d-4caa-8a9b-56fe1d1a5a68",
+				"playerName": "Natha Kath",
+				"playerSlug": "natha-kath",
+				"value": 3.0214285714285714
+			}
+		],
+		"hitsAllowed": [
+			{
+				"playerId": "df4da81a-917b-434f-b309-f00423ee4967",
+				"playerName": "Eugenia Bickle",
+				"playerSlug": "eugenia-bickle",
+				"value": 381
+			},
+			{
+				"playerId": "d46abb00-c546-4952-9218-4f16084e3238",
+				"playerName": "Atlas Guerra",
+				"playerSlug": "atlas-guerra",
+				"value": 380
+			},
+			{
+				"playerId": "7663c3ca-40a1-4f13-a430-14637dce797a",
+				"playerName": "PolkaDot Zavala",
+				"playerSlug": "polkadot-zavala",
+				"value": 375
+			},
+			{
+				"playerId": "20fd71e7-4fa0-4132-9f47-06a314ed539a",
+				"playerName": "Lars Taylor",
+				"playerSlug": "lars-taylor",
+				"value": 362
+			},
+			{
+				"playerId": "9820f2c5-f9da-4a07-b610-c2dd7bee2ef6",
+				"playerName": "Dan Bong",
+				"playerSlug": "dan-bong",
+				"value": 360
+			},
+			{
+				"playerId": "378c07b0-5645-44b5-869f-497d144c7b35",
+				"playerName": "Fynn Doyle",
+				"playerSlug": "fynn-doyle",
+				"value": 359
+			},
+			{
+				"playerId": "43d5da5f-c6a1-42f1-ab7f-50ea956b6cd5",
+				"playerName": "Justice Spoon",
+				"playerSlug": "justice-spoon",
+				"value": 358
+			},
+			{
+				"playerId": "740d5fef-d59f-4dac-9a75-739ec07f91cf",
+				"playerName": "Conner Haley",
+				"playerSlug": "conner-haley",
+				"value": 357
+			},
+			{
+				"playerId": "e16c3f28-eecd-4571-be1a-606bbac36b2b",
+				"playerName": "Comfort Glover",
+				"playerSlug": "comfort-glover",
+				"value": 350
+			},
+			{
+				"playerId": "36786f44-9066-4028-98d9-4fa84465ab9e",
+				"playerName": "Beasley Gloom",
+				"playerSlug": "beasley-gloom",
+				"value": 345
+			}
+		],
+		"hitsAllowedPerNine": [
+			{
+				"playerId": "7aeb8e0b-f6fb-4a9e-bba2-335dada5f0a3",
+				"playerName": "Dunlap Figueroa",
+				"playerSlug": "dunlap-figueroa",
+				"value": 6
+			},
+			{
+				"playerId": "338694b7-6256-4724-86b6-3884299a5d9e",
+				"playerName": "PolkaDot Patterson",
+				"playerSlug": "polkadot-patterson",
+				"value": 6.466019417475728
+			},
+			{
+				"playerId": "b082ca6e-eb11-4eab-8d6a-30f8be522ec4",
+				"playerName": "Nicholas Mora",
+				"playerSlug": "nicholas-mora",
+				"value": 6.519230769230769
+			},
+			{
+				"playerId": "ae81e172-801a-4236-929a-b990fc7190ce",
+				"playerName": "August Sky",
+				"playerSlug": "august-sky",
+				"value": 6.556291390728476
+			},
+			{
+				"playerId": "773712f6-d76d-4caa-8a9b-56fe1d1a5a68",
+				"playerName": "Natha Kath",
+				"playerSlug": "natha-kath",
+				"value": 6.621428571428572
+			},
+			{
+				"playerId": "94baa9ac-ff96-4f56-a987-10358e917d91",
+				"playerName": "Gabriel Griffith",
+				"playerSlug": "gabriel-griffith",
+				"value": 6.7052980132450335
+			},
+			{
+				"playerId": "2720559e-9173-4042-aaa0-d3852b72ab2e",
+				"playerName": "Hiroto Wilcox",
+				"playerSlug": "hiroto-wilcox",
+				"value": 6.809210526315789
+			},
+			{
+				"playerId": "089af518-e27c-4256-adc8-62e3f4b30f43",
+				"playerName": "Silvia Rugrat",
+				"playerSlug": "silvia-rugrat",
+				"value": 6.838815789473684
+			},
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 6.9519230769230775
+			},
+			{
+				"playerId": "1ffb1153-909d-44c7-9df1-6ed3a9a45bbd",
+				"playerName": "Montgomery Bullock",
+				"playerSlug": "montgomery-bullock",
+				"value": 7.029411764705882
+			}
+		],
+		"homeRuns": [
+			{
+				"playerId": "9820f2c5-f9da-4a07-b610-c2dd7bee2ef6",
+				"playerName": "Dan Bong",
+				"playerSlug": "dan-bong",
+				"value": 69
+			},
+			{
+				"playerId": "d46abb00-c546-4952-9218-4f16084e3238",
+				"playerName": "Atlas Guerra",
+				"playerSlug": "atlas-guerra",
+				"value": 64
+			},
+			{
+				"playerId": "df4da81a-917b-434f-b309-f00423ee4967",
+				"playerName": "Eugenia Bickle",
+				"playerSlug": "eugenia-bickle",
+				"value": 62
+			},
+			{
+				"playerId": "20fd71e7-4fa0-4132-9f47-06a314ed539a",
+				"playerName": "Lars Taylor",
+				"playerSlug": "lars-taylor",
+				"value": 62
+			},
+			{
+				"playerId": "316abea7-9890-4fb8-aaea-86b35e24d9be",
+				"playerName": "Kennedy Rodgers",
+				"playerSlug": "kennedy-rodgers",
+				"value": 59
+			},
+			{
+				"playerId": "167751d5-210c-4a6e-9568-e92d61bab185",
+				"playerName": "Jacob Winner",
+				"playerSlug": "jacob-winner",
+				"value": 58
+			},
+			{
+				"playerId": "6f9de777-e812-4c84-915c-ef283c9f0cde",
+				"playerName": "Arturo Huerta",
+				"playerSlug": "arturo-huerta",
+				"value": 57
+			},
+			{
+				"playerId": "7663c3ca-40a1-4f13-a430-14637dce797a",
+				"playerName": "PolkaDot Zavala",
+				"playerSlug": "polkadot-zavala",
+				"value": 56
+			},
+			{
+				"playerId": "c6a277c3-d2b5-4363-839b-950896a5ec5e",
+				"playerName": "Mike Townsend",
+				"playerSlug": "mike-townsend",
+				"value": 56
+			},
+			{
+				"playerId": "5703141c-25d9-46d0-b680-0cf9cfbf4777",
+				"playerName": "Sandoval Crossing",
+				"playerSlug": "sandoval-crossing",
+				"value": 54
+			}
+		],
+		"homeRunsPerNine": [
+			{
+				"playerId": "f2c477fb-28ea-4fcb-943a-9fab22df3da0",
+				"playerName": "Sandford Garner",
+				"playerSlug": "sandford-garner",
+				"value": 0.35593220338983056
+			},
+			{
+				"playerId": "f741dc01-2bae-4459-bfc0-f97536193eea",
+				"playerName": "Alejandro Leaf",
+				"playerSlug": "alejandro-leaf",
+				"value": 0.4329896907216495
+			},
+			{
+				"playerId": "3af96a6b-866c-4b03-bc14-090acf6ecee5",
+				"playerName": "Axel Trololol",
+				"playerSlug": "axel-trololol",
+				"value": 0.5816326530612245
+			},
+			{
+				"playerId": "ae81e172-801a-4236-929a-b990fc7190ce",
+				"playerName": "August Sky",
+				"playerSlug": "august-sky",
+				"value": 0.5960264900662252
+			},
+			{
+				"playerId": "0bb35615-63f2-4492-80ec-b6b322dc5450",
+				"playerName": "Sexton Wheeler",
+				"playerSlug": "sexton-wheeler",
+				"value": 0.6116504854368932
+			},
+			{
+				"playerId": "338694b7-6256-4724-86b6-3884299a5d9e",
+				"playerName": "PolkaDot Patterson",
+				"playerSlug": "polkadot-patterson",
+				"value": 0.6407766990291263
+			},
+			{
+				"playerId": "03f920cc-411f-44ef-ae66-98a44e883291",
+				"playerName": "Cornelius Games",
+				"playerSlug": "cornelius-games",
+				"value": 0.6634615384615384
+			},
+			{
+				"playerId": "73265ee3-bb35-40d1-b696-1f241a6f5966",
+				"playerName": "Parker Meng",
+				"playerSlug": "parker-meng",
+				"value": 0.6923076923076923
+			},
+			{
+				"playerId": "773712f6-d76d-4caa-8a9b-56fe1d1a5a68",
+				"playerName": "Natha Kath",
+				"playerSlug": "natha-kath",
+				"value": 0.7071428571428571
+			},
+			{
+				"playerId": "b7ca8f3f-2fdc-477b-84f4-157f2802e9b5",
+				"playerName": "Leach Herman",
+				"playerSlug": "leach-herman",
+				"value": 0.7188498402555911
+			}
+		],
+		"inningsPitched": [
+			{
+				"playerId": "167751d5-210c-4a6e-9568-e92d61bab185",
+				"playerName": "Jacob Winner",
+				"playerSlug": "jacob-winner",
+				"value": 322
+			},
+			{
+				"playerId": "f2a27a7e-bf04-4d31-86f5-16bfa3addbe7",
+				"playerName": "Winnie Hess",
+				"playerSlug": "winnie-hess",
+				"value": 317
+			},
+			{
+				"playerId": "3d3be7b8-1cbf-450d-8503-fce0daf46cbf",
+				"playerName": "Zack Sanders",
+				"playerSlug": "zack-sanders",
+				"value": 315
+			},
+			{
+				"playerId": "740d5fef-d59f-4dac-9a75-739ec07f91cf",
+				"playerName": "Conner Haley",
+				"playerSlug": "conner-haley",
+				"value": 313
+			},
+			{
+				"playerId": "1732e623-ffc2-40f0-87ba-fdcf97131f1f",
+				"playerName": "Betsy Trombone",
+				"playerSlug": "betsy-trombone",
+				"value": 313
+			},
+			{
+				"playerId": "b7ca8f3f-2fdc-477b-84f4-157f2802e9b5",
+				"playerName": "Leach Herman",
+				"playerSlug": "leach-herman",
+				"value": 313
+			},
+			{
+				"playerId": "73265ee3-bb35-40d1-b696-1f241a6f5966",
+				"playerName": "Parker Meng",
+				"playerSlug": "parker-meng",
+				"value": 312
+			},
+			{
+				"playerId": "b082ca6e-eb11-4eab-8d6a-30f8be522ec4",
+				"playerName": "Nicholas Mora",
+				"playerSlug": "nicholas-mora",
+				"value": 312
+			},
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 312
+			},
+			{
+				"playerId": "03f920cc-411f-44ef-ae66-98a44e883291",
+				"playerName": "Cornelius Games",
+				"playerSlug": "cornelius-games",
+				"value": 312
+			}
+		],
+		"losses": [
+			{
+				"playerId": "20fd71e7-4fa0-4132-9f47-06a314ed539a",
+				"playerName": "Lars Taylor",
+				"playerSlug": "lars-taylor",
+				"value": 29
+			},
+			{
+				"playerId": "df4da81a-917b-434f-b309-f00423ee4967",
+				"playerName": "Eugenia Bickle",
+				"playerSlug": "eugenia-bickle",
+				"value": 28
+			},
+			{
+				"playerId": "d8742d68-8fce-4d52-9a49-f4e33bd2a6fc",
+				"playerName": "Ortiz Morse",
+				"playerSlug": "ortiz-morse",
+				"value": 26
+			},
+			{
+				"playerId": "a199a681-decf-4433-b6ab-5454450bbe5e",
+				"playerName": "Leach Ingram",
+				"playerSlug": "leach-ingram",
+				"value": 26
+			},
+			{
+				"playerId": "8903a74f-f322-41d2-bd75-dbf7563c4abb",
+				"playerName": "Francisca Sasquatch",
+				"playerSlug": "francisca-sasquatch",
+				"value": 25
+			},
+			{
+				"playerId": "0d5300f6-0966-430f-903f-a4c2338abf00",
+				"playerName": "Lee Davenport",
+				"playerSlug": "lee-davenport",
+				"value": 24
+			},
+			{
+				"playerId": "7663c3ca-40a1-4f13-a430-14637dce797a",
+				"playerName": "PolkaDot Zavala",
+				"playerSlug": "polkadot-zavala",
+				"value": 24
+			},
+			{
+				"playerId": "316abea7-9890-4fb8-aaea-86b35e24d9be",
+				"playerName": "Kennedy Rodgers",
+				"playerSlug": "kennedy-rodgers",
+				"value": 24
+			},
+			{
+				"playerId": "f70dd57b-55c4-4a62-a5ea-7cc4bf9d8ac1",
+				"playerName": "Tillman Henderson",
+				"playerSlug": "tillman-henderson",
+				"value": 23
+			},
+			{
+				"playerId": "b348c037-eefc-4b81-8edd-dfa96188a97e",
+				"playerName": "Lowe Forbes",
+				"playerSlug": "lowe-forbes",
+				"value": 23
+			}
+		],
+		"qualityStarts": [
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 23
+			},
+			{
+				"playerId": "97dfc1f6-ac94-4cdc-b0d5-1cb9f8984aa5",
+				"playerName": "Brock Forbes",
+				"playerSlug": "brock-forbes",
+				"value": 22
+			},
+			{
+				"playerId": "ff5a37d9-a6dd-49aa-b6fb-b935fd670820",
+				"playerName": "Dunn Keyes",
+				"playerSlug": "dunn-keyes",
+				"value": 22
+			},
+			{
+				"playerId": "7007cbd3-7c7b-44fd-9d6b-393e82b1c06e",
+				"playerName": "Rafael Davids",
+				"playerSlug": "rafael-davids",
+				"value": 21
+			},
+			{
+				"playerId": "b082ca6e-eb11-4eab-8d6a-30f8be522ec4",
+				"playerName": "Nicholas Mora",
+				"playerSlug": "nicholas-mora",
+				"value": 20
+			},
+			{
+				"playerId": "7158d158-e7bf-4e9b-9259-62e5b25e3de8",
+				"playerName": "Karato Bean",
+				"playerSlug": "karato-bean",
+				"value": 18
+			},
+			{
+				"playerId": "bf122660-df52-4fc4-9e70-ee185423ff93",
+				"playerName": "Walton Sports",
+				"playerSlug": "walton-sports",
+				"value": 18
+			},
+			{
+				"playerId": "20be1c34-071d-40c6-8824-dde2af184b4d",
+				"playerName": "Qais Dogwalker",
+				"playerSlug": "qais-dogwalker",
+				"value": 18
+			},
+			{
+				"playerId": "1732e623-ffc2-40f0-87ba-fdcf97131f1f",
+				"playerName": "Betsy Trombone",
+				"playerSlug": "betsy-trombone",
+				"value": 18
+			},
+			{
+				"playerId": "6b8d128f-ed51-496d-a965-6614476f8256",
+				"playerName": "Orville Manco",
+				"playerSlug": "orville-manco",
+				"value": 18
+			}
+		],
+		"shutouts": [
+			{
+				"playerId": "2720559e-9173-4042-aaa0-d3852b72ab2e",
+				"playerName": "Hiroto Wilcox",
+				"playerSlug": "hiroto-wilcox",
+				"value": 6
+			},
+			{
+				"playerId": "03f920cc-411f-44ef-ae66-98a44e883291",
+				"playerName": "Cornelius Games",
+				"playerSlug": "cornelius-games",
+				"value": 6
+			},
+			{
+				"playerId": "b7ca8f3f-2fdc-477b-84f4-157f2802e9b5",
+				"playerName": "Leach Herman",
+				"playerSlug": "leach-herman",
+				"value": 6
+			},
+			{
+				"playerId": "7aeb8e0b-f6fb-4a9e-bba2-335dada5f0a3",
+				"playerName": "Dunlap Figueroa",
+				"playerSlug": "dunlap-figueroa",
+				"value": 5
+			},
+			{
+				"playerId": "30218684-7fa1-41a5-a3b3-5d9cd97dd36b",
+				"playerName": "Jordan Hildebert",
+				"playerSlug": "jordan-hildebert",
+				"value": 5
+			},
+			{
+				"playerId": "338694b7-6256-4724-86b6-3884299a5d9e",
+				"playerName": "PolkaDot Patterson",
+				"playerSlug": "polkadot-patterson",
+				"value": 5
+			},
+			{
+				"playerId": "b082ca6e-eb11-4eab-8d6a-30f8be522ec4",
+				"playerName": "Nicholas Mora",
+				"playerSlug": "nicholas-mora",
+				"value": 4
+			},
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 4
+			},
+			{
+				"playerId": "3af96a6b-866c-4b03-bc14-090acf6ecee5",
+				"playerName": "Axel Trololol",
+				"playerSlug": "axel-trololol",
+				"value": 4
+			},
+			{
+				"playerId": "bf122660-df52-4fc4-9e70-ee185423ff93",
+				"playerName": "Walton Sports",
+				"playerSlug": "walton-sports",
+				"value": 4
+			}
+		],
+		"strikeouts": [
+			{
+				"playerId": "338694b7-6256-4724-86b6-3884299a5d9e",
+				"playerName": "PolkaDot Patterson",
+				"playerSlug": "polkadot-patterson",
+				"value": 279
+			},
+			{
+				"playerId": "5703141c-25d9-46d0-b680-0cf9cfbf4777",
+				"playerName": "Sandoval Crossing",
+				"playerSlug": "sandoval-crossing",
+				"value": 254
+			},
+			{
+				"playerId": "7158d158-e7bf-4e9b-9259-62e5b25e3de8",
+				"playerName": "Karato Bean",
+				"playerSlug": "karato-bean",
+				"value": 249
+			},
+			{
+				"playerId": "138fccc3-e66f-4b07-8327-d4b6f372f654",
+				"playerName": "Oscar Vaughan",
+				"playerSlug": "oscar-vaughan",
+				"value": 246
+			},
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 245
+			},
+			{
+				"playerId": "3d3be7b8-1cbf-450d-8503-fce0daf46cbf",
+				"playerName": "Zack Sanders",
+				"playerSlug": "zack-sanders",
+				"value": 237
+			},
+			{
+				"playerId": "7aeb8e0b-f6fb-4a9e-bba2-335dada5f0a3",
+				"playerName": "Dunlap Figueroa",
+				"playerSlug": "dunlap-figueroa",
+				"value": 234
+			},
+			{
+				"playerId": "e6502bc7-5b76-4939-9fb8-132057390b30",
+				"playerName": "Greer Lott",
+				"playerSlug": "greer-lott",
+				"value": 220
+			},
+			{
+				"playerId": "b7ca8f3f-2fdc-477b-84f4-157f2802e9b5",
+				"playerName": "Leach Herman",
+				"playerSlug": "leach-herman",
+				"value": 216
+			},
+			{
+				"playerId": "167751d5-210c-4a6e-9568-e92d61bab185",
+				"playerName": "Jacob Winner",
+				"playerSlug": "jacob-winner",
+				"value": 213
+			}
+		],
+		"strikeoutToWalkRatio": [
+			{
+				"playerId": "338694b7-6256-4724-86b6-3884299a5d9e",
+				"playerName": "PolkaDot Patterson",
+				"playerSlug": "polkadot-patterson",
+				"value": 139.5
+			},
+			{
+				"playerId": "7aeb8e0b-f6fb-4a9e-bba2-335dada5f0a3",
+				"playerName": "Dunlap Figueroa",
+				"playerSlug": "dunlap-figueroa",
+				"value": 117
+			},
+			{
+				"playerId": "138fccc3-e66f-4b07-8327-d4b6f372f654",
+				"playerName": "Oscar Vaughan",
+				"playerSlug": "oscar-vaughan",
+				"value": 61.5
+			},
+			{
+				"playerId": "5703141c-25d9-46d0-b680-0cf9cfbf4777",
+				"playerName": "Sandoval Crossing",
+				"playerSlug": "sandoval-crossing",
+				"value": 31.75
+			},
+			{
+				"playerId": "03f920cc-411f-44ef-ae66-98a44e883291",
+				"playerName": "Cornelius Games",
+				"playerSlug": "cornelius-games",
+				"value": 23.555555555555557
+			},
+			{
+				"playerId": "b7ca8f3f-2fdc-477b-84f4-157f2802e9b5",
+				"playerName": "Leach Herman",
+				"playerSlug": "leach-herman",
+				"value": 21.6
+			},
+			{
+				"playerId": "97dfc1f6-ac94-4cdc-b0d5-1cb9f8984aa5",
+				"playerName": "Brock Forbes",
+				"playerSlug": "brock-forbes",
+				"value": 21
+			},
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 20.416666666666668
+			},
+			{
+				"playerId": "32551e28-3a40-47ae-aed1-ff5bc66be879",
+				"playerName": "Math Velazquez",
+				"playerSlug": "math-velazquez",
+				"value": 17.333333333333332
+			},
+			{
+				"playerId": "af6b3edc-ed52-4edc-b0c9-14e0a5ae0ee3",
+				"playerName": "Rivers Clembons",
+				"playerSlug": "rivers-clembons",
+				"value": 17
+			}
+		],
+		"strikeoutsPerNine": [
+			{
+				"playerId": "338694b7-6256-4724-86b6-3884299a5d9e",
+				"playerName": "PolkaDot Patterson",
+				"playerSlug": "polkadot-patterson",
+				"value": 8.126213592233011
+			},
+			{
+				"playerId": "7158d158-e7bf-4e9b-9259-62e5b25e3de8",
+				"playerName": "Karato Bean",
+				"playerSlug": "karato-bean",
+				"value": 7.808362369337979
+			},
+			{
+				"playerId": "5703141c-25d9-46d0-b680-0cf9cfbf4777",
+				"playerName": "Sandoval Crossing",
+				"playerSlug": "sandoval-crossing",
+				"value": 7.398058252427185
+			},
+			{
+				"playerId": "138fccc3-e66f-4b07-8327-d4b6f372f654",
+				"playerName": "Oscar Vaughan",
+				"playerSlug": "oscar-vaughan",
+				"value": 7.211726384364821
+			},
+			{
+				"playerId": "d5b6b11d-3924-4634-bd50-76553f1f162b",
+				"playerName": "Ogden Mendoza",
+				"playerSlug": "ogden-mendoza",
+				"value": 7.090909090909091
+			},
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 7.0673076923076925
+			},
+			{
+				"playerId": "3d3be7b8-1cbf-450d-8503-fce0daf46cbf",
+				"playerName": "Zack Sanders",
+				"playerSlug": "zack-sanders",
+				"value": 6.771428571428571
+			},
+			{
+				"playerId": "7aeb8e0b-f6fb-4a9e-bba2-335dada5f0a3",
+				"playerName": "Dunlap Figueroa",
+				"playerSlug": "dunlap-figueroa",
+				"value": 6.75
+			},
+			{
+				"playerId": "e6502bc7-5b76-4939-9fb8-132057390b30",
+				"playerName": "Greer Lott",
+				"playerSlug": "greer-lott",
+				"value": 6.622073578595318
+			},
+			{
+				"playerId": "f9c0d3cb-d8be-4f53-94c9-fc53bcbce520",
+				"playerName": "Matteo Prestige",
+				"playerSlug": "matteo-prestige",
+				"value": 6.4816513761467895
+			}
+		],
+		"strikeoutRate": [
+			{
+				"playerId": "338694b7-6256-4724-86b6-3884299a5d9e",
+				"playerName": "PolkaDot Patterson",
+				"playerSlug": "polkadot-patterson",
+				"value": 0.26345609065155806
+			},
+			{
+				"playerId": "7aeb8e0b-f6fb-4a9e-bba2-335dada5f0a3",
+				"playerName": "Dunlap Figueroa",
+				"playerSlug": "dunlap-figueroa",
+				"value": 0.2265246853823814
+			},
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 0.22539098436062557
+			},
+			{
+				"playerId": "5703141c-25d9-46d0-b680-0cf9cfbf4777",
+				"playerName": "Sandoval Crossing",
+				"playerSlug": "sandoval-crossing",
+				"value": 0.22438162544169613
+			},
+			{
+				"playerId": "d5b6b11d-3924-4634-bd50-76553f1f162b",
+				"playerName": "Ogden Mendoza",
+				"playerSlug": "ogden-mendoza",
+				"value": 0.22108843537414966
+			},
+			{
+				"playerId": "138fccc3-e66f-4b07-8327-d4b6f372f654",
+				"playerName": "Oscar Vaughan",
+				"playerSlug": "oscar-vaughan",
+				"value": 0.22023276633840644
+			},
+			{
+				"playerId": "7158d158-e7bf-4e9b-9259-62e5b25e3de8",
+				"playerName": "Karato Bean",
+				"playerSlug": "karato-bean",
+				"value": 0.21391752577319587
+			},
+			{
+				"playerId": "b7ca8f3f-2fdc-477b-84f4-157f2802e9b5",
+				"playerName": "Leach Herman",
+				"playerSlug": "leach-herman",
+				"value": 0.2028169014084507
+			},
+			{
+				"playerId": "3d3be7b8-1cbf-450d-8503-fce0daf46cbf",
+				"playerName": "Zack Sanders",
+				"playerSlug": "zack-sanders",
+				"value": 0.20067739204064353
+			},
+			{
+				"playerId": "94baa9ac-ff96-4f56-a987-10358e917d91",
+				"playerName": "Gabriel Griffith",
+				"playerSlug": "gabriel-griffith",
+				"value": 0.19627085377821393
+			}
+		],
+		"walksAndHitsPerInningPitched": [
+			{
+				"playerId": "7aeb8e0b-f6fb-4a9e-bba2-335dada5f0a3",
+				"playerName": "Dunlap Figueroa",
+				"playerSlug": "dunlap-figueroa",
+				"value": 0.6730769230769231
+			},
+			{
+				"playerId": "338694b7-6256-4724-86b6-3884299a5d9e",
+				"playerName": "PolkaDot Patterson",
+				"playerSlug": "polkadot-patterson",
+				"value": 0.7249190938511327
+			},
+			{
+				"playerId": "ae81e172-801a-4236-929a-b990fc7190ce",
+				"playerName": "August Sky",
+				"playerSlug": "august-sky",
+				"value": 0.7880794701986755
+			},
+			{
+				"playerId": "94baa9ac-ff96-4f56-a987-10358e917d91",
+				"playerName": "Gabriel Griffith",
+				"playerSlug": "gabriel-griffith",
+				"value": 0.8013245033112583
+			},
+			{
+				"playerId": "2720559e-9173-4042-aaa0-d3852b72ab2e",
+				"playerName": "Hiroto Wilcox",
+				"playerSlug": "hiroto-wilcox",
+				"value": 0.8026315789473685
+			},
+			{
+				"playerId": "089af518-e27c-4256-adc8-62e3f4b30f43",
+				"playerName": "Silvia Rugrat",
+				"playerSlug": "silvia-rugrat",
+				"value": 0.8026315789473685
+			},
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 0.8108974358974359
+			},
+			{
+				"playerId": "b7ca8f3f-2fdc-477b-84f4-157f2802e9b5",
+				"playerName": "Leach Herman",
+				"playerSlug": "leach-herman",
+				"value": 0.8466453674121406
+			},
+			{
+				"playerId": "03f920cc-411f-44ef-ae66-98a44e883291",
+				"playerName": "Cornelius Games",
+				"playerSlug": "cornelius-games",
+				"value": 0.8493589743589743
+			},
+			{
+				"playerId": "d5b6b11d-3924-4634-bd50-76553f1f162b",
+				"playerName": "Ogden Mendoza",
+				"playerSlug": "ogden-mendoza",
+				"value": 0.8848484848484849
+			}
+		],
+		"walkRate": [
+			{
+				"playerId": "338694b7-6256-4724-86b6-3884299a5d9e",
+				"playerName": "PolkaDot Patterson",
+				"playerSlug": "polkadot-patterson",
+				"value": 0.0018885741265344666
+			},
+			{
+				"playerId": "7aeb8e0b-f6fb-4a9e-bba2-335dada5f0a3",
+				"playerName": "Dunlap Figueroa",
+				"playerSlug": "dunlap-figueroa",
+				"value": 0.001936108422071636
+			},
+			{
+				"playerId": "138fccc3-e66f-4b07-8327-d4b6f372f654",
+				"playerName": "Oscar Vaughan",
+				"playerSlug": "oscar-vaughan",
+				"value": 0.0035810205908683975
+			},
+			{
+				"playerId": "5703141c-25d9-46d0-b680-0cf9cfbf4777",
+				"playerName": "Sandoval Crossing",
+				"playerSlug": "sandoval-crossing",
+				"value": 0.007067137809187279
+			},
+			{
+				"playerId": "03f920cc-411f-44ef-ae66-98a44e883291",
+				"playerName": "Cornelius Games",
+				"playerSlug": "cornelius-games",
+				"value": 0.008272058823529412
+			},
+			{
+				"playerId": "97dfc1f6-ac94-4cdc-b0d5-1cb9f8984aa5",
+				"playerName": "Brock Forbes",
+				"playerSlug": "brock-forbes",
+				"value": 0.009267840593141797
+			},
+			{
+				"playerId": "b7ca8f3f-2fdc-477b-84f4-157f2802e9b5",
+				"playerName": "Leach Herman",
+				"playerSlug": "leach-herman",
+				"value": 0.009389671361502348
+			},
+			{
+				"playerId": "32551e28-3a40-47ae-aed1-ff5bc66be879",
+				"playerName": "Math Velazquez",
+				"playerSlug": "math-velazquez",
+				"value": 0.010771992818671455
+			},
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 0.011039558417663294
+			},
+			{
+				"playerId": "af6b3edc-ed52-4edc-b0c9-14e0a5ae0ee3",
+				"playerName": "Rivers Clembons",
+				"playerSlug": "rivers-clembons",
+				"value": 0.011288805268109126
+			}
+		],
+		"winningPercentage": [
+			{
+				"playerId": "7aeb8e0b-f6fb-4a9e-bba2-335dada5f0a3",
+				"playerName": "Dunlap Figueroa",
+				"playerSlug": "dunlap-figueroa",
+				"value": 0.8484848484848485
+			},
+			{
+				"playerId": "b7ca8f3f-2fdc-477b-84f4-157f2802e9b5",
+				"playerName": "Leach Herman",
+				"playerSlug": "leach-herman",
+				"value": 0.8125
+			},
+			{
+				"playerId": "9397ed91-608e-4b13-98ea-e94c795f651e",
+				"playerName": "Yeong-Ho Garcia",
+				"playerSlug": "yeong-ho-garcia",
+				"value": 0.8125
+			},
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 0.7878787878787878
+			},
+			{
+				"playerId": "338694b7-6256-4724-86b6-3884299a5d9e",
+				"playerName": "PolkaDot Patterson",
+				"playerSlug": "polkadot-patterson",
+				"value": 0.78125
+			},
+			{
+				"playerId": "ae81e172-801a-4236-929a-b990fc7190ce",
+				"playerName": "August Sky",
+				"playerSlug": "august-sky",
+				"value": 0.75
+			},
+			{
+				"playerId": "773712f6-d76d-4caa-8a9b-56fe1d1a5a68",
+				"playerName": "Natha Kath",
+				"playerSlug": "natha-kath",
+				"value": 0.7333333333333333
+			},
+			{
+				"playerId": "138fccc3-e66f-4b07-8327-d4b6f372f654",
+				"playerName": "Oscar Vaughan",
+				"playerSlug": "oscar-vaughan",
+				"value": 0.71875
+			},
+			{
+				"playerId": "d5b6b11d-3924-4634-bd50-76553f1f162b",
+				"playerName": "Ogden Mendoza",
+				"playerSlug": "ogden-mendoza",
+				"value": 0.7058823529411765
+			},
+			{
+				"playerId": "f2a27a7e-bf04-4d31-86f5-16bfa3addbe7",
+				"playerName": "Winnie Hess",
+				"playerSlug": "winnie-hess",
+				"value": 0.696969696969697
+			}
+		],
+		"wins": [
+			{
+				"playerId": "7aeb8e0b-f6fb-4a9e-bba2-335dada5f0a3",
+				"playerName": "Dunlap Figueroa",
+				"playerSlug": "dunlap-figueroa",
+				"value": 28
+			},
+			{
+				"playerId": "a691f2ba-9b69-41f8-892c-1acd42c336e4",
+				"playerName": "Jenkins Good",
+				"playerSlug": "jenkins-good",
+				"value": 26
+			},
+			{
+				"playerId": "b7ca8f3f-2fdc-477b-84f4-157f2802e9b5",
+				"playerName": "Leach Herman",
+				"playerSlug": "leach-herman",
+				"value": 26
+			},
+			{
+				"playerId": "9397ed91-608e-4b13-98ea-e94c795f651e",
+				"playerName": "Yeong-Ho Garcia",
+				"playerSlug": "yeong-ho-garcia",
+				"value": 26
+			},
+			{
+				"playerId": "338694b7-6256-4724-86b6-3884299a5d9e",
+				"playerName": "PolkaDot Patterson",
+				"playerSlug": "polkadot-patterson",
+				"value": 25
+			},
+			{
+				"playerId": "f2a27a7e-bf04-4d31-86f5-16bfa3addbe7",
+				"playerName": "Winnie Hess",
+				"playerSlug": "winnie-hess",
+				"value": 23
+			},
+			{
+				"playerId": "2720559e-9173-4042-aaa0-d3852b72ab2e",
+				"playerName": "Hiroto Wilcox",
+				"playerSlug": "hiroto-wilcox",
+				"value": 23
+			},
+			{
+				"playerId": "03f920cc-411f-44ef-ae66-98a44e883291",
+				"playerName": "Cornelius Games",
+				"playerSlug": "cornelius-games",
+				"value": 23
+			},
+			{
+				"playerId": "138fccc3-e66f-4b07-8327-d4b6f372f654",
+				"playerName": "Oscar Vaughan",
+				"playerSlug": "oscar-vaughan",
+				"value": 23
+			},
+			{
+				"playerId": "9786b2c9-1205-4718-b0f7-fc000ce91106",
+				"playerName": "Kevin Dudley",
+				"playerSlug": "kevin-dudley",
+				"value": 22
+			}
+		]
+	}
+}
