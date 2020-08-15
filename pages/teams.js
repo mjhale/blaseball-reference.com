@@ -10,6 +10,11 @@ export default function Teams({ teams }) {
     <>
       <Head>
         <title>Blaseball Teams - Blaseball-Reference.com</title>
+        <meta
+          property="og:title"
+          content="Blaseball Teams -  Blaseball-Reference.com"
+          key="title"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>

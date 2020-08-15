@@ -23,7 +23,8 @@ export default function Navigation() {
           align="center"
           justify="space-between"
           wrap="wrap"
-          py={8}
+          mb={6}
+          mt={8}
           bg="white"
         >
           <Flex align="center">
@@ -61,7 +62,12 @@ export default function Navigation() {
             </Heading>
           </Flex>
 
-          <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
+          <Box
+            cursor="pointer"
+            display={{ base: "block", md: "none" }}
+            p={3}
+            onClick={handleToggle}
+          >
             <svg
               fill="black"
               width="12px"
@@ -73,9 +79,9 @@ export default function Navigation() {
             </svg>
           </Box>
           <Box
-            alignItems={{ sm: "center", md: "right" }}
-            display={{ sm: isOpen ? "block" : "none", md: "flex" }}
-            width={{ sm: "full", md: "auto" }}
+            alignItems={{ base: "center", md: "right" }}
+            display={{ base: isOpen ? "block" : "none", md: "flex" }}
+            width={{ base: "full", md: "auto" }}
             justifyContent={{ md: "flex-end" }}
             flexGrow={1}
           >
