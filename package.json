@@ -5,22 +5,29 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:index": "node ./.next/serverless/scripts/generate-index.js",
     "start": "next start"
   },
   "dependencies": {
     "@chakra-ui/core": "next",
+    "@chakra-ui/icons": "^1.0.0-rc.0",
+    "@chakra-ui/system": "^1.0.0-rc.0",
     "@chakra-ui/theme": "^1.0.0-rc.0",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@reach/skip-nav": "^0.10.5",
+    "algoliasearch": "^4.4.0",
+    "formik": "^2.1.5",
     "next": "9.5.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-table": "^7.4.2"
+    "react-table": "^7.4.2",
+    "sitemap": "^6.2.0"
   },
   "devDependencies": {
     "@types/node": "^14.0.27",
     "@types/react": "^16.9.43",
+    "globby": "^11.0.1",
     "typescript": "^3.9.7"
   }
 }
