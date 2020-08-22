@@ -1,18 +1,40 @@
-import { Box, Container, Heading, Flex, Link, Text } from "@chakra-ui/core";
+import {
+  Box,
+  Button,
+  Container,
+  Heading,
+  Flex,
+  Link,
+  Text,
+} from "@chakra-ui/core";
 import NextLink from "next/link";
+import SearchForm from "components/SearchForm";
 import { SkipNavLink } from "@reach/skip-nav";
+import { useState } from "react";
 
 const MenuItem = ({ children, href }) => (
   <NextLink href={href} passHref>
-    <Link mt={{ base: 4, md: 0 }} ml={{ md: 6 }} display="block">
+    <Link
+      _notLast={{
+        borderBottom: { base: "1px solid" },
+        borderBottomColor: { base: "gray.200" },
+      }}
+      px={{ base: 6, md: 1 }}
+      py={{ base: 3, md: 2 }}
+      ml={{ md: 6 }}
+      display="block"
+    >
       {children}
     </Link>
   </NextLink>
 );
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const handleToggle = () => setIsOpen(!isOpen);
+  const [isOpen, setIsOpen] = useState(false);
+
+  function handleToggle(event) {
+    setIsOpen(!isOpen);
+  }
 
   return (
     <>
@@ -23,11 +45,14 @@ export default function Navigation() {
           align="center"
           justify="space-between"
           wrap="wrap"
-          mb={6}
           mt={8}
           bg="white"
         >
-          <Flex align="center">
+          <Flex
+            align="center"
+            justify={{ base: "space-between", md: "normal" }}
+            width={{ base: "100%", md: "auto" }}
+          >
             <Heading as="h1" size="lg">
               <NextLink href="/" passHref>
                 <Link
@@ -60,30 +85,40 @@ export default function Navigation() {
                 </Link>
               </NextLink>
             </Heading>
-          </Flex>
-
-          <Box
-            cursor="pointer"
-            display={{ base: "block", md: "none" }}
-            p={3}
-            onClick={handleToggle}
-          >
-            <svg
-              fill="black"
-              width="12px"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
+            <Button
+              cursor="pointer"
+              display={{ base: "block", md: "none" }}
+              p={{ base: 3 }}
+              onClick={handleToggle}
             >
-              <title>Menu</title>
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-            </svg>
-          </Box>
+              <svg
+                fill="black"
+                width={16}
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Menu</title>
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+              </svg>
+            </Button>
+          </Flex>
           <Box
-            alignItems={{ base: "center", md: "right" }}
-            display={{ base: isOpen ? "block" : "none", md: "flex" }}
-            width={{ base: "full", md: "auto" }}
-            justifyContent={{ md: "flex-end" }}
+            mt={{ base: 4 }}
+            minWidth={{ base: "auto", md: "md" }}
+            width={{ base: "100%", md: "auto" }}
+          >
+            <SearchForm />
+          </Box>
+        </Flex>
+
+        <Flex as="nav" align="center" wrap="nowrap" mb={4} mt={4} bg="white">
+          <Box
+            alignItems="left"
+            bgColor="gray.100"
+            display={{ base: isOpen ? "flex" : "none", md: "flex" }}
+            flexDirection={{ base: "column", md: "row" }}
             flexGrow={1}
+            justifyContent={{ md: "flex-start" }}
           >
             <MenuItem href="/players">Players</MenuItem>
             <MenuItem href="/teams">Teams</MenuItem>

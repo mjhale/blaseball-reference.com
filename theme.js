@@ -21,4 +21,16 @@ export default {
     "5xl": "3rem",
     "6xl": "4rem",
   },
+  styles: {
+    global: {
+      ":root": {
+        "--reach/combobox": "1",
+      },
+      "img:not([alt])": {
+        border: "5px solid",
+        borderColor: "red.500",
+        opacity: "0.5",
+      },
+    },
+  },
 };
