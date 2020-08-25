@@ -1,11 +1,16 @@
-import jsonData from "data/players/players.json";
+import apiFetcher from "lib/api-fetcher";
+import useSWR from "swr";
 
 import Head from "next/head";
-import { Heading, Text } from "@chakra-ui/core";
+import { Box, Heading, Text } from "@chakra-ui/core";
 import Layout from "components/Layout";
 import PlayerList from "components/PlayerList";
 
-export default function PlayersPage({ players }) {
+export default function PlayersPage(props) {
+  const { data, error } = useSWR("/players/players.json", apiFetcher, {
+    initialData: props.players,
+  });
+
   return (
     <>
       <Head>
@@ -27,31 +32,27 @@ export default function PlayersPage({ players }) {
           Search the Blaseball encyclopedia of players by the first letter of
           the player's last name.
         </Text>
-        <PlayerList players={players} />
+        {error ? (
+          <Box>
+            Sorry, we're currently having a siesta and couldn't load player
+            information.
+          </Box>
+        ) : (
+          <PlayerList players={data} />
+        )}
       </Layout>
     </>
   );
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const data = jsonData;
-  const groupedByLastName = data.reduce((accumulator, player) => {
-    const lastName = player.name.split(" ").pop();
-    const group = lastName[0].toLocaleLowerCase();
-
-    if (!accumulator[group]) {
-      accumulator[group] = { group, children: [player] };
-    } else {
-      accumulator[group].children.push(player);
-    }
-
-    return accumulator;
-  }, {});
+  const players = await apiFetcher("/players/players.json");
 
   return {
     props: {
-      players: groupedByLastName,
+      players: players,
       preview,
     },
+    revalidate: 60,
   };
 }

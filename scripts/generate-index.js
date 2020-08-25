@@ -1,12 +1,13 @@
-const playersData = require("../data/players/players.json");
-const teamsData = require("../data/teams.json");
-
 const algoliasearch = require("algoliasearch");
+const apiFetcher = require("lib/api-fetcher");
 
-function generate() {
+async function generate() {
   if (!process.env.ALGOLIA_ADMIN_KEY) {
     throw new Error("Missing environment variable for 'ALGOLIA_ADMIN_KEY'");
   }
+
+  const players = await apiFetcher("/players/players.json");
+  const teams = await apiFetcher("/teams/teams.json");
 
   const client = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
@@ -15,7 +16,7 @@ function generate() {
   const index = client.initIndex(process.env.NEXT_PUBLIC_ALGOLIA_INDEX);
   const indexRecords = [];
 
-  for (const player of playersData) {
+  for (const player of players) {
     indexRecords.push({
       aliases: [
         ...player.aliases,
@@ -30,7 +31,7 @@ function generate() {
     });
   }
 
-  for (const team of teamsData) {
+  for (const team of teams) {
     indexRecords.push({
       aliases: [team.shorthand, String.fromCodePoint(team.emoji)],
       anchor: `/teams/${team.slug}`,

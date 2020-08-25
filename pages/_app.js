@@ -1,5 +1,8 @@
-import "@reach/skip-nav/styles.css";
+import apiFetcher from "lib/api-fetcher";
 import theme from "theme";
+import { SWRConfig } from "swr";
+
+import "@reach/skip-nav/styles.css";
 
 import { ChakraProvider, CSSReset } from "@chakra-ui/core";
 import Head from "next/head";
@@ -15,7 +18,14 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <ChakraProvider theme={theme}>
         <CSSReset />
-        <Component {...pageProps} />
+        <SWRConfig
+          value={{
+            fetcher: apiFetcher,
+            refreshInterval: 900000,
+          }}
+        >
+          <Component {...pageProps} />
+        </SWRConfig>
       </ChakraProvider>
     </>
   );

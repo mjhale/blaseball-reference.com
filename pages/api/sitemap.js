@@ -1,6 +1,4 @@
-import playersData from "data/players/players.json";
-import teamsData from "data/teams.json";
-
+import apiFetcher from "lib/api-fetcher";
 import globby from "globby";
 import { SitemapStream, streamToPromise } from "sitemap";
 
@@ -13,6 +11,9 @@ function getPageRoute(page) {
 
 export default async function generateSitemap(req, res) {
   try {
+    const players = await apiFetcher("/players/players.json");
+    const teams = await apiFetcher("/teams/teams.json");
+
     const smStream = new SitemapStream({
       hostname: "https://" + req.headers.host,
     });
@@ -24,10 +25,11 @@ export default async function generateSitemap(req, res) {
       "!pages/players/[playerSlug].js",
       "!pages/teams/[teamSlug].js",
     ]);
-    const players =
-      playersData.map((player) => ({ slug: `/players/${player.slug}` })) || [];
-    const teams =
-      teamsData.map((team) => ({ slug: `/teams/${team.slug}` })) || [];
+
+    const playerSlugs =
+      players.map((player) => ({ slug: `/players/${player.slug}` })) || [];
+    const teamSlugs =
+      teams.map((team) => ({ slug: `/teams/${team.slug}` })) || [];
 
     pages.map((page) => {
       smStream.write({
@@ -36,14 +38,14 @@ export default async function generateSitemap(req, res) {
       });
     });
 
-    for (const player of players) {
+    for (const player of playerSlugs) {
       smStream.write({
         url: player.slug,
         lastmod: Date.now(),
       });
     }
 
-    for (const team of teams) {
+    for (const team of teamSlugs) {
       smStream.write({
         url: team.slug,
         lastmod: Date.now(),

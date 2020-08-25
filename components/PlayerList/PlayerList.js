@@ -1,13 +1,34 @@
 import { Box, Divider, Heading, Link, Text } from "@chakra-ui/core";
 import NextLink from "next/link";
 
+function groupPlayersByLastName(players) {
+  return players.reduce((accumulator, player) => {
+    const lastName = player.name.split(" ").pop();
+    const group = lastName[0].toLocaleLowerCase();
+
+    if (!accumulator[group]) {
+      accumulator[group] = { group, children: [player] };
+    } else {
+      accumulator[group].children.push(player);
+    }
+
+    return accumulator;
+  }, {});
+}
+
 export default function PlayerList({ players }) {
+  if (!players) {
+    return <Box>Loading...</Box>;
+  }
+
+  const playersGroupedByLastName = groupPlayersByLastName(players);
+
   return (
     <>
-      {Object.keys(players)
+      {Object.keys(playersGroupedByLastName)
         .sort()
         .map((alphabeticGroup) => {
-          const playersInAlphabeticGroup = players[
+          const playersInAlphabeticGroup = playersGroupedByLastName[
             alphabeticGroup
           ].children.sort((a, b) => {
             let aLastName = a.name
