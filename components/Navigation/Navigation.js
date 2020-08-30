@@ -123,6 +123,7 @@ export default function Navigation() {
             <MenuItem href="/players">Players</MenuItem>
             <MenuItem href="/teams">Teams</MenuItem>
             <MenuItem href="/leaders">Leaders</MenuItem>
+            <MenuItem href="/standings">Standings</MenuItem>
           </Box>
         </Flex>
       </Container>
