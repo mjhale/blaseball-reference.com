@@ -5,9 +5,8 @@ export default function TeamCard({ team }) {
   return (
     <NextLink href="teams/[teamSlug]" as={`teams/${team.slug}`} passHref>
       <Link
-        _hover={{ boxShadow: "md" }}
+        _hover={{ bgColor: "hsl(35, 100%, 98%)", boxShadow: "md" }}
         alignItems="center"
-        bgColor="hsl(35, 100%, 98%)"
         border="1px"
         borderColor="gray.200"
         display="flex"
@@ -27,7 +26,7 @@ export default function TeamCard({ team }) {
           mr="3"
           width="20"
         >
-          <Text as="span" display="block" fontSize="2xl" role="emoji">
+          <Text as="span" display="block" fontSize="4xl" role="emoji">
             {String.fromCodePoint(team.emoji)}
           </Text>
         </Box>

@@ -42,6 +42,6 @@ export const StyledTableHeadCell = styled.th`
 
 export const StyledTableRow = styled.tr`
   &:hover {
-    background-color: ${theme.colors.gray["100"]};
+    background-color: hsl(35, 100%, 95%);
   }
 `;

@@ -1,4 +1,6 @@
 import Head from "next/head";
+import { Box, Flex, Heading } from "@chakra-ui/core";
+
 import Layout from "components/Layout";
 
 export default function IndexPage() {
@@ -16,11 +18,14 @@ export default function IndexPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <h1>Blaseball Stats, Scores, and History</h1>
-        <p>
+        <Heading as="h1" mb={4} size="lg">
+          Blaseball Stats, Scores, and History
+        </Heading>
+        <Box mb={2}>
           The complete source for current and historical blaseball players,
           teams, scores, leaders, umps, blessings, and curses.
-        </p>
+        </Box>
+        <Box mb={2}>Launching soon.</Box>
       </Layout>
     </>
   );

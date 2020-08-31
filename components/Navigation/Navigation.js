@@ -7,6 +7,7 @@ import {
   Link,
   Text,
 } from "@chakra-ui/core";
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 import SearchForm from "components/SearchForm";
 import { SkipNavLink } from "@reach/skip-nav";
@@ -87,19 +88,16 @@ export default function Navigation() {
             </Heading>
             <Button
               cursor="pointer"
-              display={{ base: "block", md: "none" }}
-              p={{ base: 3 }}
+              display={{ base: "flex", md: "none" }}
               onClick={handleToggle}
+              p={{ base: 3 }}
+              width={6}
             >
-              <svg
-                fill="black"
-                width={16}
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <title>Menu</title>
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-              </svg>
+              {!isOpen ? (
+                <HamburgerIcon boxSize={5} />
+              ) : (
+                <CloseIcon boxSize={4} />
+              )}
             </Button>
           </Flex>
           <Box
@@ -111,7 +109,14 @@ export default function Navigation() {
           </Box>
         </Flex>
 
-        <Flex as="nav" align="center" wrap="nowrap" mb={4} mt={4} bg="white">
+        <Flex
+          as="nav"
+          align="center"
+          wrap="nowrap"
+          mb={{ base: 2, md: 4 }}
+          mt={4}
+          bg="white"
+        >
           <Box
             alignItems="left"
             bgColor="gray.100"

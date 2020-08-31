@@ -9,7 +9,7 @@ export default function Layout({ children }) {
       <main>
         <SkipNavContent />
         <Container maxWidth="6xl">
-          <Alert mb={4} status="warning">
+          <Alert bgColor="gray.100" mb={4} status="info">
             <AlertIcon />
             This is a work-in-progress build. All stats are based on incomplete
             data.

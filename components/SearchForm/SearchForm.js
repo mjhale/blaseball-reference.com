@@ -29,6 +29,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 
 // @TODO: Fix combobox options rendering after submit when already on search page
 export default function SearchForm() {
+  const [hasSelected, setHasSelected] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [{ isLoading, results }, setSearchTerm] = useAlgoliaSearchResults();
   const resultComboboxOptionData = useRef({});
@@ -52,20 +53,20 @@ export default function SearchForm() {
 
   function handleSelect(value) {
     setInputValue(value);
+    setHasSelected(true);
 
-    // @TODO: Add push to select if it improves UX
     // Redirect user to selected term's anchor
-    // if (resultComboboxOptionData.current[value].type === "players") {
-    //   router.push(
-    //     "/players/[playerSlug]",
-    //     resultComboboxOptionData.current[value].anchor
-    //   );
-    // } else if (resultComboboxOptionData.current[value].type === "teams") {
-    //   router.push(
-    //     "/teams/[teamSlug]",
-    //     resultComboboxOptionData.current[value].anchor
-    //   );
-    // }
+    if (resultComboboxOptionData.current[value].type === "players") {
+      router.push(
+        "/players/[playerSlug]",
+        resultComboboxOptionData.current[value].anchor
+      );
+    } else if (resultComboboxOptionData.current[value].type === "teams") {
+      router.push(
+        "/teams/[teamSlug]",
+        resultComboboxOptionData.current[value].anchor
+      );
+    }
   }
 
   // @TODO: Change focus to search result body on submit
@@ -89,6 +90,22 @@ export default function SearchForm() {
       setInputValue(router.query.searchTerm);
     }
   }, [router.pathname, router.query.searchTerm]);
+
+  // Reset loading icon on page transitions
+  useEffect(() => {
+    const resetHasSelected = (url) => {
+      if (hasSelected) {
+        setInputValue("");
+        setHasSelected(false);
+      }
+    };
+
+    router.events.on("routeChangeComplete", resetHasSelected);
+
+    return () => {
+      router.events.off("routeChangeComplete", resetHasSelected);
+    };
+  }, [hasSelected]);
 
   return (
     <Box>
@@ -120,7 +137,7 @@ export default function SearchForm() {
                 as={ComboboxInput}
                 borderColor="gray.200"
                 enterkeyhint="search"
-                fontSize="sm"
+                fontSize={{ base: "lg", md: "md" }}
                 id="searchTerm"
                 inputMode="search"
                 name="searchTerm"
@@ -188,10 +205,10 @@ export default function SearchForm() {
                                 return (
                                   <ListItem
                                     _hover={{
-                                      bgColor: "yellow.100",
+                                      bgColor: "hsl(35, 100%, 95%)",
                                     }}
                                     _selected={{
-                                      bgColor: "yellow.50",
+                                      bgColor: "hsl(35, 100%, 85%)",
                                     }}
                                     as={StyledComboboxOption}
                                     cursor="pointer"
@@ -213,7 +230,9 @@ export default function SearchForm() {
               </ComboboxPopover>
             ) : null}
           </Combobox>
-          <Button type="submit">Search</Button>
+          <Button isLoading={isLoading || hasSelected} type="submit">
+            Search
+          </Button>
         </Flex>
       </form>
     </Box>
