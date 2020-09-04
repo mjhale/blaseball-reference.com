@@ -182,6 +182,25 @@ export function commonBattingStatColumns(summaryData = null) {
       Cell: ({ value }) => Number.parseFloat(value).toFixed(3),
     },
     {
+      accessor: "battingAverageWithRunnersInScoringPosition",
+      Header: (
+        <Tooltip
+          hasArrow
+          label="Batting Average With Runners in Scoring Position"
+          placement="top"
+        >
+          BA/RISP
+        </Tooltip>
+      ),
+      Footer: () =>
+        summaryData
+          ? Number.parseFloat(
+              summaryData.battingAverageWithRunnersInScoringPosition
+            ).toFixed(3)
+          : null,
+      Cell: ({ value }) => Number.parseFloat(value).toFixed(3),
+    },
+    {
       accessor: "onBasePercentage",
       Header: (
         <Tooltip hasArrow label="On-base Percentage" placement="top">

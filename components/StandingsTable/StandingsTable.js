@@ -193,6 +193,32 @@ export default function StandingsTable({ division, divisions, standings }) {
         Footer: () => "-",
       },
       {
+        accessor: "magicNumber",
+        Header: (
+          <Tooltip
+            hasArrow
+            label="Magic Number: Wins needed to clinch a playoff appearance."
+            placement="top"
+          >
+            M#
+          </Tooltip>
+        ),
+        Footer: () => "-",
+      },
+      {
+        accessor: "eliminationNumber",
+        Header: (
+          <Tooltip
+            hasArrow
+            label="Elimination Number: Number of losses until eliminated from playoff contention."
+            placement="top"
+          >
+            E#
+          </Tooltip>
+        ),
+        Footer: () => "-",
+      },
+      {
         accessor: "splitRecords.home",
         Header: (
           <Tooltip hasArrow label="Record at Home" placement="top">

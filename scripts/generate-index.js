@@ -1,5 +1,13 @@
 const algoliasearch = require("algoliasearch");
-const apiFetcher = require("lib/api-fetcher");
+const fetch = require("node-fetch");
+
+export default async function apiFetcher(endpoint) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BLASEBALL_REFERENCE_API_URL}${endpoint}`
+  );
+
+  return res.json();
+}
 
 async function generate() {
   if (!process.env.ALGOLIA_ADMIN_KEY) {

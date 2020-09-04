@@ -9,12 +9,6 @@ import Head from "next/head";
 import Layout from "components/Layout";
 import PitchingStatTable from "components/PitchingStatTable";
 
-function getPlayerPositionGroup(player) {
-  return ["rotation", "bullpen"].includes(player.position)
-    ? "pitching"
-    : "batting";
-}
-
 export default function PlayerPage(props) {
   const router = useRouter();
 
@@ -25,12 +19,28 @@ export default function PlayerPage(props) {
       initialData: props.player,
     }
   );
-  const playerPositionGroup = player ? getPlayerPositionGroup(player) : null;
-  const { data: positionStats, error: positionStatsError } = useSWR(
-    `/${playerPositionGroup}/${router.query.playerSlug}/summary.json`,
+  const { data: battingStats, error: battingStatsError } = useSWR(
+    `/batting/${router.query.playerSlug}/summary.json`,
     apiFetcher,
     {
-      initialData: props.positionStats,
+      initialData: props.battingStats,
+      onErrorRetry: (error, key, option, revalidate, { retryCount }) => {
+        if (error.status === 403 || error.status === 404) return;
+        if (retryCount >= 10) return;
+        setTimeout(() => revalidate({ retryCount: retryCount + 1 }), 5000);
+      },
+    }
+  );
+  const { data: pitchingStats, error: pitchingStatsError } = useSWR(
+    `/pitching/${router.query.playerSlug}/summary.json`,
+    apiFetcher,
+    {
+      initialData: props.pitchingStats,
+      onErrorRetry: (error, key, option, revalidate, { retryCount }) => {
+        if (error.status === 403 || error.status === 404) return;
+        if (retryCount >= 10) return;
+        setTimeout(() => revalidate({ retryCount: retryCount + 1 }), 5000);
+      },
     }
   );
 
@@ -38,10 +48,10 @@ export default function PlayerPage(props) {
     return <ErrorPage statusCode={404} />;
   }
 
-  if (playerError || positionStatsError) {
+  if (playerError) {
     return (
       <Box>
-        Sorry, we're currently having a siesta and couldn't load team
+        Sorry, we're currently having a siesta and couldn't load player
         information.
       </Box>
     );
@@ -95,11 +105,9 @@ export default function PlayerPage(props) {
               {player.position === "rotation" ||
               player.position === "bullpen" ? (
                 <Text my={1}>Position: Pitcher</Text>
-              ) : null}
-
-              {player.position === "lineup" || player.position === "bench" ? (
+              ) : (
                 <Text my={1}>Position: Fielder</Text>
-              ) : null}
+              )}
 
               <Text my={1}>
                 Debut: Season {Number(player.debutSeason) + 1}, Day{" "}
@@ -119,61 +127,12 @@ export default function PlayerPage(props) {
                 <Text my={1}>Ritual: {player.ritual}</Text>
               ) : null}
             </Box>
-
-            {!positionStats ? (
-              <Box>Loading position stats...</Box>
-            ) : (
-              <>
-                {(player.position === "rotation" ||
-                  player.position === "bullpen") && (
-                  <Box my={4}>
-                    <Heading as="h2" size="md">
-                      Standard Pitching
-                    </Heading>
-                    <PitchingStatTable pitchingStats={positionStats} />
-
-                    {Object.keys(positionStats.postseasons).length > 0 && (
-                      <Box my={4}>
-                        <Heading as="h2" size="md">
-                          Postseason Pitching
-                        </Heading>
-                        <PitchingStatTable
-                          isPostseason={true}
-                          pitchingStats={positionStats}
-                        />
-                      </Box>
-                    )}
-                  </Box>
-                )}
-
-                {(player.position === "lineup" ||
-                  player.position === "bench") && (
-                  <Box my={4}>
-                    <Heading as="h2" size="md">
-                      Standard Batting
-                    </Heading>
-                    <BattingStatTable battingStats={positionStats} />
-
-                    {Object.keys(positionStats.postseasons).length > 0 && (
-                      <Box my={4}>
-                        <Heading as="h2" size="md">
-                          Postseason Batting
-                        </Heading>
-                        <BattingStatTable
-                          isPostseason={true}
-                          battingStats={positionStats}
-                        />
-                      </Box>
-                    )}
-                  </Box>
-                )}
-              </>
-            )}
-            <Box my={4}>
-              <Text color="gray.500" fontSize="xs">
-                * Based on incomplete or earliest recorded data
-              </Text>
-            </Box>
+            <PlayerStats
+              battingStats={battingStats}
+              battingStatsError={battingStatsError}
+              pitchingStats={pitchingStats}
+              pitchingStatsError={pitchingStatsError}
+            />
           </>
         )}
       </Layout>
@@ -181,17 +140,85 @@ export default function PlayerPage(props) {
   );
 }
 
-export async function getStaticProps({ params, preview = false }) {
-  const player = await apiFetcher(`/players/${params.playerSlug}/details.json`);
-  const playerPositionGroup = getPlayerPositionGroup(player);
-  const playerPositionStats = await apiFetcher(
-    `/${playerPositionGroup}/${params.playerSlug}/summary.json`
+function PlayerStats({
+  battingStats,
+  battingStatsError,
+  pitchingStats,
+  pitchingStatsError,
+}) {
+  return (
+    <>
+      {pitchingStats && !pitchingStatsError ? (
+        <Box my={4}>
+          <Heading as="h2" size="md">
+            Standard Pitching
+          </Heading>
+          <PitchingStatTable pitchingStats={pitchingStats} />
+
+          {Object.keys(pitchingStats.postseasons).length > 0 && (
+            <Box my={4}>
+              <Heading as="h2" size="md">
+                Postseason Pitching
+              </Heading>
+              <PitchingStatTable
+                isPostseason={true}
+                pitchingStats={pitchingStats}
+              />
+            </Box>
+          )}
+        </Box>
+      ) : null}
+
+      {battingStats && !battingStatsError ? (
+        <Box my={4}>
+          <Heading as="h2" size="md">
+            Standard Batting
+          </Heading>
+          <BattingStatTable battingStats={battingStats} />
+
+          {Object.keys(battingStats.postseasons).length > 0 && (
+            <Box my={4}>
+              <Heading as="h2" size="md">
+                Postseason Batting
+              </Heading>
+              <BattingStatTable
+                isPostseason={true}
+                battingStats={battingStats}
+              />
+            </Box>
+          )}
+        </Box>
+      ) : null}
+    </>
   );
+}
+
+export async function getStaticProps({ params, preview = false }) {
+  let battingStats;
+  let pitchingStats;
+  const player = await apiFetcher(`/players/${params.playerSlug}/details.json`);
+
+  try {
+    battingStats = await apiFetcher(
+      `/batting/${params.playerSlug}/summary.json`
+    );
+  } catch {
+    battingStats = null;
+  }
+
+  try {
+    pitchingStats = await apiFetcher(
+      `/pitching/${params.playerSlug}/summary.json`
+    );
+  } catch {
+    pitchingStats = null;
+  }
 
   return {
     props: {
+      battingStats,
       player,
-      positionStats: playerPositionStats,
+      pitchingStats,
       preview,
     },
     revalidate: 60,

@@ -1,7 +1,7 @@
 import { Box, Flex, Link, Text } from "@chakra-ui/core";
 import NextLink from "next/link";
 
-export default function LeaderTable({ category, leaders }) {
+export default function LeaderTable({ category, leaders, teams }) {
   return (
     <Flex border="1px solid" borderColor="gray.300" flexDirection="column">
       <Box
@@ -46,7 +46,12 @@ export default function LeaderTable({ category, leaders }) {
                 passHref
               >
                 <Link>{leader.playerName}</Link>
-              </NextLink>
+              </NextLink>{" "}
+              {teams.find((team) => team.id === leader.team)
+                ? `(${
+                    teams.find((team) => team.id === leader.team)?.shorthand
+                  })`
+                : null}
             </Box>
             <Box>
               {Number.isSafeInteger(leader.value)

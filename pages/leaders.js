@@ -21,6 +21,9 @@ export default function LeadersPage(props) {
       initialData: props.seasons,
     }
   );
+  const { data: teams, error: teamsError } = useSWR("/teams.json", apiFetcher, {
+    initialData: props.teams,
+  });
   const currentSeason = seasons ? Object.keys(seasons).sort().pop() : null;
   const currentSeasonLeaders = currentSeason ? seasons[currentSeason] : null;
 
@@ -40,14 +43,14 @@ export default function LeadersPage(props) {
           Blaseball Stat Leaders
         </Heading>
 
-        {categoriesError || seasonsError ? (
+        {categoriesError || seasonsError || teamsError ? (
           <Box>
             Sorry, we're currently having a siesta and couldn't load stat leader
             information.
           </Box>
         ) : null}
 
-        {categories && currentSeasonLeaders ? (
+        {categories && currentSeasonLeaders && teams ? (
           <>
             <Heading as="h2" size="md" mb={2}>
               Current Season Batting
@@ -66,6 +69,8 @@ export default function LeadersPage(props) {
                   <LeaderTable
                     category={categories.find((c) => c.id === category)}
                     leaders={currentSeasonLeaders.batting[category]}
+                    key={category}
+                    teams={teams}
                   />
                 ))}
               </Grid>
@@ -88,6 +93,7 @@ export default function LeadersPage(props) {
                     category={categories.find((c) => c.id === category)}
                     leaders={currentSeasonLeaders.pitching[category]}
                     key={category}
+                    teams={teams}
                   />
                 ))}
               </Grid>
@@ -102,12 +108,14 @@ export default function LeadersPage(props) {
 export async function getStaticProps({ params, preview = false }) {
   const categories = await apiFetcher("/leaders/categories.json");
   const seasons = await apiFetcher("/leaders/bySeason.json");
+  const teams = await apiFetcher("/teams.json");
 
   return {
     props: {
-      categories: categories,
-      seasons: seasons,
+      categories,
       preview,
+      seasons,
+      teams,
     },
     revalidate: 60,
   };

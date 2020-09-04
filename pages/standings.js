@@ -48,13 +48,13 @@ export default function StandingsPage(props) {
             </Box>
           ) : (
             leaguesAndDivisions.divisions.map((division) => (
-              <>
+              <React.Fragment key={division.id}>
                 <StandingsTable
                   division={division}
                   divisions={leaguesAndDivisions.divisions}
                   standings={standings[currentSeason][division.id]}
                 />
-              </>
+              </React.Fragment>
             ))
           )}
         </Stack>

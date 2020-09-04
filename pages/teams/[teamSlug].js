@@ -42,6 +42,8 @@ export default function Team(props) {
             Sorry, we're currently having a siesta and couldn't load team
             information.
           </Box>
+        ) : !team ? (
+          <Box>Loading team details...</Box>
         ) : (
           <>
             <TeamHistory team={team} />

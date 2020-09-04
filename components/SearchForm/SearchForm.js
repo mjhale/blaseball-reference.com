@@ -18,9 +18,11 @@ import {
   CircularProgress,
   Flex,
   Heading,
+  Image,
   Input,
   InputGroup,
   InputLeftElement,
+  Link,
   List,
   ListItem,
   Skeleton,
@@ -159,73 +161,91 @@ export default function SearchForm() {
                   boxShadow="sm"
                   mt={2}
                 >
-                  {isLoading ? (
-                    <>
-                      <Heading
-                        as="h3"
-                        bgColor="gray.100"
-                        py={2}
-                        px={4}
-                        size="sm"
-                      >
-                        <Skeleton
-                          startColor="gray.500"
-                          endColor="black"
-                          height={4}
-                          width={16}
-                        />
-                      </Heading>
-                      <ListItem px={3} py={1}>
-                        <Skeleton>Loading...</Skeleton>
-                      </ListItem>
-                    </>
-                  ) : (
-                    <>
-                      {Object.keys(results).map((resultGroup) => {
-                        return (
-                          <React.Fragment key={resultGroup}>
-                            <Heading
-                              as="h3"
-                              bgColor="gray.100"
-                              py={2}
-                              px={4}
-                              size="sm"
-                              textTransform="capitalize"
-                            >
-                              {resultGroup}
-                            </Heading>
-                            <Box _notLast={{ pb: 2 }}>
-                              {results[resultGroup].map((result, index) => {
-                                resultComboboxOptionData.current[
-                                  result.title
-                                ] = {
-                                  ...result,
-                                };
+                  <>
+                    {isLoading ? (
+                      <>
+                        <Heading
+                          as="h3"
+                          bgColor="gray.100"
+                          py={2}
+                          px={4}
+                          size="sm"
+                        >
+                          <Skeleton
+                            startColor="gray.500"
+                            endColor="black"
+                            height={4}
+                            width={16}
+                          />
+                        </Heading>
+                        <ListItem px={3} py={1}>
+                          <Skeleton>Loading...</Skeleton>
+                        </ListItem>
+                      </>
+                    ) : (
+                      <>
+                        {Object.keys(results).map((resultGroup) => {
+                          return (
+                            <React.Fragment key={resultGroup}>
+                              <Heading
+                                as="h3"
+                                bgColor="gray.100"
+                                py={2}
+                                px={4}
+                                size="sm"
+                                textTransform="capitalize"
+                              >
+                                {resultGroup}
+                              </Heading>
+                              <Box>
+                                {results[resultGroup].map((result, index) => {
+                                  resultComboboxOptionData.current[
+                                    result.title
+                                  ] = {
+                                    ...result,
+                                  };
 
-                                return (
-                                  <ListItem
-                                    _hover={{
-                                      bgColor: "hsl(35, 100%, 95%)",
-                                    }}
-                                    _selected={{
-                                      bgColor: "hsl(35, 100%, 85%)",
-                                    }}
-                                    as={StyledComboboxOption}
-                                    cursor="pointer"
-                                    fontSize="sm"
-                                    key={result.objectID}
-                                    px={3}
-                                    py={1}
-                                    value={result.title}
-                                  />
-                                );
-                              })}
-                            </Box>
-                          </React.Fragment>
-                        );
-                      })}
-                    </>
-                  )}
+                                  return (
+                                    <ListItem
+                                      _hover={{
+                                        bgColor: "hsl(35, 100%, 95%)",
+                                      }}
+                                      _selected={{
+                                        bgColor: "hsl(35, 100%, 85%)",
+                                      }}
+                                      as={StyledComboboxOption}
+                                      cursor="pointer"
+                                      fontSize="sm"
+                                      key={result.objectID}
+                                      px={3}
+                                      py={1}
+                                      value={result.title}
+                                    />
+                                  );
+                                })}
+                              </Box>
+                            </React.Fragment>
+                          );
+                        })}
+                      </>
+                    )}
+                    <Flex bgColor="gray.100" justifyContent="center">
+                      <Link
+                        display="inlineBlock"
+                        href="https://algolia.com"
+                        isExternal
+                        tabIndex="-1"
+                      >
+                        <Image
+                          alt="Search by Algolia"
+                          height="16px"
+                          mb={2}
+                          mt={2}
+                          src="/search-by-algolia.svg"
+                        />
+                      </Link>
+                    </Flex>
+                  </>
                 </ComboboxList>
               </ComboboxPopover>
             ) : null}

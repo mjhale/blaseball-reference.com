@@ -9,6 +9,18 @@ export default function TeamPitchingStatTable({
   isPostseason = false,
   pitchingStats,
 }) {
+  if (
+    !pitchingStats ||
+    (!isPostseason &&
+      (!pitchingStats.seasons ||
+        Object.keys(pitchingStats.seasons).length === 0)) ||
+    (isPostseason &&
+      (!pitchingStats.postseasons ||
+        Object.keys(pitchingStats.postseasons).length === 0))
+  ) {
+    return null;
+  }
+
   const data = React.useMemo(() => {
     const seasons = isPostseason
       ? pitchingStats.postseasons

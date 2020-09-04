@@ -1,4 +1,5 @@
 import { Alert, AlertIcon, Container } from "@chakra-ui/core";
+import Footer from "components/Footer";
 import Navigation from "components/Navigation";
 import { SkipNavContent } from "@reach/skip-nav";
 
@@ -18,6 +19,7 @@ export default function Layout({ children }) {
           {children}
         </Container>
       </main>
+      <Footer />
     </>
   );
 }

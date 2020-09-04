@@ -131,6 +131,7 @@ export function commonPitchingStatColumns(summaryData = null) {
           IP
         </Tooltip>
       ),
+      Cell: ({ value }) => Number.parseFloat(value).toFixed(1),
       Footer: () => summaryData?.inningsPitched ?? null,
     },
     {
@@ -177,6 +178,15 @@ export function commonPitchingStatColumns(summaryData = null) {
         </Tooltip>
       ),
       Footer: () => summaryData?.strikeouts ?? null,
+    },
+    {
+      accessor: "qualityStarts",
+      Header: (
+        <Tooltip hasArrow label="Quality Starts" placement="top">
+          QS
+        </Tooltip>
+      ),
+      Footer: () => summaryData?.qualityStarts ?? null,
     },
     {
       accessor: "battersFaced",
