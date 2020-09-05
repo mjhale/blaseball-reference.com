@@ -1,8 +1,9 @@
 import apiFetcher from "lib/api-fetcher";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
-import { Box, Heading } from "@chakra-ui/core";
+import { Box, Heading, Select, Skeleton, Stack } from "@chakra-ui/core";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import Layout from "components/Layout";
@@ -13,25 +14,27 @@ import TeamPitchingStatTable from "components/TeamPitchingStatTable";
 export default function Team(props) {
   const router = useRouter();
 
-  const { data: team, error } = useSWR(
+  const { data: teamDetailsAndPlayerStats, error } = useSWR(
     `/teams/${router.query.teamSlug}/playerStats.json`,
     apiFetcher,
     {
-      initialData: props.team,
+      initialData: props.teamDetailsAndPlayerStats,
     }
   );
 
-  if (!router.isFallback && !props.team) {
+  if (!router.isFallback && !props.teamDetailsAndPlayerStats) {
     return <ErrorPage statusCode={404} />;
   }
 
   return (
     <>
       <Head>
-        <title>{team.fullName} Stats - Blaseball-Reference.com</title>
+        <title>
+          {teamDetailsAndPlayerStats.fullName} Stats - Blaseball-Reference.com
+        </title>
         <meta
           property="og:title"
-          content={`${team.fullName} Stats - Blaseball-Reference.com`}
+          content={`${teamDetailsAndPlayerStats.fullName} Stats - Blaseball-Reference.com`}
           key="title"
         />
         <link rel="icon" href="/favicon.ico" />
@@ -39,44 +42,130 @@ export default function Team(props) {
       <Layout>
         {error ? (
           <Box>
-            Sorry, we're currently having a siesta and couldn't load team
-            information.
+            Sorry, we're currently having a siesta and are unable to provide you
+            the latest team information.
           </Box>
-        ) : !team ? (
-          <Box>Loading team details...</Box>
-        ) : (
-          <>
-            <TeamHistory team={team} />
-            <Box my={2}>
-              <Heading as="h2" size="md">
-                Current Season Stats
-              </Heading>
-            </Box>
-            <Box my={2}>
-              <Heading as="h3" size="sm">
-                Team Batting
-              </Heading>
-              <TeamBattingStatTable battingStats={team.battingStats} />
-            </Box>
-            <Box my={2}>
-              <Heading as="h3" size="sm">
-                Team Pitching
-              </Heading>
-              <TeamPitchingStatTable pitchingStats={team.pitchingStats} />
-            </Box>
-          </>
-        )}
+        ) : null}
+        <TeamHistory teamDetails={teamDetailsAndPlayerStats} />
+        <TeamStats
+          team={teamDetailsAndPlayerStats}
+          teamPlayerStats={teamDetailsAndPlayerStats}
+        />
       </Layout>
     </>
   );
 }
 
+function TeamStats({ team, teamPlayerStats }) {
+  const [selectedSeason, setSelectedSeason] = useState(null);
+  const [seasonList, setSeasonList] = useState([]);
+
+  useEffect(() => {
+    setSeasonList([
+      ...(teamPlayerStats?.battingStats?.seasons
+        ? Object.keys(teamPlayerStats.battingStats.seasons).sort(
+            (a, b) => Number(a) - Number(b)
+          )
+        : []),
+    ]);
+  }, [team.fullName]);
+
+  useEffect(() => {
+    if (seasonList.length > 0) {
+      setSelectedSeason(seasonList[seasonList.length - 1]);
+    }
+  }, [seasonList]);
+
+  const handleSelectChange = (evt) => {
+    setSelectedSeason(evt.target.value);
+  };
+
+  if (
+    !teamPlayerStats ||
+    !teamPlayerStats?.battingStats?.seasons ||
+    !teamPlayerStats?.pitchingStats?.seasons ||
+    !Object.hasOwnProperty.call(
+      teamPlayerStats.battingStats.seasons,
+      selectedSeason
+    ) ||
+    !Object.hasOwnProperty.call(
+      teamPlayerStats.pitchingStats.seasons,
+      selectedSeason
+    )
+  ) {
+    return (
+      <>
+        <Select
+          fontSize={{ base: "lg", md: "md" }}
+          isDisabled={true}
+          maxWidth="2xs"
+          mb={4}
+          placeholder="Loading..."
+          size="md"
+        />
+        <Stack>
+          <Skeleton height="20px" />
+          <Skeleton height="20px" />
+          <Skeleton height="20px" />
+        </Stack>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Select
+        fontSize={{ base: "lg", md: "md" }}
+        maxWidth="2xs"
+        mb={4}
+        onChange={handleSelectChange}
+        size="md"
+        value={selectedSeason}
+      >
+        {seasonList.map((season) => (
+          <option key={season} value={season}>
+            {`Season ${Number(season) + 1}`}
+          </option>
+        ))}
+      </Select>
+
+      <Box mb={2}>
+        <Heading as="h2" size="md">
+          Season {Number(selectedSeason) + 1} Player Stats
+        </Heading>
+      </Box>
+      <Box mb={2}>
+        <Heading as="h3" size="sm">
+          Team Batting
+        </Heading>
+        <TeamBattingStatTable
+          battingStats={teamPlayerStats.battingStats}
+          season={selectedSeason}
+          statTargetName={team.fullName}
+        />
+      </Box>
+      <Box mb={4}>
+        <Heading as="h3" size="sm">
+          Team Pitching
+        </Heading>
+        <TeamPitchingStatTable
+          pitchingStats={teamPlayerStats.pitchingStats}
+          season={selectedSeason}
+          statTargetName={team.fullName}
+        />
+      </Box>
+    </>
+  );
+}
+
 export async function getStaticProps({ params, preview = false }) {
-  const team = await apiFetcher(`/teams/${params.teamSlug}/playerStats.json`);
+  const teamDetailsAndPlayerStats = await apiFetcher(
+    `/teams/${params.teamSlug}/playerStats.json`
+  );
 
   return {
     props: {
-      team,
+      teamDetailsAndPlayerStats,
       preview,
     },
     revalidate: 60,

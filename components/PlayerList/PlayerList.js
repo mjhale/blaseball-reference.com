@@ -56,7 +56,7 @@ export default function PlayerList({ players }) {
                   return (
                     <React.Fragment key={player.id}>
                       <NextLink
-                        href="players/[playerId]"
+                        href="players/[playerSlug]"
                         as={`players/${player.slug}`}
                         passHref
                       >

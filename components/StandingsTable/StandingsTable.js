@@ -1,10 +1,15 @@
 import Table from "components/Table";
 import { Tooltip } from "@chakra-ui/core";
 
-export default function StandingsTable({ division, divisions, standings }) {
+export default function StandingsTable({
+  division,
+  divisions,
+  season,
+  standings,
+}) {
   const data = React.useMemo(() => {
     return standings;
-  }, []);
+  }, [season]);
 
   const lawfulGood = divisions.find(
     (division) => division.name === "Lawful Good"

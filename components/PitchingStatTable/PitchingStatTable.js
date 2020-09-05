@@ -4,6 +4,7 @@ import { Tooltip } from "@chakra-ui/core";
 export default function PitchingStatTable({
   isPostseason = false,
   pitchingStats,
+  statTargetName,
 }) {
   const careerTotals =
     pitchingStats.careerPostseason || pitchingStats.careerSeason
@@ -25,7 +26,7 @@ export default function PitchingStatTable({
           season: season,
         };
       });
-  }, []);
+  }, [isPostseason, statTargetName]);
 
   const columns = React.useMemo(
     () =>
@@ -54,7 +55,7 @@ export default function PitchingStatTable({
           ),
         },
       ].concat(commonPitchingStatColumns(careerTotals)),
-    []
+    [isPostseason, statTargetName]
   );
 
   return <Table columns={columns} data={data} />;

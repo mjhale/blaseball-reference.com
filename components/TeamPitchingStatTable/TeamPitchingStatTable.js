@@ -8,6 +8,8 @@ import { Tooltip } from "@chakra-ui/core";
 export default function TeamPitchingStatTable({
   isPostseason = false,
   pitchingStats,
+  season,
+  statTargetName,
 }) {
   if (
     !pitchingStats ||
@@ -26,15 +28,17 @@ export default function TeamPitchingStatTable({
       ? pitchingStats.postseasons
       : pitchingStats.seasons;
 
-    const mostRecentSeason = Object.keys(seasons).sort().pop();
+    if (!season) {
+      const season = Object.keys(seasons).sort().pop();
+    }
 
-    return seasons[mostRecentSeason].map((player) => {
+    return seasons[season].map((player) => {
       return {
         ...player,
-        season: mostRecentSeason,
+        season,
       };
     });
-  }, []);
+  }, [isPostseason, season, statTargetName]);
 
   const columns = React.useMemo(
     () =>
@@ -49,7 +53,7 @@ export default function TeamPitchingStatTable({
           Cell: ({ row, value }) => {
             return row.original?.slug ? (
               <NextLink
-                href="/players/[playerId]"
+                href="/players/[playerSlug]"
                 as={`/players/${row.original.slug}`}
                 passHref
               >
@@ -59,7 +63,7 @@ export default function TeamPitchingStatTable({
           },
         },
       ].concat(commonPitchingStatColumns()),
-    []
+    [isPostseason, season, statTargetName]
   );
 
   return <Table columns={columns} data={data} />;

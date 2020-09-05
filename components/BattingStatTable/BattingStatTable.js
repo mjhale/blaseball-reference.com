@@ -2,8 +2,9 @@ import Table from "components/Table";
 import { Tooltip } from "@chakra-ui/core";
 
 export default function BattingStatTable({
-  isPostseason = false,
   battingStats,
+  isPostseason = false,
+  statTargetName,
 }) {
   const careerTotals = isPostseason
     ? battingStats.careerPostseason
@@ -22,7 +23,7 @@ export default function BattingStatTable({
           season: season,
         };
       });
-  }, []);
+  }, [isPostseason, statTargetName]);
 
   const columns = React.useMemo(
     () =>
@@ -42,8 +43,16 @@ export default function BattingStatTable({
               : Number(value) + 1;
           },
         },
+        {
+          accessor: "teamName",
+          Header: (
+            <Tooltip hasArrow label="Team" placement="top">
+              Tm
+            </Tooltip>
+          ),
+        },
       ].concat(commonBattingStatColumns(careerTotals)),
-    []
+    [isPostseason, statTargetName]
   );
 
   return <Table columns={columns} data={data} />;

@@ -1,17 +1,19 @@
-import { Box, Heading, Stack } from "@chakra-ui/core";
+import { Box, Heading, Skeleton } from "@chakra-ui/core";
 
-export default function TeamHistory({ team }) {
-  if (!team) {
-    return <Box>Loading team information...</Box>;
+export default function TeamHistory({ teamDetails }) {
+  if (!teamDetails) {
+    return (
+      <Box mb={2}>
+        <Skeleton height="20px" width="2xs" />
+      </Box>
+    );
   }
 
   return (
     <>
-      <Stack spacing={4}>
-        <Heading as="h1" size="lg">
-          {team.fullName}
-        </Heading>
-      </Stack>
+      <Heading as="h1" mb={2} size="lg">
+        {teamDetails.fullName}
+      </Heading>
     </>
   );
 }
