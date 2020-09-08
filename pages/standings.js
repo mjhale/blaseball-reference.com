@@ -117,16 +117,24 @@ function Standings({ leaguesAndDivisions, standings }) {
         ))}
       </Select>
 
-      {leaguesAndDivisions.divisions.map((division) => (
-        <React.Fragment key={division.id}>
-          <StandingsTable
-            division={division}
-            divisions={leaguesAndDivisions.divisions}
-            season={selectedSeason}
-            standings={standings[selectedSeason][division.id]}
-          />
-        </React.Fragment>
-      ))}
+      {Object.entries(standings[selectedSeason]).map(
+        ([divisionId, divisionTeams]) => (
+          <React.Fragment key={divisionId}>
+            <StandingsTable
+              division={leaguesAndDivisions.divisions.find(
+                (division) => division.id === divisionId
+              )}
+              divisions={leaguesAndDivisions.divisions.filter((division) => {
+                return Object.keys(standings[selectedSeason]).includes(
+                  division.id
+                );
+              })}
+              season={selectedSeason}
+              standings={standings[selectedSeason][divisionId]}
+            />
+          </React.Fragment>
+        )
+      )}
     </>
   );
 }

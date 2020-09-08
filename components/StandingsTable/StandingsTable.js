@@ -11,19 +11,6 @@ export default function StandingsTable({
     return standings;
   }, [season]);
 
-  const lawfulGood = divisions.find(
-    (division) => division.name === "Lawful Good"
-  );
-  const chaoticGood = divisions.find(
-    (division) => division.name === "Chaotic Good"
-  );
-  const lawfulEvil = divisions.find(
-    (division) => division.name === "Lawful Evil"
-  );
-  const chaoticEvil = divisions.find(
-    (division) => division.name === "Chaotic Evil"
-  );
-
   const columns = React.useMemo(
     () => [
       {
@@ -351,199 +338,59 @@ export default function StandingsTable({
           }, [info.rows]);
         },
       },
-
-      {
-        accessor: `divisionRecords[${lawfulGood.id}]`,
-        Header: (
-          <Tooltip hasArrow label="vs. Lawful Good" placement="top">
-            LG
-          </Tooltip>
-        ),
-        Cell: ({ value }) => {
-          if (value) {
-            return `${value.wins}-${value.losses}`;
-          } else {
-            return "-";
-          }
-        },
-        Footer: (info) => {
-          return React.useMemo(() => {
-            const wins = info.rows.reduce((sum, row) => {
-              if (row.values[`divisionRecords[${lawfulGood.id}]`]?.wins) {
-                return (
-                  row.values[`divisionRecords[${lawfulGood.id}]`].wins + sum
-                );
-              } else {
-                return sum;
-              }
-            }, 0);
-
-            const losses = info.rows.reduce((sum, row) => {
-              if (row.values[`divisionRecords[${lawfulGood.id}]`]?.losses) {
-                return (
-                  row.values[`divisionRecords[${lawfulGood.id}]`].losses + sum
-                );
-              } else {
-                return sum;
-              }
-            }, 0);
-
-            if (wins > 0 || losses > 0) {
-              return (
-                <>
-                  {wins}-{losses}
-                </>
-              );
+      ...divisions.map((division) => {
+        return {
+          accessor: `divisionRecords[${division.id}]`,
+          Header: (
+            <Tooltip hasArrow label={`vs. ${division.name}`} placement="top">
+              {division.name
+                .split(" ")
+                .map((word) => word[0])
+                .join("")}
+            </Tooltip>
+          ),
+          Cell: ({ value }) => {
+            if (value) {
+              return `${value.wins}-${value.losses}`;
             } else {
               return "-";
             }
-          }, [info.rows]);
-        },
-      },
-      {
-        accessor: `divisionRecords[${chaoticGood.id}]`,
-        Header: (
-          <Tooltip hasArrow label="vs. Chaotic Good" placement="top">
-            CG
-          </Tooltip>
-        ),
-        Cell: ({ value }) => {
-          if (value) {
-            return `${value.wins}-${value.losses}`;
-          } else {
-            return "-";
-          }
-        },
-        Footer: (info) => {
-          return React.useMemo(() => {
-            const wins = info.rows.reduce((sum, row) => {
-              if (row.values[`divisionRecords[${chaoticGood.id}]`]?.wins) {
+          },
+          Footer: (info) => {
+            return React.useMemo(() => {
+              const wins = info.rows.reduce((sum, row) => {
+                if (row.values[`divisionRecords[${division.id}]`]?.wins) {
+                  return (
+                    row.values[`divisionRecords[${division.id}]`].wins + sum
+                  );
+                } else {
+                  return sum;
+                }
+              }, 0);
+
+              const losses = info.rows.reduce((sum, row) => {
+                if (row.values[`divisionRecords[${division.id}]`]?.losses) {
+                  return (
+                    row.values[`divisionRecords[${division.id}]`].losses + sum
+                  );
+                } else {
+                  return sum;
+                }
+              }, 0);
+
+              if (wins > 0 || losses > 0) {
                 return (
-                  row.values[`divisionRecords[${chaoticGood.id}]`].wins + sum
+                  <>
+                    {wins}-{losses}
+                  </>
                 );
               } else {
-                return sum;
+                return "-";
               }
-            }, 0);
-
-            const losses = info.rows.reduce((sum, row) => {
-              if (row.values[`divisionRecords[${chaoticGood.id}]`]?.losses) {
-                return (
-                  row.values[`divisionRecords[${chaoticGood.id}]`].losses + sum
-                );
-              } else {
-                return sum;
-              }
-            }, 0);
-
-            if (wins > 0 || losses > 0) {
-              return (
-                <>
-                  {wins}-{losses}
-                </>
-              );
-            } else {
-              return "-";
-            }
-          }, [info.rows]);
-        },
-      },
-      {
-        accessor: `divisionRecords[${lawfulEvil.id}]`,
-        Header: (
-          <Tooltip hasArrow label="vs. Lawful Evil" placement="top">
-            LE
-          </Tooltip>
-        ),
-        Cell: ({ value }) => {
-          if (value) {
-            return `${value.wins}-${value.losses}`;
-          } else {
-            return "-";
-          }
-        },
-        Footer: (info) => {
-          return React.useMemo(() => {
-            const wins = info.rows.reduce((sum, row) => {
-              if (row.values[`divisionRecords[${lawfulEvil.id}]`]?.wins) {
-                return (
-                  row.values[`divisionRecords[${lawfulEvil.id}]`].wins + sum
-                );
-              } else {
-                return sum;
-              }
-            }, 0);
-
-            const losses = info.rows.reduce((sum, row) => {
-              if (row.values[`divisionRecords[${lawfulEvil.id}]`]?.losses) {
-                return (
-                  row.values[`divisionRecords[${lawfulEvil.id}]`].losses + sum
-                );
-              } else {
-                return sum;
-              }
-            }, 0);
-
-            if (wins > 0 || losses > 0) {
-              return (
-                <>
-                  {wins}-{losses}
-                </>
-              );
-            } else {
-              return "-";
-            }
-          }, [info.rows]);
-        },
-      },
-      {
-        accessor: `divisionRecords[${chaoticEvil.id}]`,
-        Header: (
-          <Tooltip hasArrow label="vs. Chaotic Evil" placement="top">
-            CE
-          </Tooltip>
-        ),
-        Cell: ({ value }) => {
-          if (value) {
-            return `${value.wins}-${value.losses}`;
-          } else {
-            return "-";
-          }
-        },
-        Footer: (info) => {
-          return React.useMemo(() => {
-            const wins = info.rows.reduce((sum, row) => {
-              if (row.values[`divisionRecords[${chaoticEvil.id}]`]?.wins) {
-                return (
-                  row.values[`divisionRecords[${chaoticEvil.id}]`].wins + sum
-                );
-              } else {
-                return sum;
-              }
-            }, 0);
-
-            const losses = info.rows.reduce((sum, row) => {
-              if (row.values[`divisionRecords[${chaoticEvil.id}]`]?.losses) {
-                return (
-                  row.values[`divisionRecords[${chaoticEvil.id}]`].losses + sum
-                );
-              } else {
-                return sum;
-              }
-            }, 0);
-
-            if (wins > 0 || losses > 0) {
-              return (
-                <>
-                  {wins}-{losses}
-                </>
-              );
-            } else {
-              return "-";
-            }
-          }, [info.rows]);
-        },
-      },
+            }, [info.rows]);
+          },
+        };
+      }),
     ],
     []
   );
