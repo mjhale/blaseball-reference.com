@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
-import { Box, Heading, Select, Skeleton, Stack } from "@chakra-ui/core";
+import { Box, Heading, Link, Select, Skeleton, Stack } from "@chakra-ui/core";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import Layout from "components/Layout";
+import NextLink from "next/link";
 import TeamBattingStatTable from "components/TeamBattingStatTable";
 import TeamHistory from "components/TeamHistory";
 import TeamPitchingStatTable from "components/TeamPitchingStatTable";
@@ -46,7 +47,22 @@ export default function Team(props) {
             the latest team information.
           </Box>
         ) : null}
+        <Heading as="h1" mb={2} size="lg">
+          {teamDetailsAndPlayerStats.fullName}
+        </Heading>
         <TeamHistory teamDetails={teamDetailsAndPlayerStats} />
+        <Heading as="h2" mb={2} size="md">
+          Team Pages
+        </Heading>
+        <Box mb={2}>
+          <NextLink
+            href="/teams/[teamSlug]/schedule"
+            as={`/teams/${router.query.teamSlug}/schedule`}
+            passHref
+          >
+            <Link fontSize="md">Game Schedule</Link>
+          </NextLink>
+        </Box>
         <TeamStats
           team={teamDetailsAndPlayerStats}
           teamPlayerStats={teamDetailsAndPlayerStats}
@@ -114,6 +130,12 @@ function TeamStats({ team, teamPlayerStats }) {
 
   return (
     <>
+      <Box mb={2}>
+        <Heading as="h2" size="md">
+          Player Stats
+        </Heading>
+      </Box>
+
       <Select
         fontSize={{ base: "lg", md: "md" }}
         maxWidth="2xs"
@@ -129,11 +151,6 @@ function TeamStats({ team, teamPlayerStats }) {
         ))}
       </Select>
 
-      <Box mb={2}>
-        <Heading as="h2" size="md">
-          Season {Number(selectedSeason) + 1} Player Stats
-        </Heading>
-      </Box>
       <Box mb={2}>
         <Heading as="h3" size="sm">
           Team Batting
@@ -173,7 +190,7 @@ export async function getStaticProps({ params, preview = false }) {
 }
 
 export async function getStaticPaths() {
-  const teams = await apiFetcher("/teams/teams.json");
+  const teams = await apiFetcher("/teams.json");
   const paths = teams.map((team) => `/teams/${team.slug}`) || [];
 
   return {

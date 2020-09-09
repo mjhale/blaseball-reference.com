@@ -11,9 +11,15 @@ export default function TeamHistory({ teamDetails }) {
 
   return (
     <>
-      <Heading as="h1" mb={2} size="lg">
-        {teamDetails.fullName}
+      <Heading as="h2" mb={2} size="md">
+        Team Details
       </Heading>
+      <Box fontSize="md" mb={2}>
+        <Box>Slogan: {teamDetails.slogan}</Box>
+        <Box>Championships: {teamDetails.championships}</Box>
+        <Box>Total Shames: {teamDetails.totalShames}</Box>
+        <Box>Total Shamings: {teamDetails.totalShamings}</Box>
+      </Box>
     </>
   );
 }
