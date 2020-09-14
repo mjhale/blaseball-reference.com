@@ -24,7 +24,7 @@ export default {
   styles: {
     global: {
       ":root": {
-        "--reach/combobox": "1",
+        "--reach-combobox": "1",
       },
       "img:not([alt])": {
         border: "5px solid",

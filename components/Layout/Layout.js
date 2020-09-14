@@ -12,8 +12,7 @@ export default function Layout({ children }) {
         <Container maxWidth="6xl">
           <Alert bgColor="gray.100" mb={4} status="info">
             <AlertIcon />
-            This is a work-in-progress build. All stats are based on incomplete
-            data.
+            All stats are currently based on incomplete data.
           </Alert>
 
           {children}

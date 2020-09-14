@@ -60,7 +60,9 @@ export default function Team(props) {
             as={`/teams/${router.query.teamSlug}/schedule`}
             passHref
           >
-            <Link fontSize="md">Game Schedule</Link>
+            <Link fontSize="md" textDecoration="underline">
+              Season Schedule
+            </Link>
           </NextLink>
         </Box>
         <TeamStats

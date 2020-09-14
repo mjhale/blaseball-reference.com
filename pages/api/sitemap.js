@@ -12,7 +12,7 @@ function getPageRoute(page) {
 export default async function generateSitemap(req, res) {
   try {
     const players = await apiFetcher("/players/players.json");
-    const teams = await apiFetcher("/teams/teams.json");
+    const teams = await apiFetcher("/teams.json");
 
     const smStream = new SitemapStream({
       hostname: "https://" + req.headers.host,

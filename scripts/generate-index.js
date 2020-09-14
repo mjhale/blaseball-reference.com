@@ -15,7 +15,7 @@ async function generate() {
   }
 
   const players = await apiFetcher("/players/players.json");
-  const teams = await apiFetcher("/teams/teams.json");
+  const teams = await apiFetcher("/teams.json");
 
   const client = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
