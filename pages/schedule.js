@@ -294,5 +294,6 @@ export async function getStaticProps() {
       schedule,
       teams,
     },
+    revalidate: 60,
   };
 }

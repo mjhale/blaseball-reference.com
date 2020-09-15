@@ -135,5 +135,6 @@ export const getStaticProps: GetStaticProps = async () => {
       players,
       seasonStartDates,
     },
+    revalidate: 60,
   };
 };
