@@ -1,6 +1,8 @@
 {
   "name": "blaseball-reference.com",
   "version": "0.1.0",
+  "author": "Michael Hale <mail@michaelhale.xyz>",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",
