@@ -15,11 +15,11 @@ export default function LeadersPage(props) {
       initialData: props.categories,
     }
   );
-  const { data: leadersBySeason, error: leadersBySeasonError } = useSWR(
-    "/leaders/bySeason.json",
+  const { data: leaders, error: leadersError } = useSWR(
+    "/leaders/leaders.json",
     apiFetcher,
     {
-      initialData: props.leadersBySeason,
+      initialData: props.leaders,
     }
   );
   const { data: teams, error: teamsError } = useSWR("/teams.json", apiFetcher, {
@@ -42,48 +42,50 @@ export default function LeadersPage(props) {
           Blaseball Stat Leaders
         </Heading>
 
-        {categoriesError || leadersBySeasonError || teamsError ? (
+        {categoriesError || leadersError || teamsError ? (
           <Box mb={4}>
             Sorry, we're currently having a siesta and are unable to provide the
             latest stat leader information.
           </Box>
         ) : null}
 
-        <LeaderTables
-          categories={categories}
-          leadersBySeason={leadersBySeason}
-          teams={teams}
-        />
+        <LeaderTables categories={categories} leaders={leaders} teams={teams} />
       </Layout>
     </>
   );
 }
 
-function LeaderTables({ categories, leadersBySeason, teams }) {
-  const [selectedSeason, setSelectedSeason] = useState(null);
+function LeaderTables({ categories, leaders, teams }) {
+  const [selectedView, setSelectedView] = useState(null);
   const [seasonList, setSeasonList] = useState([]);
 
   useEffect(() => {
     setSeasonList([
-      ...(leadersBySeason
-        ? Object.keys(leadersBySeason).sort((a, b) => Number(a) - Number(b))
+      ...(leaders
+        ? Object.keys(leaders)
+            .filter((view) => Number(view))
+            .sort((a, b) => Number(a) - Number(b))
         : []),
     ]);
-  }, [leadersBySeason]);
+  }, [leaders]);
 
   useEffect(() => {
     if (seasonList.length > 0) {
-      setSelectedSeason(seasonList[seasonList.length - 1]);
+      const mostRecentSeason = seasonList
+        .filter((view) => Number(view))
+        .sort((a, b) => Number(a) - Number(b))
+        .pop();
+      setSelectedView(mostRecentSeason);
     }
   }, [seasonList]);
 
   const handleSelectChange = (evt) => {
-    setSelectedSeason(evt.target.value);
+    setSelectedView(evt.target.value);
   };
 
   if (
     !categories ||
-    !Object.hasOwnProperty.call(leadersBySeason, selectedSeason) ||
+    !Object.hasOwnProperty.call(leaders, selectedView) ||
     !teams
   ) {
     return (
@@ -113,8 +115,11 @@ function LeaderTables({ categories, leadersBySeason, teams }) {
         mb={4}
         onChange={handleSelectChange}
         size="md"
-        value={selectedSeason}
+        value={selectedView}
       >
+        <option key="allTime" value="allTime">
+          {`Career`}
+        </option>
         {seasonList.map((season) => (
           <option key={season} value={season}>
             {`Season ${Number(season) + 1}`}
@@ -122,10 +127,14 @@ function LeaderTables({ categories, leadersBySeason, teams }) {
         ))}
       </Select>
 
-      {leadersBySeason[selectedSeason].batting ? (
+      {leaders[selectedView].batting ? (
         <>
           <Heading as="h2" size="md" mb={2}>
-            Season {Number(selectedSeason) + 1} Batting
+            {Number(selectedView) ? (
+              <>Season {Number(selectedView) + 1} Batting</>
+            ) : (
+              <>Career Batting</>
+            )}
           </Heading>
           <Grid
             templateColumns={{
@@ -136,25 +145,28 @@ function LeaderTables({ categories, leadersBySeason, teams }) {
             gap={2}
             mb={4}
           >
-            {Object.keys(leadersBySeason[selectedSeason].batting).map(
-              (category) => (
-                <LeaderTable
-                  category={categories.find((c) => c.id === category)}
-                  leaders={leadersBySeason[selectedSeason].batting[category]}
-                  key={category}
-                  teams={teams}
-                />
-              )
-            )}
+            {Object.keys(leaders[selectedView].batting).map((category) => (
+              <LeaderTable
+                category={categories.find((c) => c.id === category)}
+                leaders={leaders[selectedView].batting[category]}
+                key={category}
+                teams={teams}
+              />
+            ))}
           </Grid>
         </>
       ) : null}
 
-      {leadersBySeason[selectedSeason].pitching ? (
+      {leaders[selectedView].pitching ? (
         <>
           <Heading as="h2" size="md" mb={2}>
-            Season {Number(selectedSeason) + 1} Pitching
+            {Number(selectedView) ? (
+              <>Season {Number(selectedView) + 1} Pitching</>
+            ) : (
+              <>Career Pitching</>
+            )}
           </Heading>
+
           <Grid
             templateColumns={{
               base: "repeat(1, 1fr)",
@@ -164,16 +176,14 @@ function LeaderTables({ categories, leadersBySeason, teams }) {
             gap={2}
             mb={4}
           >
-            {Object.keys(leadersBySeason[selectedSeason].pitching).map(
-              (category) => (
-                <LeaderTable
-                  category={categories.find((c) => c.id === category)}
-                  leaders={leadersBySeason[selectedSeason].pitching[category]}
-                  key={category}
-                  teams={teams}
-                />
-              )
-            )}
+            {Object.keys(leaders[selectedView].pitching).map((category) => (
+              <LeaderTable
+                category={categories.find((c) => c.id === category)}
+                leaders={leaders[selectedView].pitching[category]}
+                key={category}
+                teams={teams}
+              />
+            ))}
           </Grid>
         </>
       ) : null}
@@ -183,14 +193,14 @@ function LeaderTables({ categories, leadersBySeason, teams }) {
 
 export async function getStaticProps({ params, preview = false }) {
   const categories = await apiFetcher("/leaders/categories.json");
-  const leadersBySeason = await apiFetcher("/leaders/bySeason.json");
+  const leaders = await apiFetcher("/leaders/leaders.json");
   const teams = await apiFetcher("/teams.json");
 
   return {
     props: {
       categories,
       preview,
-      leadersBySeason,
+      leaders,
       teams,
     },
     revalidate: 60,
