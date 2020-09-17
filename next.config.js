@@ -1,5 +1,33 @@
 module.exports = {
   target: "serverless",
+  redirects: async () => {
+    const players = await getPlayers();
+    const playerRedirects = players.map((player) => {
+      return {
+        source: `/players/${player.id}`,
+        destination: `/players/${player.slug}`,
+        permanent: false,
+      };
+    });
+
+    const teams = await getTeams();
+    const teamRedirects = teams.map((team) => {
+      return {
+        source: `/teams/${team.id}`,
+        destination: `/teams/${team.slug}`,
+        permanent: false,
+      };
+    });
+
+    return [
+      ...(Array.isArray(playerRedirects) && playerRedirects.length > 0
+        ? playerRedirects
+        : []),
+      ...(Array.isArray(teamRedirects) && teamRedirects.length > 0
+        ? teamRedirects
+        : []),
+    ];
+  },
   rewrites: async () => {
     return [
       {
@@ -25,3 +53,33 @@ module.exports = {
     return config;
   },
 };
+
+async function getPlayers() {
+  let players = [];
+
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BLASEBALL_REFERENCE_API_URL}/players/players.json`
+    );
+    players = await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+
+  return players;
+}
+
+async function getTeams() {
+  let teams = [];
+
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BLASEBALL_REFERENCE_API_URL}/teams.json`
+    );
+    teams = await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+
+  return teams;
+}
