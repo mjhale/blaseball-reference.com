@@ -38,7 +38,6 @@ export default function Team(props) {
           content={`${teamDetailsAndPlayerStats.fullName} Stats - Blaseball-Reference.com`}
           key="title"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         {error ? (

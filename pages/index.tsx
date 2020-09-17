@@ -91,7 +91,6 @@ export default function IndexPage(props: IndexPageProps) {
           content="Blaseball Stats, Scores, History, and More - Blaseball-Reference.com"
           key="title"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <Box mb={4}>

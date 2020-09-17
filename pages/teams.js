@@ -20,7 +20,6 @@ export default function Teams(props) {
           content="Blaseball Teams -  Blaseball-Reference.com"
           key="title"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <Stack spacing={4}>

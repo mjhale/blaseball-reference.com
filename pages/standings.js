@@ -33,7 +33,6 @@ export default function StandingsPage(props) {
           content="Blaseball Standings - Blaseball-Reference.com"
           key="title"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <Heading as="h1" mb={4} size="lg">

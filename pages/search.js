@@ -31,7 +31,6 @@ export default function SearchPage() {
           content="Search Blaseball Players and Teams - Blaseball-Reference.com"
           key="title"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <Heading as="h1" size="lg" mb={4}>

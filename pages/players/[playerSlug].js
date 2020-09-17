@@ -58,7 +58,6 @@ export default function PlayerPage(props) {
           content={`${player.name} Stats - Blaseball-Reference.com`}
           key="title"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         {!player ? (

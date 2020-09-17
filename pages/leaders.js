@@ -35,7 +35,6 @@ export default function LeadersPage(props) {
           content="Blaseball Leaders & Records - Blaseball-Reference.com"
           key="title"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <Heading as="h1" mb={4} size="lg">

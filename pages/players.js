@@ -22,7 +22,6 @@ export default function PlayersPage(props) {
           content="Blaseball Encyclopedia of Players - Blaseball-Reference.com"
           key="title"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <Heading as="h1" size="lg">
