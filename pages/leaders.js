@@ -10,19 +10,22 @@ import LeaderTable from "components/LeaderTable";
 export default function LeadersPage(props) {
   const { data: categories, error: categoriesError } = useSWR(
     "/leaders/categories.json",
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 5,
       initialData: props.categories,
     }
   );
   const { data: leaders, error: leadersError } = useSWR(
     "/leaders/leaders.json",
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 5,
       initialData: props.leaders,
     }
   );
-  const { data: teams, error: teamsError } = useSWR("/teams.json", apiFetcher, {
+  const { data: teams, error: teamsError } = useSWR("/teams.json", undefined, {
+    errorRetryCount: 5,
     initialData: props.teams,
   });
 
@@ -191,9 +194,17 @@ function LeaderTables({ categories, leaders, teams }) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const categories = await apiFetcher("/leaders/categories.json");
-  const leaders = await apiFetcher("/leaders/leaders.json");
-  const teams = await apiFetcher("/teams.json");
+  let categories = null;
+  let leaders = null;
+  let teams = null;
+
+  try {
+    categories = await apiFetcher("/leaders/categories.json");
+    leaders = await apiFetcher("/leaders/leaders.json");
+    teams = await apiFetcher("/teams.json");
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     props: {
@@ -202,6 +213,6 @@ export async function getStaticProps({ params, preview = false }) {
       leaders,
       teams,
     },
-    revalidate: 60,
+    revalidate: 180,
   };
 }

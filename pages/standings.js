@@ -10,16 +10,18 @@ import StandingsTable from "components/StandingsTable";
 export default function StandingsPage(props) {
   const { data: leaguesAndDivisions, leaguesAndDivisionsError } = useSWR(
     "/leaguesAndDivisions.json",
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 5,
       initialData: props.leaguesAndDivisions,
     }
   );
 
   const { data: standings, standingsError } = useSWR(
     "/standings/standings.json",
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 5,
       initialData: props.standings,
     }
   );
@@ -139,8 +141,15 @@ function Standings({ leaguesAndDivisions, standings }) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const standings = await apiFetcher("/standings/standings.json");
-  const leaguesAndDivisions = await apiFetcher("/leaguesAndDivisions.json");
+  let standings = null;
+  let leaguesAndDivisions = null;
+
+  try {
+    standings = await apiFetcher("/standings/standings.json");
+    leaguesAndDivisions = await apiFetcher("/leaguesAndDivisions.json");
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     props: {
@@ -148,6 +157,6 @@ export async function getStaticProps({ params, preview = false }) {
       standings,
       preview,
     },
-    revalidate: 60,
+    revalidate: 180,
   };
 }

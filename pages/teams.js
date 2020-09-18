@@ -7,7 +7,8 @@ import Layout from "components/Layout";
 import TeamCardList from "components/TeamCardList";
 
 export default function Teams(props) {
-  const { data, error } = useSWR("/teams.json", apiFetcher, {
+  const { data, error } = useSWR("/teams.json", undefined, {
+    errorRetryCount: 5,
     initialData: props.teams,
   });
 
@@ -41,13 +42,19 @@ export default function Teams(props) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const teams = await apiFetcher("/teams.json");
+  let teams = null;
+
+  try {
+    teams = await apiFetcher("/teams.json");
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     props: {
-      teams: teams,
+      teams,
       preview,
     },
-    revalidate: 60,
+    revalidate: 180,
   };
 }

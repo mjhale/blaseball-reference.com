@@ -14,23 +14,26 @@ export default function PlayerPage(props) {
 
   const { data: player, error: playerError } = useSWR(
     `/players/${router.query.playerSlug}/details.json`,
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 5,
       initialData: props.player,
     }
   );
   const { data: battingStats, error: battingStatsError } = useSWR(
     `/batting/${router.query.playerSlug}/summary.json`,
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 0,
       initialData: props.battingStats,
       revalidateOnFocus: false,
     }
   );
   const { data: pitchingStats, error: pitchingStatsError } = useSWR(
     `/pitching/${router.query.playerSlug}/summary.json`,
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 0,
       initialData: props.pitchingStats,
       revalidateOnFocus: false,
     }
@@ -195,24 +198,28 @@ function PlayerStats({ battingStats, pitchingStats, player }) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  let battingStats;
-  let pitchingStats;
-  const player = await apiFetcher(`/players/${params.playerSlug}/details.json`);
+  let battingStats = null;
+  let pitchingStats = null;
+  let player = null;
+
+  try {
+    player = await apiFetcher(`/players/${params.playerSlug}/details.json`);
+  } catch (error) {
+    console.log(error);
+  }
 
   try {
     battingStats = await apiFetcher(
       `/batting/${params.playerSlug}/summary.json`
     );
-  } catch {
-    battingStats = null;
-  }
-
-  try {
     pitchingStats = await apiFetcher(
       `/pitching/${params.playerSlug}/summary.json`
     );
-  } catch {
-    pitchingStats = null;
+  } catch (_error) {
+    /**
+     * Some players will never have batting or pitching stats available, so
+     * any fetch errors should be ignored for the timebeing
+     */
   }
 
   return {
@@ -222,16 +229,21 @@ export async function getStaticProps({ params, preview = false }) {
       pitchingStats,
       preview,
     },
-    revalidate: 60,
+    revalidate: 180,
   };
 }
 
 export async function getStaticPaths() {
-  const players = await apiFetcher("/players/players.json");
-  const paths = players.map((player) => `/players/${player.slug}`) || [];
+  let players;
+
+  try {
+    players = await apiFetcher("/players/players.json");
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
-    paths,
+    paths: players.map((player) => `/players/${player.slug}`) || [],
     fallback: false,
   };
 }

@@ -21,6 +21,7 @@ export default function LeaderTable({ category, leaders, teams }) {
             flexDirection="row"
             fontSize="sm"
             justifyContent="space-between"
+            key={leader.playerId}
             py={1}
             px={2}
           >

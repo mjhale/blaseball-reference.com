@@ -17,8 +17,9 @@ export default function Team(props) {
 
   const { data: teamDetailsAndPlayerStats, error } = useSWR(
     `/teams/${router.query.teamSlug}/playerStats.json`,
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 5,
       initialData: props.teamDetailsAndPlayerStats,
     }
   );
@@ -177,25 +178,36 @@ function TeamStats({ team, teamPlayerStats }) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const teamDetailsAndPlayerStats = await apiFetcher(
-    `/teams/${params.teamSlug}/playerStats.json`
-  );
+  let teamDetailsAndPlayerStats = null;
+
+  try {
+    teamDetailsAndPlayerStats = await apiFetcher(
+      `/teams/${params.teamSlug}/playerStats.json`
+    );
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     props: {
       teamDetailsAndPlayerStats,
       preview,
     },
-    revalidate: 60,
+    revalidate: 180,
   };
 }
 
 export async function getStaticPaths() {
-  const teams = await apiFetcher("/teams.json");
-  const paths = teams.map((team) => `/teams/${team.slug}`) || [];
+  let teams;
+
+  try {
+    teams = await apiFetcher("/teams.json");
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
-    paths,
+    paths: teams.map((team) => `/teams/${team.slug}`) || [],
     fallback: false,
   };
 }

@@ -13,29 +13,33 @@ export default function TeamSchedulePage(props) {
 
   const { data: schedule, error: scheduleError } = useSWR(
     `/teams/${router.query.teamSlug}/schedule.json`,
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 5,
       initialData: props.schedule,
     }
   );
 
   const { data: seasonStartDates, error: seasonStartDatesError } = useSWR(
     "/seasonStartDates.json",
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 5,
       initialData: props.seasonStartDates,
     }
   );
 
   const { data: team, error: teamError } = useSWR(
     `/teams/${router.query.teamSlug}/details.json`,
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 5,
       initialData: props.team,
     }
   );
 
-  const { data: teams, error: teamsError } = useSWR(`/teams.json`, apiFetcher, {
+  const { data: teams, error: teamsError } = useSWR(`/teams.json`, undefined, {
+    errorRetryCount: 5,
     initialData: props.teams,
   });
 
@@ -69,10 +73,19 @@ export default function TeamSchedulePage(props) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const schedule = await apiFetcher(`/teams/${params.teamSlug}/schedule.json`);
-  const seasonStartDates = await apiFetcher("/seasonStartDates.json");
-  const team = await apiFetcher(`/teams/${params.teamSlug}/details.json`);
-  const teams = await apiFetcher("/teams.json");
+  let schedule = null;
+  let seasonStartDates = null;
+  let team = null;
+  let teams = null;
+
+  try {
+    schedule = await apiFetcher(`/teams/${params.teamSlug}/schedule.json`);
+    seasonStartDates = await apiFetcher("/seasonStartDates.json");
+    team = await apiFetcher(`/teams/${params.teamSlug}/details.json`);
+    teams = await apiFetcher("/teams.json");
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     props: {
@@ -82,16 +95,21 @@ export async function getStaticProps({ params, preview = false }) {
       team,
       teams,
     },
-    revalidate: 60,
+    revalidate: 180,
   };
 }
 
 export async function getStaticPaths() {
-  const teams = await apiFetcher("/teams.json");
-  const paths = teams.map((team) => `/teams/${team.slug}/schedule`) || [];
+  let teams;
+
+  try {
+    teams = await apiFetcher("/teams.json");
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
-    paths,
+    paths: teams.map((team) => `/teams/${team.slug}/schedule`) || [],
     fallback: false,
   };
 }

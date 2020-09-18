@@ -7,7 +7,8 @@ import Layout from "components/Layout";
 import PlayerList from "components/PlayerList";
 
 export default function PlayersPage(props) {
-  const { data, error } = useSWR("/players/players.json", apiFetcher, {
+  const { data, error } = useSWR("/players/players.json", undefined, {
+    errorRetryCount: 5,
     initialData: props.players,
   });
 
@@ -45,13 +46,19 @@ export default function PlayersPage(props) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const players = await apiFetcher("/players/players.json");
+  let players = null;
+
+  try {
+    players = await apiFetcher("/players/players.json");
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     props: {
       players: players,
       preview,
     },
-    revalidate: 60,
+    revalidate: 180,
   };
 }

@@ -20,13 +20,15 @@ import NextLink from "next/link";
 export default function SchedulePage(props) {
   const { data: schedule, error: scheduleError } = useSWR(
     "/gameResults.json",
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 5,
       initialData: props.schedule,
     }
   );
 
-  const { data: teams, error: teamsError } = useSWR("/teams.json", apiFetcher, {
+  const { data: teams, error: teamsError } = useSWR("/teams.json", undefined, {
+    errorRetryCount: 5,
     initialData: props.teams,
   });
 
@@ -285,14 +287,21 @@ function TeamBlock({ team }) {
 }
 
 export async function getStaticProps() {
-  const schedule = await apiFetcher("/gameResults.json");
-  const teams = await apiFetcher("/teams.json");
+  let schedule = null;
+  let teams = null;
+
+  try {
+    schedule = await apiFetcher("/gameResults.json");
+    teams = await apiFetcher("/teams.json");
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     props: {
       schedule,
       teams,
     },
-    revalidate: 60,
+    revalidate: 180,
   };
 }

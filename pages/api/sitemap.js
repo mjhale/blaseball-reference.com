@@ -57,6 +57,7 @@ export default async function generateSitemap(req, res) {
     const sitemap = await streamToPromise(smStream).then((sm) => sm.toString());
 
     res.setHeader("Content-Type", "text/xml");
+    res.setHeader("Cache-Control", "max-age=86400, public");
     res.write(sitemap);
     res.end();
   } catch (e) {

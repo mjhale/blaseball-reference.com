@@ -56,16 +56,18 @@ type IndexPageProps = {
 export default function IndexPage(props: IndexPageProps) {
   const { data: players, error: playersError } = useSWR(
     "/players/players.json",
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 5,
       initialData: props.players,
     }
   );
 
   const { data: seasonStartDates, error: seasonStartDatesError } = useSWR(
     "/seasonStartDates.json",
-    apiFetcher,
+    undefined,
     {
+      errorRetryCount: 5,
       initialData: props.seasonStartDates,
     }
   );
@@ -126,14 +128,21 @@ export default function IndexPage(props: IndexPageProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const players = await apiFetcher("/players/players.json");
-  const seasonStartDates = await apiFetcher("/seasonStartDates.json");
+  let players = null;
+  let seasonStartDates = null;
+
+  try {
+    players = await apiFetcher("/players/players.json");
+    seasonStartDates = await apiFetcher("/seasonStartDates.json");
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     props: {
       players,
       seasonStartDates,
     },
-    revalidate: 60,
+    revalidate: 180,
   };
 };
