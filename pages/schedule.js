@@ -23,7 +23,6 @@ export default function SchedulePage(props) {
     undefined,
     {
       errorRetryCount: 5,
-      initialData: props.schedule,
     }
   );
 
@@ -74,7 +73,7 @@ function DailySchedule({ schedule, teams }) {
 
   useEffect(() => {
     setDayList([
-      ...(Object.hasOwnProperty.call(schedule, selectedSeason)
+      ...(schedule && Object.hasOwnProperty.call(schedule, selectedSeason)
         ? Object.keys(schedule[selectedSeason]).sort(
             (a, b) => Number(a) - Number(b)
           )
@@ -287,11 +286,9 @@ function TeamBlock({ team }) {
 }
 
 export async function getStaticProps() {
-  let schedule = null;
   let teams = null;
 
   try {
-    schedule = await apiFetcher("/gameResults.json");
     teams = await apiFetcher("/teams.json");
   } catch (error) {
     console.log(error);
@@ -299,9 +296,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      schedule,
       teams,
     },
-    revalidate: 180,
+    revalidate: 1800,
   };
 }
