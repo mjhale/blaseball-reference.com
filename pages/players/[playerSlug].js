@@ -3,10 +3,10 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 
 import BattingStatTable from "components/BattingStatTable";
-import { Box, Heading, Select, Text } from "@chakra-ui/core";
-import ErrorPage from "next/error";
+import { Box, Heading, Link, Skeleton, Stack, Text } from "@chakra-ui/core";
 import Head from "next/head";
 import Layout from "components/Layout";
+import NextLink from "next/link";
 import PitchingStatTable from "components/PitchingStatTable";
 
 export default function PlayerPage(props) {
@@ -38,102 +38,125 @@ export default function PlayerPage(props) {
       revalidateOnFocus: false,
     }
   );
-
-  if (!router.isFallback && !props.player) {
-    return <ErrorPage statusCode={404} />;
-  }
-
-  if (playerError) {
-    return (
-      <Box>
-        Sorry, we're currently having a siesta and couldn't load player
-        information.
-      </Box>
-    );
-  }
+  const { data: teams, error: teamsError } = useSWR(`/teams.json`, undefined, {
+    errorRetryCount: 5,
+    initialData: props.teams,
+    revalidateOnFocus: false,
+  });
 
   return (
     <>
       <Head>
-        <title>{player.name} Stats - Blaseball-Reference.com</title>
+        <title>
+          {player ? player.name : "Player"} Stats - Blaseball-Reference.com
+        </title>
         <meta
           property="og:title"
-          content={`${player.name} Stats - Blaseball-Reference.com`}
+          content={`${
+            player ? player.name : "Player"
+          } Stats - Blaseball-Reference.com`}
           key="title"
         />
       </Head>
       <Layout>
-        {!player ? (
-          <Box>Loading...</Box>
-        ) : (
+        {(router.isFallback && !player) || !teams ? (
           <>
-            <Heading as="h1" size="lg">
-              {player.name}{" "}
-              {player.isIncinerated ? (
-                <Text
-                  ariaLabel="incinerated"
-                  as="span"
-                  fontSize="xl"
-                  role="emoji"
-                >
-                  🔥
-                </Text>
-              ) : null}
-            </Heading>
-
-            <Box fontSize="sm" mt={2} mb={4}>
-              {player.aliases.length > 0 ? (
-                <Text my={1}>
-                  Aliases:{" "}
-                  {player.aliases.map((alias, index) => (
-                    <React.Fragment key={index}>
-                      {alias}
-                      {index < player.aliases.length - 1 && ", "}
-                    </React.Fragment>
-                  ))}
-                </Text>
-              ) : null}
-
-              <Text my={1}>Team: {player.currentTeamName}</Text>
-
-              {player.position === "rotation" ||
-              player.position === "bullpen" ? (
-                <Text my={1}>Position: Pitcher</Text>
-              ) : (
-                <Text my={1}>Position: Fielder</Text>
-              )}
-
-              <Text my={1}>
-                Debut: Season {Number(player.debutSeason) + 1}, Day{" "}
-                {player.debutDay + 1}
-                {Number(player.debutSeason) + 1 === 2 ? "*" : null}
-              </Text>
-              {player.isIncinerated ? (
-                <Text my={1}>
-                  Last Game: Season {Number(player.lastGameSeason) + 1}, Day{" "}
-                  {player.lastGameDay + 1}
-                </Text>
-              ) : null}
-
-              {player.bat ? <Text my={1}>Bat: {player.bat}</Text> : null}
-
-              {player.ritual ? (
-                <Text my={1}>Ritual: {player.ritual}</Text>
-              ) : null}
-            </Box>
-            <PlayerStats
-              battingStats={battingStats}
-              pitchingStats={pitchingStats}
-              player={player}
-            />
+            <Skeleton height="40px" mb={4} width="2xs" />
+            <Stack>
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+            </Stack>
           </>
+        ) : (
+          <PlayerDetails
+            battingStats={battingStats}
+            pitchingStats={pitchingStats}
+            player={player}
+            teams={teams}
+          />
         )}
       </Layout>
     </>
   );
 }
 
-function PlayerStats({ battingStats, pitchingStats, player }) {
+function PlayerDetails({ battingStats, pitchingStats, player, teams }) {
+  const currentTeam = teams.find((team) => team.id === player.currentTeamId);
+
+  return (
+    <>
+      <Heading as="h1" size="lg">
+        {player.name}
+        {player.isIncinerated ? (
+          <>
+            {" "}
+            <Text ariaLabel="incinerated" as="span" fontSize="xl" role="emoji">
+              🔥
+            </Text>
+          </>
+        ) : null}
+      </Heading>
+
+      <Box fontSize="sm" mt={2} mb={4}>
+        {player.aliases.length > 0 ? (
+          <Text my={1}>
+            Aliases:{" "}
+            {player.aliases.map((alias, index) => (
+              <React.Fragment key={index}>
+                {alias}
+                {index < player.aliases.length - 1 && ", "}
+              </React.Fragment>
+            ))}
+          </Text>
+        ) : null}
+
+        {currentTeam ? (
+          <Text my={1}>
+            Team:{" "}
+            <NextLink
+              href="/teams/[teamSlug]"
+              as={`/teams/${currentTeam.slug}`}
+              passHref
+            >
+              <Link textDecoration="underline">{currentTeam.fullName}</Link>
+            </NextLink>
+          </Text>
+        ) : null}
+
+        {player.position === "rotation" || player.position === "bullpen" ? (
+          <Text my={1}>Position: Pitcher</Text>
+        ) : (
+          <Text my={1}>Position: Fielder</Text>
+        )}
+
+        <Text my={1}>
+          Debut: Season {Number(player.debutSeason) + 1}, Day{" "}
+          {player.debutDay + 1}
+          {Number(player.debutSeason) + 1 === 2 ? "*" : null}
+        </Text>
+        {player.isIncinerated ? (
+          <Text my={1}>
+            Last Game: Season {Number(player.lastGameSeason) + 1}, Day{" "}
+            {player.lastGameDay + 1}
+          </Text>
+        ) : null}
+
+        {player.bat ? <Text my={1}>Bat: {player.bat}</Text> : null}
+
+        {player.ritual ? <Text my={1}>Ritual: {player.ritual}</Text> : null}
+      </Box>
+      <PlayerStats
+        battingStats={battingStats}
+        pitchingStats={pitchingStats}
+        player={player}
+        teams={teams}
+      />
+    </>
+  );
+}
+
+function PlayerStats({ battingStats, pitchingStats, player, teams }) {
   if (!battingStats && !pitchingStats) {
     return null;
   }
@@ -152,6 +175,7 @@ function PlayerStats({ battingStats, pitchingStats, player }) {
           <PitchingStatTable
             pitchingStats={pitchingStats}
             statTargetName={player.name}
+            teams={teams}
           />
 
           {Object.keys(pitchingStats.postseasons).length > 0 && (
@@ -163,6 +187,7 @@ function PlayerStats({ battingStats, pitchingStats, player }) {
                 isPostseason={true}
                 pitchingStats={pitchingStats}
                 statTargetName={player.name}
+                teams={teams}
               />
             </Box>
           )}
@@ -177,6 +202,7 @@ function PlayerStats({ battingStats, pitchingStats, player }) {
           <BattingStatTable
             battingStats={battingStats}
             statTargetName={player.name}
+            teams={teams}
           />
 
           {Object.keys(battingStats.postseasons).length > 0 && (
@@ -188,6 +214,7 @@ function PlayerStats({ battingStats, pitchingStats, player }) {
                 battingStats={battingStats}
                 isPostseason={true}
                 statTargetName={player.name}
+                teams={teams}
               />
             </Box>
           )}
@@ -201,9 +228,11 @@ export async function getStaticProps({ params, preview = false }) {
   let battingStats = null;
   let pitchingStats = null;
   let player = null;
+  let teams = null;
 
   try {
     player = await apiFetcher(`/players/${params.playerSlug}/details.json`);
+    teams = await apiFetcher("/teams.json");
   } catch (error) {
     console.log(error);
   }
@@ -228,6 +257,7 @@ export async function getStaticProps({ params, preview = false }) {
       player,
       pitchingStats,
       preview,
+      teams,
     },
     revalidate: 180,
   };
@@ -244,6 +274,6 @@ export async function getStaticPaths() {
 
   return {
     paths: players.map((player) => `/players/${player.slug}`) || [],
-    fallback: false,
+    fallback: true,
   };
 }

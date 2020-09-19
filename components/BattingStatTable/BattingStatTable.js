@@ -1,10 +1,12 @@
+import NextLink from "next/link";
 import Table from "components/Table";
-import { Tooltip } from "@chakra-ui/core";
+import { Link, Tooltip } from "@chakra-ui/core";
 
 export default function BattingStatTable({
   battingStats,
   isPostseason = false,
   statTargetName,
+  teams,
 }) {
   const careerTotals = isPostseason
     ? battingStats.careerPostseason
@@ -50,6 +52,19 @@ export default function BattingStatTable({
               Tm
             </Tooltip>
           ),
+          Cell: ({ row, value }) => {
+            const team = teams.find((team) => team.id === row.original.team);
+
+            return team ? (
+              <NextLink
+                href="/teams/[teamSlug]"
+                as={`/teams/${team.slug}`}
+                passHref
+              >
+                <Link>{value}</Link>
+              </NextLink>
+            ) : null;
+          },
         },
       ].concat(commonBattingStatColumns(careerTotals)),
     [isPostseason, statTargetName]
