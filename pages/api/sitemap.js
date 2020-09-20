@@ -3,7 +3,11 @@ import globby from "globby";
 import { SitemapStream, streamToPromise } from "sitemap";
 
 function getPageRoute(page) {
-  const path = page.replace("pages", "").replace(".js", "").replace(".mdx", "");
+  const path = page
+    .replace("pages", "")
+    .replace(".js", "")
+    .replace(".tsx", "")
+    .replace(".mdx", "");
   const route = path === "/index" ? "" : path;
 
   return route;
@@ -19,11 +23,12 @@ export default async function generateSitemap(req, res) {
     });
 
     const pages = await globby([
-      "pages/**/*{.js,.mdx}",
+      "pages/**/*{.tsx,.js,.mdx}",
       "!pages/_*.js",
       "!pages/api",
       "!pages/players/[playerSlug].js",
       "!pages/teams/[teamSlug].js",
+      "!pages/teams/[teamSlug]/schedule.js",
     ]);
 
     const playerSlugs =
@@ -35,6 +40,8 @@ export default async function generateSitemap(req, res) {
       smStream.write({
         url: getPageRoute(page),
         lastmod: Date.now(),
+        changefreq: "daily",
+        priority: 0.8,
       });
     });
 
@@ -42,6 +49,8 @@ export default async function generateSitemap(req, res) {
       smStream.write({
         url: player.slug,
         lastmod: Date.now(),
+        changefreq: "hourly",
+        priority: 0.6,
       });
     }
 
@@ -49,6 +58,15 @@ export default async function generateSitemap(req, res) {
       smStream.write({
         url: team.slug,
         lastmod: Date.now(),
+        changefreq: "hourly",
+        priority: 0.6,
+      });
+
+      smStream.write({
+        url: `${team.slug}/schedule`,
+        lastmod: Date.now(),
+        changefreq: "hourly",
+        priority: 0.4,
       });
     }
 
