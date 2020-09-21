@@ -19,7 +19,11 @@ export default function Teams(props) {
         <meta
           property="og:title"
           content="Blaseball Teams -  Blaseball-Reference.com"
-          key="title"
+          key="og:title"
+        />
+        <meta
+          name="description"
+          content="Comprehensive scores, standings, stats, and more for every Blaseball team."
         />
       </Head>
       <Layout>

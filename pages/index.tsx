@@ -91,7 +91,12 @@ export default function IndexPage(props: IndexPageProps) {
         <meta
           property="og:title"
           content="Blaseball Stats, Scores, History, and More - Blaseball-Reference.com"
-          key="title"
+          key="og:title"
+        />
+        <meta
+          name="description"
+          content="The complete source for current and historical blaseball players,
+            teams, scores, leaders, umps, blessings, and curses."
         />
       </Head>
       <Layout>

@@ -55,7 +55,13 @@ export default function PlayerPage(props) {
           content={`${
             player ? player.name : "Player"
           } Stats - Blaseball-Reference.com`}
-          key="title"
+          key="og:title"
+        />
+        <meta
+          name="description"
+          content={`${
+            player ? player.name : "Player"
+          } history and position statistics in Blaseball.`}
         />
       </Head>
       <Layout>

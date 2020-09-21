@@ -37,7 +37,11 @@ export default function Team(props) {
         <meta
           property="og:title"
           content={`${teamDetailsAndPlayerStats.fullName} Stats - Blaseball-Reference.com`}
-          key="title"
+          key="og:title"
+        />
+        <meta
+          name="description"
+          content={`Get the latest ${teamDetailsAndPlayerStats.fullName} scores, stats, standings, and more.`}
         />
       </Head>
       <Layout>

@@ -38,7 +38,11 @@ export default function SchedulePage(props) {
         <meta
           property="og:title"
           content="Blaseball Schedule - Blaseball-Reference.com"
-          key="title"
+          key="og:title"
+        />
+        <meta
+          name="description"
+          content="Full schedule for the current season of Blaseball including probable pitchers."
         />
       </Head>
       <Layout>

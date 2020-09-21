@@ -29,7 +29,11 @@ export default function SearchPage() {
         <meta
           property="og:title"
           content="Search Blaseball Players and Teams - Blaseball-Reference.com"
-          key="title"
+          key="og:title"
+        />
+        <meta
+          name="description"
+          content="Search for Blaseball players and teams. Find Blaseball player stats and more at Blaseball-Reference.com."
         />
       </Head>
       <Layout>

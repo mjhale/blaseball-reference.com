@@ -17,6 +17,8 @@ import {
   Button,
   CircularProgress,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   Image,
   Input,
@@ -26,6 +28,7 @@ import {
   List,
   ListItem,
   Skeleton,
+  VisuallyHidden,
 } from "@chakra-ui/core";
 import { SearchIcon } from "@chakra-ui/icons";
 
@@ -120,35 +123,44 @@ export default function SearchForm() {
             onSelect={handleSelect}
             width="100%"
           >
-            <InputGroup>
-              <InputLeftElement>
-                {isLoading ? (
-                  <CircularProgress color="gray.50" isIndeterminate size={5} />
-                ) : (
-                  <SearchIcon color="gray.300" fontSize="xl" />
-                )}
-              </InputLeftElement>
+            <FormControl id="searchTerm">
+              <VisuallyHidden>
+                <FormLabel>Search site</FormLabel>
+              </VisuallyHidden>
+              <InputGroup>
+                <InputLeftElement>
+                  {isLoading ? (
+                    <CircularProgress
+                      color="gray.50"
+                      isIndeterminate
+                      size={5}
+                    />
+                  ) : (
+                    <SearchIcon color="gray.300" fontSize="xl" />
+                  )}
+                </InputLeftElement>
 
-              <Input
-                _focus={{
-                  border: "1px solid",
-                  borderColor: "blue.200",
-                  boxShadow: `0 0 0 4px ${getColor(theme, "blue.50")}`,
-                  outline: "none",
-                }}
-                as={ComboboxInput}
-                borderColor="gray.200"
-                enterkeyhint="search"
-                fontSize={{ base: "lg", md: "md" }}
-                id="searchTerm"
-                inputMode="search"
-                name="searchTerm"
-                onChange={handleChange}
-                placeholder="Search players and teams"
-                selectOnClick={true}
-                value={inputValue}
-              />
-            </InputGroup>
+                <Input
+                  _focus={{
+                    border: "1px solid",
+                    borderColor: "blue.200",
+                    boxShadow: `0 0 0 4px ${getColor(theme, "blue.50")}`,
+                    outline: "none",
+                  }}
+                  as={ComboboxInput}
+                  borderColor="gray.200"
+                  enterkeyhint="search"
+                  fontSize={{ base: "lg", md: "md" }}
+                  id="searchTerm"
+                  inputMode="search"
+                  name="searchTerm"
+                  onChange={handleChange}
+                  placeholder="Search players and teams"
+                  selectOnClick={true}
+                  value={inputValue}
+                />
+              </InputGroup>
+            </FormControl>
 
             {isLoading || Object.keys(results).length > 0 ? (
               <ComboboxPopover>
@@ -250,7 +262,8 @@ export default function SearchForm() {
               </ComboboxPopover>
             ) : null}
           </Combobox>
-          <Button isLoading={isLoading || hasSelected} type="submit">
+
+          <Button isLoading={hasSelected} type="submit">
             Search
           </Button>
         </Flex>

@@ -7,7 +7,7 @@ import "@reach/skip-nav/styles.css";
 import { ChakraProvider, CSSReset } from "@chakra-ui/core";
 import Head from "next/head";
 
-function MyApp({ Component, pageProps }) {
+export default function BRApp({ Component, pageProps }) {
   const DEPLOYMENT_ENV = process.env.NEXT_PUBLIC_DEPLOYMENT_ENV;
 
   return (
@@ -66,5 +66,3 @@ function MyApp({ Component, pageProps }) {
     </>
   );
 }
-
-export default MyApp;

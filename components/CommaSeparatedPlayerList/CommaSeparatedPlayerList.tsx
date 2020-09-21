@@ -9,7 +9,7 @@ export default function CommaSeparatedPlayerList({
   players: Player[];
 }) {
   return (
-    <List>
+    <List lineHeight={{ base: "tall", md: "base" }}>
       {players.map((player) => (
         <ListItem
           _notFirst={{

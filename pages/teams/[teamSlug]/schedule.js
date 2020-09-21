@@ -54,7 +54,11 @@ export default function TeamSchedulePage(props) {
         <meta
           property="og:title"
           content={`${team.fullName} Schedule - Blaseball-Reference.com`}
-          key="title"
+          key="og:title"
+        />
+        <meta
+          name="description"
+          content={`The full ${team.fullName} game schedule for current and past Blaseball season.`}
         />
       </Head>
       <Layout>

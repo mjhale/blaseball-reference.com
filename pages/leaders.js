@@ -36,7 +36,11 @@ export default function LeadersPage(props) {
         <meta
           property="og:title"
           content="Blaseball Leaders & Records - Blaseball-Reference.com"
-          key="title"
+          key="og:title"
+        />
+        <meta
+          name="description"
+          content="Get the latest blaseball player rankings. See who leads the league in batting average, home runs, strikeouts, and more."
         />
       </Head>
       <Layout>

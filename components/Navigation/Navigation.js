@@ -17,7 +17,7 @@ const MenuItem = ({ children, href }) => (
   <NextLink href={href} passHref>
     <Link
       _notLast={{
-        borderBottom: { base: "1px solid" },
+        borderBottom: { base: "1px solid", md: "none" },
         borderBottomColor: { base: "gray.200" },
       }}
       px={{ base: 6, md: 1 }}
@@ -87,6 +87,7 @@ export default function Navigation() {
               </NextLink>
             </Heading>
             <Button
+              aria-label={!isOpen ? "Open menu" : "Close menu"}
               cursor="pointer"
               display={{ base: "flex", md: "none" }}
               onClick={handleToggle}

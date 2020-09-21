@@ -33,7 +33,11 @@ export default function StandingsPage(props) {
         <meta
           property="og:title"
           content="Blaseball Standings - Blaseball-Reference.com"
-          key="title"
+          key="og:title"
+        />
+        <meta
+          name="description"
+          content="Get the latest Blaseball standings from across the league. Follow your favorite team through the current season!"
         />
       </Head>
       <Layout>

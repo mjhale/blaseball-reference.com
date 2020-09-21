@@ -21,7 +21,11 @@ export default function PlayersPage(props) {
         <meta
           property="og:title"
           content="Blaseball Encyclopedia of Players - Blaseball-Reference.com"
-          key="title"
+          key="og:title"
+        />
+        <meta
+          name="description"
+          content="A list of all current and historical blaseball players in alphabetical order."
         />
       </Head>
       <Layout>
