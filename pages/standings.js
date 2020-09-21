@@ -37,6 +37,7 @@ export default function StandingsPage(props) {
         />
         <meta
           name="description"
+          property="og:description"
           content="Get the latest Blaseball standings from across the league. Follow your favorite team through the current season!"
         />
       </Head>

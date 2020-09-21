@@ -95,6 +95,7 @@ export default function IndexPage(props: IndexPageProps) {
         />
         <meta
           name="description"
+          property="og:description"
           content="The complete source for current and historical blaseball players,
             teams, scores, leaders, umps, blessings, and curses."
         />

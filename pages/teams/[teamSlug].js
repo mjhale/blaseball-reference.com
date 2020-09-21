@@ -41,6 +41,7 @@ export default function Team(props) {
         />
         <meta
           name="description"
+          property="og:description"
           content={`Get the latest ${teamDetailsAndPlayerStats.fullName} scores, stats, standings, and more.`}
         />
       </Head>

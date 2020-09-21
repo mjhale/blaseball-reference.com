@@ -51,6 +51,8 @@ export default function BRApp({ Component, pageProps }) {
           property="og:image"
           content="https://blaseball-reference.com/default-share-image.jpg"
         />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@blaseball_ref" />
       </Head>
       <ChakraProvider theme={theme}>
         <CSSReset />

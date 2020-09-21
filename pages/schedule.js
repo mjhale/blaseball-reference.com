@@ -42,6 +42,7 @@ export default function SchedulePage(props) {
         />
         <meta
           name="description"
+          property="og:description"
           content="Full schedule for the current season of Blaseball including probable pitchers."
         />
       </Head>

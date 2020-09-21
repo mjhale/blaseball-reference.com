@@ -59,6 +59,7 @@ export default function PlayerPage(props) {
         />
         <meta
           name="description"
+          property="og:description"
           content={`${
             player ? player.name : "Player"
           } history and position statistics in Blaseball.`}

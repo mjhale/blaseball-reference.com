@@ -58,6 +58,7 @@ export default function TeamSchedulePage(props) {
         />
         <meta
           name="description"
+          property="og:description"
           content={`The full ${team.fullName} game schedule for current and past Blaseball season.`}
         />
       </Head>

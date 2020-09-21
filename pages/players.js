@@ -25,6 +25,7 @@ export default function PlayersPage(props) {
         />
         <meta
           name="description"
+          property="og:description"
           content="A list of all current and historical blaseball players in alphabetical order."
         />
       </Head>

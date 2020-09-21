@@ -40,6 +40,7 @@ export default function LeadersPage(props) {
         />
         <meta
           name="description"
+          property="og:description"
           content="Get the latest blaseball player rankings. See who leads the league in batting average, home runs, strikeouts, and more."
         />
       </Head>

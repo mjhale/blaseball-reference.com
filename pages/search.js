@@ -33,6 +33,7 @@ export default function SearchPage() {
         />
         <meta
           name="description"
+          property="og:description"
           content="Search for Blaseball players and teams. Find Blaseball player stats and more at Blaseball-Reference.com."
         />
       </Head>

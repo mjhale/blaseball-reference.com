@@ -23,6 +23,7 @@ export default function Teams(props) {
         />
         <meta
           name="description"
+          property="og:description"
           content="Comprehensive scores, standings, stats, and more for every Blaseball team."
         />
       </Head>
