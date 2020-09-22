@@ -14,8 +14,8 @@ import {
   Text,
 } from "@chakra-ui/core";
 
-import {WeatherIcon, WeatherName} from '../weather';
-import useForbiddenKnowledge from 'hooks/useForbiddenKnowledge';
+import { WeatherIcon, WeatherName } from "../weather";
+import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 
 export default function TeamSchedule({
   schedule,
@@ -63,7 +63,7 @@ export default function TeamSchedule({
         (dayGames) => dayGames.day === currDay
       );
 
-      const currHourGames = schedule[selectedSeason][day].map(game => {
+      const currHourGames = schedule[selectedSeason][day].map((game) => {
         const visibleOnSite = previousGameHasStarted || game.gameStart;
         previousGameHasStarted = !!game.gameStart;
 
@@ -262,14 +262,13 @@ function TeamDailySchedule({ dailySchedule, team, teams }) {
                                 <>@ {opposingTeam.nickname}</>
                               )}
                             </Box>
-                            {(game.visibleOnSite || showForbiddenKnowledge) ? (
-                              <Box my={{ base: 0.5, md: 1 }} >
+                            {game.visibleOnSite || showForbiddenKnowledge ? (
+                              <Box my={{ base: 0.5, md: 1 }}>
                                 <Text
                                   as="span"
                                   fontSize={{ base: "xs", md: "sm" }}
                                 >
-                                  <WeatherIcon for={game.weather} />
-                                  {" "}
+                                  <WeatherIcon for={game.weather} />{" "}
                                   <WeatherName for={game.weather} />
                                 </Text>
                               </Box>

@@ -16,7 +16,7 @@ import {
   Text,
 } from "@chakra-ui/core";
 import Layout from "components/Layout";
-import {WeatherIcon, WeatherName} from "components/weather";
+import { WeatherIcon, WeatherName } from "components/weather";
 import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 
 export default function SchedulePage(props) {
@@ -161,10 +161,11 @@ function DailySchedule({ schedule, teams }) {
   const formattedDay = Number(selectedDay) + 1;
   const formattedSeason = Number(selectedSeason) + 1;
 
-  const previousDaySchedule = schedule[selectedSeason][String(Number(selectedDay) - 1)];
+  const previousDaySchedule =
+    schedule[selectedSeason][String(Number(selectedDay) - 1)];
   const visibleOnSite =
-    selectedDaySchedule.some(game => game.gameStart) ||
-    (previousDaySchedule && previousDaySchedule.some(game => game.gameStart));
+    selectedDaySchedule.some((game) => game.gameStart) ||
+    (previousDaySchedule && previousDaySchedule.some((game) => game.gameStart));
 
   return (
     <>
@@ -257,17 +258,10 @@ function DailySchedule({ schedule, teams }) {
               >
                 {game.awayPitcherName} vs. {game.homePitcherName}
               </Flex>
-              {(visibleOnSite || showForbiddenKnowledge) ? (
-                <Box
-                  flex="1 1 0%"
-                >
+              {visibleOnSite || showForbiddenKnowledge ? (
+                <Box flex="1 1 0%">
                   <WeatherIcon for={game.weather} />
-                  <Text
-                    color="gray.600"
-                    as="span"
-                    fontSize="sm"
-                    ml="2"
-                  >
+                  <Text color="gray.600" as="span" fontSize="sm" ml="2">
                     <WeatherName for={game.weather} />
                   </Text>
                 </Box>

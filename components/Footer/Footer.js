@@ -1,5 +1,5 @@
 import { Box, Container, Link, List, ListItem, Text } from "@chakra-ui/core";
-import useForbiddenKnowledge from 'hooks/useForbiddenKnowledge';
+import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 
 export default function Footer() {
   const [fK, setFK] = useForbiddenKnowledge();
@@ -45,7 +45,7 @@ export default function Footer() {
             onClick={() => setFK(!fK)}
             textDecoration="underline"
           >
-            {fK ? 'disable' : 'enable'} Forbidden Knowledge
+            {fK ? "disable" : "enable"} Forbidden Knowledge
           </Link>
         </Box>
         <Box>
