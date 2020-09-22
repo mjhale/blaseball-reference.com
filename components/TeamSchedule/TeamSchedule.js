@@ -14,6 +14,8 @@ import {
   Text,
 } from "@chakra-ui/core";
 
+import {WeatherIcon, WeatherName} from '../weather';
+
 export default function TeamSchedule({
   schedule,
   seasonStartDates,
@@ -245,6 +247,16 @@ function TeamDailySchedule({ dailySchedule, team, teams }) {
                               ) : (
                                 <>@ {opposingTeam.nickname}</>
                               )}
+                            </Box>
+                            <Box my={{ base: 0.5, md: 1 }} >
+                              <Text
+                                as="span"
+                                fontSize={{ base: "xs", md: "sm" }}
+                              >
+                                <WeatherIcon for={game.weather} />
+                                {" "}
+                                <WeatherName for={game.weather} />
+                              </Text>
                             </Box>
                             {game.gameComplete ? (
                               <Box fontSize="sm" textAlign="center">

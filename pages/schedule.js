@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 import Head from "next/head";
+import NextLink from "next/link";
 import {
   Box,
   Circle,
@@ -15,7 +16,7 @@ import {
   Text,
 } from "@chakra-ui/core";
 import Layout from "components/Layout";
-import NextLink from "next/link";
+import {WeatherIcon, WeatherName} from "components/weather";
 
 export default function SchedulePage(props) {
   const { data: schedule, error: scheduleError } = useSWR(
@@ -242,12 +243,25 @@ function DailySchedule({ schedule, teams }) {
                 color="gray.600"
                 display={{ base: "none", md: "flex" }}
                 justifyContent="flex-start"
-                flex="1 1 0%"
+                flex="2 1 0%"
                 flexWrap="wrap"
                 fontSize="sm"
               >
                 {game.awayPitcherName} vs. {game.homePitcherName}
               </Flex>
+              <Box
+                flex="1 1 0%"
+              >
+                <WeatherIcon for={game.weather} />
+                <Text
+                  color="gray.600"
+                  as="span"
+                  fontSize="sm"
+                  ml="2"
+                >
+                  <WeatherName for={game.weather} />
+                </Text>
+              </Box>
             </Flex>
           );
         })}
