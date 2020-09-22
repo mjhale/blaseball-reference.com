@@ -1,6 +1,9 @@
 import { Box, Container, Link, List, ListItem, Text } from "@chakra-ui/core";
+import useForbiddenKnowledge from 'hooks/useForbiddenKnowledge';
 
 export default function Footer() {
+  const [fK, setFK] = useForbiddenKnowledge();
+
   return (
     <Container maxWidth="6xl">
       <Box
@@ -34,6 +37,16 @@ export default function Footer() {
               </Link>
             </ListItem>
           </List>
+        </Box>
+        <Box mb={2}>
+          <Link
+            as="button"
+            href="#"
+            onClick={() => setFK(!fK)}
+            textDecoration="underline"
+          >
+            {fK ? 'disable' : 'enable'} Forbidden Knowledge
+          </Link>
         </Box>
         <Box>
           Blaseball Reference is neither endorsed by or directly affiliated with{" "}

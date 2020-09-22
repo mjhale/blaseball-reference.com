@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/core";
 
 import {WeatherIcon, WeatherName} from '../weather';
+import useForbiddenKnowledge from 'hooks/useForbiddenKnowledge';
 
 export default function TeamSchedule({
   schedule,
@@ -52,6 +53,7 @@ export default function TeamSchedule({
     const seasonStartDate = new Date(`${seasonStartDates[selectedSeason]} UTC`);
     const gamesByDay = [];
 
+    let previousGameHasStarted = false;
     let currGameDate = seasonStartDate;
     for (const day in schedule[selectedSeason]) {
       const currDay = currGameDate.getDate();
@@ -61,18 +63,28 @@ export default function TeamSchedule({
         (dayGames) => dayGames.day === currDay
       );
 
+      const currHourGames = schedule[selectedSeason][day].map(game => {
+        const visibleOnSite = previousGameHasStarted || game.gameStart;
+        previousGameHasStarted = !!game.gameStart;
+
+        return {
+          ...game,
+          visibleOnSite,
+        };
+      });
+
       if (!currDayGames) {
         gamesByDay.push({
           day: currDay,
           startingDate: new Date(currGameDate),
           gamesByHour: {
-            [currHour]: schedule[selectedSeason][day],
+            [currHour]: currHourGames,
           },
         });
       } else {
         currDayGames.gamesByHour = {
           ...currDayGames.gamesByHour,
-          [currHour]: schedule[selectedSeason][day],
+          [currHour]: currHourGames,
         };
       }
 
@@ -132,6 +144,8 @@ export default function TeamSchedule({
 }
 
 function TeamDailySchedule({ dailySchedule, team, teams }) {
+  const [showForbiddenKnowledge] = useForbiddenKnowledge();
+
   const homeGameBackgroundColor =
     Color(team.mainColor).getLuminance() < 0.9
       ? team.mainColor
@@ -248,16 +262,18 @@ function TeamDailySchedule({ dailySchedule, team, teams }) {
                                 <>@ {opposingTeam.nickname}</>
                               )}
                             </Box>
-                            <Box my={{ base: 0.5, md: 1 }} >
-                              <Text
-                                as="span"
-                                fontSize={{ base: "xs", md: "sm" }}
-                              >
-                                <WeatherIcon for={game.weather} />
-                                {" "}
-                                <WeatherName for={game.weather} />
-                              </Text>
-                            </Box>
+                            {(game.visibleOnSite || showForbiddenKnowledge) ? (
+                              <Box my={{ base: 0.5, md: 1 }} >
+                                <Text
+                                  as="span"
+                                  fontSize={{ base: "xs", md: "sm" }}
+                                >
+                                  <WeatherIcon for={game.weather} />
+                                  {" "}
+                                  <WeatherName for={game.weather} />
+                                </Text>
+                              </Box>
+                            ) : null}
                             {game.gameComplete ? (
                               <Box fontSize="sm" textAlign="center">
                                 <Text as="span" fontWeight="bold">
