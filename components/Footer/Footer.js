@@ -1,4 +1,14 @@
-import { Box, Container, Link, List, ListItem, Text } from "@chakra-ui/core";
+import {
+  Box,
+  Container,
+  Flex,
+  Image,
+  Link,
+  List,
+  ListItem,
+  Text,
+} from "@chakra-ui/core";
+import NextLink from "next/link";
 
 export default function Footer() {
   return (
@@ -33,6 +43,26 @@ export default function Footer() {
                 GitHub
               </Link>
             </ListItem>
+            <ListItem display="inline" ml={1}>
+              -
+            </ListItem>
+            <ListItem display="inline" ml={1}>
+              <Link
+                href="https://sibr.dev"
+                isExternal
+                textDecoration="underline"
+              >
+                SIBR
+              </Link>
+            </ListItem>
+            <ListItem display="inline" ml={1}>
+              -
+            </ListItem>
+            <ListItem display="inline" ml={1}>
+              <NextLink href="/privacy" passHref>
+                <Link textDecoration="underline">Privacy Policy</Link>
+              </NextLink>
+            </ListItem>
           </List>
         </Box>
         <Box>
@@ -54,6 +84,39 @@ export default function Footer() {
           </Link>
           .
         </Box>
+        <Flex alignItems="center" justifyContent="center" mt={4}>
+          <Link
+            display="block"
+            href="https://vercel.com/"
+            isExternal
+            mr={2}
+            rel="nofollow"
+          >
+            <Image alt="Hosted by Vercel" height="20px" src="/vercel.svg" />
+          </Link>
+          <Link
+            display="block"
+            href="https://heap.io/?utm_source=badge"
+            isExternal
+            mr={2}
+            rel="nofollow"
+          >
+            <Image
+              alt="Product analytics by Heap"
+              height="41px"
+              src="/heap-analytics.png"
+              width="108px"
+            />
+          </Link>
+          <Link
+            display="block"
+            href="https://algolia.com"
+            isExternal
+            rel="nofollow"
+          >
+            <Image alt="Search by Algolia" height="20px" src="/algolia.svg" />
+          </Link>
+        </Flex>
       </Box>
     </Container>
   );
