@@ -1,5 +1,14 @@
+import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import theme from "theme";
+
+const stickyCellStyle = css`
+  background-color: inherit;
+  left: 0;
+  position: sticky;
+  top: auto;
+  white-space: unset;
+`;
 
 export const StyledContainer = styled.div`
   position: relative;
@@ -28,15 +37,7 @@ export const StyledTableCell = styled.td`
 `;
 
 export const StyledTableCellFixed = styled(StyledTableCell)`
-  background-color: #fff;
-  left: 0;
-  min-width: 80px;
-  overflow-wrap: break-word;
-  position: sticky;
-  top: auto;
-  white-space: unset;
-  word-wrap: break-word;
-  word-break: break-word;
+  ${stickyCellStyle}
 `;
 
 export const StyledTableFootCell = styled.td`
@@ -47,16 +48,8 @@ export const StyledTableFootCell = styled.td`
   text-align: center;
 `;
 
-export const StyledTableFootCellFixed = styled.td`
-  background-color: #fff;
-  left: 0;
-  min-width: 80px;
-  overflow-wrap: break-word;
-  position: sticky;
-  top: auto;
-  white-space: unset;
-  word-wrap: break-word;
-  word-break: break-word;
+export const StyledTableFootCellFixed = styled(StyledTableFootCell)`
+  ${stickyCellStyle}
 `;
 
 export const StyledTableHead = styled.thead`
@@ -75,19 +68,16 @@ export const StyledTableHeadCell = styled.th`
 `;
 
 export const StyledTableHeadCellFixed = styled(StyledTableHeadCell)`
-  background-color: #fff;
-  border-bottom: 2px solid ${theme.colors.black};
-  left: 0;
-  min-width: 80px;
-  overflow-wrap: break-word;
-  position: sticky;
-  top: auto;
-  white-space: unset;
-  word-wrap: break-word;
-  word-break: break-word;
+  ${stickyCellStyle}
 `;
 
 export const StyledTableRow = styled.tr`
+  background-color: ${theme.colors.white};
+`;
+
+export const StyledTableRowData = styled.tr`
+  background-color: ${theme.colors.white};
+
   &:hover {
     background-color: hsl(35, 100%, 95%);
   }

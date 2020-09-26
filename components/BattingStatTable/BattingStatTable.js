@@ -33,7 +33,7 @@ export default function BattingStatTable({
         {
           accessor: "season",
           Header: (
-            <Tooltip hasArrow label="Year" placement="top">
+            <Tooltip closeOnClick={false} hasArrow label="Year" placement="top">
               Yr
             </Tooltip>
           ),
@@ -48,7 +48,7 @@ export default function BattingStatTable({
         {
           accessor: "teamName",
           Header: (
-            <Tooltip hasArrow label="Team" placement="top">
+            <Tooltip closeOnClick={false} hasArrow label="Team" placement="top">
               Tm
             </Tooltip>
           ),
@@ -78,7 +78,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "appearances",
       Header: (
-        <Tooltip hasArrow label="Games Played" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Games Played"
+          placement="top"
+        >
           G
         </Tooltip>
       ),
@@ -87,7 +92,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "plateAppearances",
       Header: (
-        <Tooltip hasArrow label="Plate Appearances" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Plate Appearances"
+          placement="top"
+        >
           PA
         </Tooltip>
       ),
@@ -96,7 +106,7 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "atBats",
       Header: (
-        <Tooltip hasArrow label="At Bats" placement="top">
+        <Tooltip closeOnClick={false} hasArrow label="At Bats" placement="top">
           AB
         </Tooltip>
       ),
@@ -105,7 +115,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "runsScored",
       Header: (
-        <Tooltip hasArrow label="Runs Scored" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Runs Scored"
+          placement="top"
+        >
           R
         </Tooltip>
       ),
@@ -114,7 +129,7 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "hits",
       Header: (
-        <Tooltip hasArrow label="Hits" placement="top">
+        <Tooltip closeOnClick={false} hasArrow label="Hits" placement="top">
           H
         </Tooltip>
       ),
@@ -123,7 +138,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "doublesHit",
       Header: (
-        <Tooltip hasArrow label="Doubles Hit" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Doubles Hit"
+          placement="top"
+        >
           2B
         </Tooltip>
       ),
@@ -132,7 +152,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "triplesHit",
       Header: (
-        <Tooltip hasArrow label="Triples Hit" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Triples Hit"
+          placement="top"
+        >
           3B
         </Tooltip>
       ),
@@ -141,7 +166,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "homeRunsHit",
       Header: (
-        <Tooltip hasArrow label="Home Runs Hit" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Home Runs Hit"
+          placement="top"
+        >
           HR
         </Tooltip>
       ),
@@ -150,7 +180,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "runsBattedIn",
       Header: (
-        <Tooltip hasArrow label="Runs Batted In" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Runs Batted In"
+          placement="top"
+        >
           RBI
         </Tooltip>
       ),
@@ -159,7 +194,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "stolenBases",
       Header: (
-        <Tooltip hasArrow label="Stolen Bases" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Stolen Bases"
+          placement="top"
+        >
           SB
         </Tooltip>
       ),
@@ -168,7 +208,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "caughtStealing",
       Header: (
-        <Tooltip hasArrow label="Caught Stealing" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Caught Stealing"
+          placement="top"
+        >
           CS
         </Tooltip>
       ),
@@ -177,7 +222,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "basesOnBalls",
       Header: (
-        <Tooltip hasArrow label="Bases on Balls (Walks)" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Bases on Balls (Walks)"
+          placement="top"
+        >
           BB
         </Tooltip>
       ),
@@ -186,7 +236,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "strikeouts",
       Header: (
-        <Tooltip hasArrow label="Strikeouts" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Strikeouts"
+          placement="top"
+        >
           SO
         </Tooltip>
       ),
@@ -195,7 +250,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "battingAverage",
       Header: (
-        <Tooltip hasArrow label="Batting Average" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Batting Average"
+          placement="top"
+        >
           BA
         </Tooltip>
       ),
@@ -204,11 +264,13 @@ export function commonBattingStatColumns(summaryData = null) {
           ? Number.parseFloat(summaryData.battingAverage).toFixed(3)
           : null,
       Cell: ({ value }) => Number.parseFloat(value).toFixed(3),
+      sortType: "basic",
     },
     {
       accessor: "battingAverageWithRunnersInScoringPosition",
       Header: (
         <Tooltip
+          closeOnClick={false}
           hasArrow
           label="Batting Average With Runners in Scoring Position"
           placement="top"
@@ -223,11 +285,17 @@ export function commonBattingStatColumns(summaryData = null) {
             ).toFixed(3)
           : null,
       Cell: ({ value }) => Number.parseFloat(value).toFixed(3),
+      sortType: "basic",
     },
     {
       accessor: "onBasePercentage",
       Header: (
-        <Tooltip hasArrow label="On-base Percentage" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="On-base Percentage"
+          placement="top"
+        >
           OBP
         </Tooltip>
       ),
@@ -236,11 +304,17 @@ export function commonBattingStatColumns(summaryData = null) {
           ? Number.parseFloat(summaryData.onBasePercentage).toFixed(3)
           : null,
       Cell: ({ value }) => Number.parseFloat(value).toFixed(3),
+      sortType: "basic",
     },
     {
       accessor: "sluggingPercentage",
       Header: (
-        <Tooltip hasArrow label="Slugging Percentage" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Slugging Percentage"
+          placement="top"
+        >
           SLG
         </Tooltip>
       ),
@@ -249,13 +323,15 @@ export function commonBattingStatColumns(summaryData = null) {
           ? Number.parseFloat(summaryData.sluggingPercentage).toFixed(3)
           : null,
       Cell: ({ value }) => Number.parseFloat(value).toFixed(3),
+      sortType: "basic",
     },
     {
       accessor: "onBasePlusSlugging",
       Header: (
         <Tooltip
+          closeOnClick={false}
           hasArrow
-          label="On-base Plus Slugging Percentages"
+          label="On-base Plus Slugging Percentage"
           placement="top"
         >
           OPS
@@ -266,11 +342,17 @@ export function commonBattingStatColumns(summaryData = null) {
           ? Number.parseFloat(summaryData.onBasePlusSlugging).toFixed(3)
           : null,
       Cell: ({ value }) => Number.parseFloat(value).toFixed(3),
+      sortType: "basic",
     },
     {
       accessor: "totalBases",
       Header: (
-        <Tooltip hasArrow label="Total Bases" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Total Bases"
+          placement="top"
+        >
           TB
         </Tooltip>
       ),
@@ -279,7 +361,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "groundIntoDoublePlays",
       Header: (
-        <Tooltip hasArrow label="Double Plays Grounded Into" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Double Plays Grounded Into"
+          placement="top"
+        >
           GDP
         </Tooltip>
       ),
@@ -289,6 +376,7 @@ export function commonBattingStatColumns(summaryData = null) {
       accessor: "sacrificeBunts",
       Header: (
         <Tooltip
+          closeOnClick={false}
           hasArrow
           label="Sacrifice Hits (Sacrifice Bunts)"
           placement="top"
@@ -301,7 +389,12 @@ export function commonBattingStatColumns(summaryData = null) {
     {
       accessor: "sacrificeFlies",
       Header: (
-        <Tooltip hasArrow label="Sacrifice Flies" placement="top">
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Sacrifice Flies"
+          placement="top"
+        >
           SF
         </Tooltip>
       ),
