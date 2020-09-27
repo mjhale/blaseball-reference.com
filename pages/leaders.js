@@ -218,6 +218,6 @@ export async function getStaticProps({ params, preview = false }) {
       leaders,
       teams,
     },
-    revalidate: 180,
+    revalidate: 900,
   };
 }

@@ -303,6 +303,6 @@ export async function getStaticProps() {
     props: {
       teams,
     },
-    revalidate: 1800,
+    revalidate: 9000,
   };
 }

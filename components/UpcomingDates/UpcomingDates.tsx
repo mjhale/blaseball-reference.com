@@ -48,6 +48,15 @@ export default function UpcomingDates({
     seasonStartDates
   );
 
+  if (!seasonStartDate || !postseasonStartDate) {
+    return (
+      <>
+        <Box>Next Season: TBA</Box>
+        <Box>Next Postseason: TBA</Box>
+      </>
+    );
+  }
+
   const UpcomingSeason = () => (
     <Box>
       Next Season:{" "}

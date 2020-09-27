@@ -198,7 +198,7 @@ export async function getStaticProps({ params, preview = false }) {
       teamDetailsAndPlayerStats,
       preview,
     },
-    revalidate: 180,
+    revalidate: 900,
   };
 }
 

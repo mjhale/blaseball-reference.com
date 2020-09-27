@@ -162,6 +162,6 @@ export async function getStaticProps({ params, preview = false }) {
       standings,
       preview,
     },
-    revalidate: 180,
+    revalidate: 900,
   };
 }
