@@ -48,6 +48,18 @@ export default function Footer() {
             </ListItem>
             <ListItem display="inline" ml={1}>
               <Link
+                href="https://blaseball.com"
+                isExternal
+                textDecoration="underline"
+              >
+                Blaseball
+              </Link>
+            </ListItem>
+            <ListItem display="inline" ml={1}>
+              -
+            </ListItem>
+            <ListItem display="inline" ml={1}>
+              <Link
                 href="https://sibr.dev"
                 isExternal
                 textDecoration="underline"
@@ -60,13 +72,14 @@ export default function Footer() {
             </ListItem>
             <ListItem display="inline" ml={1}>
               <NextLink href="/privacy" passHref>
-                <Link textDecoration="underline">Privacy Policy</Link>
+                <Link textDecoration="underline">Privacy</Link>
               </NextLink>
             </ListItem>
           </List>
         </Box>
         <Box>
-          Blaseball Reference is neither endorsed by or directly affiliated with{" "}
+          Blaseball Reference is neither endorsed by nor directly affiliated
+          with{" "}
           <Link
             href="https://thegameband.com/"
             isExternal
@@ -74,7 +87,7 @@ export default function Footer() {
           >
             The Game Band
           </Link>
-          <Text as="span"> or </Text>
+          <Text as="span"> and </Text>
           <Link
             href="https://www.sports-reference.com/"
             isExternal

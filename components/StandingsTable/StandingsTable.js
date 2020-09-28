@@ -1,11 +1,13 @@
+import { Link, Tooltip } from "@chakra-ui/core";
+import NextLink from "next/link";
 import Table from "components/Table";
-import { Tooltip } from "@chakra-ui/core";
 
 export default function StandingsTable({
   division,
   divisions,
   season,
   standings,
+  teams,
 }) {
   const data = React.useMemo(() => {
     return standings;
@@ -20,6 +22,21 @@ export default function StandingsTable({
             {`${division.name} Teams`}
           </Tooltip>
         ),
+        Cell: ({ row, value }) => {
+          const team = teams.find(
+            (team) => team.fullName === row.original.teamName
+          );
+
+          return team ? (
+            <NextLink
+              href="/teams/[teamSlug]"
+              as={`/teams/${team.slug}`}
+              passHref
+            >
+              <Link>{value}</Link>
+            </NextLink>
+          ) : null;
+        },
       },
       {
         accessor: "wins",

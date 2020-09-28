@@ -1,4 +1,4 @@
-import { Box, Flex, Link, Text } from "@chakra-ui/core";
+import { Box, Flex, Link, Text, VisuallyHidden } from "@chakra-ui/core";
 import NextLink from "next/link";
 
 export default function LeaderTable({ category, leaders, teams }) {
@@ -15,52 +15,72 @@ export default function LeaderTable({ category, leaders, teams }) {
         {category.name}
       </Box>
       {leaders &&
-        leaders.map((leader, index) => (
-          <Flex
-            _hover={{ bgColor: "hsl(35, 100%, 95%)" }}
-            flexDirection="row"
-            fontSize="sm"
-            justifyContent="space-between"
-            key={leader.playerId}
-            py={1}
-            px={2}
-          >
-            <Box>
-              <Text
-                as="div"
-                display="inline-block"
-                minWidth={5}
-                mr={1}
-                textAlign="right"
-              >
-                {index === 0 && <>{index + 1}.</>}
+        leaders.map((leader, index) => {
+          const leaderTeam = teams.find((team) => team.id === leader.team);
 
-                {index !== 0 &&
-                  index > 0 &&
-                  leaders[index - 1].value !== leaders[index].value && (
-                    <>{index + 1}. </>
-                  )}
-              </Text>
-              <NextLink
-                href="/players/[playerSlug]"
-                as={`/players/${leader.playerSlug}`}
-                passHref
-              >
-                <Link>{leader.playerName}</Link>
-              </NextLink>{" "}
-              {teams.find((team) => team.id === leader.team)
-                ? `(${
-                    teams.find((team) => team.id === leader.team)?.shorthand
-                  })`
-                : null}
-            </Box>
-            <Box>
-              {Number.isSafeInteger(leader.value)
-                ? leader.value
-                : Number.parseFloat(leader.value).toFixed(3)}
-            </Box>
-          </Flex>
-        ))}
+          return (
+            <Flex
+              _hover={{ bgColor: "hsl(35, 100%, 95%)" }}
+              flexDirection="row"
+              fontSize="sm"
+              justifyContent="space-between"
+              key={leader.playerId}
+              py={1}
+              px={2}
+            >
+              <Box>
+                <Text
+                  as="div"
+                  display="inline-block"
+                  minWidth={5}
+                  mr={1}
+                  textAlign="right"
+                >
+                  {index === 0 && <>{index + 1}.</>}
+
+                  {index !== 0 &&
+                    index > 0 &&
+                    leaders[index - 1].value !== leaders[index].value && (
+                      <>{index + 1}. </>
+                    )}
+                </Text>
+                <NextLink
+                  href="/players/[playerSlug]"
+                  as={`/players/${leader.playerSlug}`}
+                  passHref
+                >
+                  <Link>
+                    {leader.playerName}
+                    <VisuallyHidden>player information</VisuallyHidden>
+                  </Link>
+                </NextLink>
+                {leaderTeam ? (
+                  <>
+                    <Text as="span" ml={1}>
+                      (
+                    </Text>
+                    <NextLink
+                      href="/teams/[teamSlug]"
+                      as={`/teams/${leaderTeam.slug}`}
+                      passHref
+                    >
+                      <Link>
+                        {leaderTeam.shorthand}
+                        <VisuallyHidden>team information</VisuallyHidden>
+                      </Link>
+                    </NextLink>
+                    <Text as="span">)</Text>
+                  </>
+                ) : null}
+              </Box>
+              <Box>
+                {Number.isSafeInteger(leader.value)
+                  ? leader.value
+                  : Number.parseFloat(leader.value).toFixed(3)}
+              </Box>
+            </Flex>
+          );
+        })}
     </Flex>
   );
 }

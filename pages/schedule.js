@@ -13,6 +13,7 @@ import {
   Skeleton,
   Stack,
   Text,
+  VisuallyHidden,
 } from "@chakra-ui/core";
 import Layout from "components/Layout";
 import NextLink from "next/link";
@@ -233,8 +234,16 @@ function DailySchedule({ schedule, teams }) {
               >
                 {game.gameStart === true ? (
                   <>
-                    {awayTeam.shorthand} {game.awayScore}, {homeTeam.shorthand}{" "}
-                    {game.homeScore}
+                    <NextLink
+                      href={`${process.env.NEXT_PUBLIC_REBLASE_URL}/game/${game.id}`}
+                      passHref
+                    >
+                      <Link isExternal>
+                        {awayTeam.shorthand} {game.awayScore},{" "}
+                        {homeTeam.shorthand} {game.homeScore}
+                        <VisuallyHidden>view game in Reblase</VisuallyHidden>
+                      </Link>
+                    </NextLink>
                   </>
                 ) : null}
               </Box>
@@ -246,7 +255,23 @@ function DailySchedule({ schedule, teams }) {
                 flexWrap="wrap"
                 fontSize="sm"
               >
-                {game.awayPitcherName} vs. {game.homePitcherName}
+                <Box>
+                  {game.awayPitcherName}
+                  {game.gameComplete
+                    ? game.awayScore > game.homeScore
+                      ? " (W)"
+                      : " (L)"
+                    : null}
+                </Box>
+                <Box mx={1}>vs.</Box>
+                <Box>
+                  {game.homePitcherName}
+                  {game.gameComplete
+                    ? game.homeScore > game.awayScore
+                      ? " (W)"
+                      : " (L)"
+                    : null}
+                </Box>
               </Flex>
             </Flex>
           );
@@ -277,11 +302,14 @@ function TeamBlock({ team }) {
             whiteSpace="nowrap"
           >
             <NextLink
-              href="teams/[teamSlug]/schedule"
-              as={`teams/${team.slug}/schedule`}
+              href="/teams/[teamSlug]/schedule"
+              as={`/teams/${team.slug}/schedule`}
               passHref
             >
-              <Link>{team.nickname}</Link>
+              <Link>
+                {team.nickname}
+                <VisuallyHidden>season schedule</VisuallyHidden>
+              </Link>
             </NextLink>
           </Box>
         </Flex>

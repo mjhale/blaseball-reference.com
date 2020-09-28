@@ -3,7 +3,15 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
-import { Box, Heading, Link, Select, Skeleton, Stack } from "@chakra-ui/core";
+import {
+  Box,
+  Flex,
+  Heading,
+  Link,
+  Select,
+  Skeleton,
+  Stack,
+} from "@chakra-ui/core";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import Layout from "components/Layout";
@@ -59,7 +67,7 @@ export default function Team(props) {
         <Heading as="h2" mb={2} size="md">
           Team Pages
         </Heading>
-        <Box mb={2}>
+        <Flex mb={2}>
           <NextLink
             href="/teams/[teamSlug]/schedule"
             as={`/teams/${router.query.teamSlug}/schedule`}
@@ -69,7 +77,16 @@ export default function Team(props) {
               Season Schedule
             </Link>
           </NextLink>
-        </Box>
+          <Box mx={1}>-</Box>
+          <NextLink
+            href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI_URL}/${teamDetailsAndPlayerStats.id}`}
+            passHref
+          >
+            <Link fontSize="md" isExternal textDecoration="underline">
+              Blaseball Wiki
+            </Link>
+          </NextLink>
+        </Flex>
         <TeamStats
           team={teamDetailsAndPlayerStats}
           teamPlayerStats={teamDetailsAndPlayerStats}
