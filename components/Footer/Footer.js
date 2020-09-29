@@ -1,3 +1,5 @@
+import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
+
 import {
   Box,
   Container,
@@ -11,6 +13,8 @@ import {
 import NextLink from "next/link";
 
 export default function Footer() {
+  const [forbiddenKnowledge, setForbiddenKnowledge] = useForbiddenKnowledge();
+
   return (
     <Container maxWidth="6xl">
       <Box
@@ -76,6 +80,16 @@ export default function Footer() {
               </NextLink>
             </ListItem>
           </List>
+        </Box>
+        <Box mb={2}>
+          <Link
+            as="button"
+            href="#"
+            onClick={() => setForbiddenKnowledge(!forbiddenKnowledge)}
+            textDecoration="underline"
+          >
+            {forbiddenKnowledge ? "disable" : "enable"} Forbidden Knowledge
+          </Link>
         </Box>
         <Box>
           Blaseball Reference is neither endorsed by nor directly affiliated
