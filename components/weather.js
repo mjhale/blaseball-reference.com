@@ -12,7 +12,12 @@ import {
   WiStars,
 } from "react-icons/wi";
 
-import { GiPeanut, GiBirdClaw, GiMicrophone, GiBigWave } from "react-icons/gi";
+import {
+  GiPeanut,
+  GiBirdClaw,
+  GiMicrophone,
+  GiBigWave
+} from "react-icons/gi";
 
 const WEATHERS = {
   0: {

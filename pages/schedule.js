@@ -1,6 +1,7 @@
 import apiFetcher from "lib/api-fetcher";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
+import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 
 import Head from "next/head";
 import NextLink from "next/link";
@@ -17,7 +18,6 @@ import {
 } from "@chakra-ui/core";
 import Layout from "components/Layout";
 import { WeatherIcon, WeatherName } from "components/weather";
-import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 
 export default function SchedulePage(props) {
   const { data: schedule, error: scheduleError } = useSWR(
@@ -259,12 +259,12 @@ function DailySchedule({ schedule, teams }) {
                 {game.awayPitcherName} vs. {game.homePitcherName}
               </Flex>
               {visibleOnSite || showForbiddenKnowledge ? (
-                <Box flex="1 1 0%">
+                <Flex flex="1 1 0%">
                   <WeatherIcon for={game.weather} />
                   <Text color="gray.600" as="span" fontSize="sm" ml="2">
                     <WeatherName for={game.weather} />
                   </Text>
-                </Box>
+                </Flex>
               ) : null}
             </Flex>
           );

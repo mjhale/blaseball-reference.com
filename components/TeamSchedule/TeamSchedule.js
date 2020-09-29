@@ -1,5 +1,6 @@
 import Color from "tinycolor2";
 import { useEffect, useMemo, useState } from "react";
+import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 
 import {
   Box,
@@ -13,9 +14,7 @@ import {
   Square,
   Text,
 } from "@chakra-ui/core";
-
 import { WeatherIcon, WeatherName } from "../weather";
-import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 
 export default function TeamSchedule({
   schedule,
