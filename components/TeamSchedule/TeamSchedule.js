@@ -7,14 +7,17 @@ import {
   Circle,
   Flex,
   Heading,
+  Link,
   Select,
   SimpleGrid,
   Skeleton,
   Stack,
   Square,
   Text,
+  VisuallyHidden,
 } from "@chakra-ui/core";
 import { WeatherIcon, WeatherName } from "../weather";
+import NextLink from "next/link";
 
 export default function TeamSchedule({
   schedule,
@@ -55,9 +58,11 @@ export default function TeamSchedule({
     let previousGameHasStarted = false;
     let currGameDate = seasonStartDate;
     for (const day in schedule[selectedSeason]) {
+      // Get real world day and hour for current game day
       const currDay = currGameDate.getDate();
       const currHour = currGameDate.getHours();
 
+      // Find real world day bucket if it exists
       const currDayGames = gamesByDay.find(
         (dayGames) => dayGames.day === currDay
       );
@@ -87,6 +92,16 @@ export default function TeamSchedule({
         };
       }
 
+      // At the end of the regular season, align future postseason games into real world's next date
+      // - Also preset the start of the postseason time
+      if (Number(day) + 1 === 99) {
+        currGameDate.setDate(currDay + 1);
+        currGameDate.setUTCHours(13);
+        continue;
+      }
+
+      // Increment real world hour by one
+      // - Increments the day by one if the hour exceeds 24
       currGameDate.setHours(currHour + 1);
     }
 
@@ -256,9 +271,37 @@ function TeamDailySchedule({ dailySchedule, team, teams }) {
                               textAlign="center"
                             >
                               {game.homeTeam === team.id ? (
-                                <>vs. {opposingTeam.nickname}</>
+                                <>
+                                  vs.{" "}
+                                  <NextLink
+                                    href="/teams/[teamSlug]/schedule"
+                                    as={`/teams/${opposingTeam.slug}/schedule`}
+                                    passHref
+                                  >
+                                    <Link>
+                                      {opposingTeam.nickname}{" "}
+                                      <VisuallyHidden>
+                                        team schedule
+                                      </VisuallyHidden>
+                                    </Link>
+                                  </NextLink>
+                                </>
                               ) : (
-                                <>@ {opposingTeam.nickname}</>
+                                <>
+                                  @{" "}
+                                  <NextLink
+                                    href="/teams/[teamSlug]/schedule"
+                                    as={`/teams/${opposingTeam.slug}/schedule`}
+                                    passHref
+                                  >
+                                    <Link>
+                                      {opposingTeam.nickname}{" "}
+                                      <VisuallyHidden>
+                                        team schedule
+                                      </VisuallyHidden>
+                                    </Link>
+                                  </NextLink>
+                                </>
                               )}
                             </Box>
                             {game.visibleOnSite || showForbiddenKnowledge ? (
@@ -277,9 +320,17 @@ function TeamDailySchedule({ dailySchedule, team, teams }) {
                                 <Text as="span" fontWeight="bold">
                                   {isWinningTeam ? "W" : "L"},{" "}
                                 </Text>
-                                <Text as="span">
-                                  {game.awayScore} - {game.homeScore}
-                                </Text>
+                                <NextLink
+                                  href={`${process.env.NEXT_PUBLIC_REBLASE_URL}/game/${game.id}`}
+                                  passHref
+                                >
+                                  <Link isExternal>
+                                    {game.awayScore} - {game.homeScore}
+                                    <VisuallyHidden>
+                                      view game in Reblase
+                                    </VisuallyHidden>
+                                  </Link>
+                                </NextLink>
                               </Box>
                             ) : null}
                           </Flex>

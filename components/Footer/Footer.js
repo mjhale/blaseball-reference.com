@@ -1,6 +1,16 @@
 import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 
-import { Box, Container, Link, List, ListItem, Text } from "@chakra-ui/core";
+import {
+  Box,
+  Container,
+  Flex,
+  Image,
+  Link,
+  List,
+  ListItem,
+  Text,
+} from "@chakra-ui/core";
+import NextLink from "next/link";
 
 export default function Footer() {
   const [forbiddenKnowledge, setForbiddenKnowledge] = useForbiddenKnowledge();
@@ -37,6 +47,38 @@ export default function Footer() {
                 GitHub
               </Link>
             </ListItem>
+            <ListItem display="inline" ml={1}>
+              -
+            </ListItem>
+            <ListItem display="inline" ml={1}>
+              <Link
+                href="https://blaseball.com"
+                isExternal
+                textDecoration="underline"
+              >
+                Blaseball
+              </Link>
+            </ListItem>
+            <ListItem display="inline" ml={1}>
+              -
+            </ListItem>
+            <ListItem display="inline" ml={1}>
+              <Link
+                href="https://sibr.dev"
+                isExternal
+                textDecoration="underline"
+              >
+                SIBR
+              </Link>
+            </ListItem>
+            <ListItem display="inline" ml={1}>
+              -
+            </ListItem>
+            <ListItem display="inline" ml={1}>
+              <NextLink href="/privacy" passHref>
+                <Link textDecoration="underline">Privacy</Link>
+              </NextLink>
+            </ListItem>
           </List>
         </Box>
         <Box mb={2}>
@@ -50,7 +92,8 @@ export default function Footer() {
           </Link>
         </Box>
         <Box>
-          Blaseball Reference is neither endorsed by or directly affiliated with{" "}
+          Blaseball Reference is neither endorsed by nor directly affiliated
+          with{" "}
           <Link
             href="https://thegameband.com/"
             isExternal
@@ -58,7 +101,7 @@ export default function Footer() {
           >
             The Game Band
           </Link>
-          <Text as="span"> or </Text>
+          <Text as="span"> and </Text>
           <Link
             href="https://www.sports-reference.com/"
             isExternal
@@ -68,6 +111,39 @@ export default function Footer() {
           </Link>
           .
         </Box>
+        <Flex alignItems="center" justifyContent="center" mt={4}>
+          <Link
+            display="block"
+            href="https://vercel.com/"
+            isExternal
+            mr={2}
+            rel="nofollow"
+          >
+            <Image alt="Hosted by Vercel" height="20px" src="/vercel.svg" />
+          </Link>
+          <Link
+            display="block"
+            href="https://heap.io/?utm_source=badge"
+            isExternal
+            mr={2}
+            rel="nofollow"
+          >
+            <Image
+              alt="Product analytics by Heap"
+              height="41px"
+              src="/heap-analytics.png"
+              width="108px"
+            />
+          </Link>
+          <Link
+            display="block"
+            href="https://algolia.com"
+            isExternal
+            rel="nofollow"
+          >
+            <Image alt="Search by Algolia" height="20px" src="/algolia.svg" />
+          </Link>
+        </Flex>
       </Box>
     </Container>
   );

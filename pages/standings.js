@@ -26,6 +26,11 @@ export default function StandingsPage(props) {
     }
   );
 
+  const { data: teams, error: teamsError } = useSWR("/teams.json", undefined, {
+    errorRetryCount: 5,
+    initialData: props.teams,
+  });
+
   return (
     <>
       <Head>
@@ -54,13 +59,14 @@ export default function StandingsPage(props) {
         <Standings
           leaguesAndDivisions={leaguesAndDivisions}
           standings={standings}
+          teams={teams}
         />
       </Layout>
     </>
   );
 }
 
-function Standings({ leaguesAndDivisions, standings }) {
+function Standings({ leaguesAndDivisions, standings, teams }) {
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [seasonList, setSeasonList] = useState([]);
 
@@ -137,6 +143,7 @@ function Standings({ leaguesAndDivisions, standings }) {
               })}
               season={selectedSeason}
               standings={standings[selectedSeason][divisionId]}
+              teams={teams}
             />
           </React.Fragment>
         )
@@ -146,12 +153,14 @@ function Standings({ leaguesAndDivisions, standings }) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  let standings = null;
   let leaguesAndDivisions = null;
+  let standings = null;
+  let teams = null;
 
   try {
-    standings = await apiFetcher("/standings/standings.json");
     leaguesAndDivisions = await apiFetcher("/leaguesAndDivisions.json");
+    standings = await apiFetcher("/standings/standings.json");
+    teams = await apiFetcher("/teams.json");
   } catch (error) {
     console.log(error);
   }
@@ -159,9 +168,11 @@ export async function getStaticProps({ params, preview = false }) {
   return {
     props: {
       leaguesAndDivisions,
-      standings,
       preview,
+
+      standings,
+      teams,
     },
-    revalidate: 180,
+    revalidate: 900,
   };
 }

@@ -100,7 +100,7 @@ export async function getStaticProps({ params, preview = false }) {
       team,
       teams,
     },
-    revalidate: 180,
+    revalidate: 900,
   };
 }
 

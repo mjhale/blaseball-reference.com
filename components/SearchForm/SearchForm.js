@@ -124,9 +124,10 @@ export default function SearchForm() {
             width="100%"
           >
             <FormControl id="searchTerm">
-              <VisuallyHidden>
-                <FormLabel>Search site</FormLabel>
+              <VisuallyHidden as={FormLabel}>
+                Search Blaseball Reference
               </VisuallyHidden>
+
               <InputGroup>
                 <InputLeftElement>
                   {isLoading ? (
