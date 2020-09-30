@@ -5,7 +5,7 @@ const COOKIE_NAME = "forbidden-knowledge";
 
 export default function useForbiddenKnowledge() {
   const [cookies, setCookie, removeCookie] = useCookies();
-  const setFK = useCallback(
+  const setShowForbiddenKnowledge = useCallback(
     (value) => {
       setCookie(COOKIE_NAME, value, {
         path: "/",
@@ -16,5 +16,5 @@ export default function useForbiddenKnowledge() {
     [setCookie]
   );
 
-  return [cookies[COOKIE_NAME] === "true", setFK];
+  return [cookies[COOKIE_NAME] === "true", setShowForbiddenKnowledge];
 }

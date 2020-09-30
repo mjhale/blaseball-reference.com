@@ -131,7 +131,7 @@ function Standings({ leaguesAndDivisions, standings, teams }) {
 
       {Object.entries(standings[selectedSeason]).map(
         ([divisionId, divisionTeams]) => (
-          <React.Fragment key={divisionId}>
+          <React.Fragment key={`${selectedSeason}-${divisionId}`}>
             <StandingsTable
               division={leaguesAndDivisions.divisions.find(
                 (division) => division.id === divisionId

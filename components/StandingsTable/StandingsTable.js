@@ -95,6 +95,7 @@ export default function StandingsTable({
 
           return winningPct;
         },
+        sortType: "basic",
       },
       {
         accessor: "splitRecords.extraInnings",
@@ -128,6 +129,12 @@ export default function StandingsTable({
             }
           }, [info.rows]);
         },
+        sortType: (rowA, rowB) =>
+          sortByWinLossSplit({
+            rowA,
+            rowB,
+            column: "splitRecords.extraInnings",
+          }),
       },
       {
         accessor: "streak.streakCode",
@@ -137,6 +144,8 @@ export default function StandingsTable({
           </Tooltip>
         ),
         Footer: "-",
+        sortType: (rowA, rowB) =>
+          sortByStreak({ rowA, rowB, column: "streak" }),
       },
       {
         accessor: "runsScored",
@@ -191,6 +200,7 @@ export default function StandingsTable({
 
           return <>{runDifferential}</>;
         },
+        sortType: "basic",
       },
       {
         accessor: "gamesBack",
@@ -213,6 +223,7 @@ export default function StandingsTable({
           </Tooltip>
         ),
         Footer: () => "-",
+        disableSortBy: true,
       },
       {
         accessor: "eliminationNumber",
@@ -226,6 +237,7 @@ export default function StandingsTable({
           </Tooltip>
         ),
         Footer: () => "-",
+        disableSortBy: true,
       },
       {
         accessor: "splitRecords.home",
@@ -258,6 +270,12 @@ export default function StandingsTable({
             }
           }, [info.rows]);
         },
+        sortType: (rowA, rowB) =>
+          sortByWinLossSplit({
+            rowA,
+            rowB,
+            column: "splitRecords.home",
+          }),
       },
       {
         accessor: "splitRecords.away",
@@ -290,6 +308,12 @@ export default function StandingsTable({
             }
           }, [info.rows]);
         },
+        sortType: (rowA, rowB) =>
+          sortByWinLossSplit({
+            rowA,
+            rowB,
+            column: "splitRecords.losses",
+          }),
       },
       {
         accessor: "splitRecords.winners",
@@ -322,6 +346,12 @@ export default function StandingsTable({
             }
           }, [info.rows]);
         },
+        sortType: (rowA, rowB) =>
+          sortByWinLossSplit({
+            rowA,
+            rowB,
+            column: "splitRecords.winners",
+          }),
       },
       {
         accessor: "splitRecords.shame",
@@ -354,6 +384,12 @@ export default function StandingsTable({
             }
           }, [info.rows]);
         },
+        sortType: (rowA, rowB) =>
+          sortByWinLossSplit({
+            rowA,
+            rowB,
+            column: "splitRecords.shame",
+          }),
       },
       ...divisions.map((division) => {
         return {
@@ -406,6 +442,12 @@ export default function StandingsTable({
               }
             }, [info.rows]);
           },
+          sortType: (rowA, rowB) =>
+            sortByWinLossSplit({
+              rowA,
+              rowB,
+              column: `divisionRecords[${division.id}]`,
+            }),
         };
       }),
     ],
@@ -413,4 +455,78 @@ export default function StandingsTable({
   );
 
   return <Table columns={columns} data={data} />;
+}
+
+function sortByStreak({ rowA, rowB, column }) {
+  const rowAStreakType = rowA.original[column]?.streakType;
+  const rowAStreakNumber = rowA.original[column]?.streakNumber;
+
+  const rowBStreakType = rowB.original[column]?.streakType;
+  const rowBStreakNumber = rowB.original[column]?.streakNumber;
+
+  // If rowA is missing either streakType or streakNumber, declare rowB as larger
+  if (rowAStreakType === undefined || rowAStreakNumber === undefined) {
+    return 1;
+  }
+
+  // If rowB is missing either streakType or streakNumber, declare rowA as larger
+  if (rowBStreakType === undefined || rowBStreakNumber === undefined) {
+    return -1;
+  }
+
+  // Sort win streaks as larger than loss streaks
+  if (rowAStreakType !== rowBStreakType) {
+    return rowAStreakType === "wins" ? 0 : -1;
+  }
+
+  // Sort win streak group by streak number (W10 > W5)
+  if (rowAStreakType === "wins") {
+    return rowAStreakNumber === rowBStreakNumber
+      ? 0
+      : rowAStreakNumber > rowBStreakNumber
+      ? 1
+      : -1;
+  }
+
+  // Sort losing streak group by streak number (L5 > L10)
+  if (rowAStreakType === "losses") {
+    return rowAStreakNumber === rowBStreakNumber
+      ? 0
+      : rowAStreakNumber > rowBStreakNumber
+      ? -1
+      : 1;
+  }
+}
+
+function sortByWinLossSplit({ rowA, rowB, column }) {
+  let rowAWins = rowA.values[column]?.wins;
+  let rowALosses = rowA.values[column]?.losses;
+
+  let rowBWins = rowB.values[column]?.wins;
+  let rowBLosses = rowB.values[column]?.losses;
+
+  // If rowA contains neither wins nor losses, declare row B as larger
+  if (rowAWins === undefined && rowALosses === undefined) {
+    return 1;
+  }
+
+  // If rowB contains neither wins nor losses, declare row A as larger
+  if (rowBWins === undefined && rowBLosses === undefined) {
+    return -1;
+  }
+
+  rowAWins = rowAWins ?? 0;
+  rowALosses = rowALosses ?? 0;
+
+  rowBWins = rowBWins ?? 0;
+  rowBLosses = rowBLosses ?? 0;
+
+  const rowAWinningPct = rowAWins / (rowAWins + rowALosses);
+  const rowBWinningPct = rowBWins / (rowBWins + rowBLosses);
+
+  return rowAWinningPct === rowBWinningPct
+    ? 0
+    : rowAWinningPct > rowBWinningPct
+    ? 1
+    : -1;
 }

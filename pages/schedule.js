@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 
-import Head from "next/head";
-import NextLink from "next/link";
+import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import {
   Box,
   Circle,
   Flex,
   Heading,
+  IconButton,
   Link,
   Select,
   Skeleton,
@@ -17,7 +17,10 @@ import {
   Text,
   VisuallyHidden,
 } from "@chakra-ui/core";
+import ForbiddenKnowledgeToggle from "components/ForbiddenKnowledgeToggle";
+import Head from "next/head";
 import Layout from "components/Layout";
+import NextLink from "next/link";
 import { WeatherIcon, WeatherName } from "components/weather";
 
 export default function SchedulePage(props) {
@@ -54,6 +57,7 @@ export default function SchedulePage(props) {
           League Schedule
         </Heading>
         <DailySchedule schedule={schedule} teams={teams} />
+        <ForbiddenKnowledgeToggle />
       </Layout>
     </>
   );
@@ -123,6 +127,18 @@ function DailySchedule({ schedule, teams }) {
     setSelectedDay(evt.target.value);
   };
 
+  const handleNextDayClick = (evt) => {
+    if (selectedDay + 1 <= dayList[dayList.length - 1]) {
+      setSelectedDay(selectedDay + 1);
+    }
+  };
+
+  const handlePreviousDayClick = (evt) => {
+    if (selectedDay - 1 >= dayList[0]) {
+      setSelectedDay(selectedDay - 1);
+    }
+  };
+
   if (
     !schedule ||
     !teams ||
@@ -184,7 +200,6 @@ function DailySchedule({ schedule, teams }) {
             </option>
           ))}
         </Select>
-
         <Select
           fontSize={{ base: "lg", md: "md" }}
           maxWidth="2xs"
@@ -199,6 +214,23 @@ function DailySchedule({ schedule, teams }) {
             </option>
           ))}
         </Select>
+        <Flex ml={2}>
+          <IconButton
+            aria-label="Previous Day"
+            fontSize="xl"
+            icon={<ArrowBackIcon />}
+            isDisabled={selectedDay - 1 < dayList[0]}
+            onClick={handlePreviousDayClick}
+          />
+          <IconButton
+            aria-label="Next Day"
+            fontSize="xl"
+            icon={<ArrowForwardIcon />}
+            isDisabled={selectedDay + 1 > dayList[dayList.length - 1]}
+            ml={1}
+            onClick={handleNextDayClick}
+          />
+        </Flex>
       </Flex>
 
       <Heading as="h2" mb={4} size="md">
@@ -216,8 +248,7 @@ function DailySchedule({ schedule, teams }) {
               borderBottomColor="gray.200"
               direction={{ base: "column", lg: "row" }}
               justifyContent="space-between"
-              px={4}
-              py={4}
+              p={4}
             >
               <Flex
                 alignItems="center"
@@ -238,7 +269,7 @@ function DailySchedule({ schedule, teams }) {
               <Box
                 color="gray.600"
                 fontSize="sm"
-                mt={{ base: 2, md: 0 }}
+                mt={{ base: 2, lg: 0 }}
                 textAlign={{ base: "center", xl: "left" }}
                 width="2xs"
               >
@@ -284,9 +315,14 @@ function DailySchedule({ schedule, teams }) {
                 </Box>
               </Flex>
               {visibleOnSite || showForbiddenKnowledge ? (
-                <Flex flex="1 1 0%">
+                <Flex alignItems="center" flex="1 1 0%" mt={{ base: 2, lg: 0 }}>
                   <WeatherIcon for={game.weather} />
-                  <Text color="gray.600" as="span" fontSize="sm" ml="2">
+                  <Text
+                    color="gray.600"
+                    display="inline-block"
+                    fontSize={{ base: "xs", md: "sm" }}
+                    ml={2}
+                  >
                     <WeatherName for={game.weather} />
                   </Text>
                 </Flex>

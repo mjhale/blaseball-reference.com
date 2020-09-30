@@ -16,8 +16,9 @@ import {
   Text,
   VisuallyHidden,
 } from "@chakra-ui/core";
-import { WeatherIcon, WeatherName } from "../weather";
+import ForbiddenKnowledgeToggle from "components/ForbiddenKnowledgeToggle";
 import NextLink from "next/link";
+import { WeatherIcon, WeatherName } from "../weather";
 
 export default function TeamSchedule({
   schedule,
@@ -27,6 +28,10 @@ export default function TeamSchedule({
 }) {
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [seasonList, setSeasonList] = useState([]);
+  const [
+    showForbiddenKnowledge,
+    setShowForbiddenKnowledge,
+  ] = useForbiddenKnowledge();
 
   const handleSeasonSelectChange = (evt) => {
     setSelectedSeason(evt.target.value);
@@ -38,7 +43,7 @@ export default function TeamSchedule({
         ? Object.keys(schedule).sort((a, b) => Number(a) - Number(b))
         : []),
     ]);
-  }, [team.teamName]);
+  }, [team]);
 
   useEffect(() => {
     if (seasonList?.length > 0) {
@@ -92,7 +97,7 @@ export default function TeamSchedule({
         };
       }
 
-      // At the end of the regular season, align future postseason games into real world's next date
+      // At the end of the regular season, assign future postseason games into real world's next date
       // - Also preset the start of the postseason time
       if (Number(day) + 1 === 99) {
         currGameDate.setDate(currDay + 1);
@@ -106,7 +111,7 @@ export default function TeamSchedule({
     }
 
     return gamesByDay;
-  }, [team.teamName, seasonStartDates, selectedSeason]);
+  }, [team, seasonStartDates, selectedSeason]);
 
   // Loading skeleton
   if (!selectedSeason || !selectedSeasonScheduleByDate) {
@@ -140,26 +145,30 @@ export default function TeamSchedule({
           value={selectedSeason}
         >
           {seasonList.map((season) => (
-            <option key={season} value={season}>
-              {`Season ${Number(season) + 1}`}
-            </option>
+            <option key={season} value={season}>{`Season ${
+              Number(season) + 1
+            }`}</option>
           ))}
         </Select>
       </Flex>
       <TeamDailySchedule
         dailySchedule={selectedSeasonScheduleByDate}
-        season={selectedSeason}
+        showForbiddenKnowledge={showForbiddenKnowledge}
         team={team}
         teams={teams}
       />
       <TeamDailyScheduleKey team={team} />
+      <ForbiddenKnowledgeToggle />
     </>
   );
 }
 
-function TeamDailySchedule({ dailySchedule, team, teams }) {
-  const [showForbiddenKnowledge] = useForbiddenKnowledge();
-
+function TeamDailySchedule({
+  dailySchedule,
+  showForbiddenKnowledge,
+  team,
+  teams,
+}) {
   const homeGameBackgroundColor =
     Color(team.mainColor).getLuminance() < 0.9
       ? team.mainColor
@@ -172,7 +181,7 @@ function TeamDailySchedule({ dailySchedule, team, teams }) {
   return (
     <>
       {dailySchedule.map((day) => (
-        <Box key={day.startingDate.getTime()} mb={4}>
+        <Box key={[day.startingDate.toString(), team.id].toString()} mb={4}>
           <Heading as="h2" mb={4} size="md">
             {day.startingDate.toLocaleString(undefined, {
               day: "numeric",
@@ -210,7 +219,7 @@ function TeamDailySchedule({ dailySchedule, team, teams }) {
                     borderLeft="1px solid"
                     borderTop="1px solid"
                     borderColor="black"
-                    key={dayStartingTime.toString()}
+                    key={currGameDay}
                   >
                     <Box
                       background={
@@ -304,17 +313,6 @@ function TeamDailySchedule({ dailySchedule, team, teams }) {
                                 </>
                               )}
                             </Box>
-                            {game.visibleOnSite || showForbiddenKnowledge ? (
-                              <Box my={{ base: 0.5, md: 1 }}>
-                                <Text
-                                  as="span"
-                                  fontSize={{ base: "xs", md: "sm" }}
-                                >
-                                  <WeatherIcon for={game.weather} />{" "}
-                                  <WeatherName for={game.weather} />
-                                </Text>
-                              </Box>
-                            ) : null}
                             {game.gameComplete ? (
                               <Box fontSize="sm" textAlign="center">
                                 <Text as="span" fontWeight="bold">
@@ -332,6 +330,18 @@ function TeamDailySchedule({ dailySchedule, team, teams }) {
                                   </Link>
                                 </NextLink>
                               </Box>
+                            ) : null}
+                            {game.visibleOnSite || showForbiddenKnowledge ? (
+                              <Flex
+                                alignItems="center"
+                                fontSize={{ base: "xs", md: "sm" }}
+                                mt={{ base: 2, md: 3 }}
+                              >
+                                <WeatherIcon for={game.weather} />
+                                <Box ml={1}>
+                                  <WeatherName for={game.weather} />
+                                </Box>
+                              </Flex>
                             ) : null}
                           </Flex>
                         );
