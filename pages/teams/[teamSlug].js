@@ -176,9 +176,6 @@ function TeamStats({ team, teamPlayerStats }) {
       </Select>
 
       <Box mb={2}>
-        <Heading as="h3" size="sm">
-          Team Batting
-        </Heading>
         <TeamBattingStatTable
           battingStats={teamPlayerStats.battingStats}
           season={selectedSeason}
@@ -186,9 +183,6 @@ function TeamStats({ team, teamPlayerStats }) {
         />
       </Box>
       <Box mb={4}>
-        <Heading as="h3" size="sm">
-          Team Pitching
-        </Heading>
         <TeamPitchingStatTable
           pitchingStats={teamPlayerStats.pitchingStats}
           season={selectedSeason}

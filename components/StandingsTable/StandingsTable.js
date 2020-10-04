@@ -1,4 +1,4 @@
-import { Link, Tooltip } from "@chakra-ui/core";
+import { Flex, Link, Tooltip } from "@chakra-ui/core";
 import NextLink from "next/link";
 import Table from "components/Table";
 
@@ -23,9 +23,7 @@ export default function StandingsTable({
           </Tooltip>
         ),
         Cell: ({ row, value }) => {
-          const team = teams.find(
-            (team) => team.fullName === row.original.teamName
-          );
+          const team = teams.find((team) => team.id === row.original.teamId);
 
           return team ? (
             <NextLink
@@ -454,7 +452,19 @@ export default function StandingsTable({
     []
   );
 
-  return <Table columns={columns} data={data} />;
+  return (
+    <Table columns={columns} data={data}>
+      <Flex alignContent="baseline" justifyContent="space-between" mt={4}>
+        <Table.Heading>{division.name} Standings</Table.Heading>
+        <Flex alignItems="center">
+          <Table.CSVExport
+            filename={`Team Standings ${division.name} Season ${season}.csv`}
+          />
+        </Flex>
+      </Flex>
+      <Table.Content />
+    </Table>
+  );
 }
 
 function sortByStreak({ rowA, rowB, column }) {

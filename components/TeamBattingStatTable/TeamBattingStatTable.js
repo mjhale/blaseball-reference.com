@@ -1,6 +1,6 @@
 import { commonBattingStatColumns } from "components/BattingStatTable/BattingStatTable";
 
-import { Link } from "@chakra-ui/core";
+import { Flex, Link } from "@chakra-ui/core";
 import NextLink from "next/link";
 import Table from "components/Table";
 import { Tooltip } from "@chakra-ui/core";
@@ -66,5 +66,19 @@ export default function TeamBattingStatTable({
     [isPostseason, season, statTargetName]
   );
 
-  return <Table columns={columns} data={data} />;
+  return (
+    <Table columns={columns} data={data}>
+      <Flex alignContent="baseline" justifyContent="space-between">
+        <Table.Heading level="h3" size="sm">
+          {"Team Batting Stats"}
+        </Table.Heading>
+        <Flex alignItems="center">
+          <Table.CSVExport
+            filename={`${statTargetName} Regular Season Batting Stats.csv`}
+          />
+        </Flex>
+      </Flex>
+      <Table.Content />
+    </Table>
+  );
 }

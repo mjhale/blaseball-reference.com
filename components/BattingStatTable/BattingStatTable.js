@@ -1,6 +1,6 @@
 import NextLink from "next/link";
 import Table from "components/Table";
-import { Link, Tooltip } from "@chakra-ui/core";
+import { Flex, Link, Tooltip } from "@chakra-ui/core";
 
 export default function BattingStatTable({
   battingStats,
@@ -70,7 +70,23 @@ export default function BattingStatTable({
     [isPostseason, statTargetName]
   );
 
-  return <Table columns={columns} data={data} />;
+  return (
+    <Table columns={columns} data={data}>
+      <Flex alignContent="center" justifyContent="space-between" mb={1}>
+        <Table.Heading>
+          {isPostseason ? "Postseason Batting Stats" : "Standard Batting Stats"}
+        </Table.Heading>
+        <Flex alignItems="center">
+          <Table.CSVExport
+            filename={`${statTargetName} ${
+              isPostseason ? "Postseason" : "Regular Season"
+            } Batting Stats.csv`}
+          />
+        </Flex>
+      </Flex>
+      <Table.Content />
+    </Table>
+  );
 }
 
 export function commonBattingStatColumns(summaryData = null) {

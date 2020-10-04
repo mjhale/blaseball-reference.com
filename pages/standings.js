@@ -169,7 +169,6 @@ export async function getStaticProps({ params, preview = false }) {
     props: {
       leaguesAndDivisions,
       preview,
-
       standings,
       teams,
     },

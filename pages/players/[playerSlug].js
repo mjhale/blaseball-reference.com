@@ -191,15 +191,8 @@ function PlayerStats({ battingStats, pitchingStats, player, teams }) {
 
   return (
     <>
-      <Heading as="h2" mb={4} size="md">
-        Player Stats
-      </Heading>
-
       {pitchingStats ? (
         <Box my={4}>
-          <Heading as="h3" size="md">
-            Standard Pitching
-          </Heading>
           <PitchingStatTable
             pitchingStats={pitchingStats}
             statTargetName={player.name}
@@ -208,9 +201,6 @@ function PlayerStats({ battingStats, pitchingStats, player, teams }) {
 
           {Object.keys(pitchingStats.postseasons).length > 0 && (
             <Box my={4}>
-              <Heading as="h3" size="md">
-                Postseason Pitching
-              </Heading>
               <PitchingStatTable
                 isPostseason={true}
                 pitchingStats={pitchingStats}
@@ -224,9 +214,6 @@ function PlayerStats({ battingStats, pitchingStats, player, teams }) {
 
       {battingStats ? (
         <Box my={4}>
-          <Heading as="h3" size="md">
-            Standard Batting
-          </Heading>
           <BattingStatTable
             battingStats={battingStats}
             statTargetName={player.name}
@@ -235,9 +222,6 @@ function PlayerStats({ battingStats, pitchingStats, player, teams }) {
 
           {Object.keys(battingStats.postseasons).length > 0 && (
             <Box my={4}>
-              <Heading as="h3" size="md">
-                Postseason Batting
-              </Heading>
               <BattingStatTable
                 battingStats={battingStats}
                 isPostseason={true}
