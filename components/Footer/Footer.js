@@ -100,12 +100,12 @@ export default function Footer() {
         <Flex alignItems="center" justifyContent="center" mt={4}>
           <Link
             display="block"
-            href="https://vercel.com/"
+            href="https://algolia.com"
             isExternal
             mr={2}
             rel="nofollow"
           >
-            <Image alt="Hosted by Vercel" height="20px" src="/vercel.svg" />
+            <Image alt="Search by Algolia" src="/search-by-algolia.svg" />
           </Link>
           <Link
             display="block"
@@ -116,18 +116,24 @@ export default function Footer() {
           >
             <Image
               alt="Product analytics by Heap"
-              height="41px"
+              height="100%"
+              maxHeight="41px"
               src="/heap-analytics.png"
               width="108px"
             />
           </Link>
           <Link
             display="block"
-            href="https://algolia.com"
+            href="https://vercel.com/?utm_source=blaseball-reference-com&utm_campaign=oss"
             isExternal
             rel="nofollow"
           >
-            <Image alt="Search by Algolia" height="20px" src="/algolia.svg" />
+            <Image
+              alt="Powered by Vercel"
+              height="100%"
+              maxHeight="35px"
+              src="/powered-by-vercel.svg"
+            />
           </Link>
         </Flex>
       </Box>

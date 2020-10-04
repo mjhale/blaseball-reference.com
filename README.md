@@ -53,3 +53,13 @@ To learn more about Next.js, take a look at the following resources:
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 - [Chakra UI Documentation](https://next.chakra-ui.com/) - learn more about Chakra UI components
+
+## Project Sponsors
+
+We'd like to thank [Vercel](https://vercel.com/?utm_source=blaseball-reference-com&utm_campaign=oss), [Algolia](https://algolia.com), and [Heap.io](https://heap.io/?utm_source=badge) for supporting Blaseball Reference as well as the wider open source community.
+
+[![Powered by Vercel](./public/powered-by-vercel.svg)](https://vercel.com/?utm_source=blaseball-reference-com&utm_campaign=oss)
+
+[![Search by Algolia](./public/search-by-algolia.svg)](https://algolia.com)
+
+[![Product analytics by Heap](./public/heap-analytics.png)](https://heap.io/?utm_source=badge)
