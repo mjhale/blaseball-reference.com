@@ -129,13 +129,13 @@ function DailySchedule({ schedule, teams }) {
 
   const handleNextDayClick = (evt) => {
     if (selectedDay + 1 <= dayList[dayList.length - 1]) {
-      setSelectedDay(selectedDay + 1);
+      setSelectedDay(Number(selectedDay) + 1);
     }
   };
 
   const handlePreviousDayClick = (evt) => {
     if (selectedDay - 1 >= dayList[0]) {
-      setSelectedDay(selectedDay - 1);
+      setSelectedDay(Number(selectedDay) - 1);
     }
   };
 
@@ -296,24 +296,30 @@ function DailySchedule({ schedule, teams }) {
                 flexWrap="wrap"
                 fontSize="sm"
               >
-                <Box>
-                  {game.awayPitcherName}
-                  {game.gameComplete
-                    ? game.awayScore > game.homeScore
-                      ? " (W)"
-                      : " (L)"
-                    : null}
-                </Box>
-                <Box mx={1}>vs.</Box>
-                <Box>
-                  {game.homePitcherName}
-                  {game.gameComplete
-                    ? game.homeScore > game.awayScore
-                      ? " (W)"
-                      : " (L)"
-                    : null}
-                </Box>
+                {game.awayPitcherName.length > 0 &&
+                game.homePitcherName.length > 0 ? (
+                  <>
+                    <Box>
+                      {game.awayPitcherName}
+                      {game.gameComplete
+                        ? game.awayScore > game.homeScore
+                          ? " (W)"
+                          : " (L)"
+                        : null}
+                    </Box>
+                    <Box mx={1}>vs.</Box>
+                    <Box>
+                      {game.homePitcherName}
+                      {game.gameComplete
+                        ? game.homeScore > game.awayScore
+                          ? " (W)"
+                          : " (L)"
+                        : null}
+                    </Box>
+                  </>
+                ) : null}
               </Flex>
+
               {visibleOnSite || showForbiddenKnowledge ? (
                 <Flex alignItems="center" flex="1 1 0%" mt={{ base: 2, lg: 0 }}>
                   <WeatherIcon for={game.weather} />
