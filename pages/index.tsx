@@ -58,7 +58,6 @@ export default function IndexPage(props: IndexPageProps) {
     "/players/players.json",
     undefined,
     {
-      errorRetryCount: 5,
       initialData: props.players,
     }
   );
@@ -67,7 +66,6 @@ export default function IndexPage(props: IndexPageProps) {
     "/seasonStartDates.json",
     undefined,
     {
-      errorRetryCount: 5,
       initialData: props.seasonStartDates,
     }
   );

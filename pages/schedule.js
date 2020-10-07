@@ -26,14 +26,10 @@ import { WeatherIcon, WeatherName } from "components/weather";
 export default function SchedulePage(props) {
   const { data: schedule, error: scheduleError } = useSWR(
     "/gameResults.json",
-    undefined,
-    {
-      errorRetryCount: 5,
-    }
+    undefined
   );
 
   const { data: teams, error: teamsError } = useSWR("/teams.json", undefined, {
-    errorRetryCount: 5,
     initialData: props.teams,
   });
 

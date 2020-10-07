@@ -24,7 +24,6 @@ export default function PlayerPage(props) {
     `/players/${router.query.playerSlug}/details.json`,
     undefined,
     {
-      errorRetryCount: 5,
       initialData: props.player,
     }
   );
@@ -32,24 +31,18 @@ export default function PlayerPage(props) {
     `/batting/${router.query.playerSlug}/summary.json`,
     undefined,
     {
-      errorRetryCount: 0,
       initialData: props.battingStats,
-      revalidateOnFocus: false,
     }
   );
   const { data: pitchingStats, error: pitchingStatsError } = useSWR(
     `/pitching/${router.query.playerSlug}/summary.json`,
     undefined,
     {
-      errorRetryCount: 0,
       initialData: props.pitchingStats,
-      revalidateOnFocus: false,
     }
   );
   const { data: teams, error: teamsError } = useSWR(`/teams.json`, undefined, {
-    errorRetryCount: 5,
     initialData: props.teams,
-    revalidateOnFocus: false,
   });
 
   return (

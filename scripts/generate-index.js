@@ -1,5 +1,5 @@
 const algoliasearch = require("algoliasearch");
-const fetch = require("node-fetch");
+const fetch = require("@zeit/fetch-retry")(require("node-fetch"));
 
 export default async function apiFetcher(endpoint) {
   const res = await fetch(

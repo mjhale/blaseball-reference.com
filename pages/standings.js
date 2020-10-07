@@ -12,7 +12,6 @@ export default function StandingsPage(props) {
     "/leaguesAndDivisions.json",
     undefined,
     {
-      errorRetryCount: 5,
       initialData: props.leaguesAndDivisions,
     }
   );
@@ -21,13 +20,11 @@ export default function StandingsPage(props) {
     "/standings/standings.json",
     undefined,
     {
-      errorRetryCount: 5,
       initialData: props.standings,
     }
   );
 
   const { data: teams, error: teamsError } = useSWR("/teams.json", undefined, {
-    errorRetryCount: 5,
     initialData: props.teams,
   });
 

@@ -59,7 +59,9 @@ export default function BRApp({ Component, pageProps }) {
         <SWRConfig
           value={{
             fetcher: apiFetcher,
-            refreshInterval: 900000,
+            revalidateOnFocus: false,
+            refreshInterval: 0,
+            shouldRetryOnError: false,
           }}
         >
           <Component {...pageProps} />

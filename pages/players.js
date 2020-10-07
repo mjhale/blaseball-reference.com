@@ -8,7 +8,6 @@ import PlayerList from "components/PlayerList";
 
 export default function PlayersPage(props) {
   const { data, error } = useSWR("/players/players.json", undefined, {
-    errorRetryCount: 5,
     initialData: props.players,
   });
 

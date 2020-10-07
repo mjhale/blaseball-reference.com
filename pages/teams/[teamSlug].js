@@ -27,7 +27,6 @@ export default function Team(props) {
     `/teams/${router.query.teamSlug}/playerStats.json`,
     undefined,
     {
-      errorRetryCount: 5,
       initialData: props.teamDetailsAndPlayerStats,
     }
   );

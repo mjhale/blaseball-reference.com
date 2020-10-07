@@ -1,5 +1,6 @@
+const fetch = require("@zeit/fetch-retry")(require("node-fetch"));
+
 module.exports = {
-  target: "serverless",
   redirects: async () => {
     const players = await getPlayers();
     const playerRedirects = players.map((player) => {

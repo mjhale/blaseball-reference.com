@@ -24,7 +24,7 @@ export default async function generateSitemap(req, res) {
 
     const pages = await globby([
       "pages/**/*{.tsx,.js,.mdx}",
-      "!pages/_*.js",
+      "!pages/_*{.tsx,.js}",
       "!pages/api",
       "!pages/players/[playerSlug].js",
       "!pages/teams/[teamSlug].js",

@@ -8,7 +8,6 @@ import TeamCardList from "components/TeamCardList";
 
 export default function Teams(props) {
   const { data, error } = useSWR("/teams.json", undefined, {
-    errorRetryCount: 5,
     initialData: props.teams,
   });
 

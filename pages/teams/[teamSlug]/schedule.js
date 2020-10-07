@@ -15,7 +15,6 @@ export default function TeamSchedulePage(props) {
     `/teams/${router.query.teamSlug}/schedule.json`,
     undefined,
     {
-      errorRetryCount: 5,
       initialData: props.schedule,
     }
   );
@@ -24,7 +23,6 @@ export default function TeamSchedulePage(props) {
     "/seasonStartDates.json",
     undefined,
     {
-      errorRetryCount: 5,
       initialData: props.seasonStartDates,
     }
   );
@@ -33,13 +31,11 @@ export default function TeamSchedulePage(props) {
     `/teams/${router.query.teamSlug}/details.json`,
     undefined,
     {
-      errorRetryCount: 5,
       initialData: props.team,
     }
   );
 
   const { data: teams, error: teamsError } = useSWR(`/teams.json`, undefined, {
-    errorRetryCount: 5,
     initialData: props.teams,
   });
 

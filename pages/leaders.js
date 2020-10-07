@@ -12,7 +12,6 @@ export default function LeadersPage(props) {
     "/leaders/categories.json",
     undefined,
     {
-      errorRetryCount: 5,
       initialData: props.categories,
     }
   );
@@ -20,12 +19,10 @@ export default function LeadersPage(props) {
     "/leaders/leaders.json",
     undefined,
     {
-      errorRetryCount: 5,
       initialData: props.leaders,
     }
   );
   const { data: teams, error: teamsError } = useSWR("/teams.json", undefined, {
-    errorRetryCount: 5,
     initialData: props.teams,
   });
 
