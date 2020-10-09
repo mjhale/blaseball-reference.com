@@ -102,7 +102,8 @@ const WEATHERS = {
 };
 
 export function WeatherIcon({ for: weather }) {
-  const { icon: Icon, background, color } = WEATHERS[weather];
+  const { icon: Icon, background, color } = WEATHERS[weather ?? 1]; // Fallback to 'Sunny (ID 1)'
+
   return (
     <Flex
       color={color}
@@ -123,5 +124,5 @@ export function WeatherIcon({ for: weather }) {
 }
 
 export function WeatherName({ for: weather }) {
-  return WEATHERS[weather].name;
+  return WEATHERS[weather ?? 1].name; // Fallback to 'Sunny (ID 1)'
 }

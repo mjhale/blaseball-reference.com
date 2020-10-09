@@ -60,24 +60,22 @@ export default function SchedulePage(props) {
 }
 
 function DailySchedule({ schedule, teams }) {
+  const sortedSeasonList = () =>
+    schedule ? Object.keys(schedule).sort((a, b) => Number(a) - Number(b)) : [];
+  const mostRecentSeason = () => sortedSeasonList().pop();
+
   const [dayList, setDayList] = useState([]);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [seasonList, setSeasonList] = useState([]);
 
   useEffect(() => {
-    setSeasonList([
-      ...(schedule
-        ? Object.keys(schedule).sort((a, b) => Number(a) - Number(b))
-        : []),
-    ]);
-  }, [schedule]);
+    setSeasonList(sortedSeasonList);
+  }, [JSON.stringify(sortedSeasonList())]);
 
   useEffect(() => {
-    if (seasonList?.length > 0) {
-      setSelectedSeason(seasonList[seasonList.length - 1]);
-    }
-  }, [seasonList]);
+    setSelectedSeason(mostRecentSeason());
+  }, [JSON.stringify(seasonList)]);
 
   useEffect(() => {
     setDayList([
@@ -111,7 +109,7 @@ function DailySchedule({ schedule, teams }) {
 
       setSelectedDay(lastDayWithCompletedGames);
     }
-  }, [dayList]);
+  }, [JSON.stringify(dayList)]);
 
   const [showForbiddenKnowledge] = useForbiddenKnowledge();
 
@@ -244,6 +242,7 @@ function DailySchedule({ schedule, teams }) {
               borderBottomColor="gray.200"
               direction={{ base: "column", lg: "row" }}
               justifyContent="space-between"
+              key={game.id}
               p={4}
             >
               <Flex

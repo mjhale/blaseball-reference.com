@@ -96,42 +96,32 @@ export default function Team(props) {
 }
 
 function TeamStats({ team, teamPlayerStats }) {
-  const [selectedSeason, setSelectedSeason] = useState(null);
-  const [seasonList, setSeasonList] = useState([]);
+  const sortedSeasonList = () =>
+    teamPlayerStats.battingStats?.seasons
+      ? Object.keys(teamPlayerStats.battingStats.seasons).sort(
+          (a, b) => Number(a) - Number(b)
+        )
+      : [];
+  const mostRecentSeason = () => sortedSeasonList().pop();
+
+  const [selectedSeason, setSelectedSeason] = useState(mostRecentSeason);
+  const [seasonList, setSeasonList] = useState(sortedSeasonList);
 
   useEffect(() => {
-    setSeasonList([
-      ...(teamPlayerStats?.battingStats?.seasons
-        ? Object.keys(teamPlayerStats.battingStats.seasons).sort(
-            (a, b) => Number(a) - Number(b)
-          )
-        : []),
-    ]);
-  }, [team.fullName]);
+    setSeasonList(sortedSeasonList);
+  }, [JSON.stringify(sortedSeasonList)]);
 
   useEffect(() => {
-    if (seasonList.length > 0) {
-      setSelectedSeason(seasonList[seasonList.length - 1]);
-    }
-  }, [seasonList]);
+    setSelectedSeason(mostRecentSeason);
+  }, [JSON.stringify(seasonList)]);
 
   const handleSelectChange = (evt) => {
     setSelectedSeason(evt.target.value);
   };
 
-  if (
-    !teamPlayerStats ||
-    !teamPlayerStats?.battingStats?.seasons ||
-    !teamPlayerStats?.pitchingStats?.seasons ||
-    !Object.hasOwnProperty.call(
-      teamPlayerStats.battingStats.seasons,
-      selectedSeason
-    ) ||
-    !Object.hasOwnProperty.call(
-      teamPlayerStats.pitchingStats.seasons,
-      selectedSeason
-    )
-  ) {
+  // Show loading indicator if team props are not provided
+  // - Mostly in place for when team stats are fetched by season rather than in bulk
+  if (!team || !teamPlayerStats) {
     return (
       <>
         <Select

@@ -67,29 +67,33 @@ export default function PlayerPage(props) {
         />
       </Head>
       <Layout>
-        {(router.isFallback && !player) || !teams ? (
-          <>
-            <Skeleton height="40px" mb={4} width="2xs" />
-            <Stack>
-              <Skeleton height="20px" />
-              <Skeleton height="20px" />
-              <Skeleton height="20px" />
-            </Stack>
-          </>
-        ) : (
-          <PlayerDetails
-            battingStats={battingStats}
-            pitchingStats={pitchingStats}
-            player={player}
-            teams={teams}
-          />
-        )}
+        <PlayerDetails
+          battingStats={battingStats}
+          pitchingStats={pitchingStats}
+          player={player}
+          teams={teams}
+        />
       </Layout>
     </>
   );
 }
 
 function PlayerDetails({ battingStats, pitchingStats, player, teams }) {
+  const router = useRouter();
+
+  if ((router.isFallback && !player) || !teams) {
+    return (
+      <>
+        <Skeleton height="40px" mb={4} width="2xs" />
+        <Stack>
+          <Skeleton height="20px" />
+          <Skeleton height="20px" />
+          <Skeleton height="20px" />
+        </Stack>
+      </>
+    );
+  }
+
   const currentTeam = teams.find((team) => team.id === player.currentTeamId);
 
   return (
@@ -246,13 +250,21 @@ export async function getStaticProps({ params, preview = false }) {
     battingStats = await apiFetcher(
       `/batting/${params.playerSlug}/summary.json`
     );
+  } catch (_error) {
+    /**
+     * Some players will never have batting stats available, so
+     * any fetch errors should be ignored for now
+     */
+  }
+
+  try {
     pitchingStats = await apiFetcher(
       `/pitching/${params.playerSlug}/summary.json`
     );
   } catch (_error) {
     /**
-     * Some players will never have batting or pitching stats available, so
-     * any fetch errors should be ignored for the timebeing
+     * Some players will never have pitching stats available, so
+     * any fetch errors should be ignored for now
      */
   }
 

@@ -64,22 +64,24 @@ export default function StandingsPage(props) {
 }
 
 function Standings({ leaguesAndDivisions, standings, teams }) {
-  const [selectedSeason, setSelectedSeason] = useState(null);
-  const [seasonList, setSeasonList] = useState([]);
+  const sortedSeasonList = () =>
+    standings
+      ? Object.keys(standings).sort((a, b) => Number(a) - Number(b))
+      : [];
+  const mostRecentSeason = () => sortedSeasonList().pop();
+
+  const [selectedSeason, setSelectedSeason] = useState(mostRecentSeason());
+  const [seasonList, setSeasonList] = useState(sortedSeasonList());
 
   useEffect(() => {
-    setSeasonList([
-      ...(standings
-        ? Object.keys(standings).sort((a, b) => Number(a) - Number(b))
-        : []),
-    ]);
-  }, [standings]);
+    setSeasonList(sortedSeasonList);
+  }, [JSON.stringify(sortedSeasonList)]);
 
   useEffect(() => {
     if (seasonList.length > 0) {
       setSelectedSeason(seasonList[seasonList.length - 1]);
     }
-  }, [seasonList]);
+  }, [JSON.stringify(seasonList)]);
 
   const handleSelectChange = (evt) => {
     setSelectedSeason(evt.target.value);

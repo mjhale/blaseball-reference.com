@@ -60,28 +60,28 @@ export default function LeadersPage(props) {
 }
 
 function LeaderTables({ categories, leaders, teams }) {
-  const [selectedView, setSelectedView] = useState(null);
-  const [seasonList, setSeasonList] = useState([]);
+  const sortedViewList = () =>
+    leaders
+      ? Object.keys(leaders)
+          .filter((view) => Number(view))
+          .sort((a, b) => Number(a) - Number(b))
+      : [];
+  const mostRecentSeason = () =>
+    sortedViewList()
+      .filter((view) => Number(view))
+      .sort((a, b) => Number(a) - Number(b))
+      .pop();
+
+  const [selectedView, setSelectedView] = useState(mostRecentSeason());
+  const [seasonList, setSeasonList] = useState(sortedViewList());
 
   useEffect(() => {
-    setSeasonList([
-      ...(leaders
-        ? Object.keys(leaders)
-            .filter((view) => Number(view))
-            .sort((a, b) => Number(a) - Number(b))
-        : []),
-    ]);
-  }, [leaders]);
+    setSeasonList(sortedViewList);
+  }, [JSON.stringify(sortedViewList)]);
 
   useEffect(() => {
-    if (seasonList.length > 0) {
-      const mostRecentSeason = seasonList
-        .filter((view) => Number(view))
-        .sort((a, b) => Number(a) - Number(b))
-        .pop();
-      setSelectedView(mostRecentSeason);
-    }
-  }, [seasonList]);
+    mostRecentSeason();
+  }, [JSON.stringify(seasonList)]);
 
   const handleSelectChange = (evt) => {
     setSelectedView(evt.target.value);

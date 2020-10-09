@@ -43,13 +43,13 @@ export default function TeamSchedule({
         ? Object.keys(schedule).sort((a, b) => Number(a) - Number(b))
         : []),
     ]);
-  }, [team]);
+  }, [team.id]);
 
   useEffect(() => {
     if (seasonList?.length > 0) {
       setSelectedSeason(seasonList[seasonList.length - 1]);
     }
-  }, [seasonList]);
+  }, [JSON.stringify(seasonList)]);
 
   // Group games into daily buckets (e.g., Aug. 1, games 1-12; Aug. 2, games 13-36; ...))
   const selectedSeasonScheduleByDate = useMemo(() => {
@@ -111,7 +111,7 @@ export default function TeamSchedule({
     }
 
     return gamesByDay;
-  }, [team, seasonStartDates, selectedSeason]);
+  }, [team.id, JSON.stringify(seasonStartDates), selectedSeason]);
 
   // Loading skeleton
   if (!selectedSeason || !selectedSeasonScheduleByDate) {
