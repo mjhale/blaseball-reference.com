@@ -1,4 +1,5 @@
 import apiFetcher from "lib/api-fetcher";
+import renderTeamEmoji from "utils/renderTeamEmoji";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
@@ -348,7 +349,7 @@ function TeamBlock({ team }) {
             width={{ base: 6, md: 8 }}
           >
             <Text as="span" fontSize={{ base: "xs", md: "2xl" }} role="emoji">
-              {String.fromCodePoint(team.emoji)}
+              {renderTeamEmoji(team.emoji)}
             </Text>
           </Circle>
           <Box

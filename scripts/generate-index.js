@@ -1,5 +1,6 @@
 const algoliasearch = require("algoliasearch");
 const fetch = require("@zeit/fetch-retry")(require("node-fetch"));
+const renderTeamEmoji = require("../utils/renderTeamEmoji.js");
 
 export default async function apiFetcher(endpoint) {
   const res = await fetch(
@@ -41,7 +42,7 @@ async function generate() {
 
   for (const team of teams) {
     indexRecords.push({
-      aliases: [team.shorthand, String.fromCodePoint(team.emoji)],
+      aliases: [team.shorthand, renderTeamEmoji(team.emoji)],
       anchor: `/teams/${team.slug}`,
       data: team,
       objectID: team.id,

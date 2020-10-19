@@ -1,4 +1,5 @@
 import Color from "tinycolor2";
+import renderTeamEmoji from "utils/renderTeamEmoji";
 import { useEffect, useMemo, useState } from "react";
 import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 
@@ -271,7 +272,7 @@ function TeamDailySchedule({
                                 fontSize={{ base: "sm", md: "2xl" }}
                                 role="emoji"
                               >
-                                {String.fromCodePoint(opposingTeam.emoji)}
+                                {renderTeamEmoji(opposingTeam.emoji)}
                               </Text>
                             </Circle>
                             <Box

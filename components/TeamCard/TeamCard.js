@@ -1,3 +1,5 @@
+import renderTeamEmoji from "utils/renderTeamEmoji";
+
 import { Box, Heading, Link, Text } from "@chakra-ui/core";
 import NextLink from "next/link";
 
@@ -27,7 +29,7 @@ export default function TeamCard({ team }) {
           width="20"
         >
           <Text as="span" display="block" fontSize="4xl" role="emoji">
-            {String.fromCodePoint(team.emoji)}
+            {renderTeamEmoji(team.emoji)}
           </Text>
         </Box>
         <Box textAlign="left">
