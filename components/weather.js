@@ -1,5 +1,4 @@
 import { Flex } from "@chakra-ui/core";
-
 import {
   WiMoonFull,
   WiDaySunny,
@@ -11,8 +10,13 @@ import {
   WiSolarEclipse,
   WiStars,
 } from "react-icons/wi";
-
-import { GiPeanut, GiBirdClaw, GiMicrophone, GiBigWave } from "react-icons/gi";
+import {
+  GiPeanut,
+  GiBirdClaw,
+  GiMicrophone,
+  GiBigWave,
+  GiVortex,
+} from "react-icons/gi";
 
 const WEATHERS = {
   0: {
@@ -22,7 +26,7 @@ const WEATHERS = {
     color: "#000000",
   },
   1: {
-    name: "Sunny",
+    name: "Sun 2",
     icon: WiDaySunny,
     background: "#db7900",
     color: "#fffec4",
@@ -98,6 +102,12 @@ const WEATHERS = {
     icon: GiBigWave,
     background: "#443561",
     color: "#61b3ff",
+  },
+  14: {
+    name: "Black Hole",
+    icon: GiVortex,
+    background: "#000000",
+    color: "#00374a",
   },
 };
 
