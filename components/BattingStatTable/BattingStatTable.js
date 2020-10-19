@@ -180,6 +180,20 @@ export function commonBattingStatColumns(summaryData = null) {
       Footer: () => summaryData?.triplesHit ?? null,
     },
     {
+      accessor: "quadruplesHit",
+      Header: (
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Quadruples Hit"
+          placement="top"
+        >
+          4B
+        </Tooltip>
+      ),
+      Footer: () => summaryData?.quadruplesHit ?? null,
+    },
+    {
       accessor: "homeRunsHit",
       Header: (
         <Tooltip
