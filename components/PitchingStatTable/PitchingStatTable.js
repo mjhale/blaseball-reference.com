@@ -21,7 +21,7 @@ export default function PitchingStatTable({
       : pitchingStats.seasons;
 
     return Object.keys(seasons)
-      .sort()
+      .sort((a, b) => Number(a) - Number(b))
       .map((season) => {
         return {
           ...seasons[season],

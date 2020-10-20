@@ -29,7 +29,9 @@ export default function TeamPitchingStatTable({
       : pitchingStats.seasons;
 
     if (!season) {
-      const season = Object.keys(seasons).sort().pop();
+      const season = Object.keys(seasons)
+        .sort((a, b) => Number(a) - Number(b))
+        .pop();
     }
 
     return seasons[season].map((player) => {

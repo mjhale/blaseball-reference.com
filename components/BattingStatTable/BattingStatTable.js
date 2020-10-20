@@ -18,7 +18,7 @@ export default function BattingStatTable({
       : battingStats.seasons;
 
     return Object.keys(seasons)
-      .sort()
+      .sort((a, b) => Number(a) - Number(b))
       .map((season) => {
         return {
           ...seasons[season],

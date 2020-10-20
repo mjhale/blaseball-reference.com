@@ -29,7 +29,9 @@ export default function TeamBattingStatTable({
       : battingStats.seasons;
 
     if (!season) {
-      season = Object.keys(seasons).sort().pop();
+      season = Object.keys(seasons)
+        .sort((a, b) => Number(a) - Number(b))
+        .pop();
     }
 
     return seasons[season].map((player) => {
