@@ -1,6 +1,6 @@
 import apiFetcher from "lib/api-fetcher";
 import { GetStaticProps } from "next";
-import Player from "interfaces/player";
+import Player from "types/player";
 import { useMemo } from "react";
 import useSWR from "swr";
 
