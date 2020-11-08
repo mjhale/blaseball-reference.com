@@ -1,6 +1,6 @@
 const algoliasearch = require("algoliasearch");
 const fetch = require("@zeit/fetch-retry")(require("node-fetch"));
-const renderTeamEmoji = require("../utils/renderTeamEmoji.js");
+const renderTeamEmoji = require("../utils/renderTeamEmoji.js").default;
 
 export default async function apiFetcher(endpoint) {
   const res = await fetch(
