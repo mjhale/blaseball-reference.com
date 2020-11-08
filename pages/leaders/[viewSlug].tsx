@@ -1,5 +1,13 @@
 import apiFetcher from "lib/api-fetcher";
-import { GetStaticProps } from "next";
+import {
+  getSlugFromLeaderView,
+  translateLeaderViewToSlug,
+} from "utils/slugHelpers";
+import { GetStaticPaths, GetStaticProps } from "next";
+import Leader from "types/leader";
+import LeaderCategory from "types/leaderCategory";
+import Team from "types/team";
+import { useRouter } from "next/router";
 import useSWR from "swr";
 
 import Head from "next/head";
@@ -7,7 +15,15 @@ import { Box, Heading } from "@chakra-ui/core";
 import Layout from "components/Layout";
 import LeaderView from "components/LeaderView";
 
-export default function LeadersPage(props) {
+type Props = {
+  categories: LeaderCategory[];
+  leaders: Leader[];
+  teams: Team[];
+};
+
+export default function LeadersPage(props: Props) {
+  const router = useRouter();
+
   const { data: categories, error: categoriesError } = useSWR(
     "/leaders/categories.json",
     undefined,
@@ -53,16 +69,18 @@ export default function LeadersPage(props) {
           </Box>
         ) : null}
 
-        <LeaderView categories={categories} leaders={leaders} teams={teams} />
+        <LeaderView
+          categories={categories}
+          leaders={leaders}
+          teams={teams}
+          view={getSlugFromLeaderView(String(router.query.viewSlug))}
+        />
       </Layout>
     </>
   );
 }
 
-export const getStaticProps: GetStaticProps = async ({
-  params,
-  preview = false,
-}) => {
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   let categories = null;
   let leaders = null;
   let teams = null;
@@ -93,5 +111,24 @@ export const getStaticProps: GetStaticProps = async ({
       teams,
     },
     revalidate: 900,
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  let leaders = null;
+
+  try {
+    leaders = await apiFetcher("/leaders/leaders.json");
+  } catch (error) {
+    console.log(error);
+  }
+
+  const viewList = leaders
+    ? Object.keys(leaders).map((view) => translateLeaderViewToSlug(view))
+    : [];
+
+  return {
+    paths: viewList.map((view) => `/leaders/${view}`) || [],
+    fallback: false,
   };
 };
