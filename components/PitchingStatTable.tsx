@@ -5,7 +5,7 @@ import { useMemo } from "react";
 
 import NextLink from "next/link";
 import Table from "components/Table";
-import { Flex, Link, Tooltip } from "@chakra-ui/core";
+import { Flex, Link, Tooltip } from "@chakra-ui/react";
 
 type StatTableProps = {
   pitchingStats: { [seasonNumber: string]: PitchingStats };
@@ -67,11 +67,7 @@ export default function PitchingStatTable({
           const team = teams.find((team) => team.id === row.original.team);
 
           return team ? (
-            <NextLink
-              href="/teams/[teamSlug]"
-              as={`/teams/${team.slug}`}
-              passHref
-            >
+            <NextLink href={`/teams/${team.slug}`} passHref>
               <Link>{value}</Link>
             </NextLink>
           ) : null;

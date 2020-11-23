@@ -13,7 +13,7 @@ import {
   Select,
   Skeleton,
   Stack,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import Layout from "components/Layout";
@@ -69,11 +69,7 @@ export default function Team(props) {
           Team Pages
         </Heading>
         <Flex mb={2}>
-          <NextLink
-            href="/teams/[teamSlug]/schedule"
-            as={`/teams/${router.query.teamSlug}/schedule`}
-            passHref
-          >
+          <NextLink href={`/teams/${router.query.teamSlug}/schedule`} passHref>
             <Link fontSize="md" textDecoration="underline">
               Season Schedule
             </Link>

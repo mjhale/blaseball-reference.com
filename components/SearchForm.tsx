@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Fragment, useEffect, useRef, useState } from "react";
 import useAlgoliaSearchResults from "hooks/useAlgoliaSearchResults";
 import { useRouter } from "next/router";
-import { useTheme } from "@chakra-ui/core";
+import { useTheme } from "@chakra-ui/react";
 
 import {
   Combobox,
@@ -29,7 +29,7 @@ import {
   ListItem,
   Skeleton,
   VisuallyHidden,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
 // @TODO: Fix combobox options rendering after submit when already on search page

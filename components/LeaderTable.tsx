@@ -2,7 +2,7 @@ import Leader from "types/leader";
 import LeaderCategory from "types/leaderCategory";
 import Team from "types/team";
 
-import { Box, Flex, Link, Text, VisuallyHidden } from "@chakra-ui/core";
+import { Box, Flex, Link, Text, VisuallyHidden } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 type Props = {
@@ -54,11 +54,7 @@ export default function LeaderTable({ category, leaders, teams }: Props) {
                       <>{index + 1}. </>
                     )}
                 </Text>
-                <NextLink
-                  href="/players/[playerSlug]"
-                  as={`/players/${leader.playerSlug}`}
-                  passHref
-                >
+                <NextLink href={`/players/${leader.playerSlug}`} passHref>
                   <Link>
                     {leader.playerName}
                     <VisuallyHidden>player information</VisuallyHidden>
@@ -69,11 +65,7 @@ export default function LeaderTable({ category, leaders, teams }: Props) {
                     <Text as="span" ml={1}>
                       (
                     </Text>
-                    <NextLink
-                      href="/teams/[teamSlug]"
-                      as={`/teams/${leaderTeam.slug}`}
-                      passHref
-                    >
+                    <NextLink href={`/teams/${leaderTeam.slug}`} passHref>
                       <Link>
                         {leaderTeam.shorthand}
                         <VisuallyHidden>team information</VisuallyHidden>

@@ -2,7 +2,7 @@ import { Column } from "react-table";
 import { createContext, useContext, useMemo } from "react";
 import { useSortBy, useTable } from "react-table";
 
-import { Button, Heading } from "@chakra-ui/core";
+import { Button, Heading } from "@chakra-ui/react";
 import { CSVLink } from "react-csv";
 import {
   StyledContainer,

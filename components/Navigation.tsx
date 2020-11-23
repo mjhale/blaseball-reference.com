@@ -6,7 +6,7 @@ import {
   Flex,
   Link,
   Text,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 import SearchForm from "components/SearchForm";

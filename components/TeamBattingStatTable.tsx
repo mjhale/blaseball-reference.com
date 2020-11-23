@@ -3,10 +3,10 @@ import { Column } from "react-table";
 import { commonBattingStatColumns } from "components/BattingStatTable";
 import { useMemo } from "react";
 
-import { Flex, Link } from "@chakra-ui/core";
+import { Flex, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
 import Table from "components/Table";
-import { Tooltip } from "@chakra-ui/core";
+import { Tooltip } from "@chakra-ui/react";
 
 type StatTableProps = {
   battingStats: { [seasonNumber: string]: BattingStats };
@@ -63,11 +63,7 @@ export default function TeamBattingStatTable({
         ),
         Cell: ({ row, value }) => {
           return row.original?.slug ? (
-            <NextLink
-              href="/players/[playerSlug]"
-              as={`/players/${row.original.slug}`}
-              passHref
-            >
+            <NextLink href={`/players/${row.original.slug}`} passHref>
               <Link>{value}</Link>
             </NextLink>
           ) : null;

@@ -19,7 +19,7 @@ import {
   Square,
   Text,
   VisuallyHidden,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import ForbiddenKnowledgeToggle from "components/ForbiddenKnowledgeToggle";
 import NextLink from "next/link";
 import { WeatherIcon, WeatherName } from "components/Weather";
@@ -293,8 +293,7 @@ function TeamDailySchedule({
                                 <>
                                   vs.{" "}
                                   <NextLink
-                                    href="/teams/[teamSlug]/schedule"
-                                    as={`/teams/${opposingTeam.slug}/schedule`}
+                                    href={`/teams/${opposingTeam.slug}/schedule`}
                                     passHref
                                   >
                                     <Link>
@@ -309,8 +308,7 @@ function TeamDailySchedule({
                                 <>
                                   @{" "}
                                   <NextLink
-                                    href="/teams/[teamSlug]/schedule"
-                                    as={`/teams/${opposingTeam.slug}/schedule`}
+                                    href={`/teams/${opposingTeam.slug}/schedule`}
                                     passHref
                                   >
                                     <Link>

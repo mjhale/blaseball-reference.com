@@ -1,15 +1,11 @@
 import {
-  Box,
-  Container,
-  Flex,
   Heading,
-  Image,
   Link,
   ListItem,
   Stack,
   Text,
   UnorderedList,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import Head from "next/head";
 import Layout from "components/Layout";
 

@@ -1,12 +1,12 @@
 import renderTeamEmoji from "utils/renderTeamEmoji";
 import Team from "types/team";
 
-import { Box, Heading, Link, Text } from "@chakra-ui/core";
+import { Box, Heading, Link, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 export default function TeamCard({ team }: { team: Team }) {
   return (
-    <NextLink href="teams/[teamSlug]" as={`teams/${team.slug}`} passHref>
+    <NextLink href={`/teams/${team.slug}`} passHref>
       <Link
         _hover={{ bgColor: "hsl(35, 100%, 98%)", boxShadow: "md" }}
         alignItems="center"

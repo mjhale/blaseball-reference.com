@@ -4,7 +4,7 @@ import Player from "types/player";
 import { useMemo } from "react";
 import useSWR from "swr";
 
-import { Box, Heading, Text } from "@chakra-ui/core";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import CommaSeparatedPlayerList from "components/CommaSeparatedPlayerList";
 import Head from "next/head";
 import Layout from "components/Layout";

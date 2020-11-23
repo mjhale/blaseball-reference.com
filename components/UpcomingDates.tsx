@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/core";
+import { Box } from "@chakra-ui/react";
 
 function getPostseasonStartDate(seasonStartDate: Date): Date {
   let postseasonStartDate = new Date(seasonStartDate);

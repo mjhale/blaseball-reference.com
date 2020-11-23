@@ -14,7 +14,7 @@ import {
   Skeleton,
   Stack,
   Text,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import Head from "next/head";
 import Layout from "components/Layout";
 import NextLink from "next/link";
@@ -129,11 +129,7 @@ function PlayerDetails({ battingStats, pitchingStats, player, teams }) {
         {currentTeam ? (
           <Text my={1}>
             Team:{" "}
-            <NextLink
-              href="/teams/[teamSlug]"
-              as={`/teams/${currentTeam.slug}`}
-              passHref
-            >
+            <NextLink href={`/teams/${currentTeam.slug}`} passHref>
               <Link textDecoration="underline">{currentTeam.fullName}</Link>
             </NextLink>
           </Text>

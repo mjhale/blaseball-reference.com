@@ -18,7 +18,7 @@ import {
   Stack,
   Text,
   VisuallyHidden,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import ForbiddenKnowledgeToggle from "components/ForbiddenKnowledgeToggle";
 import Head from "next/head";
 import Layout from "components/Layout";
@@ -89,23 +89,21 @@ function DailySchedule({ schedule, teams }) {
     ]);
   }, [selectedSeason]);
 
+  /** Find the last day in a season
+   *
+   * Because some seasons contain days with inaccurate gameComplete values, we
+   * must iterate through all games to find the correct day with active games.
+   */
   useEffect(() => {
-    if (dayList?.length > 0) {
-      let lastDayWithCompletedGames = dayList.length - 1;
+    if (Array.isArray(dayList) && dayList.length > 0) {
+      let lastDayWithCompletedGames;
 
       for (const day of dayList) {
-        let hasActiveGames = false;
-
         for (const game of schedule[selectedSeason][day]) {
-          if (game.gameComplete === false) {
-            hasActiveGames = true;
+          if (game.gameComplete === true) {
             lastDayWithCompletedGames = day;
             break;
           }
-        }
-
-        if (hasActiveGames === true) {
-          break;
         }
       }
 
@@ -357,11 +355,7 @@ function TeamBlock({ team }) {
             fontWeight="bold"
             whiteSpace="nowrap"
           >
-            <NextLink
-              href="/teams/[teamSlug]/schedule"
-              as={`/teams/${team.slug}/schedule`}
-              passHref
-            >
+            <NextLink href={`/teams/${team.slug}/schedule`} passHref>
               <Link>
                 {team.nickname}
                 <VisuallyHidden>season schedule</VisuallyHidden>

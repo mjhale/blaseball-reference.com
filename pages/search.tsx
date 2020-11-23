@@ -3,7 +3,7 @@ import { GetStaticProps } from "next";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { Box, Flex, Heading, Image, Link, Skeleton } from "@chakra-ui/core";
+import { Box, Flex, Heading, Image, Link, Skeleton } from "@chakra-ui/react";
 import Head from "next/head";
 import NextLink from "next/link";
 import Layout from "components/Layout";
@@ -83,18 +83,7 @@ function SearchResults({ isError, isLoading, searchResults }) {
             </Heading>
             {searchResults[resultGroup].map((result) => (
               <Box key={result.objectID} py={1}>
-                {/* @TODO: Remove href={...} logic in upcoming Next.js release */}
-                <NextLink
-                  href={
-                    resultGroup === "players"
-                      ? "/players/[playerSlug]"
-                      : resultGroup === "teams"
-                      ? "/teams/[teamSlug]"
-                      : null
-                  }
-                  as={result.anchor}
-                  passHref
-                >
+                <NextLink href={result.anchor} passHref>
                   <Link>{result.title}</Link>
                 </NextLink>
               </Box>

@@ -3,7 +3,7 @@ import { GetStaticProps } from "next";
 import useSWR from "swr";
 
 import Head from "next/head";
-import { Box, Heading, Text } from "@chakra-ui/core";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import Layout from "components/Layout";
 import PlayerList from "components/PlayerList";
 

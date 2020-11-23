@@ -1,6 +1,6 @@
 import Team from "types/team";
 
-import { Box, Heading, Skeleton } from "@chakra-ui/core";
+import { Box, Heading, Skeleton } from "@chakra-ui/react";
 
 export default function TeamHistory({ teamDetails }: { teamDetails: Team }) {
   if (!teamDetails) {

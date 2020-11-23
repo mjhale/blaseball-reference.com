@@ -3,7 +3,7 @@ import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
-import { Heading } from "@chakra-ui/core";
+import { Heading } from "@chakra-ui/react";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import Layout from "components/Layout";

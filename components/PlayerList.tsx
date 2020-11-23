@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import Player from "types/player";
 
-import { Box, Divider, Heading, Link, Text } from "@chakra-ui/core";
+import { Box, Divider, Heading, Link, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 function groupPlayersByLastName(
@@ -60,11 +60,7 @@ export default function PlayerList({ players }: { players: Player[] }) {
                 {playersInAlphabeticGroup.map((player, index) => {
                   return (
                     <Fragment key={player.id}>
-                      <NextLink
-                        href="players/[playerSlug]"
-                        as={`players/${player.slug}`}
-                        passHref
-                      >
+                      <NextLink href={`players/${player.slug}`} passHref>
                         <Link>{player.name}</Link>
                       </NextLink>
                       {player.isIncinerated && (

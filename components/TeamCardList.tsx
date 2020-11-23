@@ -1,6 +1,6 @@
 import Team from "types/team";
 
-import { Grid, List, ListItem } from "@chakra-ui/core";
+import { Grid, List, ListItem } from "@chakra-ui/react";
 import TeamCard from "components/TeamCard";
 
 export default function TeamCardList({ teams }: { teams: Team[] }) {

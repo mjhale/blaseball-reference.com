@@ -1,7 +1,7 @@
 import Player from "types/player";
 
 import NextLink from "next/link";
-import { Link, List, ListItem } from "@chakra-ui/core";
+import { Link, List, ListItem } from "@chakra-ui/react";
 
 export default function CommaSeparatedPlayerList({
   players,
@@ -20,11 +20,7 @@ export default function CommaSeparatedPlayerList({
           display="inline"
           key={player.id}
         >
-          <NextLink
-            href="/players/[playerSlug]"
-            as={`/players/${player.slug}`}
-            passHref
-          >
+          <NextLink href={`/players/${player.slug}`} passHref>
             <Link>{player.name}</Link>
           </NextLink>
         </ListItem>

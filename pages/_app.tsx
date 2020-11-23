@@ -5,7 +5,7 @@ import { SWRConfig } from "swr";
 
 import "@reach/skip-nav/styles.css";
 
-import { extendTheme, ChakraProvider, CSSReset } from "@chakra-ui/core";
+import { extendTheme, ChakraProvider, CSSReset } from "@chakra-ui/react";
 import Head from "next/head";
 
 const customTheme = extendTheme({ theme });

@@ -4,7 +4,7 @@ import Team from "types/team";
 import { TeamStanding } from "types/standings";
 import { useMemo } from "react";
 
-import { Flex, Link, Tooltip } from "@chakra-ui/core";
+import { Flex, Link, Tooltip } from "@chakra-ui/react";
 import NextLink from "next/link";
 import Table from "components/Table";
 
@@ -40,11 +40,7 @@ export default function StandingsTable({
           const team = teams.find((team) => team.id === row.original.teamId);
 
           return team ? (
-            <NextLink
-              href="/teams/[teamSlug]"
-              as={`/teams/${team.slug}`}
-              passHref
-            >
+            <NextLink href={`/teams/${team.slug}`} passHref>
               <Link>{value}</Link>
             </NextLink>
           ) : null;

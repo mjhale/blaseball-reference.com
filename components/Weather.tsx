@@ -1,6 +1,6 @@
 import Weather from "types/weather";
 
-import { Flex } from "@chakra-ui/core";
+import { Flex } from "@chakra-ui/react";
 import {
   GiPeanut,
   GiBirdClaw,

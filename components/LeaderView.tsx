@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import LeaderTable from "components/LeaderTable";
-import { Heading, Grid, Select, Skeleton, Stack } from "@chakra-ui/core";
+import { Heading, Grid, Select, Skeleton, Stack } from "@chakra-ui/react";
 
 type Props = {
   categories: LeaderCategory[];

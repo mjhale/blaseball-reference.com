@@ -1,6 +1,6 @@
 import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 
-import { Button, Flex } from "@chakra-ui/core";
+import { Button, Flex } from "@chakra-ui/react";
 
 export default function ForbiddenKnowledgeToggle() {
   const [

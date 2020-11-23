@@ -3,10 +3,10 @@ import { Column } from "react-table";
 import { commonPitchingStatColumns } from "components/PitchingStatTable";
 import { useMemo } from "react";
 
-import { Flex, Link } from "@chakra-ui/core";
+import { Flex, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
 import Table from "components/Table";
-import { Tooltip } from "@chakra-ui/core";
+import { Tooltip } from "@chakra-ui/react";
 
 type StatTableProps = {
   isPostseason?: boolean;
@@ -63,11 +63,7 @@ export default function TeamPitchingStatTable({
         ),
         Cell: ({ row, value }) => {
           return row.original?.slug ? (
-            <NextLink
-              href="/players/[playerSlug]"
-              as={`/players/${row.original.slug}`}
-              passHref
-            >
+            <NextLink href={`/players/${row.original.slug}`} passHref>
               <Link>{value}</Link>
             </NextLink>
           ) : null;
