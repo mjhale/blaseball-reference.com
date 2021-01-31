@@ -1,11 +1,13 @@
 import apiFetcher from "lib/api-fetcher";
 import { AppProps } from "next/app";
+import { extendTheme } from "@chakra-ui/react";
 import theme from "theme";
 import { SWRConfig } from "swr";
 
 import "@reach/skip-nav/styles.css";
 
-import { extendTheme, ChakraProvider, CSSReset } from "@chakra-ui/react";
+import { ApiConfigWrapper } from "context/ApiConfig";
+import { ChakraProvider, CSSReset } from "@chakra-ui/react";
 import Head from "next/head";
 
 const customTheme = extendTheme({ theme });
@@ -67,7 +69,9 @@ export default function BRApp({ Component, pageProps }: AppProps) {
             shouldRetryOnError: false,
           }}
         >
-          <Component {...pageProps} />
+          <ApiConfigWrapper>
+            <Component {...pageProps} />
+          </ApiConfigWrapper>
         </SWRConfig>
       </ChakraProvider>
     </>
