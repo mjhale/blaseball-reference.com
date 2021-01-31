@@ -18,10 +18,10 @@ export default function CommaSeparatedPlayerList({
             },
           }}
           display="inline"
-          key={player.id}
+          key={player.player_id}
         >
-          <NextLink href={`/players/${player.slug}`} passHref>
-            <Link>{player.name}</Link>
+          <NextLink href={`/players/${player.url_slug}`} passHref>
+            <Link>{player.player_name}</Link>
           </NextLink>
         </ListItem>
       ))}

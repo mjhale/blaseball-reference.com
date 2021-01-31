@@ -8,7 +8,7 @@ function groupPlayersByLastName(
   players: Player[]
 ): { [alphabeticGroup: string]: { group: string; children: Player[] } } {
   return players.reduce((accumulator, player) => {
-    const lastName = player.name.split(" ").pop();
+    const lastName = player.player_name.split(" ").pop();
     const group = lastName[0].toLocaleLowerCase();
 
     if (!accumulator[group]) {
@@ -36,12 +36,12 @@ export default function PlayerList({ players }: { players: Player[] }) {
           const playersInAlphabeticGroup = playersGroupedByLastName[
             alphabeticGroup
           ].children.sort((a, b) => {
-            let aLastName = a.name
+            let aLastName = a.player_name
               .split(" ")
               .slice(-1)
               .pop()
               .toLocaleLowerCase();
-            let bLastName = b.name
+            let bLastName = b.player_name
               .split(" ")
               .slice(-1)
               .pop()
@@ -59,11 +59,11 @@ export default function PlayerList({ players }: { players: Player[] }) {
                 </Heading>
                 {playersInAlphabeticGroup.map((player, index) => {
                   return (
-                    <Fragment key={player.id}>
-                      <NextLink href={`players/${player.slug}`} passHref>
-                        <Link>{player.name}</Link>
+                    <Fragment key={player.player_id}>
+                      <NextLink href={`players/${player.url_slug}`} passHref>
+                        <Link>{player.player_name}</Link>
                       </NextLink>
-                      {player.isIncinerated && (
+                      {player.deceased && (
                         <Text
                           aria-label="incinerated"
                           as="span"

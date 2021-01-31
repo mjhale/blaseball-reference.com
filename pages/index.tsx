@@ -1,4 +1,4 @@
-import apiFetcher from "lib/api-fetcher";
+import apiFetcher, { dbApiFetcher } from "lib/api-fetcher";
 import { GetStaticProps } from "next";
 import Player from "types/player";
 import { useMemo } from "react";
@@ -15,8 +15,8 @@ function sortPlayersByDebut(players: Player[]): Player[] {
 
   playersSortedByDebut = Array.isArray(players)
     ? [...players].sort((a, b) => {
-        const aDebutGame = a.debutSeason * 1000 + a.debutDay;
-        const bDebutGame = b.debutSeason * 1000 + b.debutDay;
+        const aDebutGame = a.debut_season * 1000 + a.debut_gameday;
+        const bDebutGame = b.debut_season * 1000 + b.debut_gameday;
 
         return bDebutGame - aDebutGame;
       })
@@ -32,14 +32,14 @@ function sortPlayersByIncineration(players: Player[]): Player[] {
     ? [...players]
         .filter(
           (player) =>
-            Number.isInteger(player.incineratedGameSeason) &&
-            Number.isInteger(player.incineratedGameDay)
+            Number.isInteger(player.incineration_season) &&
+            Number.isInteger(player.incineration_gameday)
         )
         .sort((a, b) => {
           const aIncinerationGame: number =
-            a.incineratedGameSeason * 1000 + a.incineratedGameDay;
+            a.incineration_season * 1000 + a.incineration_gameday;
           const bIncinerationGame: number =
-            b.incineratedGameSeason * 1000 + b.incineratedGameDay;
+            b.incineration_season * 1000 + b.incineration_gameday;
 
           return bIncinerationGame - aIncinerationGame;
         })
@@ -55,8 +55,8 @@ type IndexPageProps = {
 
 export default function IndexPage(props: IndexPageProps) {
   const { data: players, error: playersError } = useSWR(
-    "/players/players.json",
-    undefined,
+    "/players",
+    dbApiFetcher,
     {
       initialData: props.players,
     }
@@ -70,14 +70,14 @@ export default function IndexPage(props: IndexPageProps) {
     }
   );
 
-  const recentPlayerDebuts = useMemo(
+  const recentPlayerDebuts: Player[] = useMemo(
     () => sortPlayersByDebut(players).slice(0, 15),
-    [players]
+    [players.length]
   );
 
-  const recentPlayerIncinerations = useMemo(
+  const recentPlayerIncinerations: Player[] = useMemo(
     () => sortPlayersByIncineration(players),
-    [players]
+    [players.length]
   );
 
   return (
@@ -136,7 +136,12 @@ export const getStaticProps: GetStaticProps = async () => {
   let seasonStartDates = null;
 
   try {
-    players = await apiFetcher("/players/players.json");
+    players = await dbApiFetcher("/players");
+  } catch (error) {
+    console.log(error);
+  }
+
+  try {
     seasonStartDates = await apiFetcher("/seasonStartDates.json");
   } catch (error) {
     console.log(error);

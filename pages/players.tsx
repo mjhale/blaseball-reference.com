@@ -1,4 +1,4 @@
-import apiFetcher from "lib/api-fetcher";
+import { dbApiFetcher } from "lib/api-fetcher";
 import { GetStaticProps } from "next";
 import useSWR from "swr";
 
@@ -8,7 +8,7 @@ import Layout from "components/Layout";
 import PlayerList from "components/PlayerList";
 
 export default function PlayersPage(props) {
-  const { data, error } = useSWR("/players/players.json", undefined, {
+  const { data, error } = useSWR("/players", dbApiFetcher, {
     initialData: props.players,
   });
 
@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   let players = null;
 
   try {
-    players = await apiFetcher("/players/players.json");
+    players = await dbApiFetcher("/players");
   } catch (error) {
     console.log(error);
   }

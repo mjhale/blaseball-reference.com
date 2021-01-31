@@ -44,6 +44,10 @@ export default function UpcomingDates({
 }: {
   seasonStartDates: Record<string, string>;
 }) {
+  if (!seasonStartDates) {
+    return <>Unable to load upcoming Blaseball dates.</>;
+  }
+
   const { seasonStartDate, postseasonStartDate } = getUpcomingStartDates(
     seasonStartDates
   );
