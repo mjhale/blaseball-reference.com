@@ -1,5 +1,5 @@
 // Derive API view ids from URL slugs
-export function getSlugFromLeaderView(slug: string): string {
+export function getLeaderViewFromSlug(slug: string): string {
   // Slugs `season-1`, `season-2`, .. should be translated to `0`, `1`, ..
   const seasonMatch: Array<string> | null = slug.match(/season-(\d+)/);
   if (seasonMatch !== null) {

@@ -1,77 +1,53 @@
-import { translateLeaderViewToSlug } from "utils/slugHelpers";
-import Leader from "types/leader";
-import LeaderCategory from "types/leaderCategory";
+import ApiConfig from "types/apiConfig";
+import { LeaderGroup } from "types/leader";
 import Team from "types/team";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useApiConfigContext } from "context/ApiConfig";
 
 import LeaderTable from "components/LeaderTable";
-import { Heading, Grid, Select, Skeleton, Stack } from "@chakra-ui/react";
+import { Heading, Grid, Skeleton, Stack } from "@chakra-ui/react";
 
 type Props = {
-  categories: LeaderCategory[];
-  leaders: Leader[];
+  isLeadersValidating: boolean;
+  leaders: LeaderGroup[];
+  selectedView: string | null;
   teams: Team[];
-  view?: string;
 };
 
 // A "view" contains data for "Career", "Season 1", "Season 2",  ..
 export default function LeaderView({
-  categories,
+  isLeadersValidating,
   leaders,
+  selectedView,
   teams,
-  view,
 }: Props) {
-  const router = useRouter();
-
-  const sortedSeasonList = leaders
-    ? Object.keys(leaders)
-        .filter((view) => Number(view))
-        .sort((a, b) => Number(a) - Number(b))
-    : [];
-  const mostRecentSeason = sortedSeasonList
-    .filter((view) => Number(view))
-    .sort((a, b) => Number(a) - Number(b))
-    .pop();
-
-  const [selectedView, setSelectedView] = useState(view ?? mostRecentSeason);
-  const [seasonList, setSeasonList] = useState(sortedSeasonList);
-
-  useEffect(() => {
-    setSeasonList(sortedSeasonList);
-  }, [JSON.stringify(sortedSeasonList)]);
-
-  useEffect(() => {
-    mostRecentSeason;
-  }, [JSON.stringify(seasonList)]);
-
-  const handleSelectChange = (evt) => {
-    router.push(
-      `/leaders/${translateLeaderViewToSlug(evt.target.value)}`,
-      undefined,
-      { shallow: true }
-    );
-
-    setSelectedView(evt.target.value);
-  };
+  const apiConfig: ApiConfig = useApiConfigContext();
 
   if (
-    !categories ||
-    !Object.hasOwnProperty.call(leaders, selectedView) ||
+    apiConfig === undefined ||
+    isLeadersValidating === true ||
+    selectedView === null ||
+    !leaders ||
     !teams
   ) {
-    return <Loading />;
+    return (
+      <>
+        {(isLeadersValidating === true || !leaders || !teams) && (
+          <LeaderTablesLoading />
+        )}
+      </>
+    );
   }
+
+  const hittingGroup = leaders.find(
+    (leaderGroup) => leaderGroup.statGroup === "hitting"
+  );
+  const pitchingGroup = leaders.find(
+    (leaderGroup) => leaderGroup.statGroup === "pitching"
+  );
 
   return (
     <>
-      <ViewSelect
-        handleSelectChange={handleSelectChange}
-        seasonList={seasonList}
-        selectedView={selectedView}
-      />
-
-      {leaders[selectedView].batting ? (
+      {hittingGroup !== undefined ? (
         <>
           <Heading as="h2" size="md" mb={2}>
             {!Number.isNaN(Number(selectedView)) ? (
@@ -89,19 +65,16 @@ export default function LeaderView({
             gap={2}
             mb={4}
           >
-            {Object.keys(leaders[selectedView].batting).map((category) => (
-              <LeaderTable
-                category={categories.find((c) => c.id === category)}
-                leaders={leaders[selectedView].batting[category]}
-                key={category}
-                teams={teams}
-              />
-            ))}
+            <LeaderTable
+              columns={apiConfig.columns.hitting}
+              leaderCategories={hittingGroup.leaderCategories}
+              teams={teams}
+            />
           </Grid>
         </>
       ) : null}
 
-      {leaders[selectedView].pitching ? (
+      {pitchingGroup !== undefined ? (
         <>
           <Heading as="h2" size="md" mb={2}>
             {!Number.isNaN(Number(selectedView)) ? (
@@ -110,7 +83,6 @@ export default function LeaderView({
               <>Career Pitching</>
             )}
           </Heading>
-
           <Grid
             templateColumns={{
               base: "repeat(1, 1fr)",
@@ -120,14 +92,11 @@ export default function LeaderView({
             gap={2}
             mb={4}
           >
-            {Object.keys(leaders[selectedView].pitching).map((category) => (
-              <LeaderTable
-                category={categories.find((c) => c.id === category)}
-                leaders={leaders[selectedView].pitching[category]}
-                key={category}
-                teams={teams}
-              />
-            ))}
+            <LeaderTable
+              columns={apiConfig.columns.pitching}
+              leaderCategories={pitchingGroup.leaderCategories}
+              teams={teams}
+            />
           </Grid>
         </>
       ) : null}
@@ -135,44 +104,12 @@ export default function LeaderView({
   );
 }
 
-function ViewSelect({ handleSelectChange, seasonList, selectedView }) {
+function LeaderTablesLoading() {
   return (
-    <Select
-      fontSize={{ base: "lg", md: "md" }}
-      maxWidth="2xs"
-      mb={4}
-      onChange={handleSelectChange}
-      size="md"
-      value={selectedView}
-    >
-      <option key="allTime" value="allTime">
-        {`Career`}
-      </option>
-      {seasonList.map((season) => (
-        <option key={season} value={season}>
-          {`Season ${Number(season) + 1}`}
-        </option>
-      ))}
-    </Select>
-  );
-}
-
-function Loading() {
-  return (
-    <>
-      <Select
-        isDisabled={true}
-        fontSize={{ base: "lg", md: "md" }}
-        maxWidth="2xs"
-        mb={4}
-        placeholder="Loading..."
-        size="md"
-      />
-      <Stack>
-        <Skeleton height="20px" />
-        <Skeleton height="20px" />
-        <Skeleton height="20px" />
-      </Stack>
-    </>
+    <Stack>
+      <Skeleton height="20px" />
+      <Skeleton height="20px" />
+      <Skeleton height="20px" />
+    </Stack>
   );
 }
