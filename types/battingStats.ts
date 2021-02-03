@@ -1,43 +1,26 @@
-export default interface PlayerBattingStats {
-  careerPostseason: BattingStats;
-  careerSeason: BattingStats;
-  id: string;
-  name: string;
-  postseasons: { [seasonNumber: string]: BattingStats };
-  seasons: { [seasonNumber: string]: BattingStats };
-  slug: string;
-}
-
 export interface BattingStats {
-  appearances: number;
-  atBats: number;
-  atBatsWithRunnersInScoringPosition: number;
-  basesOnBalls: number;
-  battingAverage: number;
-  battingAverageWithRunnersInScoringPosition: number;
-  caughtStealing: number;
-  doublesHit: number;
-  groundIntoDoublePlays: number;
-  hitByPitches: number;
+  batting_average: number;
+  on_base_percentage: number;
+  slugging: number;
+  plate_appearances: number;
+  at_bats: number;
   hits: number;
-  hitsWithRunnersInScoringPosition: number;
-  homeRunsHit: number;
-  name?: string;
-  onBasePercentage: number;
-  onBasePlusSlugging: number;
-  plateAppearances: number;
-  runsBattedIn: number;
-  runsScored: number;
-  sacrificeBunts: number;
-  sacrificeFlies: number;
-  season: number;
-  slug?: string;
-  sluggingPercentage: number;
-  stolenBases: number;
+  walks: number;
+  singles: number;
+  doubles: number;
+  triples: number;
+  quadruples: number;
+  home_runs: number;
+  runs_batted_in: number;
   strikeouts: number;
-  team: string | null;
-  teamName: string | null;
-  totalBases: number;
-  triplesHit: number;
-  quadruplesHit: number;
+  sacrifices: number;
+  at_bats_risp: number;
+  hits_risp: number;
+  batting_average_risp: number | null;
+  on_base_slugging: number | null;
+  total_bases: number;
+  hbps: number;
+  ground_outs: number;
+  flyouts: number;
+  gidps: number;
 }

@@ -7,6 +7,7 @@ import {
 } from "utils/slugHelpers";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Leader from "types/leader";
+import PlayerStats from "types/playerStats";
 import Team from "types/team";
 import { useApiConfigContext } from "context/ApiConfig";
 import { useEffect, useState } from "react";
@@ -17,7 +18,7 @@ import Head from "next/head";
 import { Box, Heading } from "@chakra-ui/react";
 import Layout from "components/Layout";
 import LeaderView from "components/LeaderView";
-import LeaderViewSelect from "components/LeaderViewSelect";
+import SplitViewSelect from "components/SplitViewSelect";
 
 type Props = {
   leaders: Leader[];
@@ -40,7 +41,7 @@ export default function LeadersPage(props: Props) {
     isValidating: isLeadersValidating,
     mutate: mutateLeaders,
   } = useSWR(
-    leaderView !== null
+    leaderView != null
       ? `/stats/leaders?group=hitting,pitching&season=${leaderView}`
       : null,
     dbApiFetcher,
@@ -63,6 +64,18 @@ export default function LeadersPage(props: Props) {
   useEffect(() => {
     mutateLeaders();
   }, [router.query.viewSlug]);
+
+  const handleSelectChange = (
+    evt: React.FormEvent<HTMLSelectElement>
+  ): void => {
+    setSelectedView(evt.currentTarget.value);
+
+    router.push(
+      `/leaders/${translateLeaderViewToSlug(evt.currentTarget.value)}`,
+      undefined,
+      { shallow: true }
+    );
+  };
 
   return (
     <>
@@ -91,9 +104,9 @@ export default function LeadersPage(props: Props) {
           </Box>
         ) : null}
 
-        <LeaderViewSelect
+        <SplitViewSelect
+          handleSelectChange={handleSelectChange}
           selectedView={selectedView}
-          setSelectedView={setSelectedView}
         />
 
         <LeaderView
@@ -108,7 +121,13 @@ export default function LeadersPage(props: Props) {
 }
 
 // Get the correct leader view based on the current route
-function getLeaderView({ apiConfig, viewSlug }) {
+function getLeaderView({
+  apiConfig,
+  viewSlug,
+}: {
+  apiConfig: ApiConfig;
+  viewSlug: string | string[];
+}) {
   // Once the apiConfig context has been loaded, the view should be set as:
   // - The `maxSeason` on the `/leaders` page
   // - Derived from the slug on `/leaders/:viewSlug` pages
@@ -123,9 +142,9 @@ export const getStaticProps: GetStaticProps = async ({
   params,
   preview = false,
 }) => {
-  let apiConfig = null;
-  let leaders = null;
-  let teams = null;
+  let apiConfig: ApiConfig | null = null;
+  let leaders: PlayerStats[] | null = null;
+  let teams: Team[] | null = null;
 
   try {
     apiConfig = await dbApiFetcher("/config");
@@ -135,7 +154,7 @@ export const getStaticProps: GetStaticProps = async ({
 
   const leaderView = getLeaderView({
     apiConfig,
-    viewSlug: params.viewSlug,
+    viewSlug: String(params.viewSlug),
   });
 
   try {
@@ -163,7 +182,7 @@ export const getStaticProps: GetStaticProps = async ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  let apiConfig = null;
+  let apiConfig: ApiConfig | null = null;
 
   try {
     apiConfig = await dbApiFetcher("/config");

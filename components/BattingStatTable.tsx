@@ -1,5 +1,7 @@
-import { BattingStats } from "types/battingStats";
 import { Column } from "react-table";
+import { getColumnAverage, getColumnSum } from "utils/columnHelpers";
+import PlayerStats from "types/playerStats";
+import StatSplit from "types/statSplit";
 import Team from "types/team";
 import { useMemo } from "react";
 
@@ -8,38 +10,24 @@ import Table from "components/Table";
 import { Flex, Link, Tooltip } from "@chakra-ui/react";
 
 type StatTableProps = {
-  battingStats: { [seasonNumber: string]: BattingStats };
+  battingStats: PlayerStats;
   isPostseason?: boolean;
   statTargetName: string;
-  teams: Array<Team>;
 };
 
 export default function BattingStatTable({
   battingStats,
   isPostseason = false,
   statTargetName,
-  teams,
 }: StatTableProps) {
-  const careerTotals: BattingStats = isPostseason
-    ? battingStats.careerPostseason
-    : battingStats.careerSeason;
+  const data = useMemo<StatSplit[]>(() => battingStats.splits, [
+    isPostseason,
+    statTargetName,
+  ]);
 
-  const data = useMemo<BattingStats[]>(() => {
-    const seasons = isPostseason
-      ? battingStats.postseasons
-      : battingStats.seasons;
-
-    return Object.keys(seasons)
-      .sort((a, b) => Number(a) - Number(b))
-      .map((season) => {
-        return {
-          ...seasons[season],
-          season,
-        };
-      });
-  }, [isPostseason, statTargetName]);
-
-  const columns = useMemo<Column<BattingStats>[]>(
+  const columns = useMemo<
+    Column<StatSplit & { season: number; teamName: typeof NextLink | null }>[]
+  >(
     () => [
       {
         accessor: "season",
@@ -63,17 +51,17 @@ export default function BattingStatTable({
             Tm
           </Tooltip>
         ),
-        Cell: ({ row, value }: { row: any; value: any }) => {
-          const team = teams.find((team) => team.id === row.original.team);
+        Cell: ({ row }: { row: any }) => {
+          const team: Team | undefined = row.original.team;
 
           return team ? (
-            <NextLink href={`/teams/${team.slug}`} passHref>
-              <Link>{value}</Link>
+            <NextLink href={`/teams/${team.url_slug}`} passHref>
+              <Link>{team.nickname}</Link>
             </NextLink>
           ) : null;
         },
       },
-      ...commonBattingStatColumns(careerTotals),
+      ...commonBattingStatColumns(),
     ],
     [isPostseason, statTargetName]
   );
@@ -101,26 +89,25 @@ export default function BattingStatTable({
   );
 }
 
-export function commonBattingStatColumns(
-  summaryData?: BattingStats
-): Column<BattingStats>[] {
+export function commonBattingStatColumns() {
   return [
+    // {
+    //   accessor: "appearances",
+    //   Header: () => (
+    //     <Tooltip
+    //       closeOnClick={false}
+    //       hasArrow
+    //       label="Games Played"
+    //       placement="top"
+    //     >
+    //       G
+    //     </Tooltip>
+    //   ),
+    //   Footer: (): number | null => summaryData?.appearances ?? null,
+    // },
     {
-      accessor: "appearances",
-      Header: () => (
-        <Tooltip
-          closeOnClick={false}
-          hasArrow
-          label="Games Played"
-          placement="top"
-        >
-          G
-        </Tooltip>
-      ),
-      Footer: (): number | null => summaryData?.appearances ?? null,
-    },
-    {
-      accessor: "plateAppearances",
+      accessor: (row) => row.stat.plate_appearances,
+      id: "plateAppearances",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -131,42 +118,48 @@ export function commonBattingStatColumns(
           PA
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.plateAppearances ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
     {
-      accessor: "atBats",
+      accessor: (row) => row.stat.at_bats,
+      id: "atBats",
       Header: () => (
         <Tooltip closeOnClick={false} hasArrow label="At Bats" placement="top">
           AB
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.atBats ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
+    // {
+    //   accessor: "runsScored",
+    //   Header: () => (
+    //     <Tooltip
+    //       closeOnClick={false}
+    //       hasArrow
+    //       label="Runs Scored"
+    //       placement="top"
+    //     >
+    //       R
+    //     </Tooltip>
+    //   ),
+    //   Footer: (): number | null => summaryData?.runsScored ?? null,
+    // },
     {
-      accessor: "runsScored",
-      Header: () => (
-        <Tooltip
-          closeOnClick={false}
-          hasArrow
-          label="Runs Scored"
-          placement="top"
-        >
-          R
-        </Tooltip>
-      ),
-      Footer: (): number | null => summaryData?.runsScored ?? null,
-    },
-    {
-      accessor: "hits",
+      accessor: (row) => row.stat.hits,
+      id: "hits",
       Header: () => (
         <Tooltip closeOnClick={false} hasArrow label="Hits" placement="top">
           H
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.hits ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
     {
-      accessor: "doublesHit",
+      accessor: (row) => row.stat.doubles,
+      id: "doublesHit",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -177,10 +170,12 @@ export function commonBattingStatColumns(
           2B
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.doublesHit ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
     {
-      accessor: "triplesHit",
+      accessor: (row) => row.stat.triples,
+      id: "triplesHit",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -191,10 +186,12 @@ export function commonBattingStatColumns(
           3B
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.triplesHit ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
     {
-      accessor: "quadruplesHit",
+      accessor: (row) => row.stat.quadruples,
+      id: "quadruplesHit",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -205,10 +202,12 @@ export function commonBattingStatColumns(
           4B
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.quadruplesHit ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
     {
-      accessor: "homeRunsHit",
+      accessor: (row) => row.stat.home_runs,
+      id: "homeRunsHit",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -219,10 +218,12 @@ export function commonBattingStatColumns(
           HR
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.homeRunsHit ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
     {
-      accessor: "runsBattedIn",
+      accessor: (row) => row.stat.runs_batted_in,
+      id: "runsBattedIn",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -233,38 +234,40 @@ export function commonBattingStatColumns(
           RBI
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.runsBattedIn ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
+    // {
+    //   accessor: "stolenBases",
+    //   Header: () => (
+    //     <Tooltip
+    //       closeOnClick={false}
+    //       hasArrow
+    //       label="Stolen Bases"
+    //       placement="top"
+    //     >
+    //       SB
+    //     </Tooltip>
+    //   ),
+    //   Footer: (): number | null => summaryData?.stolenBases ?? null,
+    // },
+    // {
+    //   accessor: "caughtStealing",
+    //   Header: () => (
+    //     <Tooltip
+    //       closeOnClick={false}
+    //       hasArrow
+    //       label="Caught Stealing"
+    //       placement="top"
+    //     >
+    //       CS
+    //     </Tooltip>
+    //   ),
+    //   Footer: (): number | null => summaryData?.caughtStealing ?? null,
+    // },
     {
-      accessor: "stolenBases",
-      Header: () => (
-        <Tooltip
-          closeOnClick={false}
-          hasArrow
-          label="Stolen Bases"
-          placement="top"
-        >
-          SB
-        </Tooltip>
-      ),
-      Footer: (): number | null => summaryData?.stolenBases ?? null,
-    },
-    {
-      accessor: "caughtStealing",
-      Header: () => (
-        <Tooltip
-          closeOnClick={false}
-          hasArrow
-          label="Caught Stealing"
-          placement="top"
-        >
-          CS
-        </Tooltip>
-      ),
-      Footer: (): number | null => summaryData?.caughtStealing ?? null,
-    },
-    {
-      accessor: "basesOnBalls",
+      accessor: (row) => row.stat.walks,
+      id: "basesOnBalls",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -275,10 +278,12 @@ export function commonBattingStatColumns(
           BB
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.basesOnBalls ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
     {
-      accessor: "strikeouts",
+      accessor: (row) => row.stat.strikeouts,
+      id: "strikeouts",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -289,10 +294,12 @@ export function commonBattingStatColumns(
           SO
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.strikeouts ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
     {
-      accessor: "battingAverage",
+      accessor: (row) => row.stat.batting_average,
+      id: "battingAverage",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -303,13 +310,17 @@ export function commonBattingStatColumns(
           BA
         </Tooltip>
       ),
-      Footer: (): string | null =>
-        summaryData ? Number(summaryData.battingAverage).toFixed(3) : null,
+      Footer: (original): string =>
+        useMemo(
+          () => getColumnAverage(original.rows, original.column.id).toFixed(3),
+          []
+        ),
       Cell: ({ value }) => Number(value).toFixed(3),
       sortType: "basic",
     },
     {
-      accessor: "battingAverageWithRunnersInScoringPosition",
+      accessor: (row) => row.stat.batting_average_risp,
+      id: "battingAverageWithRunnersInScoringPosition",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -320,17 +331,17 @@ export function commonBattingStatColumns(
           BA/RISP
         </Tooltip>
       ),
-      Footer: (): string | null =>
-        summaryData
-          ? Number(
-              summaryData.battingAverageWithRunnersInScoringPosition
-            ).toFixed(3)
-          : null,
+      Footer: (original): string =>
+        useMemo(
+          () => getColumnAverage(original.rows, original.column.id).toFixed(3),
+          []
+        ),
       Cell: ({ value }) => Number(value).toFixed(3),
       sortType: "basic",
     },
     {
-      accessor: "onBasePercentage",
+      accessor: (row) => row.stat.on_base_percentage,
+      id: "onBasePercentage",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -341,13 +352,17 @@ export function commonBattingStatColumns(
           OBP
         </Tooltip>
       ),
-      Footer: (): string | null =>
-        summaryData ? Number(summaryData.onBasePercentage).toFixed(3) : null,
+      Footer: (original): string =>
+        useMemo(
+          () => getColumnAverage(original.rows, original.column.id).toFixed(3),
+          []
+        ),
       Cell: ({ value }) => Number(value).toFixed(3),
       sortType: "basic",
     },
     {
-      accessor: "sluggingPercentage",
+      accessor: (row) => row.stat.slugging,
+      id: "sluggingPercentage",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -358,13 +373,17 @@ export function commonBattingStatColumns(
           SLG
         </Tooltip>
       ),
-      Footer: (): string | null =>
-        summaryData ? Number(summaryData.sluggingPercentage).toFixed(3) : null,
+      Footer: (original): string =>
+        useMemo(
+          () => getColumnAverage(original.rows, original.column.id).toFixed(3),
+          []
+        ),
       Cell: ({ value }) => Number(value).toFixed(3),
       sortType: "basic",
     },
     {
-      accessor: "onBasePlusSlugging",
+      accessor: (row) => row.stat.on_base_slugging,
+      id: "onBasePlusSlugging",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -375,13 +394,17 @@ export function commonBattingStatColumns(
           OPS
         </Tooltip>
       ),
-      Footer: (): string | null =>
-        summaryData ? Number(summaryData.onBasePlusSlugging).toFixed(3) : null,
+      Footer: (original): string =>
+        useMemo(
+          () => getColumnAverage(original.rows, original.column.id).toFixed(3),
+          []
+        ),
       Cell: ({ value }) => Number(value).toFixed(3),
       sortType: "basic",
     },
     {
-      accessor: "totalBases",
+      accessor: (row) => row.stat.total_bases,
+      id: "totalBases",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -392,10 +415,12 @@ export function commonBattingStatColumns(
           TB
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.totalBases ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
     {
-      accessor: "groundIntoDoublePlays",
+      accessor: (row) => row.stat.gidp,
+      id: "groundIntoDoublePlays",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -406,10 +431,12 @@ export function commonBattingStatColumns(
           GDP
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.groundIntoDoublePlays ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
     {
-      accessor: "sacrificeBunts",
+      accessor: (row) => row.stat.sacrifice_bunts,
+      id: "sacrificeBunts",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -420,10 +447,12 @@ export function commonBattingStatColumns(
           SH
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.sacrificeBunts ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
     {
-      accessor: "sacrificeFlies",
+      accessor: (row) => row.stat.sacrifice_flies,
+      id: "sacrificeFlies",
       Header: () => (
         <Tooltip
           closeOnClick={false}
@@ -434,7 +463,8 @@ export function commonBattingStatColumns(
           SF
         </Tooltip>
       ),
-      Footer: (): number | null => summaryData?.sacrificeFlies ?? null,
+      Footer: (original): number =>
+        useMemo(() => getColumnSum(original.rows, original.column.id), []),
     },
   ];
 }

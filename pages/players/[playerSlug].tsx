@@ -1,7 +1,8 @@
-import apiFetcher from "lib/api-fetcher";
-import { Fragment } from "react";
-import { GetStaticProps } from "next";
+import { dbApiFetcher } from "lib/api-fetcher";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Player from "types/player";
+import PlayerStats from "types/playerStats";
+import Team from "types/team";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
@@ -20,44 +21,62 @@ import Layout from "components/Layout";
 import NextLink from "next/link";
 import PitchingStatTable from "components/PitchingStatTable";
 
-export default function PlayerPage(props) {
+type PlayerPageProps = {
+  player: Player | null;
+  stats: PlayerStats | null;
+  postseasonStats: PlayerStats | null;
+  team: Team | null;
+};
+
+export default function PlayerPage(props: PlayerPageProps) {
   const router = useRouter();
 
   const { data: player, error: playerError } = useSWR(
-    `/players/${router.query.playerSlug}/details.json`,
-    undefined,
+    `/players/${router.query.playerSlug}`,
+    dbApiFetcher,
     {
       initialData: props.player,
     }
   );
-  const { data: battingStats, error: battingStatsError } = useSWR(
-    `/batting/${router.query.playerSlug}/summary.json`,
-    undefined,
+  const { data: stats, error: statsError } = useSWR(
+    () =>
+      player !== undefined
+        ? `/stats?group=pitching,hitting&type=season&gameType=R&playerId=${player.player_id}`
+        : null,
+    dbApiFetcher,
     {
-      initialData: props.battingStats,
+      initialData: props.stats,
     }
   );
-  const { data: pitchingStats, error: pitchingStatsError } = useSWR(
-    `/pitching/${router.query.playerSlug}/summary.json`,
-    undefined,
+  const { data: postseasonStats, error: postseasonStatsError } = useSWR(
+    () =>
+      player !== undefined
+        ? `/stats?group=pitching,hitting&type=season&gameType=P&playerId=${player.player_id}`
+        : null,
+    dbApiFetcher,
     {
-      initialData: props.pitchingStats,
+      initialData: props.postseasonStats,
     }
   );
-  const { data: teams, error: teamsError } = useSWR(`/teams.json`, undefined, {
-    initialData: props.teams,
-  });
+  const { data: team, error: teamError } = useSWR(
+    () => (player !== undefined ? `/teams/${player.team_id}` : null),
+    dbApiFetcher,
+    {
+      initialData: props.team,
+    }
+  );
 
   return (
     <>
       <Head>
         <title>
-          {player ? player.name : "Player"} Stats - Blaseball-Reference.com
+          {player !== undefined ? player.player_name : "Player"} Stats -
+          Blaseball-Reference.com
         </title>
         <meta
           property="og:title"
           content={`${
-            player ? player.name : "Player"
+            player !== undefined ? player.player_name : "Player"
           } Stats - Blaseball-Reference.com`}
           key="og:title"
         />
@@ -65,26 +84,36 @@ export default function PlayerPage(props) {
           name="description"
           property="og:description"
           content={`${
-            player ? player.name : "Player"
+            player !== undefined ? player.player_name : "Player"
           } history and position statistics in Blaseball.`}
         />
       </Head>
       <Layout>
         <PlayerDetails
-          battingStats={battingStats}
-          pitchingStats={pitchingStats}
           player={player}
-          teams={teams}
+          postseasonStats={postseasonStats}
+          stats={stats}
+          team={team}
         />
       </Layout>
     </>
   );
 }
 
-function PlayerDetails({ battingStats, pitchingStats, player, teams }) {
-  const router = useRouter();
+type PlayerDetailsProps = {
+  player: Player;
+  postseasonStats: PlayerStats[];
+  stats: PlayerStats[];
+  team: Team;
+};
 
-  if ((router.isFallback && !player) || !teams) {
+function PlayerDetails({
+  player,
+  postseasonStats,
+  stats,
+  team,
+}: PlayerDetailsProps) {
+  if (!player || !postseasonStats || !stats) {
     return (
       <>
         <Skeleton height="40px" mb={4} width="2xs" />
@@ -97,13 +126,11 @@ function PlayerDetails({ battingStats, pitchingStats, player, teams }) {
     );
   }
 
-  const currentTeam = teams.find((team) => team.id === player.currentTeamId);
-
   return (
     <>
       <Heading as="h1" size="lg">
-        {player.name}
-        {player.isIncinerated ? (
+        {player.player_name}
+        {player.deceased ? (
           <>
             {" "}
             <Text aria-label="incinerated" as="span" fontSize="xl" role="emoji">
@@ -114,7 +141,8 @@ function PlayerDetails({ battingStats, pitchingStats, player, teams }) {
       </Heading>
 
       <Box fontSize="sm" mt={2} mb={4}>
-        {player.aliases.length > 0 ? (
+        {/* @TODO: Re-add aliases once database API provides them
+         {player.aliases.length > 0 ? (
           <Text my={1}>
             Aliases:{" "}
             {player.aliases.map((alias, index) => (
@@ -124,32 +152,35 @@ function PlayerDetails({ battingStats, pitchingStats, player, teams }) {
               </Fragment>
             ))}
           </Text>
-        ) : null}
+        ) : null} */}
 
-        {currentTeam ? (
+        {team ? (
           <Text my={1}>
             Team:{" "}
-            <NextLink href={`/teams/${currentTeam.slug}`} passHref>
-              <Link textDecoration="underline">{currentTeam.fullName}</Link>
+            <NextLink href={`/teams/${team.url_slug}`} passHref>
+              <Link textDecoration="underline">{team.full_name}</Link>
             </NextLink>
           </Text>
         ) : null}
 
-        {player.position === "rotation" || player.position === "bullpen" ? (
+        {["PITCHER", "BULLPEN"].includes(player.position_type) ? (
           <Text my={1}>Position: Pitcher</Text>
         ) : (
           <Text my={1}>Position: Fielder</Text>
         )}
 
         <Text my={1}>
-          Debut: Season {Number(player.debutSeason) + 1}, Day{" "}
-          {player.debutDay + 1}
-          {Number(player.debutSeason) + 1 === 2 ? "*" : null}
+          Debut: Season {player.debut_season + 1}, Day{" "}
+          {player.debut_gameday + 1}
+          {/* Add asterisk for season 2 debuts due to missing data */}
+          {player.debut_season === 2 ? "*" : null}
         </Text>
-        {player.isIncinerated ? (
+
+        {player.incineration_season !== null &&
+        player.incineration_gameday !== null ? (
           <Text my={1}>
-            Last Game: Season {Number(player.lastGameSeason) + 1}, Day{" "}
-            {player.lastGameDay + 1}
+            Last Game: Season {Number(player.incineration_season) + 1}, Day{" "}
+            {player.incineration_gameday + 1}
           </Text>
         ) : null}
 
@@ -162,7 +193,7 @@ function PlayerDetails({ battingStats, pitchingStats, player, teams }) {
       </Heading>
       <Flex mb={2}>
         <NextLink
-          href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI_URL}/${player.id}`}
+          href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI_URL}/${player.player_id}`}
           passHref
         >
           <Link fontSize="md" isExternal textDecoration="underline">
@@ -170,62 +201,82 @@ function PlayerDetails({ battingStats, pitchingStats, player, teams }) {
           </Link>
         </NextLink>
       </Flex>
-      <PlayerStats
-        battingStats={battingStats}
-        pitchingStats={pitchingStats}
+      <PlayerStatTables
+        stats={stats}
+        postseasonStats={postseasonStats}
         player={player}
-        teams={teams}
       />
     </>
   );
 }
 
-function PlayerStats({ battingStats, pitchingStats, player, teams }) {
-  if (!battingStats && !pitchingStats) {
+type PlayerStatTablesProps = {
+  player: Player;
+  postseasonStats: PlayerStats[];
+  stats: PlayerStats[];
+};
+
+function PlayerStatTables({
+  postseasonStats,
+  player,
+  stats,
+}: PlayerStatTablesProps) {
+  if (!stats && !postseasonStats) {
     return null;
   }
 
+  const battingStats: PlayerStats | undefined = stats.find((statGroup) => {
+    if (statGroup.group === "hitting") {
+      return true;
+    }
+  });
+  const pitchingStats: PlayerStats | undefined = stats.find(
+    (statGroup) => statGroup.group === "pitching"
+  );
+  const postseasonBattingStats: PlayerStats | undefined = postseasonStats.find(
+    (statGroup) => statGroup.group === "hitting"
+  );
+  const postseasonPitchingStats: PlayerStats | undefined = postseasonStats.find(
+    (statGroup) => statGroup.group === "pitching"
+  );
+
   return (
     <>
-      {pitchingStats ? (
+      {pitchingStats && pitchingStats.totalSplits > 0 ? (
         <Box my={4}>
           <PitchingStatTable
             pitchingStats={pitchingStats}
-            statTargetName={player.name}
-            teams={teams}
+            statTargetName={player.player_name}
           />
-
-          {Object.keys(pitchingStats.postseasons).length > 0 && (
-            <Box my={4}>
-              <PitchingStatTable
-                isPostseason={true}
-                pitchingStats={pitchingStats}
-                statTargetName={player.name}
-                teams={teams}
-              />
-            </Box>
-          )}
         </Box>
       ) : null}
 
-      {battingStats ? (
+      {postseasonPitchingStats && postseasonPitchingStats.totalSplits > 0 ? (
+        <Box my={4}>
+          <PitchingStatTable
+            pitchingStats={postseasonPitchingStats}
+            isPostseason={true}
+            statTargetName={player.player_name}
+          />
+        </Box>
+      ) : null}
+
+      {battingStats && battingStats.totalSplits > 0 ? (
         <Box my={4}>
           <BattingStatTable
             battingStats={battingStats}
-            statTargetName={player.name}
-            teams={teams}
+            statTargetName={player.player_name}
           />
+        </Box>
+      ) : null}
 
-          {Object.keys(battingStats.postseasons).length > 0 && (
-            <Box my={4}>
-              <BattingStatTable
-                battingStats={battingStats}
-                isPostseason={true}
-                statTargetName={player.name}
-                teams={teams}
-              />
-            </Box>
-          )}
+      {postseasonBattingStats && postseasonBattingStats.totalSplits > 0 ? (
+        <Box my={4}>
+          <BattingStatTable
+            battingStats={postseasonBattingStats}
+            isPostseason={true}
+            statTargetName={player.player_name}
+          />
         </Box>
       ) : null}
     </>
@@ -236,63 +287,70 @@ export const getStaticProps: GetStaticProps = async ({
   params,
   preview = false,
 }) => {
-  let battingStats = null;
-  let pitchingStats = null;
-  let player = null;
-  let teams = null;
+  let player: Player | null = null;
+  let postseasonStats: PlayerStats[] | null = null;
+  let team: Team | null = null;
+  let stats: PlayerStats[] | null = null;
 
   try {
-    player = await apiFetcher(`/players/${params.playerSlug}/details.json`);
-    teams = await apiFetcher("/teams.json");
+    player = await dbApiFetcher(`/players/${params.playerSlug}`);
   } catch (error) {
     console.log(error);
   }
 
   try {
-    battingStats = await apiFetcher(
-      `/batting/${params.playerSlug}/summary.json`
+    postseasonStats = await dbApiFetcher(
+      `/stats?group=hitting,pitching&type=season&gameType=P&playerId=${player.player_id}`
     );
-  } catch (_error) {
-    /**
-     * Some players will never have batting stats available, so
-     * any fetch errors should be ignored for now
-     */
+  } catch (error) {
+    console.log(error);
   }
 
   try {
-    pitchingStats = await apiFetcher(
-      `/pitching/${params.playerSlug}/summary.json`
+    if (player.team_id) {
+      team = await dbApiFetcher(`/teams/${player.team_id}`);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  try {
+    stats = await dbApiFetcher(
+      `/stats?group=hitting,pitching&type=season&playerId=${player.player_id}`
     );
-  } catch (_error) {
-    /**
-     * Some players will never have pitching stats available, so
-     * any fetch errors should be ignored for now
-     */
+  } catch (error) {
+    console.log(error);
   }
 
   return {
     props: {
-      battingStats,
       player,
-      pitchingStats,
+      postseasonStats,
       preview,
-      teams,
+      team,
+      stats,
     },
     revalidate: 900,
   };
 };
 
-export async function getStaticPaths() {
-  let players: Player[];
+export const getStaticPaths: GetStaticPaths = async () => {
+  let players: Player[] | undefined;
 
   try {
-    players = await apiFetcher("/players/players.json");
+    players = await dbApiFetcher("/players");
   } catch (error) {
     console.log(error);
   }
 
+  const playerPaths = players
+    .filter((player) =>
+      player ? Object.prototype.hasOwnProperty.call(player, "url_slug") : false
+    )
+    .map((player) => `/players/${player.url_slug}`);
+
   return {
-    paths: players.map((player) => `/players/${player.slug}`) || [],
+    paths: playerPaths || [],
     fallback: true,
   };
-}
+};

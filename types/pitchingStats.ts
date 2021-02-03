@@ -1,44 +1,42 @@
+import Team from "types/team";
+
 export default interface PlayerPitchingStats {
-  careerPostseason: PitchingStats;
-  careerSeason: PitchingStats;
-  id: string;
-  name: string;
-  postseasons: { [seasonNumber: string]: PitchingStats };
-  seasons: { [seasonNumber: string]: PitchingStats };
-  slug: string;
+  group: "pitching";
+  type: "career" | "season";
+  totalSplits: number;
+  splits: Array<{
+    season?: number;
+    stat: PitchingStats;
+    player: {
+      id: string;
+      fullName: string;
+    };
+    team: Team;
+  }>;
 }
 
 export interface PitchingStats {
-  appearances: number;
-  battersFaced: number;
-  basesOnBalls: number;
-  basesOnBallsPerNine: number;
-  earnedRuns: number;
-  earnedRunAverage: number;
-  flyouts: number;
-  groundouts: number;
-  hitByPitches: number;
-  hitsAllowed: number;
-  hitsAllowedPerNine: number;
-  homeRuns: number;
-  homeRunsPerNine: number;
-  inningsPitched: number;
-  losses: number;
-  name?: string;
-  outsRecorded: number;
-  pitchCount: number;
-  qualityStarts: number;
-  season: number;
-  shutouts: number;
-  slug?: string;
-  strikeouts: number;
-  strikeoutToWalkRatio: number;
-  strikeoutsPerNine: number;
-  strikeoutRate: number;
-  team: string | null;
-  teamName: string | null;
-  walksAndHitsPerInningPitched: number;
-  walkRate: number;
-  winningPercentage: number;
+  games: number;
   wins: number;
+  losses: number;
+  win_pct: number;
+  pitch_count: number;
+  batters_faced: number;
+  outs_recorded: number;
+  innings: number;
+  runs_allowed: number;
+  shutouts: number;
+  quality_starts: number;
+  strikeouts: number;
+  walks: number;
+  home_runs_allowed: number;
+  hits_allowed: number;
+  hit_by_pitches: number;
+  earned_run_average: number;
+  walks_per_9: number;
+  hits_per_9: number;
+  strikeouts_per_9: number;
+  home_runs_per_9: number;
+  whip: number;
+  strikeouts_per_walk: number;
 }

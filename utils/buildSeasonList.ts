@@ -1,5 +1,5 @@
 export default function buildSeasonList({ minSeason, maxSeason }) {
-  if (minSeason === undefined || maxSeason === undefined) {
+  if (minSeason == null || maxSeason == null) {
     return [];
   }
 

@@ -17,10 +17,7 @@ export default function TeamHistory({ teamDetails }: { teamDetails: Team }) {
         Team Details
       </Heading>
       <Box fontSize="md" mb={2}>
-        <Box>Slogan: {teamDetails.slogan}</Box>
-        <Box>Championships: {teamDetails.championships}</Box>
-        <Box>Total Shames: {teamDetails.totalShames}</Box>
-        <Box>Total Shamings: {teamDetails.totalShamings}</Box>
+        <Box>Slogan: {teamDetails.team_slogan}</Box>
       </Box>
     </>
   );

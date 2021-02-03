@@ -1,6 +1,7 @@
-import { PitchingStats } from "types/pitchingStats";
 import { Column } from "react-table";
 import { commonPitchingStatColumns } from "components/PitchingStatTable";
+import PlayerStats from "types/playerStats";
+import StatSplit from "types/statSplit";
 import { useMemo } from "react";
 
 import { Flex, Link } from "@chakra-ui/react";
@@ -10,60 +11,36 @@ import { Tooltip } from "@chakra-ui/react";
 
 type StatTableProps = {
   isPostseason?: boolean;
-  pitchingStats: { [seasonNumber: string]: PitchingStats };
+  pitchingStats: PlayerStats;
+  splitView: string | number;
   statTargetName: string;
-  season: string;
 };
 
 export default function TeamPitchingStatTable({
   isPostseason = false,
+  splitView,
   pitchingStats,
-  season,
   statTargetName,
 }: StatTableProps) {
-  if (
-    !pitchingStats ||
-    (!isPostseason &&
-      (!pitchingStats.seasons ||
-        Object.keys(pitchingStats.seasons).length === 0)) ||
-    (isPostseason &&
-      (!pitchingStats.postseasons ||
-        Object.keys(pitchingStats.postseasons).length === 0))
-  ) {
-    return null;
-  }
+  const data = useMemo<StatSplit[]>(() => pitchingStats.splits, [
+    isPostseason,
+    splitView,
+    statTargetName,
+  ]);
 
-  const data = useMemo<PitchingStats[]>(() => {
-    const seasons = isPostseason
-      ? pitchingStats.postseasons
-      : pitchingStats.seasons;
-
-    if (!season) {
-      season = Object.keys(seasons)
-        .sort((a, b) => Number(a) - Number(b))
-        .pop();
-    }
-
-    return seasons[season].map((player) => {
-      return {
-        ...player,
-        season,
-      };
-    });
-  }, [isPostseason, season, statTargetName]);
-
-  const columns = useMemo<Column<PitchingStats>[]>(
+  const columns = useMemo<Column<StatSplit>[]>(
     () => [
       {
-        accessor: "name",
+        accessor: (row) => row.player.fullName,
+        id: "name",
         Header: () => (
           <Tooltip hasArrow label="Team" placement="top">
             Player
           </Tooltip>
         ),
         Cell: ({ row, value }) => {
-          return row.original?.slug ? (
-            <NextLink href={`/players/${row.original.slug}`} passHref>
+          return row.original?.player?.id ? (
+            <NextLink href={`/players/${row.original.player.id}`} passHref>
               <Link>{value}</Link>
             </NextLink>
           ) : null;
@@ -71,14 +48,14 @@ export default function TeamPitchingStatTable({
       },
       ...commonPitchingStatColumns(),
     ],
-    [isPostseason, season, statTargetName]
+    [isPostseason, statTargetName]
   );
 
   return (
     <Table columns={columns} data={data}>
       <Flex alignContent="baseline" justifyContent="space-between">
         <Table.Heading level="h3" size="sm">
-          {"Team Pitching Stats"}
+          Pitching Stats
         </Table.Heading>
         <Flex alignItems="center">
           <Table.CSVExport
@@ -86,7 +63,11 @@ export default function TeamPitchingStatTable({
           />
         </Flex>
       </Flex>
-      <Table.Content />
+      {Array.isArray(data) && data.length > 0 ? (
+        <Table.Content />
+      ) : (
+        "Sorry, no results available for this season."
+      )}
     </Table>
   );
 }
