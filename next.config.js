@@ -1,13 +1,21 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const fetch = require("@zeit/fetch-retry")(require("node-fetch"));
 
 module.exports = {
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
   target: "serverless",
   redirects: async () => {
     const players = await getPlayers();
     const playerRedirects = players.map((player) => {
       return {
         source: `/players/${player.id}`,
-        destination: `/players/${player.slug}`,
+        destination: `/players/${player.url_slug}`,
         permanent: false,
       };
     });
@@ -15,8 +23,8 @@ module.exports = {
     const teams = await getTeams();
     const teamRedirects = teams.map((team) => {
       return {
-        source: `/teams/${team.id}`,
-        destination: `/teams/${team.slug}`,
+        source: `/teams/${team.team_id}`,
+        destination: `/teams/${team.url_slug}`,
         permanent: false,
       };
     });
@@ -61,7 +69,7 @@ async function getPlayers() {
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BLASEBALL_REFERENCE_API_URL}/players/players.json`
+      `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/players`
     );
     players = await response.json();
   } catch (error) {
@@ -76,7 +84,7 @@ async function getTeams() {
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BLASEBALL_REFERENCE_API_URL}/teams.json`
+      `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/teams`
     );
     teams = await response.json();
   } catch (error) {
