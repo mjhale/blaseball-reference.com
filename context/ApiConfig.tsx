@@ -1,10 +1,10 @@
-import { createContext, useContext } from "react";
 import { dbApiFetcher } from "lib/api-fetcher";
+import * as React from "react";
 import useSWR from "swr";
 
-const ApiConfigContext = createContext(null);
+const ApiConfigContext = React.createContext(null);
 
-export function ApiConfigWrapper({ children }) {
+export function ApiConfigWrapper({ children }: { children: React.ReactChild }) {
   const { data } = useSWR("/config", dbApiFetcher);
 
   return (
@@ -15,5 +15,5 @@ export function ApiConfigWrapper({ children }) {
 }
 
 export function useApiConfigContext() {
-  return useContext(ApiConfigContext);
+  return React.useContext(ApiConfigContext);
 }

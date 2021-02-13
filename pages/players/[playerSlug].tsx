@@ -1,10 +1,11 @@
 import { dbApiFetcher } from "lib/api-fetcher";
+import { useRouter } from "next/router";
+import useSWR from "swr";
+
 import { GetStaticPaths, GetStaticProps } from "next";
 import Player from "types/player";
 import PlayerStats from "types/playerStats";
 import Team from "types/team";
-import { useRouter } from "next/router";
-import useSWR from "swr";
 
 import BattingStatTable from "components/BattingStatTable";
 import {
@@ -133,7 +134,8 @@ function PlayerDetails({
         {player.deceased ? (
           <>
             {" "}
-            <Text aria-label="incinerated" as="span" fontSize="xl" role="emoji">
+            {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
+            <Text aria-label="incinerated" as="span" fontSize="xl" role="img">
               🔥
             </Text>
           </>

@@ -1,9 +1,12 @@
-import { Column } from "react-table";
+/* eslint-disable react/display-name */
+
 import { getColumnAverage, getColumnSum } from "utils/columnHelpers";
+import * as React from "react";
+
+import { Cell, Column } from "react-table";
 import PlayerStats from "types/playerStats";
 import StatSplit from "types/statSplit";
 import Team from "types/team";
-import { useMemo } from "react";
 
 import NextLink from "next/link";
 import Table from "components/Table";
@@ -20,11 +23,11 @@ export default function PitchingStatTable({
   pitchingStats,
   statTargetName,
 }: StatTableProps) {
-  const data = useMemo<StatSplit[]>(() => pitchingStats.splits, [
+  const data = React.useMemo<StatSplit[]>(() => pitchingStats.splits, [
     statTargetName,
   ]);
 
-  const columns = useMemo<
+  const columns = React.useMemo<
     Column<StatSplit & { season: number; teamName: typeof NextLink | null }>[]
   >(
     () => [
@@ -35,7 +38,7 @@ export default function PitchingStatTable({
             Yr
           </Tooltip>
         ),
-        Cell: ({ value }) => {
+        Cell: ({ value }: Cell<StatSplit>) => {
           // Return an asterisk for seasons 1 and 2 due to limited data
           return [0, 1].includes(Number(value))
             ? `${Number(value) + 1}*`
@@ -49,7 +52,7 @@ export default function PitchingStatTable({
             Tm
           </Tooltip>
         ),
-        Cell: ({ row }: { row: any }) => {
+        Cell: ({ row }: Cell<StatSplit>) => {
           const team: Team | undefined = row.original.team;
 
           return team && team.url_slug ? (
@@ -59,6 +62,7 @@ export default function PitchingStatTable({
           ) : null;
         },
       },
+      // @ts-expect-error: Type not assignable error
       ...commonPitchingStatColumns(),
     ],
     [isPostseason, statTargetName]
@@ -85,7 +89,7 @@ export default function PitchingStatTable({
   );
 }
 
-export function commonPitchingStatColumns() {
+export function commonPitchingStatColumns(): Column<StatSplit>[] {
   return [
     {
       accessor: (row) => row.stat.wins,
@@ -96,7 +100,10 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.losses,
@@ -107,7 +114,10 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.win_pct,
@@ -123,11 +133,11 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): string =>
-        useMemo(
+        React.useMemo(
           () => getColumnAverage(original.rows, original.column.id).toFixed(2),
           []
         ),
-      Cell: ({ value }) => Number(value).toFixed(2),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(2),
       sortType: "basic",
     },
     {
@@ -144,11 +154,11 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): string =>
-        useMemo(
+        React.useMemo(
           () => getColumnAverage(original.rows, original.column.id).toFixed(2),
           []
         ),
-      Cell: ({ value }) => Number(value).toFixed(2),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(2),
       sortType: "basic",
     },
     {
@@ -165,7 +175,10 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.shutouts,
@@ -176,7 +189,10 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.innings,
@@ -191,9 +207,12 @@ export function commonPitchingStatColumns() {
           IP
         </Tooltip>
       ),
-      Cell: ({ value }) => Number(value).toFixed(1),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
       sortType: "basic",
     },
     {
@@ -210,7 +229,10 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.runs_allowed,
@@ -226,7 +248,10 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.home_runs_allowed,
@@ -242,7 +267,10 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.walks,
@@ -258,7 +286,10 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.strikeouts,
@@ -274,7 +305,10 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.quality_starts,
@@ -290,7 +324,10 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.batters_faced,
@@ -306,7 +343,10 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.whip,
@@ -322,11 +362,11 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): string =>
-        useMemo(
+        React.useMemo(
           () => getColumnAverage(original.rows, original.column.id).toFixed(3),
           []
         ),
-      Cell: ({ value }) => Number(value).toFixed(3),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(3),
       sortType: "basic",
     },
     {
@@ -343,11 +383,11 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): string =>
-        useMemo(
+        React.useMemo(
           () => getColumnAverage(original.rows, original.column.id).toFixed(1),
           []
         ),
-      Cell: ({ value }) => Number(value).toFixed(1),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
       sortType: "basic",
     },
     {
@@ -364,11 +404,11 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): string =>
-        useMemo(
+        React.useMemo(
           () => getColumnAverage(original.rows, original.column.id).toFixed(1),
           []
         ),
-      Cell: ({ value }) => Number(value).toFixed(1),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
       sortType: "basic",
     },
     {
@@ -385,11 +425,11 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): string =>
-        useMemo(
+        React.useMemo(
           () => getColumnAverage(original.rows, original.column.id).toFixed(1),
           []
         ),
-      Cell: ({ value }) => Number(value).toFixed(1),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
       sortType: "basic",
     },
     {
@@ -406,11 +446,11 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): string =>
-        useMemo(
+        React.useMemo(
           () => getColumnAverage(original.rows, original.column.id).toFixed(1),
           []
         ),
-      Cell: ({ value }) => Number(value).toFixed(1),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
       sortType: "basic",
     },
     {
@@ -427,11 +467,11 @@ export function commonPitchingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): string =>
-        useMemo(
+        React.useMemo(
           () => getColumnAverage(original.rows, original.column.id).toFixed(2),
           []
         ),
-      Cell: ({ value }) => Number(value).toFixed(2),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(2),
       sortType: "basic",
     },
   ];

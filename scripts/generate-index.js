@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const algoliasearch = require("algoliasearch");
 const fetch = require("@zeit/fetch-retry")(require("node-fetch"));
 const renderTeamEmoji = require("../utils/renderTeamEmoji.js").default;

@@ -1,14 +1,20 @@
-import apiFetcher from "lib/api-fetcher";
-import { GetStaticProps } from "next";
+import { dbApiFetcher } from "lib/api-fetcher";
 import useSWR from "swr";
+
+import { GetStaticProps } from "next";
+import Team from "types/team";
 
 import Head from "next/head";
 import { Box, Heading, Stack } from "@chakra-ui/react";
 import Layout from "components/Layout";
 import TeamCardList from "components/TeamCardList";
 
-export default function Teams(props) {
-  const { data, error } = useSWR("/teams.json", undefined, {
+type Props = {
+  teams: Team[];
+};
+
+export default function Teams(props: Props) {
+  const { data, error } = useSWR("/teams", dbApiFetcher, {
     initialData: props.teams,
   });
 
@@ -34,8 +40,9 @@ export default function Teams(props) {
           </Heading>
           {error ? (
             <Box>
-              Sorry, we're currently having a siesta and couldn't load team
-              information.
+              {
+                "Sorry, we're currently having a siesta and couldn't load team information."
+              }
             </Box>
           ) : (
             <TeamCardList teams={data} />
@@ -54,7 +61,7 @@ export const getStaticProps: GetStaticProps = async ({
   let teams = null;
 
   try {
-    teams = await apiFetcher("/teams.json");
+    teams = await dbApiFetcher("/teams");
   } catch (error) {
     console.log(error);
   }

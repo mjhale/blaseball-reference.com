@@ -1,9 +1,12 @@
-import { Column } from "react-table";
+/* eslint-disable react/display-name */
+
 import { getColumnAverage, getColumnSum } from "utils/columnHelpers";
+import * as React from "react";
+
+import { Cell, Column, Row } from "react-table";
 import PlayerStats from "types/playerStats";
 import StatSplit from "types/statSplit";
 import Team from "types/team";
-import { useMemo } from "react";
 
 import NextLink from "next/link";
 import Table from "components/Table";
@@ -20,12 +23,12 @@ export default function BattingStatTable({
   isPostseason = false,
   statTargetName,
 }: StatTableProps) {
-  const data = useMemo<StatSplit[]>(() => battingStats.splits, [
+  const data = React.useMemo<StatSplit[]>(() => battingStats.splits, [
     isPostseason,
     statTargetName,
   ]);
 
-  const columns = useMemo<
+  const columns = React.useMemo<
     Column<StatSplit & { season: number; teamName: typeof NextLink | null }>[]
   >(
     () => [
@@ -36,7 +39,7 @@ export default function BattingStatTable({
             Yr
           </Tooltip>
         ),
-        Cell: ({ value }) => {
+        Cell: ({ value }: Cell<StatSplit>) => {
           return isPostseason
             ? Number(value) + 1
             : [0, 1].includes(Number(value))
@@ -51,7 +54,7 @@ export default function BattingStatTable({
             Tm
           </Tooltip>
         ),
-        Cell: ({ row }: { row: any }) => {
+        Cell: ({ row }: { row: Row<StatSplit> }) => {
           const team: Team | undefined = row.original.team;
 
           return team ? (
@@ -61,6 +64,7 @@ export default function BattingStatTable({
           ) : null;
         },
       },
+      // @ts-expect-error: Type not assignable error
       ...commonBattingStatColumns(),
     ],
     [isPostseason, statTargetName]
@@ -89,7 +93,7 @@ export default function BattingStatTable({
   );
 }
 
-export function commonBattingStatColumns() {
+export function commonBattingStatColumns(): Column<StatSplit>[] {
   return [
     // {
     //   accessor: "appearances",
@@ -119,7 +123,10 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.at_bats,
@@ -129,8 +136,12 @@ export function commonBattingStatColumns() {
           AB
         </Tooltip>
       ),
-      Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+      Footer: (original): number => {
+        return React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        );
+      },
     },
     // {
     //   accessor: "runsScored",
@@ -155,7 +166,10 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.doubles,
@@ -171,7 +185,10 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.triples,
@@ -187,7 +204,10 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.quadruples,
@@ -203,7 +223,10 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.home_runs,
@@ -219,7 +242,10 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.runs_batted_in,
@@ -235,7 +261,10 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     // {
     //   accessor: "stolenBases",
@@ -279,7 +308,10 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.strikeouts,
@@ -295,7 +327,10 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.batting_average,
@@ -311,11 +346,11 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): string =>
-        useMemo(
+        React.useMemo(
           () => getColumnAverage(original.rows, original.column.id).toFixed(3),
           []
         ),
-      Cell: ({ value }) => Number(value).toFixed(3),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(3),
       sortType: "basic",
     },
     {
@@ -332,11 +367,11 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): string =>
-        useMemo(
+        React.useMemo(
           () => getColumnAverage(original.rows, original.column.id).toFixed(3),
           []
         ),
-      Cell: ({ value }) => Number(value).toFixed(3),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(3),
       sortType: "basic",
     },
     {
@@ -353,11 +388,11 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): string =>
-        useMemo(
+        React.useMemo(
           () => getColumnAverage(original.rows, original.column.id).toFixed(3),
           []
         ),
-      Cell: ({ value }) => Number(value).toFixed(3),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(3),
       sortType: "basic",
     },
     {
@@ -374,11 +409,11 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): string =>
-        useMemo(
+        React.useMemo(
           () => getColumnAverage(original.rows, original.column.id).toFixed(3),
           []
         ),
-      Cell: ({ value }) => Number(value).toFixed(3),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(3),
       sortType: "basic",
     },
     {
@@ -395,11 +430,11 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): string =>
-        useMemo(
+        React.useMemo(
           () => getColumnAverage(original.rows, original.column.id).toFixed(3),
           []
         ),
-      Cell: ({ value }) => Number(value).toFixed(3),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(3),
       sortType: "basic",
     },
     {
@@ -416,7 +451,10 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.gidp,
@@ -432,7 +470,10 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.sacrifice_bunts,
@@ -448,7 +489,10 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
     {
       accessor: (row) => row.stat.sacrifice_flies,
@@ -464,7 +508,10 @@ export function commonBattingStatColumns() {
         </Tooltip>
       ),
       Footer: (original): number =>
-        useMemo(() => getColumnSum(original.rows, original.column.id), []),
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
     },
   ];
 }

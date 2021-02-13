@@ -1,9 +1,10 @@
 import apiFetcher from "lib/api-fetcher";
 import globby from "globby";
-import { NextApiRequest, NextApiResponse } from "next";
 import { SitemapStream, streamToPromise } from "sitemap";
 
-function getPageRoute(page) {
+import { NextApiRequest, NextApiResponse } from "next";
+
+function getPageRoute(page: string): string {
   const path = page
     .replace("pages", "")
     .replace(".js", "")

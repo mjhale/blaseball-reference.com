@@ -1,7 +1,10 @@
-import apiFetcher from "lib/api-fetcher";
+import apiFetcher, { dbApiFetcher } from "lib/api-fetcher";
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+
+import { GetStaticPaths } from "next";
+import Team from "types/team";
 
 import { Heading } from "@chakra-ui/react";
 import ErrorPage from "next/error";
@@ -9,7 +12,14 @@ import Head from "next/head";
 import Layout from "components/Layout";
 import TeamSchedule from "components/TeamSchedule";
 
-export default function TeamSchedulePage(props) {
+type Props = {
+  schedule: any;
+  seasonStartDates: any;
+  team: Team;
+  teams: Team[];
+};
+
+export default function TeamSchedulePage(props: Props) {
   const router = useRouter();
 
   const { data: schedule, error: scheduleError } = useSWR(
@@ -19,7 +29,6 @@ export default function TeamSchedulePage(props) {
       initialData: props.schedule,
     }
   );
-
   const { data: seasonStartDates, error: seasonStartDatesError } = useSWR(
     "/seasonStartDates.json",
     undefined,
@@ -27,7 +36,6 @@ export default function TeamSchedulePage(props) {
       initialData: props.seasonStartDates,
     }
   );
-
   const { data: team, error: teamError } = useSWR(
     `/teams/${router.query.teamSlug}/details.json`,
     undefined,
@@ -47,21 +55,21 @@ export default function TeamSchedulePage(props) {
   return (
     <>
       <Head>
-        <title>{team.fullName} Schedule - Blaseball-Reference.com</title>
+        <title>{team.full_name} Schedule - Blaseball-Reference.com</title>
         <meta
           property="og:title"
-          content={`${team.fullName} Schedule - Blaseball-Reference.com`}
+          content={`${team.full_name} Schedule - Blaseball-Reference.com`}
           key="og:title"
         />
         <meta
           name="description"
           property="og:description"
-          content={`The full ${team.fullName} game schedule for current and past Blaseball season.`}
+          content={`The full ${team.full_name} game schedule for current and past Blaseball season.`}
         />
       </Head>
       <Layout>
         <Heading as="h1" mb={4} size="lg">
-          {team.fullName} Schedule
+          {team.full_name} Schedule
         </Heading>
         <TeamSchedule
           schedule={schedule}
@@ -85,9 +93,24 @@ export const getStaticProps: GetStaticProps = async ({
 
   try {
     schedule = await apiFetcher(`/teams/${params.teamSlug}/schedule.json`);
+  } catch (error) {
+    console.log(error);
+  }
+
+  try {
     seasonStartDates = await apiFetcher("/seasonStartDates.json");
-    team = await apiFetcher(`/teams/${params.teamSlug}/details.json`);
-    teams = await apiFetcher("/teams.json");
+  } catch (error) {
+    console.log(error);
+  }
+
+  try {
+    team = await dbApiFetcher(`/teams/${params.teamSlug}`);
+  } catch (error) {
+    console.log(error);
+  }
+
+  try {
+    teams = await dbApiFetcher("/teams");
   } catch (error) {
     console.log(error);
   }
@@ -104,17 +127,17 @@ export const getStaticProps: GetStaticProps = async ({
   };
 };
 
-export async function getStaticPaths() {
-  let teams;
+export const getStaticPaths: GetStaticPaths = async () => {
+  let teams: Team[];
 
   try {
-    teams = await apiFetcher("/teams.json");
+    teams = await dbApiFetcher("/teams");
   } catch (error) {
     console.log(error);
   }
 
   return {
-    paths: teams.map((team) => `/teams/${team.slug}/schedule`) || [],
+    paths: teams.map((team) => `/teams/${team.url_slug}/schedule`) || [],
     fallback: false,
   };
-}
+};

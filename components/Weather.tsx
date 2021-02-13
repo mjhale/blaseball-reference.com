@@ -144,7 +144,7 @@ export function WeatherIcon({ for: weather = 1 }: { for: number }) {
       rounded="0.2em"
       display="inline-flex"
       verticalAlign="text-bottom"
-      role="emoji"
+      role="img"
     >
       <Icon />
     </Flex>

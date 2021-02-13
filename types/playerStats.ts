@@ -8,7 +8,7 @@ export default interface PlayerStats {
   totalSplits: number;
   splits: Array<{
     season?: number;
-    stat: BattingStats | PitchingStats;
+    stat: BattingStats & PitchingStats;
     player: {
       id: string;
       fullName: string;

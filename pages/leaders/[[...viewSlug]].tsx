@@ -1,18 +1,19 @@
-import ApiConfig from "types/apiConfig";
 import buildSeasonList from "utils/buildSeasonList";
 import { dbApiFetcher } from "lib/api-fetcher";
 import {
   getLeaderViewFromSlug,
   translateLeaderViewToSlug,
 } from "utils/slugHelpers";
+import { useApiConfigContext } from "context/ApiConfig";
+import * as React from "react";
+import { useRouter } from "next/router";
+import useSWR from "swr";
+
+import ApiConfig from "types/apiConfig";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Leader from "types/leader";
 import PlayerStats from "types/playerStats";
 import Team from "types/team";
-import { useApiConfigContext } from "context/ApiConfig";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import useSWR from "swr";
 
 import Head from "next/head";
 import { Box, Heading } from "@chakra-ui/react";
@@ -53,21 +54,24 @@ export default function LeadersPage(props: Props) {
     initialData: props.teams,
   });
 
-  const [selectedView, setSelectedView] = useState(leaderView);
+  const [selectedView, setSelectedView] = React.useState(leaderView);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (apiConfig !== undefined) {
       setSelectedView(leaderView);
     }
-  }, [apiConfig]);
+  }, [apiConfig, leaderView]);
 
-  useEffect(() => {
-    mutateLeaders();
+  React.useEffect(() => {
+    if (router.query.viewSlug != null) {
+      mutateLeaders();
+    }
   }, [router.query.viewSlug]);
 
   const handleSelectChange = (
     evt: React.FormEvent<HTMLSelectElement>
   ): void => {
+    evt.preventDefault();
     setSelectedView(evt.currentTarget.value);
 
     router.push(
@@ -99,8 +103,9 @@ export default function LeadersPage(props: Props) {
 
         {leadersError || teamsError ? (
           <Box mb={4}>
-            Sorry, we're currently having a siesta and are unable to provide the
-            latest stat leader information.
+            {
+              "Sorry, we're currently having a siesta and are unable to provide the latest stat leader information."
+            }
           </Box>
         ) : null}
 
@@ -132,7 +137,7 @@ function getLeaderView({
   // - The `maxSeason` on the `/leaders` page
   // - Derived from the slug on `/leaders/:viewSlug` pages
   return apiConfig !== undefined
-    ? viewSlug === undefined
+    ? viewSlug == undefined
       ? String(apiConfig.seasons.maxSeason)
       : getLeaderViewFromSlug(String(viewSlug))
     : null;
@@ -154,7 +159,8 @@ export const getStaticProps: GetStaticProps = async ({
 
   const leaderView = getLeaderView({
     apiConfig,
-    viewSlug: String(params.viewSlug),
+    viewSlug:
+      params.viewSlug !== undefined ? String(params.viewSlug) : undefined,
   });
 
   try {
@@ -190,8 +196,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
     console.log(error);
   }
 
-  const minSeason = apiConfig?.seasons.minSeason ?? undefined;
-  const maxSeason = apiConfig?.seasons.maxSeason ?? undefined;
+  const minSeason =
+    apiConfig != null ? apiConfig.seasons?.minSeason : undefined;
+  const maxSeason =
+    apiConfig != null ? apiConfig.seasons?.maxSeason : undefined;
   const seasonList = buildSeasonList({ minSeason, maxSeason });
 
   const viewList = seasonList

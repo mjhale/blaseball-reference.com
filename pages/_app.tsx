@@ -1,6 +1,5 @@
 import apiFetcher from "lib/api-fetcher";
 import { AppProps } from "next/app";
-import { extendTheme } from "@chakra-ui/react";
 import theme from "theme";
 import { SWRConfig } from "swr";
 
@@ -9,8 +8,6 @@ import "@reach/skip-nav/styles.css";
 import { ApiConfigWrapper } from "context/ApiConfig";
 import { ChakraProvider, CSSReset } from "@chakra-ui/react";
 import Head from "next/head";
-
-const customTheme = extendTheme({ theme });
 
 export default function BRApp({ Component, pageProps }: AppProps) {
   const DEPLOYMENT_ENV = process.env.NEXT_PUBLIC_DEPLOYMENT_ENV;
@@ -59,7 +56,7 @@ export default function BRApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@blaseball_ref" />
       </Head>
-      <ChakraProvider theme={customTheme}>
+      <ChakraProvider theme={theme}>
         <CSSReset />
         <SWRConfig
           value={{

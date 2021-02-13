@@ -1,9 +1,10 @@
 import useAlgoliaSearchResults from "hooks/useAlgoliaSearchResults";
-import { GetStaticProps } from "next";
-import { useEffect } from "react";
+import * as React from "react";
 import { useRouter } from "next/router";
 
-import { Box, Flex, Heading, Image, Link, Skeleton } from "@chakra-ui/react";
+import { GetStaticProps } from "next";
+
+import { Box, Flex, Heading, Image, Link } from "@chakra-ui/react";
 import Head from "next/head";
 import NextLink from "next/link";
 import Layout from "components/Layout";
@@ -15,7 +16,7 @@ export default function SearchPage() {
     setSearchTerm,
   ] = useAlgoliaSearchResults();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (router.query?.searchTerm) {
       setSearchTerm(String(router.query.searchTerm));
     }
@@ -57,7 +58,16 @@ export default function SearchPage() {
   );
 }
 
-function SearchResults({ isError, isLoading, searchResults }) {
+type SearchResultsProps = {
+  isError: boolean;
+  isLoading: boolean;
+  searchResults: any;
+};
+function SearchResults({
+  isError,
+  isLoading,
+  searchResults,
+}: SearchResultsProps) {
   if (isError) {
     return (
       <Box>
@@ -77,7 +87,7 @@ function SearchResults({ isError, isLoading, searchResults }) {
         <Box>No results found.</Box>
       ) : (
         Object.keys(searchResults).map((resultGroup) => (
-          <Box _notLast={{ mb: 4 }}>
+          <Box key={resultGroup} _notLast={{ mb: 4 }}>
             <Heading as="h2" mb={1} size="md" textTransform="capitalize">
               {resultGroup}
             </Heading>

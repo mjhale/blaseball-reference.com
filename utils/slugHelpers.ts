@@ -15,7 +15,9 @@ export function getLeaderViewFromSlug(slug: string): string {
 }
 
 // Translate API view ids to URL slugs
-export function translateLeaderViewToSlug(view: string): string {
+export function translateLeaderViewToSlug(
+  view: string | number
+): string | number {
   // Leaders views of '0', '1', '2' should be translated to 'season-1', ..
   if (!Number.isNaN(Number(view))) {
     return `season-${Number(view) + 1}`;

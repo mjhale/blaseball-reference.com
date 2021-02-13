@@ -1,12 +1,17 @@
 import renderTeamEmoji from "utils/renderTeamEmoji";
+
 import Team from "types/team";
 
 import { Box, Heading, Link, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 
-export default function TeamCard({ team }: { team: Team }) {
+type Props = {
+  team: Team;
+};
+
+export default function TeamCard({ team }: Props) {
   return (
-    <NextLink href={`/teams/${team.slug}`} passHref>
+    <NextLink href={`/teams/${team.url_slug}`} passHref>
       <Link
         _hover={{ bgColor: "hsl(35, 100%, 98%)", boxShadow: "md" }}
         alignItems="center"
@@ -20,7 +25,7 @@ export default function TeamCard({ team }: { team: Team }) {
       >
         <Box
           alignItems="center"
-          bgColor={team.mainColor}
+          bgColor={team.team_main_color}
           borderRight="1px"
           borderRightColor="gray.200"
           display="flex"
@@ -29,13 +34,13 @@ export default function TeamCard({ team }: { team: Team }) {
           mr="3"
           width="20"
         >
-          <Text as="span" display="block" fontSize="4xl" role="emoji">
-            {renderTeamEmoji(team.emoji)}
+          <Text as="span" display="block" fontSize="4xl" role="img">
+            {renderTeamEmoji(team.team_emoji)}
           </Text>
         </Box>
         <Box textAlign="left">
           <Heading as="h2" size="md">
-            {team.fullName}
+            {team.full_name}
           </Heading>
         </Box>
       </Link>

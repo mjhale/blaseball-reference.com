@@ -87,7 +87,7 @@ export default function Footer() {
           >
             The Game Band
           </Link>
-          <Text as="span"> and </Text>
+          <Text as="span"> or </Text>
           <Link
             href="https://www.sports-reference.com/"
             isExternal

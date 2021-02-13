@@ -1,20 +1,21 @@
 import algoliasearch from "algoliasearch/lite";
-import SearchRecord from "types/searchRecord";
 import useDebounce from "hooks/useDebounce";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import * as React from "react";
+
+import SearchRecord from "types/searchRecord";
 
 export default function useAlgoliaSearchResults(): [
   {
     isError: boolean;
     isLoading: boolean;
-    results: {};
+    results: Record<string, SearchRecord[]>;
   },
-  Dispatch<SetStateAction<string>>
+  React.Dispatch<React.SetStateAction<string>>
 ] {
-  const [isError, setIsError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [results, setResults] = useState({});
-  const [searchTerm, setSearchTerm] = useState("");
+  const [isError, setIsError] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [results, setResults] = React.useState({});
+  const [searchTerm, setSearchTerm] = React.useState("");
 
   const client = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
@@ -23,7 +24,7 @@ export default function useAlgoliaSearchResults(): [
   const debouncedSearchTerm = useDebounce(searchTerm, 200);
   const index = client.initIndex(process.env.NEXT_PUBLIC_ALGOLIA_INDEX);
 
-  useEffect(() => {
+  React.useEffect(() => {
     async function getSearchResults() {
       setResults({});
 
@@ -31,11 +32,15 @@ export default function useAlgoliaSearchResults(): [
         setIsError(false);
         setIsLoading(true);
 
-        // Fetch autocomplete suggestion results
+        // Fetch autocomplete suggestion results and group into result types (i.e., players, teams)
         await index.search(debouncedSearchTerm).then(
-          ({ hits }) => {
+          // @ts-expect-error: Argument not assignable error
+          ({ hits }: { hits: SearchRecord[] }) => {
             const hitsGroupedByType = hits.reduce(
-              (acc: {}, currHit: SearchRecord) => ({
+              (
+                acc: { [hitType: string]: SearchRecord[] },
+                currHit: SearchRecord
+              ) => ({
                 ...acc,
                 [currHit.type]: [...(acc[currHit.type] || []), currHit],
               }),

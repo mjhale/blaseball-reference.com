@@ -2,12 +2,18 @@ import { dbApiFetcher } from "lib/api-fetcher";
 import { GetStaticProps } from "next";
 import useSWR from "swr";
 
+import Player from "types/player";
+
 import Head from "next/head";
 import { Box, Heading, Text } from "@chakra-ui/react";
 import Layout from "components/Layout";
 import PlayerList from "components/PlayerList";
 
-export default function PlayersPage(props) {
+type Props = {
+  players: Player[] | null;
+};
+
+export default function PlayersPage(props: Props) {
   const { data, error } = useSWR("/players", dbApiFetcher, {
     initialData: props.players,
   });
@@ -51,7 +57,7 @@ export default function PlayersPage(props) {
 }
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  let players = null;
+  let players: Player[] | null = null;
 
   try {
     players = await dbApiFetcher("/players");

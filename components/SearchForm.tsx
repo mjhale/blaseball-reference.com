@@ -1,9 +1,11 @@
 import { getColor } from "@chakra-ui/theme-tools";
+import * as React from "react";
 import styled from "@emotion/styled";
-import { Fragment, useEffect, useRef, useState } from "react";
 import useAlgoliaSearchResults from "hooks/useAlgoliaSearchResults";
 import { useRouter } from "next/router";
 import { useTheme } from "@chakra-ui/react";
+
+import SearchRecord from "types/searchRecord";
 
 import {
   Combobox,
@@ -34,24 +36,28 @@ import { SearchIcon } from "@chakra-ui/icons";
 
 // @TODO: Fix combobox options rendering after submit when already on search page
 export default function SearchForm() {
-  const [hasSelected, setHasSelected] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  const [hasSelected, setHasSelected] = React.useState(false);
+  const [inputValue, setInputValue] = React.useState("");
   const [{ isLoading, results }, setSearchTerm] = useAlgoliaSearchResults();
-  const resultComboboxOptionData = useRef({});
+  const resultComboboxOptionData = React.useRef<{
+    [name: string]: SearchRecord;
+  }>({});
   const router = useRouter();
   const theme = useTheme();
 
   // @TODO: Remove workarounds for Chakra / Combobox typing conflicts
-  const ComboboxInput = ReachComboboxInput as any;
+  const ComboboxInput = ReachComboboxInput;
 
   const StyledComboboxOption = styled(ComboboxOption)`
     [data-user-value] {
       font-weight: ${theme.fontWeights.bold};
     }
-  ` as any;
+  `;
 
-  function handleChange(event) {
-    const value = event.target.value;
+  function handleChange(evt: React.FormEvent<HTMLInputElement>): void {
+    evt.preventDefault();
+
+    const value = evt.currentTarget.value;
     setInputValue(value);
 
     if (value.length >= 2) {
@@ -59,27 +65,29 @@ export default function SearchForm() {
     }
   }
 
-  function handleSelect(value) {
-    setInputValue(value);
+  function handleSelect(selectedItem: string): void {
+    setInputValue(selectedItem);
     setHasSelected(true);
 
     // Redirect user to selected term's anchor
-    if (resultComboboxOptionData.current[value].type === "players") {
+    if (resultComboboxOptionData.current[selectedItem].type === "players") {
       router.push(
         "/players/[playerSlug]",
-        resultComboboxOptionData.current[value].anchor
+        resultComboboxOptionData.current[selectedItem].anchor
       );
-    } else if (resultComboboxOptionData.current[value].type === "teams") {
+    } else if (
+      resultComboboxOptionData.current[selectedItem].type === "teams"
+    ) {
       router.push(
         "/teams/[teamSlug]",
-        resultComboboxOptionData.current[value].anchor
+        resultComboboxOptionData.current[selectedItem].anchor
       );
     }
   }
 
   // @TODO: Change focus to search result body on submit
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSubmit(evt: React.SyntheticEvent): void {
+    evt.preventDefault();
     setSearchTerm("");
 
     // If on search page, use shallow routing to avoid re-running data fetching methods
@@ -93,15 +101,15 @@ export default function SearchForm() {
   }
 
   // Insert term into input when component is being rendered on search page
-  useEffect(() => {
+  React.useEffect(() => {
     if (router.pathname === "/search" && router.query?.searchTerm) {
       setInputValue(String(router.query.searchTerm));
     }
-  }, [router.pathname, String(router.query.searchTerm)]);
+  }, [router.pathname, router.query.searchTerm]);
 
   // Reset loading icon on page transitions
-  useEffect(() => {
-    const resetHasSelected = (url) => {
+  React.useEffect(() => {
+    const resetHasSelected = () => {
       if (hasSelected) {
         setInputValue("");
         setHasSelected(false);
@@ -113,7 +121,7 @@ export default function SearchForm() {
     return () => {
       router.events.off("routeChangeComplete", resetHasSelected);
     };
-  }, [hasSelected]);
+  }, [hasSelected, router.events]);
 
   return (
     <Box>
@@ -203,7 +211,7 @@ export default function SearchForm() {
                       <>
                         {Object.keys(results).map((resultGroup) => {
                           return (
-                            <Fragment key={resultGroup}>
+                            <React.Fragment key={resultGroup}>
                               <Heading
                                 as="h3"
                                 bgColor="gray.100"
@@ -241,7 +249,7 @@ export default function SearchForm() {
                                   );
                                 })}
                               </Box>
-                            </Fragment>
+                            </React.Fragment>
                           );
                         })}
                       </>

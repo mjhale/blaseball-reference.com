@@ -1,7 +1,6 @@
-import theme from "@chakra-ui/theme";
+import { extendTheme } from "@chakra-ui/react";
 
-export default {
-  ...theme,
+const theme = extendTheme({
   fonts: {
     heading: "Lora, Courier New, monospace, serif",
     body:
@@ -33,4 +32,6 @@ export default {
       },
     },
   },
-};
+});
+
+export default theme;

@@ -63,6 +63,7 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
   const handleSelectChange = (
     evt: React.FormEvent<HTMLSelectElement>
   ): void => {
+    evt.preventDefault();
     setSelectedView(evt.currentTarget.value);
     mutateTeamPlayerStats();
   };

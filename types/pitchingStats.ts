@@ -39,4 +39,5 @@ export interface PitchingStats {
   home_runs_per_9: number;
   whip: number;
   strikeouts_per_walk: number;
+  pitches_thrown: number;
 }

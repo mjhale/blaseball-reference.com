@@ -1,8 +1,9 @@
 import apiFetcher, { dbApiFetcher } from "lib/api-fetcher";
-import { GetStaticProps } from "next";
-import Player from "types/player";
-import { useMemo } from "react";
+import * as React from "react";
 import useSWR from "swr";
+
+import Player from "types/player";
+import { GetStaticProps } from "next";
 
 import { Box, Heading, Text } from "@chakra-ui/react";
 import CommaSeparatedPlayerList from "components/CommaSeparatedPlayerList";
@@ -11,9 +12,7 @@ import Layout from "components/Layout";
 import UpcomingDates from "components/UpcomingDates";
 
 function sortPlayersByDebut(players: Player[]): Player[] {
-  let playersSortedByDebut: Player[];
-
-  playersSortedByDebut = Array.isArray(players)
+  const playersSortedByDebut: Player[] = Array.isArray(players)
     ? [...players].sort((a, b) => {
         const aDebutGame = a.debut_season * 1000 + a.debut_gameday;
         const bDebutGame = b.debut_season * 1000 + b.debut_gameday;
@@ -26,9 +25,7 @@ function sortPlayersByDebut(players: Player[]): Player[] {
 }
 
 function sortPlayersByIncineration(players: Player[]): Player[] {
-  let playersSortedByIncineration: Player[];
-
-  playersSortedByIncineration = Array.isArray(players)
+  const playersSortedByIncineration: Player[] = Array.isArray(players)
     ? [...players]
         .filter(
           (player) =>
@@ -70,12 +67,13 @@ export default function IndexPage(props: IndexPageProps) {
     }
   );
 
-  const recentPlayerDebuts: Player[] = useMemo(
+  // @TODO: Fallback if `players` doesn't exist
+  const recentPlayerDebuts: Player[] = React.useMemo(
     () => sortPlayersByDebut(players).slice(0, 15),
     [players.length]
   );
 
-  const recentPlayerIncinerations: Player[] = useMemo(
+  const recentPlayerIncinerations: Player[] = React.useMemo(
     () => sortPlayersByIncineration(players),
     [players.length]
   );

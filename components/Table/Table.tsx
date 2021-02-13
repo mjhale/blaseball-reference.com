@@ -1,6 +1,9 @@
-import { Column } from "react-table";
-import { createContext, useContext, useMemo } from "react";
+/* eslint-disable react/jsx-key */
+
+import * as React from "react";
 import { useSortBy, useTable } from "react-table";
+
+import { Cell, Column, HeaderGroup, Row, TableInstance } from "react-table";
 
 import { Button, Heading } from "@chakra-ui/react";
 import { CSVLink } from "react-csv";
@@ -20,12 +23,18 @@ import {
 } from "components/Table/Table.styled";
 import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 
-const TableContext = createContext(undefined);
+const TableContext = React.createContext(undefined);
 
-export default function Table({ columns, children, data }) {
+interface Table<T extends Record<string, unknown>> {
+  columns: Array<Column<T>>;
+  children: React.ReactNode;
+  data: T[];
+}
+
+export default function Table({ columns, children, data }: Table<any>) {
   const tableInstance = useTable({ columns, data }, useSortBy);
   const { rows } = tableInstance;
-  const value = useMemo(() => ({ data, tableInstance }), [data, rows]);
+  const value = React.useMemo(() => ({ data, tableInstance }), [data, rows]);
 
   return (
     <TableContext.Provider value={value}>{children}</TableContext.Provider>
@@ -33,7 +42,7 @@ export default function Table({ columns, children, data }) {
 }
 
 function Content() {
-  const { tableInstance } = useTableContext();
+  const { tableInstance }: { tableInstance: TableInstance } = useTableContext();
 
   const {
     getTableProps,
@@ -49,7 +58,7 @@ function Content() {
       <StyledScrollContainer>
         <StyledTable {...getTableProps()}>
           <StyledTableHead>
-            {headerGroups.map((headerGroup) => (
+            {headerGroups.map((headerGroup: HeaderGroup) => (
               <StyledTableRow {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column, index) => (
                   <TableCell
@@ -71,12 +80,12 @@ function Content() {
             ))}
           </StyledTableHead>
           <tbody {...getTableBodyProps()}>
-            {rows.map((row) => {
+            {rows.map((row: Row<any>) => {
               prepareRow(row);
 
               return (
                 <StyledTableRowData {...row.getRowProps()}>
-                  {row.cells.map((cell, index) => (
+                  {row.cells.map((cell: Cell, index) => (
                     <TableCell index={index} {...cell.getCellProps()}>
                       {cell.render("Cell")}
                     </TableCell>
@@ -106,7 +115,16 @@ function Content() {
   );
 }
 
-function TableCell({ index, children, type, ...columnProps }) {
+function TableCell({
+  index,
+  children,
+  type,
+  ...columnProps
+}: {
+  index: number;
+  children: React.ReactNode;
+  type?: "footer" | "header";
+}) {
   let StyledCell;
 
   switch (type) {
@@ -141,7 +159,13 @@ function SectionHeading({
   );
 }
 
-function CSVExport({ filename, size = "xs" }) {
+function CSVExport({
+  filename,
+  size = "xs",
+}: {
+  filename: string;
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+}) {
   const { data, tableInstance } = useTableContext();
   const { allColumns } = tableInstance;
 
@@ -159,7 +183,7 @@ function CSVExport({ filename, size = "xs" }) {
 }
 
 function useTableContext() {
-  const context = useContext(TableContext);
+  const context = React.useContext(TableContext);
 
   if (!context) {
     throw new Error(

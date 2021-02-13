@@ -1,8 +1,9 @@
-import { Column } from "react-table";
+import * as React from "react";
+
+import { Cell, Column } from "react-table";
 import Division from "types/division";
 import Team from "types/team";
 import { TeamStanding } from "types/standings";
-import { useMemo } from "react";
 
 import { Flex, Link, Tooltip } from "@chakra-ui/react";
 import NextLink from "next/link";
@@ -23,11 +24,11 @@ export default function StandingsTable({
   standings,
   teams,
 }: StandingsTableProps) {
-  const data = useMemo<TeamStanding[]>(() => {
+  const data = React.useMemo<TeamStanding[]>(() => {
     return standings;
   }, [season]);
 
-  const columns = useMemo<Column<TeamStanding>[]>(
+  const columns = React.useMemo<Column<TeamStanding>[]>(
     () => [
       {
         accessor: "teamName",
@@ -36,11 +37,13 @@ export default function StandingsTable({
             {`${division.name} Teams`}
           </Tooltip>
         ),
-        Cell: ({ row, value }) => {
-          const team = teams.find((team) => team.id === row.original.teamId);
+        Cell: ({ row, value }: Cell<any>) => {
+          const team = teams.find(
+            (team) => team.team_id === row.original.teamId
+          );
 
           return team ? (
-            <NextLink href={`/teams/${team.slug}`} passHref>
+            <NextLink href={`/teams/${team.url_slug}`} passHref>
               <Link>{value}</Link>
             </NextLink>
           ) : null;
@@ -54,7 +57,7 @@ export default function StandingsTable({
           </Tooltip>
         ),
         Footer: (info) => {
-          const totalWins = useMemo<number>(
+          const totalWins = React.useMemo<number>(
             () => info.rows.reduce((sum, row) => row.values.wins + sum, 0),
             [info.rows]
           );
@@ -70,7 +73,7 @@ export default function StandingsTable({
           </Tooltip>
         ),
         Footer: (info) => {
-          const totalLosses = useMemo<number>(
+          const totalLosses = React.useMemo<number>(
             () => info.rows.reduce((sum, row) => row.values.losses + sum, 0),
             [info.rows]
           );
@@ -87,7 +90,7 @@ export default function StandingsTable({
         ),
         Cell: (params) => Number(params.value).toFixed(3),
         Footer: (info) => {
-          const winningPct = useMemo<string>(() => {
+          const winningPct = React.useMemo<string>(() => {
             const totalWins = info.rows.reduce(
               (sum, row) => row.values.wins + sum,
               0
@@ -113,7 +116,7 @@ export default function StandingsTable({
         ),
         Cell: ({ value }) => `${value.wins}-${value.losses}`,
         Footer: (info) => {
-          return useMemo<string>(() => {
+          return React.useMemo<string>(() => {
             const wins = info.rows.reduce(
               (sum, row) => row.values["splitRecords.extraInnings"].wins + sum,
               0
@@ -159,7 +162,7 @@ export default function StandingsTable({
           </Tooltip>
         ),
         Footer: (info) => {
-          const runsScored = useMemo<number>(
+          const runsScored = React.useMemo<number>(
             () =>
               info.rows.reduce((sum, row) => row.values.runsScored + sum, 0),
             [info.rows]
@@ -176,7 +179,7 @@ export default function StandingsTable({
           </Tooltip>
         ),
         Footer: (info) => {
-          const runsAllowed = useMemo<number>(
+          const runsAllowed = React.useMemo<number>(
             () =>
               info.rows.reduce((sum, row) => row.values.runsAllowed + sum, 0),
             [info.rows]
@@ -193,7 +196,7 @@ export default function StandingsTable({
           </Tooltip>
         ),
         Footer: (info) => {
-          const runDifferential = useMemo<number>(
+          const runDifferential = React.useMemo<number>(
             () =>
               info.rows.reduce(
                 (sum, row) => row.values.runDifferential + sum,
@@ -253,7 +256,7 @@ export default function StandingsTable({
         ),
         Cell: ({ value }) => `${value.wins}-${value.losses}`,
         Footer: (info) => {
-          return useMemo<string>(() => {
+          return React.useMemo<string>(() => {
             const wins = info.rows.reduce(
               (sum, row) => row.values["splitRecords.home"].wins + sum,
               0
@@ -288,7 +291,7 @@ export default function StandingsTable({
         ),
         Cell: ({ value }) => `${value.wins}-${value.losses}`,
         Footer: (info) => {
-          return useMemo<string>(() => {
+          return React.useMemo<string>(() => {
             const wins = info.rows.reduce(
               (sum, row) => row.values["splitRecords.away"].wins + sum,
               0
@@ -323,7 +326,7 @@ export default function StandingsTable({
         ),
         Cell: ({ value }) => `${value.wins}-${value.losses}`,
         Footer: (info) => {
-          return useMemo<string>(() => {
+          return React.useMemo<string>(() => {
             const wins = info.rows.reduce(
               (sum, row) => row.values["splitRecords.winners"].wins + sum,
               0
@@ -358,7 +361,7 @@ export default function StandingsTable({
         ),
         Cell: ({ value }) => `${value.wins}-${value.losses}`,
         Footer: (info) => {
-          return useMemo<string>(() => {
+          return React.useMemo<string>(() => {
             const wins = info.rows.reduce(
               (sum, row) => row.values["splitRecords.shame"].wins + sum,
               0
@@ -403,7 +406,7 @@ export default function StandingsTable({
             }
           },
           Footer: (info) => {
-            return useMemo<string>(() => {
+            return React.useMemo<string>(() => {
               const wins = info.rows.reduce((sum, row) => {
                 if (row.values[`divisionRecords[${division.id}]`]?.wins) {
                   return (

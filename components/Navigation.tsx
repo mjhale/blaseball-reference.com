@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import {
   Box,
   Button,
@@ -11,7 +13,6 @@ import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 import SearchForm from "components/SearchForm";
 import { SkipNavLink } from "@reach/skip-nav";
-import { useState } from "react";
 
 type MenuItemProps = {
   children: string;
@@ -36,9 +37,9 @@ const MenuItem = ({ children, href }: MenuItemProps) => (
 );
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
 
-  function handleToggle(event) {
+  function handleToggle() {
     setIsOpen(!isOpen);
   }
 

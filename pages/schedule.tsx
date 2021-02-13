@@ -1,9 +1,12 @@
-import apiFetcher from "lib/api-fetcher";
-import { GetStaticProps } from "next";
+import { dbApiFetcher } from "lib/api-fetcher";
 import renderTeamEmoji from "utils/renderTeamEmoji";
-import { useEffect, useState } from "react";
+import * as React from "react";
 import useSWR from "swr";
 import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
+
+import { GetStaticProps } from "next";
+import Schedule from "types/schedule";
+import Team from "types/team";
 
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import {
@@ -25,13 +28,15 @@ import Layout from "components/Layout";
 import NextLink from "next/link";
 import { WeatherIcon, WeatherName } from "components/Weather";
 
-export default function SchedulePage(props) {
-  const { data: schedule, error: scheduleError } = useSWR(
-    "/gameResults.json",
-    undefined
-  );
+type Props = {
+  schedule: Schedule;
+  teams: Team[];
+};
 
-  const { data: teams, error: teamsError } = useSWR("/teams.json", undefined, {
+export default function SchedulePage(props: Props) {
+  const { data: schedule, error: scheduleError } = useSWR("/gameResults.json");
+
+  const { data: teams, error: teamsError } = useSWR("/teams", dbApiFetcher, {
     initialData: props.teams,
   });
 
@@ -61,25 +66,35 @@ export default function SchedulePage(props) {
   );
 }
 
-function DailySchedule({ schedule, teams }) {
+function DailySchedule({
+  schedule,
+  teams,
+}: {
+  schedule: Schedule;
+  teams: Team[];
+}) {
   const sortedSeasonList = () =>
     schedule ? Object.keys(schedule).sort((a, b) => Number(a) - Number(b)) : [];
   const mostRecentSeason = () => sortedSeasonList().pop();
 
-  const [dayList, setDayList] = useState([]);
-  const [selectedDay, setSelectedDay] = useState(null);
-  const [selectedSeason, setSelectedSeason] = useState(null);
-  const [seasonList, setSeasonList] = useState([]);
+  // List of days in a selected season
+  const [dayList, setDayList] = React.useState([]);
+  // The selected day to view in the selected season
+  const [selectedDay, setSelectedDay] = React.useState(null);
+  // The selected season
+  const [selectedSeason, setSelectedSeason] = React.useState(null);
+  // A list of seasons found in the schedule
+  const [seasonList, setSeasonList] = React.useState([]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setSeasonList(sortedSeasonList);
   }, [JSON.stringify(sortedSeasonList())]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setSelectedSeason(mostRecentSeason());
   }, [JSON.stringify(seasonList)]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setDayList([
       ...(schedule && Object.hasOwnProperty.call(schedule, selectedSeason)
         ? Object.keys(schedule[selectedSeason]).sort(
@@ -89,12 +104,13 @@ function DailySchedule({ schedule, teams }) {
     ]);
   }, [selectedSeason]);
 
-  /** Find the last day in a season
+  /**
+   * Find the last day in a season
    *
    * Because some seasons contain days with inaccurate gameComplete values, we
    * must iterate through all games to find the correct day with active games.
    */
-  useEffect(() => {
+  React.useEffect(() => {
     if (Array.isArray(dayList) && dayList.length > 0) {
       let lastDayWithCompletedGames;
 
@@ -111,23 +127,30 @@ function DailySchedule({ schedule, teams }) {
     }
   }, [JSON.stringify(dayList)]);
 
+  // Get forbidden knowledge setting in order to show or hide future weather events
   const [showForbiddenKnowledge] = useForbiddenKnowledge();
 
-  const handleSeasonSelectChange = (evt) => {
-    setSelectedSeason(evt.target.value);
+  const handleSeasonSelectChange = (
+    evt: React.FormEvent<HTMLSelectElement>
+  ): void => {
+    evt.preventDefault();
+    setSelectedSeason(evt.currentTarget.value);
   };
 
-  const handleDaySelectChange = (evt) => {
-    setSelectedDay(evt.target.value);
+  const handleDaySelectChange = (
+    evt: React.FormEvent<HTMLSelectElement>
+  ): void => {
+    evt.preventDefault();
+    setSelectedDay(evt.currentTarget.value);
   };
 
-  const handleNextDayClick = (evt) => {
+  const handleNextDayClick = (): void => {
     if (selectedDay + 1 <= dayList[dayList.length - 1]) {
       setSelectedDay(Number(selectedDay) + 1);
     }
   };
 
-  const handlePreviousDayClick = (evt) => {
+  const handlePreviousDayClick = (): void => {
     if (selectedDay - 1 >= dayList[0]) {
       setSelectedDay(Number(selectedDay) - 1);
     }
@@ -232,8 +255,8 @@ function DailySchedule({ schedule, teams }) {
       </Heading>
       <Flex border="1px solid" borderColor="gray.500" flexDirection="column">
         {selectedDaySchedule.map((game) => {
-          const awayTeam = teams.find((team) => team.id === game.awayTeam);
-          const homeTeam = teams.find((team) => team.id === game.homeTeam);
+          const awayTeam = teams.find((team) => team.team_id === game.awayTeam);
+          const homeTeam = teams.find((team) => team.team_id === game.homeTeam);
 
           return (
             <Flex
@@ -275,8 +298,8 @@ function DailySchedule({ schedule, teams }) {
                       passHref
                     >
                       <Link isExternal>
-                        {awayTeam.shorthand} {game.awayScore},{" "}
-                        {homeTeam.shorthand} {game.homeScore}
+                        {awayTeam.nickname} {game.awayScore},{" "}
+                        {homeTeam.nickname} {game.homeScore}
                         <VisuallyHidden>view game in Reblase</VisuallyHidden>
                       </Link>
                     </NextLink>
@@ -336,18 +359,18 @@ function DailySchedule({ schedule, teams }) {
   );
 }
 
-function TeamBlock({ team }) {
+function TeamBlock({ team }: { team: Team }) {
   return (
     <Box width={{ base: 32, md: 40 }}>
       <Box display="inline-block" verticalAlign="middle">
         <Flex alignItems="center">
           <Circle
-            background={team.mainColor}
+            background={team.team_main_color}
             mr={{ base: 1, md: 2 }}
             size={{ base: 6, md: 8 }}
           >
-            <Text as="span" fontSize={{ base: "xs", md: "2xl" }} role="emoji">
-              {renderTeamEmoji(team.emoji)}
+            <Text as="span" fontSize={{ base: "xs", md: "2xl" }} role="img">
+              {renderTeamEmoji(team.team_emoji)}
             </Text>
           </Circle>
           <Box
@@ -355,7 +378,7 @@ function TeamBlock({ team }) {
             fontWeight="bold"
             whiteSpace="nowrap"
           >
-            <NextLink href={`/teams/${team.slug}/schedule`} passHref>
+            <NextLink href={`/teams/${team.url_slug}/schedule`} passHref>
               <Link>
                 {team.nickname}
                 <VisuallyHidden>season schedule</VisuallyHidden>
@@ -372,7 +395,7 @@ export const getStaticProps: GetStaticProps = async () => {
   let teams = null;
 
   try {
-    teams = await apiFetcher("/teams.json");
+    teams = await dbApiFetcher("/teams");
   } catch (error) {
     console.log(error);
   }

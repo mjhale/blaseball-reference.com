@@ -1,13 +1,14 @@
-import ApiConfig from "types/apiConfig";
 import buildSeasonList from "utils/buildSeasonList";
+import * as React from "react";
 import { useApiConfigContext } from "context/ApiConfig";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+
+import ApiConfig from "types/apiConfig";
 
 import { Select } from "@chakra-ui/react";
 
 type Props = {
   extraSelectOptions?: Array<{ key: string; content: string }>;
-  handleSelectChange: (evt) => void;
+  handleSelectChange: (evt: React.FormEvent<HTMLSelectElement>) => void;
   selectedView: string;
 };
 
@@ -17,15 +18,13 @@ export default function SplitViewSelect({
   selectedView,
 }: Props) {
   const apiConfig: ApiConfig = useApiConfigContext();
-  const minSeason =
-    apiConfig !== undefined ? apiConfig.seasons?.minSeason : null;
-  const maxSeason =
-    apiConfig !== undefined ? apiConfig.seasons?.maxSeason : null;
+  const minSeason = apiConfig != null ? apiConfig.seasons?.minSeason : null;
+  const maxSeason = apiConfig != null ? apiConfig.seasons?.maxSeason : null;
 
-  const [dropdownSeasonList, setDropdownSeasonList] = useState(null);
+  const [dropdownSeasonList, setDropdownSeasonList] = React.useState(null);
 
   // Populate dropdown with list of all seasons
-  useEffect(() => {
+  React.useEffect(() => {
     if (minSeason !== undefined && maxSeason !== undefined) {
       setDropdownSeasonList(buildSeasonList({ minSeason, maxSeason }));
     }

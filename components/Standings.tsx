@@ -1,30 +1,57 @@
-import { Fragment, useEffect, useState } from "react";
+import * as React from "react";
+
+import Division from "types/division";
+import { SeasonStandings } from "types/standings";
+import Subleague from "types/subleague";
+import Team from "types/team";
 
 import { Select, Skeleton, Stack } from "@chakra-ui/react";
 import StandingsTable from "components/StandingsTable";
 
-export default function Standings({ leaguesAndDivisions, standings, teams }) {
+type Props = {
+  leaguesAndDivisions: {
+    seasons: {
+      [seasonId: string]: {
+        divisions: Division[];
+        subleagues: Subleague[];
+      };
+    };
+  };
+  standings: SeasonStandings;
+  teams: Team[];
+};
+
+export default function Standings({
+  leaguesAndDivisions,
+  standings,
+  teams,
+}: Props) {
   const sortedSeasonList = () =>
     standings
       ? Object.keys(standings).sort((a, b) => Number(a) - Number(b))
       : [];
   const mostRecentSeason = () => sortedSeasonList().pop();
 
-  const [selectedSeason, setSelectedSeason] = useState(mostRecentSeason());
-  const [seasonList, setSeasonList] = useState(sortedSeasonList());
+  const [selectedSeason, setSelectedSeason] = React.useState(
+    mostRecentSeason()
+  );
+  const [seasonList, setSeasonList] = React.useState(sortedSeasonList());
 
-  useEffect(() => {
+  React.useEffect(() => {
     setSeasonList(sortedSeasonList);
   }, [JSON.stringify(sortedSeasonList)]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (seasonList.length > 0) {
       setSelectedSeason(seasonList[seasonList.length - 1]);
     }
   }, [JSON.stringify(seasonList)]);
 
-  const handleSelectChange = (evt) => {
-    setSelectedSeason(evt.target.value);
+  const handleSelectChange = (
+    evt: React.FormEvent<HTMLSelectElement>
+  ): void => {
+    evt.preventDefault();
+    setSelectedSeason(evt.currentTarget.value);
   };
 
   if (
@@ -77,7 +104,7 @@ export default function Standings({ leaguesAndDivisions, standings, teams }) {
             leaguesAndDivisions.seasons[selectedSeason].divisions;
 
           return (
-            <Fragment key={`${selectedSeason}-${divisionId}`}>
+            <React.Fragment key={`${selectedSeason}-${divisionId}`}>
               <StandingsTable
                 division={division}
                 divisions={seasonDivisions}
@@ -85,7 +112,7 @@ export default function Standings({ leaguesAndDivisions, standings, teams }) {
                 standings={standings[selectedSeason][divisionId]}
                 teams={teams}
               />
-            </Fragment>
+            </React.Fragment>
           );
         }
       )}

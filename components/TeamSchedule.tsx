@@ -1,10 +1,11 @@
 import Color from "tinycolor2";
+import * as React from "react";
 import renderTeamEmoji from "utils/renderTeamEmoji";
+import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
+
 import Schedule from "types/schedule";
 import SeasonStartDates from "types/seasonStartDates";
 import Team from "types/team";
-import { useEffect, useMemo, useState } from "react";
-import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 
 import {
   Box,
@@ -37,33 +38,36 @@ export default function TeamSchedule({
   team,
   teams,
 }: TeamScheduleProps) {
-  const [selectedSeason, setSelectedSeason] = useState(null);
-  const [seasonList, setSeasonList] = useState([]);
+  const [selectedSeason, setSelectedSeason] = React.useState(null);
+  const [seasonList, setSeasonList] = React.useState([]);
   const [
     showForbiddenKnowledge,
     setShowForbiddenKnowledge,
   ] = useForbiddenKnowledge();
 
-  const handleSeasonSelectChange = (evt) => {
-    setSelectedSeason(evt.target.value);
+  const handleSeasonSelectChange = (
+    evt: React.FormEvent<HTMLSelectElement>
+  ): void => {
+    evt.preventDefault();
+    setSelectedSeason(evt.currentTarget.value);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     setSeasonList([
       ...(schedule
         ? Object.keys(schedule).sort((a, b) => Number(a) - Number(b))
         : []),
     ]);
-  }, [team.id]);
+  }, [team.team_id]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (seasonList?.length > 0) {
       setSelectedSeason(seasonList[seasonList.length - 1]);
     }
   }, [JSON.stringify(seasonList)]);
 
   // Group games into daily buckets (e.g., Aug. 1, games 1-12; Aug. 2, games 13-36; ...))
-  const selectedSeasonScheduleByDate = useMemo(() => {
+  const selectedSeasonScheduleByDate = React.useMemo(() => {
     if (selectedSeason === null || !seasonStartDates) {
       return;
     }
@@ -72,7 +76,7 @@ export default function TeamSchedule({
     const gamesByDay = [];
 
     let previousGameHasStarted = false;
-    let currGameDate = seasonStartDate;
+    const currGameDate = seasonStartDate;
     for (const day in schedule[selectedSeason]) {
       // Get real world day and hour for current game day
       const currDay = currGameDate.getDate();
@@ -122,7 +126,7 @@ export default function TeamSchedule({
     }
 
     return gamesByDay;
-  }, [team.id, JSON.stringify(seasonStartDates), selectedSeason]);
+  }, [team.team_id, JSON.stringify(seasonStartDates), selectedSeason]);
 
   // Loading skeleton
   if (!selectedSeason || !selectedSeasonScheduleByDate) {
@@ -179,11 +183,16 @@ function TeamDailySchedule({
   showForbiddenKnowledge,
   team,
   teams,
+}: {
+  dailySchedule: any;
+  showForbiddenKnowledge: boolean;
+  team: Team;
+  teams: Team[];
 }) {
   const homeGameBackgroundColor =
-    Color(team.mainColor).getLuminance() < 0.9
-      ? team.mainColor
-      : team.secondaryColor;
+    Color(team.team_main_color).getLuminance() < 0.9
+      ? team.team_main_color
+      : team.team_secondary_color;
   const hasDarkHomeGameBackgroundColor = Color(
     homeGameBackgroundColor
   ).isDark();
@@ -192,7 +201,10 @@ function TeamDailySchedule({
   return (
     <>
       {dailySchedule.map((day) => (
-        <Box key={[day.startingDate.toString(), team.id].toString()} mb={4}>
+        <Box
+          key={[day.startingDate.toString(), team.team_id].toString()}
+          mb={4}
+        >
           <Heading as="h2" mb={4} size="md">
             {day.startingDate.toLocaleString(undefined, {
               day: "numeric",
@@ -221,7 +233,8 @@ function TeamDailySchedule({
                 }
 
                 // Use first game to determine day cell's background and game day
-                const isHomeDay = day.gamesByHour[hour][0].homeTeam === team.id;
+                const isHomeDay =
+                  day.gamesByHour[hour][0].homeTeam === team.team_id;
                 const currGameDay = day.gamesByHour[hour][0].day;
 
                 return (
@@ -252,13 +265,13 @@ function TeamDailySchedule({
                         </Box>
                       </Flex>
                       {day.gamesByHour[hour].map((game) => {
-                        const isHomeTeam = game.homeTeam === team.id;
+                        const isHomeTeam = game.homeTeam === team.team_id;
                         const isWinningTeam = isHomeTeam
                           ? game.homeScore > game.awayScore
                           : game.awayScore > game.homeScore;
                         const opposingTeam = teams.find(
                           (team) =>
-                            team.id ===
+                            team.team_id ===
                             (isHomeTeam ? game.awayTeam : game.homeTeam)
                         );
 
@@ -270,7 +283,7 @@ function TeamDailySchedule({
                             key={game.id}
                           >
                             <Circle
-                              background={opposingTeam.mainColor}
+                              background={opposingTeam.team_main_color}
                               border="1px solid"
                               borderColor="gray.500"
                               mb={2}
@@ -279,9 +292,9 @@ function TeamDailySchedule({
                               <Text
                                 as="span"
                                 fontSize={{ base: "sm", md: "2xl" }}
-                                role="emoji"
+                                role="img"
                               >
-                                {renderTeamEmoji(opposingTeam.emoji)}
+                                {renderTeamEmoji(opposingTeam.team_emoji)}
                               </Text>
                             </Circle>
                             <Box
@@ -289,11 +302,11 @@ function TeamDailySchedule({
                               fontWeight="bold"
                               textAlign="center"
                             >
-                              {game.homeTeam === team.id ? (
+                              {game.homeTeam === team.team_id ? (
                                 <>
                                   vs.{" "}
                                   <NextLink
-                                    href={`/teams/${opposingTeam.slug}/schedule`}
+                                    href={`/teams/${opposingTeam.url_slug}/schedule`}
                                     passHref
                                   >
                                     <Link>
@@ -308,7 +321,7 @@ function TeamDailySchedule({
                                 <>
                                   @{" "}
                                   <NextLink
-                                    href={`/teams/${opposingTeam.slug}/schedule`}
+                                    href={`/teams/${opposingTeam.url_slug}/schedule`}
                                     passHref
                                   >
                                     <Link>
@@ -365,11 +378,11 @@ function TeamDailySchedule({
   );
 }
 
-function TeamDailyScheduleKey({ team }) {
+function TeamDailyScheduleKey({ team }: { team: Team }) {
   const homeGameBackgroundColor =
-    Color(team.mainColor).getLuminance() < 0.9
-      ? team.mainColor
-      : team.secondaryColor;
+    Color(team.team_main_color).getLuminance() < 0.9
+      ? team.team_main_color
+      : team.team_secondary_color;
   const formattedUserTimezone = Intl.DateTimeFormat(undefined, {
     timeZoneName: "short",
   })

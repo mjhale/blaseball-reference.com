@@ -1,13 +1,5 @@
 import { Box } from "@chakra-ui/react";
 
-function getPostseasonStartDate(seasonStartDate: Date): Date {
-  let postseasonStartDate = new Date(seasonStartDate);
-  postseasonStartDate.setDate(postseasonStartDate.getDate() + 5);
-  postseasonStartDate.setUTCHours(13);
-
-  return postseasonStartDate;
-}
-
 function getUpcomingStartDates(
   seasonStartDates: Record<string, string>
 ): { seasonStartDate: Date; postseasonStartDate: Date } {
@@ -20,7 +12,7 @@ function getUpcomingStartDates(
     (a, b) => Number(a) - Number(b)
   )) {
     const seasonStartDate = new Date(`${seasonStartDates[season]} UTC`);
-    let postseasonStartDate = new Date(seasonStartDate);
+    const postseasonStartDate = new Date(seasonStartDate);
     postseasonStartDate.setDate(postseasonStartDate.getDate() + 5);
     postseasonStartDate.setUTCHours(13);
 

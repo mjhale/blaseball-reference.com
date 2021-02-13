@@ -3,7 +3,15 @@ import Team from "types/team";
 import { Grid, List, ListItem } from "@chakra-ui/react";
 import TeamCard from "components/TeamCard";
 
-export default function TeamCardList({ teams }: { teams: Team[] }) {
+type Props = {
+  teams: Team[];
+};
+
+export default function TeamCardList({ teams }: Props) {
+  // if (!teams) {
+  //   return "Loading...";
+  // }
+
   return (
     <Grid
       as={List}
@@ -15,10 +23,10 @@ export default function TeamCardList({ teams }: { teams: Team[] }) {
       }}
     >
       {teams
-        .sort((a, b) => a.fullName.localeCompare(b.fullName))
+        .sort((a, b) => a.full_name.localeCompare(b.full_name))
         .map((team) => {
           return (
-            <ListItem key={team.id}>
+            <ListItem key={team.team_id}>
               <TeamCard team={team} />
             </ListItem>
           );

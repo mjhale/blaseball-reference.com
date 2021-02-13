@@ -1,17 +1,22 @@
+import * as React from "react";
+
 import {
   Alert,
   AlertDescription,
   AlertIcon,
   Container,
   Link,
-  Text,
 } from "@chakra-ui/react";
 import Footer from "components/Footer";
 import Navigation from "components/Navigation";
 import NextLink from "next/link";
 import { SkipNavContent } from "@reach/skip-nav";
 
-export default function Layout({ children }) {
+type Props = {
+  children: React.ReactNode;
+};
+
+export default function Layout({ children }: Props) {
   return (
     <>
       <Navigation />

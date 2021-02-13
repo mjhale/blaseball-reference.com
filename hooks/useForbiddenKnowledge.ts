@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 
 const COOKIE_NAME = "forbidden-knowledge";
 
-export default function useForbiddenKnowledge(): [boolean, Function] {
+export default function useForbiddenKnowledge(): [boolean, any] {
   const [cookies, setCookie, removeCookie] = useCookies();
   const setShowForbiddenKnowledge = useCallback(
     (value: boolean) => {

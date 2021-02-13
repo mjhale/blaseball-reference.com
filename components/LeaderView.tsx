@@ -1,7 +1,8 @@
+import { useApiConfigContext } from "context/ApiConfig";
+
 import ApiConfig from "types/apiConfig";
 import { LeaderGroup } from "types/leader";
 import Team from "types/team";
-import { useApiConfigContext } from "context/ApiConfig";
 
 import LeaderTable from "components/LeaderTable";
 import { Heading, Grid, Skeleton, Stack } from "@chakra-ui/react";
@@ -23,7 +24,7 @@ export default function LeaderView({
   const apiConfig: ApiConfig = useApiConfigContext();
 
   if (
-    apiConfig === undefined ||
+    apiConfig == null ||
     isLeadersValidating === true ||
     selectedView === null ||
     !leaders ||

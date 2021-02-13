@@ -3,5 +3,5 @@ export function getColumnAverage(rows: any, column: string): number {
 }
 
 export function getColumnSum(rows: any, column: string): number {
-  return rows.reduce((sum, row) => row.values[column] + sum, 0);
+  return rows.reduce((sum: number, row: any) => row.values[column] + sum, 0);
 }
