@@ -143,20 +143,25 @@ export function commonBattingStatColumns(): Column<StatSplit>[] {
         );
       },
     },
-    // {
-    //   accessor: "runsScored",
-    //   Header: () => (
-    //     <Tooltip
-    //       closeOnClick={false}
-    //       hasArrow
-    //       label="Runs Scored"
-    //       placement="top"
-    //     >
-    //       R
-    //     </Tooltip>
-    //   ),
-    //   Footer: (): number | null => summaryData?.runsScored ?? null,
-    // },
+    {
+      accessor: (row) => row.stat.runs,
+      id: "runsScored",
+      Header: () => (
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Runs Scored"
+          placement="top"
+        >
+          R
+        </Tooltip>
+      ),
+      Footer: (original): number =>
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
+    },
     {
       accessor: (row) => row.stat.hits,
       id: "hits",
@@ -266,34 +271,44 @@ export function commonBattingStatColumns(): Column<StatSplit>[] {
           []
         ),
     },
-    // {
-    //   accessor: "stolenBases",
-    //   Header: () => (
-    //     <Tooltip
-    //       closeOnClick={false}
-    //       hasArrow
-    //       label="Stolen Bases"
-    //       placement="top"
-    //     >
-    //       SB
-    //     </Tooltip>
-    //   ),
-    //   Footer: (): number | null => summaryData?.stolenBases ?? null,
-    // },
-    // {
-    //   accessor: "caughtStealing",
-    //   Header: () => (
-    //     <Tooltip
-    //       closeOnClick={false}
-    //       hasArrow
-    //       label="Caught Stealing"
-    //       placement="top"
-    //     >
-    //       CS
-    //     </Tooltip>
-    //   ),
-    //   Footer: (): number | null => summaryData?.caughtStealing ?? null,
-    // },
+    {
+      accessor: (row) => row.stat.stolen_bases,
+      id: "stolenBases",
+      Header: () => (
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Stolen Bases"
+          placement="top"
+        >
+          SB
+        </Tooltip>
+      ),
+      Footer: (original): number =>
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
+    },
+    {
+      accessor: (row) => row.stat.caught_stealing,
+      id: "caughtStealing",
+      Header: () => (
+        <Tooltip
+          closeOnClick={false}
+          hasArrow
+          label="Caught Stealing"
+          placement="top"
+        >
+          CS
+        </Tooltip>
+      ),
+      Footer: (original): number =>
+        React.useMemo(
+          () => getColumnSum(original.rows, original.column.id),
+          []
+        ),
+    },
     {
       accessor: (row) => row.stat.walks,
       id: "basesOnBalls",

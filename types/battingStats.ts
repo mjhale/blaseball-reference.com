@@ -24,4 +24,7 @@ export interface BattingStats {
   ground_outs: number;
   flyouts: number;
   gidp: number;
+  stolen_bases: number;
+  caught_stealing: number;
+  runs: number;
 }
