@@ -1,5 +1,6 @@
 import { LeaderCategory, LeaderColumn } from "types/leader";
 import Team from "types/team";
+import { useColorModeValue } from "@chakra-ui/react";
 
 import { Box, Flex, Link, Text, VisuallyHidden } from "@chakra-ui/react";
 import NextLink from "next/link";
@@ -15,6 +16,16 @@ export default function LeaderTable({
   leaderCategories,
   teams,
 }: Props) {
+  const categoryHeadingBackgroundHeader = useColorModeValue(
+    "gray.100",
+    "gray.700"
+  );
+  const categoryTableBorderColor = useColorModeValue("gray.300", "gray.700");
+  const categoryTableRowHover = useColorModeValue(
+    "hsl(35, 100%, 95%)",
+    "gray.700"
+  );
+
   return (
     <>
       {leaderCategories.map((category) => {
@@ -25,14 +36,14 @@ export default function LeaderTable({
         return (
           <Flex
             border="1px solid"
-            borderColor="gray.300"
+            borderColor={categoryTableBorderColor}
             flexDirection="column"
             key={category.leaderCategory}
           >
             <Box
-              bgColor="gray.100"
+              bgColor={categoryHeadingBackgroundHeader}
               borderBottom="1px"
-              borderBottomColor="gray.200"
+              borderBottomColor={categoryTableBorderColor}
               fontWeight="medium"
               p="1"
               textAlign="center"
@@ -52,7 +63,7 @@ export default function LeaderTable({
 
                 return (
                   <Flex
-                    _hover={{ bgColor: "hsl(35, 100%, 95%)" }}
+                    _hover={{ bgColor: categoryTableRowHover }}
                     flexDirection="row"
                     fontSize="sm"
                     justifyContent="space-between"

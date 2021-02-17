@@ -1,8 +1,9 @@
 import { dbApiFetcher } from "lib/api-fetcher";
 import renderTeamEmoji from "utils/renderTeamEmoji";
 import * as React from "react";
-import useSWR from "swr";
+import { useColorModeValue } from "@chakra-ui/react";
 import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
+import useSWR from "swr";
 
 import { GetStaticProps } from "next";
 import Schedule from "types/schedule";
@@ -156,6 +157,13 @@ function DailySchedule({
     }
   };
 
+  const borderColor = useColorModeValue("gray.500", "gray.600");
+  const borderInteriorSeparatorColor = useColorModeValue(
+    "gray.100",
+    "gray.700"
+  );
+  const secondaryFontColor = useColorModeValue("gray.600", "gray.400");
+
   if (
     !schedule ||
     !teams ||
@@ -253,16 +261,19 @@ function DailySchedule({
       <Heading as="h2" mb={4} size="md">
         Season {formattedSeason} Day {formattedDay}
       </Heading>
-      <Flex border="1px solid" borderColor="gray.500" flexDirection="column">
+      <Flex border="1px solid" borderColor={borderColor} flexDirection="column">
         {selectedDaySchedule.map((game) => {
           const awayTeam = teams.find((team) => team.team_id === game.awayTeam);
           const homeTeam = teams.find((team) => team.team_id === game.homeTeam);
 
           return (
             <Flex
+              _last={{
+                borderBottom: 0,
+              }}
               alignItems="center"
-              borderBottom="1px solid"
-              borderBottomColor="gray.200"
+              borderBottom="1px"
+              borderBottomColor={borderInteriorSeparatorColor}
               direction={{ base: "column", lg: "row" }}
               justifyContent="space-between"
               key={game.id}
@@ -285,7 +296,7 @@ function DailySchedule({
                 <TeamBlock team={homeTeam} />
               </Flex>
               <Box
-                color="gray.600"
+                color={secondaryFontColor}
                 fontSize="sm"
                 mt={{ base: 2, lg: 0 }}
                 textAlign={{ base: "center", xl: "left" }}
@@ -307,7 +318,7 @@ function DailySchedule({
                 ) : null}
               </Box>
               <Flex
-                color="gray.600"
+                color={secondaryFontColor}
                 display={{ base: "none", md: "flex" }}
                 justifyContent="flex-start"
                 flex="2 1 0%"
@@ -342,7 +353,7 @@ function DailySchedule({
                 <Flex alignItems="center" flex="1 1 0%" mt={{ base: 2, lg: 0 }}>
                   <WeatherIcon for={game.weather} />
                   <Text
-                    color="gray.600"
+                    color={secondaryFontColor}
                     display="inline-block"
                     fontSize={{ base: "xs", md: "sm" }}
                     ml={2}

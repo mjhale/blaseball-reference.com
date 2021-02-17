@@ -2,6 +2,7 @@ import { getColor } from "@chakra-ui/theme-tools";
 import * as React from "react";
 import styled from "@emotion/styled";
 import useAlgoliaSearchResults from "hooks/useAlgoliaSearchResults";
+import { useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useTheme } from "@chakra-ui/react";
 
@@ -123,8 +124,24 @@ export default function SearchForm() {
     };
   }, [hasSelected, router.events]);
 
+  const iconColor = useColorModeValue("gray.400", "gray.500");
+  const comboListBackgroundColor = useColorModeValue("white", "gray.800");
+  const comboListBorderColor = useColorModeValue("gray.200", "gray.500");
+  const comboListHeadingBackgroundColor = useColorModeValue(
+    "gray.100",
+    "gray.700"
+  );
+  const comboListItemHoverBackgroundColor = useColorModeValue(
+    "hsl(35, 100%, 95%)",
+    "gray.500"
+  );
+  const comboListItemSelectBackgroundColor = useColorModeValue(
+    "hsl(35, 100%, 85%)",
+    "gray.600"
+  );
+
   return (
-    <Box>
+    <Box width="100%">
       <form onSubmit={handleSubmit}>
         <Flex alignItems="center" direction="row" wrap="nowrap">
           <Combobox as={Box} mr={2} onSelect={handleSelect} width="100%">
@@ -137,24 +154,30 @@ export default function SearchForm() {
                 <InputLeftElement>
                   {isLoading ? (
                     <CircularProgress
-                      color="gray.50"
+                      color={iconColor}
                       isIndeterminate
                       size={5}
                     />
                   ) : (
-                    <SearchIcon color="gray.300" fontSize="xl" />
+                    <SearchIcon color={iconColor} fontSize="xl" />
                   )}
                 </InputLeftElement>
 
                 <Input
                   _focus={{
                     border: "1px solid",
-                    borderColor: "blue.200",
-                    boxShadow: `0 0 0 4px ${getColor(theme, "blue.50")}`,
+                    borderColor: useColorModeValue("blue.200", "blue.500"),
+                    boxShadow: `0 0 0 4px ${useColorModeValue(
+                      getColor(theme, "blue.50"),
+                      getColor(theme, "blue.600")
+                    )}`,
                     outline: "none",
                   }}
+                  _placeholder={{
+                    color: useColorModeValue("gray.400", "gray.600"),
+                  }}
                   as={ComboboxInput}
-                  borderColor="gray.200"
+                  borderColor={useColorModeValue("gray.200", "gray.500")}
                   fontSize={{ base: "lg", md: "md" }}
                   id="searchTerm"
                   inputMode="search"
@@ -174,9 +197,9 @@ export default function SearchForm() {
               >
                 <ComboboxList
                   as={List}
-                  bgColor="white"
+                  bgColor={comboListBackgroundColor}
                   border="1px solid"
-                  borderColor="gray.200"
+                  borderColor={comboListBorderColor}
                   borderRadius="md"
                   boxShadow="sm"
                   position="absolute"
@@ -191,7 +214,7 @@ export default function SearchForm() {
                       <>
                         <Heading
                           as="h3"
-                          bgColor="gray.100"
+                          bgColor={comboListHeadingBackgroundColor}
                           py={2}
                           px={4}
                           size="sm"
@@ -214,7 +237,7 @@ export default function SearchForm() {
                             <React.Fragment key={resultGroup}>
                               <Heading
                                 as="h3"
-                                bgColor="gray.100"
+                                bgColor={comboListHeadingBackgroundColor}
                                 py={2}
                                 px={4}
                                 size="sm"
@@ -233,10 +256,10 @@ export default function SearchForm() {
                                   return (
                                     <ListItem
                                       _hover={{
-                                        bgColor: "hsl(35, 100%, 95%)",
+                                        bgColor: comboListItemHoverBackgroundColor,
                                       }}
                                       _selected={{
-                                        bgColor: "hsl(35, 100%, 85%)",
+                                        bgColor: comboListItemSelectBackgroundColor,
                                       }}
                                       as={StyledComboboxOption}
                                       cursor="pointer"
@@ -254,7 +277,10 @@ export default function SearchForm() {
                         })}
                       </>
                     )}
-                    <Flex bgColor="gray.100" justifyContent="center">
+                    <Flex
+                      bgColor={comboListHeadingBackgroundColor}
+                      justifyContent="center"
+                    >
                       <Link
                         display="inlineBlock"
                         href="https://algolia.com"

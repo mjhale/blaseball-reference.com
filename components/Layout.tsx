@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useColorModeValue } from "@chakra-ui/react";
 
 import {
   Alert,
@@ -62,7 +63,11 @@ function PreviewBuildWarning() {
 
 function StatDisclaimerNotice() {
   return (
-    <Alert bgColor="gray.100" mb={4} status="info">
+    <Alert
+      bgColor={useColorModeValue("gray.100", "gray.700")}
+      mb={4}
+      status="info"
+    >
       <AlertIcon />
       All stats are currently based on incomplete data.
     </Alert>

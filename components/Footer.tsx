@@ -15,7 +15,6 @@ export default function Footer() {
     <Container maxWidth="6xl">
       <Box
         as="footer"
-        color="gray.600"
         fontSize="sm"
         my={{ base: 8, md: 10 }}
         textAlign="center"

@@ -1,15 +1,18 @@
+import { useColorMode } from "@chakra-ui/react";
 import * as React from "react";
+import { useColorModeValue } from "@chakra-ui/react";
 
 import {
   Box,
   Button,
   Container,
   Heading,
+  IconButton,
   Flex,
   Link,
   Text,
 } from "@chakra-ui/react";
-import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 import SearchForm from "components/SearchForm";
 import { SkipNavLink } from "@reach/skip-nav";
@@ -37,6 +40,7 @@ const MenuItem = ({ children, href }: MenuItemProps) => (
 );
 
 export default function Navigation() {
+  const { colorMode, toggleColorMode } = useColorMode();
   const [isOpen, setIsOpen] = React.useState(false);
 
   function handleToggle() {
@@ -49,11 +53,11 @@ export default function Navigation() {
       <Container maxWidth="6xl">
         <Flex
           as="nav"
+          bg={useColorModeValue("white", "gray.800")}
           align="center"
           justify="space-between"
           wrap="wrap"
           mt={8}
-          bg="white"
         >
           <Flex
             align="center"
@@ -107,13 +111,25 @@ export default function Navigation() {
               )}
             </Button>
           </Flex>
-          <Box
+
+          <Flex
+            align="center"
+            justify="space-between"
             mt={{ base: 4 }}
             minWidth={{ base: "auto", md: "md" }}
             width={{ base: "100%", md: "auto" }}
           >
+            <IconButton
+              aria-label={`Switch to ${
+                colorMode === "light" ? "dark" : "light"
+              } mode`}
+              icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+              mr={2}
+              onClick={toggleColorMode}
+              size="md"
+            />
             <SearchForm />
-          </Box>
+          </Flex>
         </Flex>
 
         <Flex
@@ -126,7 +142,7 @@ export default function Navigation() {
         >
           <Box
             alignItems="left"
-            bgColor="gray.100"
+            bgColor={useColorModeValue("gray.100", "gray.700")}
             display={{ base: isOpen ? "flex" : "none", md: "flex" }}
             flexDirection={{ base: "column", md: "row" }}
             flexGrow={1}

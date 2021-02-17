@@ -1,4 +1,5 @@
 import renderTeamEmoji from "utils/renderTeamEmoji";
+import { useColorModeValue } from "@chakra-ui/react";
 
 import Team from "types/team";
 
@@ -13,10 +14,13 @@ export default function TeamCard({ team }: Props) {
   return (
     <NextLink href={`/teams/${team.url_slug}`} passHref>
       <Link
-        _hover={{ bgColor: "hsl(35, 100%, 98%)", boxShadow: "md" }}
+        _hover={{
+          bgColor: useColorModeValue("hsl(35, 100%, 98%)", "gray.700"),
+          boxShadow: "md",
+        }}
         alignItems="center"
         border="1px"
-        borderColor="gray.200"
+        borderColor={useColorModeValue("gray.200", "gray.600")}
         display="flex"
         flexDirection="row"
         height={24}
@@ -27,7 +31,7 @@ export default function TeamCard({ team }: Props) {
           alignItems="center"
           bgColor={team.team_main_color}
           borderRight="1px"
-          borderRightColor="gray.200"
+          borderRightColor={useColorModeValue("gray.200", "gray.600")}
           display="flex"
           height="full"
           justifyContent="center"

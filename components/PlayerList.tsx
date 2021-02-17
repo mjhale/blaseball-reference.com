@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import Player from "types/player";
 
 import { Box, Divider, Heading, Link, Text } from "@chakra-ui/react";

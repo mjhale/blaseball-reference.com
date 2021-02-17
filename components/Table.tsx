@@ -1,26 +1,24 @@
 /* eslint-disable react/jsx-key */
 
 import * as React from "react";
+import { useColorModeValue } from "@chakra-ui/react";
 import { useSortBy, useTable } from "react-table";
 
 import { Cell, Column, HeaderGroup, Row, TableInstance } from "react-table";
 
-import { Button, Heading } from "@chakra-ui/react";
-import { CSVLink } from "react-csv";
 import {
-  StyledContainer,
-  StyledScrollContainer,
-  StyledTable,
-  StyledTableCell,
-  StyledTableCellFixed,
-  StyledTableFootCell,
-  StyledTableFootCellFixed,
-  StyledTableHead,
-  StyledTableHeadCell,
-  StyledTableHeadCellFixed,
-  StyledTableRow,
-  StyledTableRowData,
-} from "components/Table/Table.styled";
+  Box,
+  Button,
+  Heading,
+  Table as ChakraTable,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+} from "@chakra-ui/react";
+import { CSVLink } from "react-csv";
 import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 
 const TableContext = React.createContext(undefined);
@@ -53,17 +51,51 @@ function Content() {
     prepareRow,
   } = tableInstance;
 
+  const fixedCellStyles = {
+    backgroundColor: "inherit",
+    left: 0,
+    position: "sticky",
+    top: "auto",
+    whiteSpace: "unset",
+  };
+
+  const RowBackgroundColor = useColorModeValue("white", "gray.800");
+  const TrActiveRowBackgroundColor = useColorModeValue(
+    "hsl(35, 100%, 95%)",
+    "gray.700"
+  );
+  const TdBottomBorderColor = useColorModeValue("gray.300", "gray.600");
+
   return (
-    <StyledContainer>
-      <StyledScrollContainer>
-        <StyledTable {...getTableProps()}>
-          <StyledTableHead>
+    <Box position="relative" maxWidth="100vw">
+      <Box overflowX="auto">
+        <ChakraTable
+          // boxShadow="0 1px 0 0 rgba(22, 29, 37, 0.05)"
+          marginTop={2}
+          size="sm"
+          variant="simple"
+          width="100%"
+          {...getTableProps()}
+        >
+          <Thead
+            borderBottomWidth="2px"
+            borderBottomColor={useColorModeValue("black", "gray.600")}
+          >
             {headerGroups.map((headerGroup: HeaderGroup) => (
-              <StyledTableRow {...headerGroup.getHeaderGroupProps()}>
+              <Tr
+                backgroundColor={RowBackgroundColor}
+                {...headerGroup.getHeaderGroupProps()}
+              >
                 {headerGroup.headers.map((column, index) => (
-                  <TableCell
-                    index={index}
-                    type="header"
+                  <Th
+                    fontSize="xs"
+                    fontWeight="normal"
+                    letterSpacing="tight"
+                    paddingX={1}
+                    paddingY={2}
+                    textAlign="center"
+                    textTransform="uppercase"
+                    sx={index === 0 ? fixedCellStyles : null}
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                   >
                     {column.render("Header")}
@@ -74,73 +106,70 @@ function Content() {
                         <TriangleUpIcon boxSize={4} ml={{ base: 0, md: 2 }} />
                       )
                     ) : null}
-                  </TableCell>
+                  </Th>
                 ))}
-              </StyledTableRow>
+              </Tr>
             ))}
-          </StyledTableHead>
-          <tbody {...getTableBodyProps()}>
+          </Thead>
+          <Tbody {...getTableBodyProps()}>
             {rows.map((row: Row<any>) => {
               prepareRow(row);
 
               return (
-                <StyledTableRowData {...row.getRowProps()}>
+                <Tr
+                  _hover={{
+                    backgroundColor: TrActiveRowBackgroundColor,
+                  }}
+                  backgroundColor={RowBackgroundColor}
+                  {...row.getRowProps()}
+                >
                   {row.cells.map((cell: Cell, index) => (
-                    <TableCell index={index} {...cell.getCellProps()}>
+                    <Td
+                      borderBottom="1px"
+                      borderBottomColor={TdBottomBorderColor}
+                      fontSize="xs"
+                      fontWeight="normal"
+                      letterSpacing="tight"
+                      paddingX={1}
+                      paddingY={2}
+                      sx={index === 0 ? fixedCellStyles : null}
+                      textAlign="center"
+                      {...cell.getCellProps()}
+                    >
                       {cell.render("Cell")}
-                    </TableCell>
+                    </Td>
                   ))}
-                </StyledTableRowData>
+                </Tr>
               );
             })}
-          </tbody>
-          <tfoot>
+          </Tbody>
+          <Tfoot>
             {footerGroups.map((group) => (
-              <StyledTableRow {...group.getFooterGroupProps()}>
+              <Tr
+                backgroundColor={RowBackgroundColor}
+                {...group.getFooterGroupProps()}
+              >
                 {group.headers.map((column, index) => (
-                  <TableCell
-                    index={index}
-                    type="footer"
+                  <Td
+                    fontSize="xs"
+                    fontWeight="bold"
+                    letterSpacing="tight"
+                    paddingX={2}
+                    paddingY={1}
+                    sx={index === 0 ? fixedCellStyles : null}
+                    textAlign="center"
                     {...column.getFooterProps()}
                   >
                     {column.render("Footer")}
-                  </TableCell>
+                  </Td>
                 ))}
-              </StyledTableRow>
+              </Tr>
             ))}
-          </tfoot>
-        </StyledTable>
-      </StyledScrollContainer>
-    </StyledContainer>
+          </Tfoot>
+        </ChakraTable>
+      </Box>
+    </Box>
   );
-}
-
-function TableCell({
-  index,
-  children,
-  type,
-  ...columnProps
-}: {
-  index: number;
-  children: React.ReactNode;
-  type?: "footer" | "header";
-}) {
-  let StyledCell;
-
-  switch (type) {
-    case "footer":
-      StyledCell = index === 0 ? StyledTableFootCellFixed : StyledTableFootCell;
-      break;
-
-    case "header":
-      StyledCell = index === 0 ? StyledTableHeadCellFixed : StyledTableHeadCell;
-      break;
-
-    default:
-      StyledCell = index === 0 ? StyledTableCellFixed : StyledTableCell;
-  }
-
-  return <StyledCell {...columnProps}>{children}</StyledCell>;
 }
 
 function SectionHeading({
