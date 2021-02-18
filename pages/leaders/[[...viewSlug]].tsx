@@ -29,6 +29,7 @@ type Props = {
 export default function LeadersPage(props: Props) {
   const apiConfig: ApiConfig = useApiConfigContext();
   const router = useRouter();
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const leaderView = getLeaderView({
     apiConfig,
@@ -64,7 +65,8 @@ export default function LeadersPage(props: Props) {
 
   React.useEffect(() => {
     if (router.query.viewSlug != null) {
-      mutateLeaders();
+      // mutateLeaders();
+      setIsLoading(false);
     }
   }, [router.query.viewSlug]);
 
@@ -74,10 +76,12 @@ export default function LeadersPage(props: Props) {
     evt.preventDefault();
     setSelectedView(evt.currentTarget.value);
 
+    setIsLoading(true);
+
     router.push(
-      `/leaders/${translateLeaderViewToSlug(evt.currentTarget.value)}`,
-      undefined,
-      { shallow: true }
+      `/leaders/${translateLeaderViewToSlug(evt.currentTarget.value)}`
+      // undefined,
+      // { shallow: true }
     );
   };
 
@@ -115,6 +119,7 @@ export default function LeadersPage(props: Props) {
         />
 
         <LeaderView
+          isLoading={isLoading}
           isLeadersValidating={isLeadersValidating}
           leaders={leaders}
           selectedView={selectedView}

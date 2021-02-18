@@ -9,6 +9,7 @@ import { Heading, Grid, Skeleton, Stack } from "@chakra-ui/react";
 
 type Props = {
   isLeadersValidating: boolean;
+  isLoading: boolean;
   leaders: LeaderGroup[];
   selectedView: string | null;
   teams: Team[];
@@ -17,6 +18,7 @@ type Props = {
 // A "view" contains data for "Career", "Season 1", "Season 2",  ..
 export default function LeaderView({
   isLeadersValidating,
+  isLoading,
   leaders,
   selectedView,
   teams,
@@ -26,15 +28,17 @@ export default function LeaderView({
   if (
     apiConfig == null ||
     isLeadersValidating === true ||
+    isLoading === true ||
     selectedView === null ||
     !leaders ||
     !teams
   ) {
     return (
       <>
-        {(isLeadersValidating === true || !leaders || !teams) && (
-          <LeaderTablesLoading />
-        )}
+        {(isLeadersValidating === true ||
+          isLoading === true ||
+          !leaders ||
+          !teams) && <LeaderTablesLoading />}
       </>
     );
   }
