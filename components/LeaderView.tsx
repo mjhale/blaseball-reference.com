@@ -8,7 +8,6 @@ import LeaderTable from "components/LeaderTable";
 import { Heading, Grid, Skeleton, Stack } from "@chakra-ui/react";
 
 type Props = {
-  isLeadersValidating: boolean;
   isLoading: boolean;
   leaders: LeaderGroup[];
   selectedView: string | null;
@@ -17,7 +16,6 @@ type Props = {
 
 // A "view" contains data for "Career", "Season 1", "Season 2",  ..
 export default function LeaderView({
-  isLeadersValidating,
   isLoading,
   leaders,
   selectedView,
@@ -27,26 +25,18 @@ export default function LeaderView({
 
   if (
     apiConfig == null ||
-    isLeadersValidating === true ||
     isLoading === true ||
     selectedView === null ||
     !leaders ||
     !teams
   ) {
-    return (
-      <>
-        {(isLeadersValidating === true ||
-          isLoading === true ||
-          !leaders ||
-          !teams) && <LeaderTablesLoading />}
-      </>
-    );
+    return <LeaderTablesLoading />;
   }
 
-  const hittingGroup = leaders.find(
+  const hittingGroup: LeaderGroup = leaders.find(
     (leaderGroup) => leaderGroup.statGroup === "hitting"
   );
-  const pitchingGroup = leaders.find(
+  const pitchingGroup: LeaderGroup = leaders.find(
     (leaderGroup) => leaderGroup.statGroup === "pitching"
   );
 
@@ -55,7 +45,7 @@ export default function LeaderView({
       {hittingGroup !== undefined ? (
         <>
           <Heading as="h2" size="md" mb={2}>
-            {!Number.isNaN(Number(selectedView)) ? (
+            {Number.isInteger(Number(selectedView)) ? (
               <>Season {Number(selectedView) + 1} Batting</>
             ) : (
               <>Career Batting</>
@@ -82,7 +72,7 @@ export default function LeaderView({
       {pitchingGroup !== undefined ? (
         <>
           <Heading as="h2" size="md" mb={2}>
-            {!Number.isNaN(Number(selectedView)) ? (
+            {Number.isInteger(Number(selectedView)) ? (
               <>Season {Number(selectedView) + 1} Pitching</>
             ) : (
               <>Career Pitching</>

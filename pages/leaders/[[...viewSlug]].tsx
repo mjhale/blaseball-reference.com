@@ -7,11 +7,10 @@ import {
 import { useApiConfigContext } from "context/ApiConfig";
 import * as React from "react";
 import { useRouter } from "next/router";
-import useSWR from "swr";
 
 import ApiConfig from "types/apiConfig";
 import { GetStaticPaths, GetStaticProps } from "next";
-import Leader from "types/leader";
+import { LeaderGroup } from "types/leader";
 import PlayerStats from "types/playerStats";
 import Team from "types/team";
 
@@ -22,50 +21,31 @@ import LeaderView from "components/LeaderView";
 import SplitViewSelect from "components/SplitViewSelect";
 
 type Props = {
-  leaders: Leader[];
+  leaders: LeaderGroup[];
   teams: Team[];
 };
 
 export default function LeadersPage(props: Props) {
+  const { leaders, teams } = props;
+
   const apiConfig: ApiConfig = useApiConfigContext();
-  const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);
+  const router = useRouter();
 
   const leaderView = getLeaderView({
     apiConfig,
     viewSlug: router.query.viewSlug,
   });
-
-  // @TODO: Include the allTime stat leader endpoint
-  const {
-    data: leaders,
-    error: leadersError,
-    isValidating: isLeadersValidating,
-    mutate: mutateLeaders,
-  } = useSWR(
-    leaderView != null
-      ? `/stats/leaders?group=hitting,pitching&season=${leaderView}`
-      : null,
-    dbApiFetcher,
-    {
-      initialData: props.leaders,
-    }
-  );
-  const { data: teams, error: teamsError } = useSWR("/teams", dbApiFetcher, {
-    initialData: props.teams,
-  });
-
   const [selectedView, setSelectedView] = React.useState(leaderView);
 
   React.useEffect(() => {
     if (apiConfig !== undefined) {
       setSelectedView(leaderView);
     }
-  }, [apiConfig, leaderView]);
+  }, [apiConfig]);
 
   React.useEffect(() => {
     if (router.query.viewSlug != null) {
-      // mutateLeaders();
       setIsLoading(false);
     }
   }, [router.query.viewSlug]);
@@ -75,13 +55,10 @@ export default function LeadersPage(props: Props) {
   ): void => {
     evt.preventDefault();
     setSelectedView(evt.currentTarget.value);
-
     setIsLoading(true);
 
     router.push(
       `/leaders/${translateLeaderViewToSlug(evt.currentTarget.value)}`
-      // undefined,
-      // { shallow: true }
     );
   };
 
@@ -105,7 +82,7 @@ export default function LeadersPage(props: Props) {
           Blaseball Stat Leaders
         </Heading>
 
-        {leadersError || teamsError ? (
+        {!leaders || !teams ? (
           <Box mb={4}>
             {
               "Sorry, we're currently having a siesta and are unable to provide the latest stat leader information."
@@ -114,13 +91,13 @@ export default function LeadersPage(props: Props) {
         ) : null}
 
         <SplitViewSelect
+          extraSelectOptions={[{ key: "career", content: "Career" }]}
           handleSelectChange={handleSelectChange}
           selectedView={selectedView}
         />
 
         <LeaderView
           isLoading={isLoading}
-          isLeadersValidating={isLeadersValidating}
           leaders={leaders}
           selectedView={selectedView}
           teams={teams}
@@ -169,9 +146,15 @@ export const getStaticProps: GetStaticProps = async ({
   });
 
   try {
-    leaders = await dbApiFetcher(
-      `/stats/leaders?group=hitting,pitching&season=${leaderView}`
-    );
+    if (leaderView === "career") {
+      leaders = await dbApiFetcher(
+        `/stats/leaders?group=hitting,pitching&type=career`
+      );
+    } else {
+      leaders = await dbApiFetcher(
+        `/stats/leaders?group=hitting,pitching&season=${leaderView}`
+      );
+    }
   } catch (error) {
     console.log(error);
   }
@@ -188,7 +171,7 @@ export const getStaticProps: GetStaticProps = async ({
       leaders,
       teams,
     },
-    revalidate: 900,
+    revalidate: 2700,
   };
 };
 
@@ -212,7 +195,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
     : [];
 
   return {
-    paths: ["/leaders", ...viewList.map((view) => `/leaders/${view}`)] || [],
+    paths:
+      [
+        "/leaders",
+        "/leaders/career",
+        ...viewList.map((view) => `/leaders/${view}`),
+      ] || [],
     fallback: false,
   };
 };

@@ -8,7 +8,7 @@ export function getLeaderViewFromSlug(slug: string): string {
 
   // The `career` slug is represented as `allTime` in the API
   if (slug === "career") {
-    return "allTime";
+    return "career";
   }
 
   return slug;
