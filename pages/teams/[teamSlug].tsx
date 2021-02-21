@@ -206,7 +206,7 @@ export const getStaticProps: GetStaticProps = async ({
   }
 
   try {
-    if (apiConfig !== undefined) {
+    if (apiConfig != null) {
       teamPlayerStats = await dbApiFetcher(
         `/stats?group=hitting,pitching&type=season&season=${apiConfig.seasons?.maxSeason}&teamId=${team.team_id}`
       );
@@ -221,7 +221,7 @@ export const getStaticProps: GetStaticProps = async ({
       teamPlayerStats,
       preview,
     },
-    revalidate: 900,
+    revalidate: 2700,
   };
 };
 

@@ -4,8 +4,9 @@ import useSWR from "swr";
 
 import Player from "types/player";
 
+import Error from "components/Error";
 import Head from "next/head";
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Heading, Text } from "@chakra-ui/react";
 import Layout from "components/Layout";
 import PlayerList from "components/PlayerList";
 
@@ -36,20 +37,19 @@ export default function PlayersPage(props: Props) {
         />
       </Head>
       <Layout>
-        <Heading as="h1" size="lg">
-          Encyclopedia of Blaseball Players
-        </Heading>
-        <Text>
-          Search the Blaseball encyclopedia of players by the first letter of
-          the player's last name.
-        </Text>
-        {error ? (
-          <Box>
-            Sorry, we're currently having a siesta and couldn't load player
-            information.
-          </Box>
+        {error != null ? (
+          <Error />
         ) : (
-          <PlayerList players={data} />
+          <>
+            <Heading as="h1" size="lg">
+              Encyclopedia of Blaseball Players
+            </Heading>
+            <Text>
+              Search the Blaseball encyclopedia of players by the first letter
+              of the player's last name.
+            </Text>
+            <PlayerList players={data} />
+          </>
         )}
       </Layout>
     </>
@@ -70,6 +70,6 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       players,
       preview,
     },
-    revalidate: 900,
+    revalidate: 2700,
   };
 };

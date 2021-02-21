@@ -28,9 +28,9 @@ export default function Standings({
 }: Props) {
   const sortedSeasonList = () =>
     standings
-      ? Object.keys(standings).sort((a, b) => Number(a) - Number(b))
+      ? Object.keys(standings).sort((a, b) => Number(b) - Number(a))
       : [];
-  const mostRecentSeason = () => sortedSeasonList().pop();
+  const mostRecentSeason = () => sortedSeasonList().shift();
 
   const [selectedSeason, setSelectedSeason] = React.useState(
     mostRecentSeason()
@@ -43,7 +43,7 @@ export default function Standings({
 
   React.useEffect(() => {
     if (seasonList.length > 0) {
-      setSelectedSeason(seasonList[seasonList.length - 1]);
+      setSelectedSeason(seasonList[0]);
     }
   }, [JSON.stringify(seasonList)]);
 

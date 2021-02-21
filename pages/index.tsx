@@ -1,6 +1,5 @@
 import apiFetcher, { dbApiFetcher } from "lib/api-fetcher";
 import * as React from "react";
-import useSWR from "swr";
 
 import Player from "types/player";
 import { GetStaticProps } from "next";
@@ -51,21 +50,7 @@ type IndexPageProps = {
 };
 
 export default function IndexPage(props: IndexPageProps) {
-  const { data: players, error: playersError } = useSWR(
-    "/players",
-    dbApiFetcher,
-    {
-      initialData: props.players,
-    }
-  );
-
-  const { data: seasonStartDates, error: seasonStartDatesError } = useSWR(
-    "/seasonStartDates.json",
-    undefined,
-    {
-      initialData: props.seasonStartDates,
-    }
-  );
+  const { players, seasonStartDates } = props;
 
   // @TODO: Fallback if `players` doesn't exist
   const recentPlayerDebuts: Player[] = React.useMemo(
@@ -150,6 +135,6 @@ export const getStaticProps: GetStaticProps = async () => {
       players,
       seasonStartDates,
     },
-    revalidate: 900,
+    revalidate: 2700,
   };
 };

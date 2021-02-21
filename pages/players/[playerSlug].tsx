@@ -17,6 +17,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import Error from "components/Error";
 import Head from "next/head";
 import Layout from "components/Layout";
 import NextLink from "next/link";
@@ -24,8 +25,8 @@ import PitchingStatTable from "components/PitchingStatTable";
 
 type PlayerPageProps = {
   player: Player | null;
-  stats: PlayerStats | null;
-  postseasonStats: PlayerStats | null;
+  stats: PlayerStats[] | null;
+  postseasonStats: PlayerStats[] | null;
   team: Team | null;
 };
 
@@ -71,13 +72,13 @@ export default function PlayerPage(props: PlayerPageProps) {
     <>
       <Head>
         <title>
-          {player !== undefined ? player.player_name : "Player"} Stats -
+          {player != null ? player.player_name : "Player"} Stats -
           Blaseball-Reference.com
         </title>
         <meta
           property="og:title"
           content={`${
-            player !== undefined ? player.player_name : "Player"
+            player != null ? player.player_name : "Player"
           } Stats - Blaseball-Reference.com`}
           key="og:title"
         />
@@ -85,17 +86,21 @@ export default function PlayerPage(props: PlayerPageProps) {
           name="description"
           property="og:description"
           content={`${
-            player !== undefined ? player.player_name : "Player"
+            player != null ? player.player_name : "Player"
           } history and position statistics in Blaseball.`}
         />
       </Head>
       <Layout>
-        <PlayerDetails
-          player={player}
-          postseasonStats={postseasonStats}
-          stats={stats}
-          team={team}
-        />
+        {playerError != null ? (
+          <Error type={playerError?.status} />
+        ) : (
+          <PlayerDetails
+            player={player}
+            postseasonStats={postseasonStats}
+            stats={stats}
+            team={team}
+          />
+        )}
       </Layout>
     </>
   );
@@ -114,7 +119,7 @@ function PlayerDetails({
   stats,
   team,
 }: PlayerDetailsProps) {
-  if (!player || !postseasonStats || !stats) {
+  if (player == null) {
     return (
       <>
         <Skeleton height="40px" mb={4} width="2xs" />
@@ -156,7 +161,7 @@ function PlayerDetails({
           </Text>
         ) : null} */}
 
-        {team ? (
+        {team != null ? (
           <Text my={1}>
             Team:{" "}
             <NextLink href={`/teams/${team.url_slug}`} passHref>
@@ -227,11 +232,9 @@ function PlayerStatTables({
     return null;
   }
 
-  const battingStats: PlayerStats | undefined = stats.find((statGroup) => {
-    if (statGroup.group === "hitting") {
-      return true;
-    }
-  });
+  const battingStats: PlayerStats | undefined = stats.find(
+    (statGroup) => statGroup.group === "hitting"
+  );
   const pitchingStats: PlayerStats | undefined = stats.find(
     (statGroup) => statGroup.group === "pitching"
   );
@@ -301,15 +304,17 @@ export const getStaticProps: GetStaticProps = async ({
   }
 
   try {
-    postseasonStats = await dbApiFetcher(
-      `/stats?group=hitting,pitching&type=season&gameType=P&playerId=${player.player_id}`
-    );
+    if (player != null) {
+      postseasonStats = await dbApiFetcher(
+        `/stats?group=hitting,pitching&type=season&gameType=P&playerId=${player.player_id}`
+      );
+    }
   } catch (error) {
     console.log(error);
   }
 
   try {
-    if (player.team_id) {
+    if (player?.team_id != null) {
       team = await dbApiFetcher(`/teams/${player.team_id}`);
     }
   } catch (error) {
@@ -317,9 +322,11 @@ export const getStaticProps: GetStaticProps = async ({
   }
 
   try {
-    stats = await dbApiFetcher(
-      `/stats?group=hitting,pitching&type=season&playerId=${player.player_id}`
-    );
+    if (player != null) {
+      stats = await dbApiFetcher(
+        `/stats?group=hitting,pitching&type=season&playerId=${player.player_id}`
+      );
+    }
   } catch (error) {
     console.log(error);
   }
@@ -332,7 +339,7 @@ export const getStaticProps: GetStaticProps = async ({
       team,
       stats,
     },
-    revalidate: 900,
+    revalidate: 2700,
   };
 };
 

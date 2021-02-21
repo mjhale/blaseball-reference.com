@@ -123,7 +123,7 @@ export const getStaticProps: GetStaticProps = async ({
       team,
       teams,
     },
-    revalidate: 900,
+    revalidate: 2700,
   };
 };
 

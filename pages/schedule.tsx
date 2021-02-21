@@ -75,8 +75,8 @@ function DailySchedule({
   teams: Team[];
 }) {
   const sortedSeasonList = () =>
-    schedule ? Object.keys(schedule).sort((a, b) => Number(a) - Number(b)) : [];
-  const mostRecentSeason = () => sortedSeasonList().pop();
+    schedule ? Object.keys(schedule).sort((a, b) => Number(b) - Number(a)) : [];
+  const mostRecentSeason = () => sortedSeasonList().shift();
 
   // List of days in a selected season
   const [dayList, setDayList] = React.useState([]);
@@ -415,6 +415,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       teams,
     },
-    revalidate: 9000,
+    revalidate: 14400,
   };
 };

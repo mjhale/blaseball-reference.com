@@ -24,7 +24,6 @@ export default function Layout({ children }: Props) {
       <main>
         <Container maxWidth="6xl">
           <PreviewBuildWarning />
-          <StatDisclaimerNotice />
 
           <>
             <SkipNavContent />
@@ -57,19 +56,6 @@ function PreviewBuildWarning() {
         </NextLink>
         .
       </AlertDescription>
-    </Alert>
-  );
-}
-
-function StatDisclaimerNotice() {
-  return (
-    <Alert
-      bgColor={useColorModeValue("gray.100", "gray.700")}
-      mb={4}
-      status="info"
-    >
-      <AlertIcon />
-      All stats are currently based on incomplete data.
     </Alert>
   );
 }

@@ -102,6 +102,6 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       standings,
       teams,
     },
-    revalidate: 900,
+    revalidate: 2700,
   };
 };

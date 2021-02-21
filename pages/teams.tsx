@@ -1,5 +1,4 @@
 import { dbApiFetcher } from "lib/api-fetcher";
-import useSWR from "swr";
 
 import { GetStaticProps } from "next";
 import Team from "types/team";
@@ -14,9 +13,7 @@ type Props = {
 };
 
 export default function Teams(props: Props) {
-  const { data, error } = useSWR("/teams", dbApiFetcher, {
-    initialData: props.teams,
-  });
+  const { teams } = props;
 
   return (
     <>
@@ -38,14 +35,14 @@ export default function Teams(props: Props) {
           <Heading as="h1" size="lg">
             Active Blaseball Franchises
           </Heading>
-          {error ? (
+          {teams == null ? (
             <Box>
               {
                 "Sorry, we're currently having a siesta and couldn't load team information."
               }
             </Box>
           ) : (
-            <TeamCardList teams={data} />
+            <TeamCardList teams={teams} />
           )}
         </Stack>
       </Layout>
@@ -53,11 +50,7 @@ export default function Teams(props: Props) {
   );
 }
 
-// export async function getStaticProps({ params, preview = false }) {
-export const getStaticProps: GetStaticProps = async ({
-  params,
-  preview = false,
-}) => {
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   let teams = null;
 
   try {
@@ -71,6 +64,6 @@ export const getStaticProps: GetStaticProps = async ({
       teams,
       preview,
     },
-    revalidate: 900,
+    revalidate: 2700,
   };
 };
