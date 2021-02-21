@@ -1,4 +1,4 @@
-import apiFetcher from "lib/api-fetcher";
+import { dbApiFetcher } from "lib/api-fetcher";
 import globby from "globby";
 import { SitemapStream, streamToPromise } from "sitemap";
 
@@ -20,8 +20,8 @@ export default async function generateSitemap(
   res: NextApiResponse
 ) {
   try {
-    const players = await apiFetcher("/players/players.json");
-    const teams = await apiFetcher("/teams.json");
+    const players = await dbApiFetcher("/players");
+    const teams = await dbApiFetcher("/teams");
 
     const smStream = new SitemapStream({
       hostname: "https://" + req.headers.host,
@@ -37,9 +37,9 @@ export default async function generateSitemap(
     ]);
 
     const playerSlugs =
-      players.map((player) => ({ slug: `/players/${player.slug}` })) || [];
+      players.map((player) => ({ slug: `/players/${player.url_slug}` })) || [];
     const teamSlugs =
-      teams.map((team) => ({ slug: `/teams/${team.slug}` })) || [];
+      teams.map((team) => ({ slug: `/teams/${team.url_slug}` })) || [];
 
     pages.map((page) => {
       smStream.write({
@@ -52,7 +52,7 @@ export default async function generateSitemap(
 
     for (const player of playerSlugs) {
       smStream.write({
-        url: player.slug,
+        url: player.url_slug,
         lastmod: Date.now(),
         changefreq: "hourly",
         priority: 0.6,
@@ -61,14 +61,14 @@ export default async function generateSitemap(
 
     for (const team of teamSlugs) {
       smStream.write({
-        url: team.slug,
+        url: team.url_slug,
         lastmod: Date.now(),
         changefreq: "hourly",
         priority: 0.6,
       });
 
       smStream.write({
-        url: `${team.slug}/schedule`,
+        url: `${team.url_slug}/schedule`,
         lastmod: Date.now(),
         changefreq: "hourly",
         priority: 0.4,

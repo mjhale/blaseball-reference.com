@@ -5,7 +5,7 @@ const renderTeamEmoji = require("../utils/renderTeamEmoji.js").default;
 
 export default async function apiFetcher(endpoint) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BLASEBALL_REFERENCE_API_URL}${endpoint}`
+    `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}${endpoint}`
   );
 
   return res.json();
@@ -16,8 +16,8 @@ async function generate() {
     throw new Error("Missing environment variable for 'ALGOLIA_ADMIN_KEY'");
   }
 
-  const players = await apiFetcher("/players/players.json");
-  const teams = await apiFetcher("/teams.json");
+  const players = await apiFetcher("/players");
+  const teams = await apiFetcher("/teams");
 
   const client = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
@@ -29,27 +29,28 @@ async function generate() {
   for (const player of players) {
     indexRecords.push({
       aliases: [
-        ...player.aliases,
-        ...(player.isIncinerated === true ? ["incinerated", "🔥"] : []),
+        // @TODO: Re-add aliases once Datablase API adds support
+        // ...player.aliases,
+        ...(player.deceased === true ? ["incinerated", "🔥"] : []),
       ],
-      anchor: `/players/${player.slug}`,
+      anchor: `/players/${player.url_slug}`,
       data: player,
-      objectID: player.id,
-      title: player.name,
+      objectID: player.player_id,
+      title: player.player_name,
       type: "players",
-      uuid: player.id,
+      uuid: player.player_id,
     });
   }
 
   for (const team of teams) {
     indexRecords.push({
-      aliases: [team.shorthand, renderTeamEmoji(team.emoji)],
-      anchor: `/teams/${team.slug}`,
+      aliases: [team.nickname, renderTeamEmoji(team.team_emoji)],
+      anchor: `/teams/${team.url_slug}`,
       data: team,
-      objectID: team.id,
-      title: team.fullName,
+      objectID: team.team_id,
+      title: team.full_name,
       type: "teams",
-      uuid: team.id,
+      uuid: team.team_id,
     });
   }
 

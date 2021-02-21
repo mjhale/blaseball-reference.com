@@ -10,11 +10,12 @@ module.exports = {
     ignoreBuildErrors: true,
   },
   target: "serverless",
+  // Build redirect lists for player IDs and team IDs
   redirects: async () => {
     const players = await getPlayers();
     const playerRedirects = players.map((player) => {
       return {
-        source: `/players/${player.id}`,
+        source: `/players/${player.player_id}`,
         destination: `/players/${player.url_slug}`,
         permanent: false,
       };
