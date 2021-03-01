@@ -1,12 +1,13 @@
-import ApiConfig from "types/apiConfig";
 import { dbApiFetcher } from "lib/api-fetcher";
+import { useApiConfigContext } from "context/ApiConfig";
+import * as React from "react";
+import { useRouter } from "next/router";
+import useSWR from "swr";
+
+import ApiConfig from "types/apiConfig";
 import { GetStaticPaths, GetStaticProps } from "next";
 import PlayerStats from "types/playerStats";
 import Team from "types/team";
-import { useApiConfigContext } from "context/ApiConfig";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import useSWR from "swr";
 
 import { Box, Flex, Heading, Link, Skeleton, Stack } from "@chakra-ui/react";
 import ErrorPage from "next/error";
@@ -27,7 +28,7 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
   const apiConfig: ApiConfig = useApiConfigContext();
   const router = useRouter();
 
-  const [selectedView, setSelectedView] = useState(null);
+  const [selectedView, setSelectedView] = React.useState(null);
 
   const { data: team, error: teamError } = useSWR(
     `/teams/${router.query.teamSlug}`,
@@ -54,7 +55,7 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
     }
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (apiConfig !== undefined) {
       setSelectedView(apiConfig.seasons?.maxSeason);
     }
@@ -162,7 +163,7 @@ function TeamPlayerStats({
 
   return (
     <>
-      <Box mb={2}>
+      <Box mb={4}>
         <TeamBattingStatTable
           battingStats={teamPlayerStats.find(
             (statGroup) => statGroup.group === "hitting"
@@ -172,7 +173,7 @@ function TeamPlayerStats({
         />
       </Box>
 
-      <Box mb={4}>
+      <Box>
         <TeamPitchingStatTable
           pitchingStats={teamPlayerStats.find(
             (statGroup) => statGroup.group === "pitching"

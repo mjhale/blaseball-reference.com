@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useColorModeValue } from "@chakra-ui/react";
 
 import {
   Alert,
@@ -8,6 +7,7 @@ import {
   Container,
   Link,
 } from "@chakra-ui/react";
+import Feedback from "components/Feedback";
 import Footer from "components/Footer";
 import Navigation from "components/Navigation";
 import NextLink from "next/link";
@@ -28,6 +28,7 @@ export default function Layout({ children }: Props) {
           <>
             <SkipNavContent />
             {children}
+            <Feedback />
           </>
         </Container>
       </main>

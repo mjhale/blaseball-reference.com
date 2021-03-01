@@ -1,9 +1,8 @@
 import apiFetcher, { dbApiFetcher } from "lib/api-fetcher";
-import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
-import { GetStaticPaths } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Team from "types/team";
 
 import { Heading } from "@chakra-ui/react";

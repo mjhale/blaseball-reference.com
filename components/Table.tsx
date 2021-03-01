@@ -70,10 +70,9 @@ function Content() {
     <Box position="relative" maxWidth="100vw">
       <Box overflowX="auto">
         <ChakraTable
-          // boxShadow="0 1px 0 0 rgba(22, 29, 37, 0.05)"
           marginTop={2}
           size="sm"
-          variant="simple"
+          variant="unstyled"
           width="100%"
           {...getTableProps()}
         >
