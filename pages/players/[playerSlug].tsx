@@ -23,22 +23,14 @@ import Layout from "components/Layout";
 import NextLink from "next/link";
 import PitchingStatTable from "components/PitchingStatTable";
 
-type PlayerPageProps = {
-  player: Player | null;
-  stats: PlayerStats[] | null;
-  postseasonStats: PlayerStats[] | null;
-  team: Team | null;
-};
-
-export default function PlayerPage(props: PlayerPageProps) {
+export default function PlayerPage() {
   const router = useRouter();
 
   const { data: player, error: playerError } = useSWR(
-    `/players/${router.query.playerSlug}`,
-    dbApiFetcher,
-    {
-      initialData: props.player,
-    }
+    router.query.playerSlug != null
+      ? `/players/${router.query.playerSlug}`
+      : null,
+    dbApiFetcher
   );
   const {
     data: stats,
@@ -63,11 +55,11 @@ export default function PlayerPage(props: PlayerPageProps) {
     dbApiFetcher
   );
   const { data: team, error: teamError } = useSWR(
-    () => (player !== undefined ? `/teams/${player.team_id}` : null),
-    dbApiFetcher,
-    {
-      initialData: props.team,
-    }
+    () =>
+      player !== undefined && player.team_id != null
+        ? `/teams/${player.team_id}`
+        : null,
+    dbApiFetcher
   );
 
   return (
@@ -97,12 +89,7 @@ export default function PlayerPage(props: PlayerPageProps) {
           <Error type={playerError?.status} />
         ) : (
           <>
-            <PlayerDetails
-              player={player}
-              postseasonStats={postseasonStats}
-              stats={stats}
-              team={team}
-            />
+            <PlayerDetails player={player} team={team} />
             <PlayerStatTables
               isPostseasonStatsValidating={isPostseasonStatsValidating}
               isStatsValidating={isStatsValidating}
@@ -119,17 +106,10 @@ export default function PlayerPage(props: PlayerPageProps) {
 
 type PlayerDetailsProps = {
   player: Player;
-  postseasonStats: PlayerStats[];
-  stats: PlayerStats[];
   team: Team;
 };
 
-function PlayerDetails({
-  player,
-  postseasonStats,
-  stats,
-  team,
-}: PlayerDetailsProps) {
+function PlayerDetails({ player, team }: PlayerDetailsProps) {
   if (player == null) {
     return (
       <>
@@ -323,54 +303,54 @@ function PlayerStatTables({
   );
 }
 
-export const getStaticProps: GetStaticProps = async ({
-  params,
-  preview = false,
-}) => {
-  let player: Player | null = null;
-  let team: Team | null = null;
+// export const getStaticProps: GetStaticProps = async ({
+//   params,
+//   preview = false,
+// }) => {
+//   let player: Player | null = null;
+//   let team: Team | null = null;
 
-  try {
-    player = await dbApiFetcher(`/players/${params.playerSlug}`);
-  } catch (error) {
-    console.log(error);
-  }
+//   try {
+//     player = await dbApiFetcher(`/players/${params.playerSlug}`);
+//   } catch (error) {
+//     console.log(error);
+//   }
 
-  try {
-    if (player?.team_id != null) {
-      team = await dbApiFetcher(`/teams/${player.team_id}`);
-    }
-  } catch (error) {
-    console.log(error);
-  }
+//   try {
+//     if (player?.team_id != null) {
+//       team = await dbApiFetcher(`/teams/${player.team_id}`);
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
 
-  return {
-    props: {
-      player,
-      preview,
-      team,
-    },
-    revalidate: 2700,
-  };
-};
+//   return {
+//     props: {
+//       player,
+//       preview,
+//       team,
+//     },
+//     revalidate: 2700,
+//   };
+// };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  let players: Player[] | undefined;
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   let players: Player[] | undefined;
 
-  try {
-    players = await dbApiFetcher("/players");
-  } catch (error) {
-    console.log(error);
-  }
+//   try {
+//     players = await dbApiFetcher("/players");
+//   } catch (error) {
+//     console.log(error);
+//   }
 
-  const playerPaths = players
-    .filter((player) =>
-      player ? Object.prototype.hasOwnProperty.call(player, "url_slug") : false
-    )
-    .map((player) => `/players/${player.url_slug}`);
+//   const playerPaths = players
+//     .filter((player) =>
+//       player ? Object.prototype.hasOwnProperty.call(player, "url_slug") : false
+//     )
+//     .map((player) => `/players/${player.url_slug}`);
 
-  return {
-    paths: playerPaths || [],
-    fallback: true,
-  };
-};
+//   return {
+//     paths: playerPaths || [],
+//     fallback: true,
+//   };
+// };
