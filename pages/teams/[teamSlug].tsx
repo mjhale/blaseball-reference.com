@@ -21,7 +21,6 @@ import SplitViewSelect from "components/SplitViewSelect";
 
 type TeamDetailsAndStatsProps = {
   team: Team;
-  teamPlayerStats: PlayerStats;
 };
 
 export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
@@ -48,11 +47,7 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
       selectedView && team
         ? `/stats?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team.team_id}`
         : null,
-    dbApiFetcher,
-    {
-      initialData: props.teamPlayerStats,
-      revalidateOnMount: true,
-    }
+    dbApiFetcher
   );
 
   React.useEffect(() => {
@@ -66,7 +61,7 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
   ): void => {
     evt.preventDefault();
     setSelectedView(evt.currentTarget.value);
-    mutateTeamPlayerStats();
+    // mutateTeamPlayerStats();
   };
 
   if (!router.isFallback && !props.team) {
@@ -151,7 +146,11 @@ function TeamPlayerStats({
   teamPlayerStats,
   teamPlayerStatsIsValidating,
 }: TeamPlayerStatsProps) {
-  if (!team || !teamPlayerStats || teamPlayerStatsIsValidating) {
+  if (!team || (!teamPlayerStats && !teamPlayerStatsIsValidating)) {
+    return null;
+  }
+
+  if (!team || teamPlayerStatsIsValidating) {
     return (
       <Stack>
         <Skeleton height="20px" />
@@ -192,7 +191,6 @@ export const getStaticProps: GetStaticProps = async ({
 }) => {
   let apiConfig: ApiConfig | null = null;
   let team: Team | null = null;
-  let teamPlayerStats: PlayerStats[] | null = null;
 
   try {
     apiConfig = await dbApiFetcher("/config");
@@ -206,20 +204,9 @@ export const getStaticProps: GetStaticProps = async ({
     console.log(error);
   }
 
-  try {
-    if (apiConfig != null) {
-      teamPlayerStats = await dbApiFetcher(
-        `/stats?group=hitting,pitching&type=season&season=${apiConfig.seasons?.maxSeason}&teamId=${team.team_id}`
-      );
-    }
-  } catch (error) {
-    console.log(error);
-  }
-
   return {
     props: {
       team,
-      teamPlayerStats,
       preview,
     },
     revalidate: 2700,

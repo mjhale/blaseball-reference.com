@@ -40,25 +40,27 @@ export default function PlayerPage(props: PlayerPageProps) {
       initialData: props.player,
     }
   );
-  const { data: stats, error: statsError } = useSWR(
+  const {
+    data: stats,
+    error: statsError,
+    isValidating: isStatsValidating,
+  } = useSWR(
     () =>
       player !== undefined
         ? `/stats?group=pitching,hitting&type=season&gameType=R&playerId=${player.player_id}`
         : null,
-    dbApiFetcher,
-    {
-      initialData: props.stats,
-    }
+    dbApiFetcher
   );
-  const { data: postseasonStats, error: postseasonStatsError } = useSWR(
+  const {
+    data: postseasonStats,
+    error: postseasonStatsError,
+    isValidating: isPostseasonStatsValidating,
+  } = useSWR(
     () =>
       player !== undefined
         ? `/stats?group=pitching,hitting&type=season&gameType=P&playerId=${player.player_id}`
         : null,
-    dbApiFetcher,
-    {
-      initialData: props.postseasonStats,
-    }
+    dbApiFetcher
   );
   const { data: team, error: teamError } = useSWR(
     () => (player !== undefined ? `/teams/${player.team_id}` : null),
@@ -94,12 +96,21 @@ export default function PlayerPage(props: PlayerPageProps) {
         {playerError != null ? (
           <Error type={playerError?.status} />
         ) : (
-          <PlayerDetails
-            player={player}
-            postseasonStats={postseasonStats}
-            stats={stats}
-            team={team}
-          />
+          <>
+            <PlayerDetails
+              player={player}
+              postseasonStats={postseasonStats}
+              stats={stats}
+              team={team}
+            />
+            <PlayerStatTables
+              isPostseasonStatsValidating={isPostseasonStatsValidating}
+              isStatsValidating={isStatsValidating}
+              player={player}
+              postseasonStats={postseasonStats}
+              stats={stats}
+            />
+          </>
         )}
       </Layout>
     </>
@@ -208,42 +219,66 @@ function PlayerDetails({
           </Link>
         </NextLink>
       </Flex>
-      <PlayerStatTables
-        stats={stats}
-        postseasonStats={postseasonStats}
-        player={player}
-      />
     </>
   );
 }
 
 type PlayerStatTablesProps = {
+  isPostseasonStatsValidating: boolean;
+  isStatsValidating: boolean;
   player: Player;
   postseasonStats: PlayerStats[];
   stats: PlayerStats[];
 };
 
 function PlayerStatTables({
-  postseasonStats,
+  isPostseasonStatsValidating,
+  isStatsValidating,
   player,
+  postseasonStats,
   stats,
 }: PlayerStatTablesProps) {
-  if (!stats && !postseasonStats) {
+  if (
+    !stats &&
+    !postseasonStats &&
+    !isStatsValidating &&
+    !isPostseasonStatsValidating
+  ) {
     return null;
   }
 
-  const battingStats: PlayerStats | undefined = stats.find(
-    (statGroup) => statGroup.group === "hitting"
-  );
-  const pitchingStats: PlayerStats | undefined = stats.find(
-    (statGroup) => statGroup.group === "pitching"
-  );
-  const postseasonBattingStats: PlayerStats | undefined = postseasonStats.find(
-    (statGroup) => statGroup.group === "hitting"
-  );
-  const postseasonPitchingStats: PlayerStats | undefined = postseasonStats.find(
-    (statGroup) => statGroup.group === "pitching"
-  );
+  if (isStatsValidating || isPostseasonStatsValidating) {
+    return (
+      <>
+        <Skeleton height="20px" mb={4} width="2xs" />
+        <Stack mb={4}>
+          <Skeleton height="20px" />
+          <Skeleton height="20px" />
+          <Skeleton height="20px" />
+        </Stack>
+
+        <Skeleton height="20px" mb={4} width="2xs" />
+        <Stack>
+          <Skeleton height="20px" />
+          <Skeleton height="20px" />
+          <Skeleton height="20px" />
+        </Stack>
+      </>
+    );
+  }
+
+  const battingStats: PlayerStats | null = stats
+    ? stats.find((statGroup) => statGroup.group === "hitting")
+    : null;
+  const pitchingStats: PlayerStats | null = stats
+    ? stats.find((statGroup) => statGroup.group === "pitching")
+    : null;
+  const postseasonBattingStats: PlayerStats | null = postseasonStats
+    ? postseasonStats.find((statGroup) => statGroup.group === "hitting")
+    : null;
+  const postseasonPitchingStats: PlayerStats | null = postseasonStats
+    ? postseasonStats.find((statGroup) => statGroup.group === "pitching")
+    : null;
 
   return (
     <>
@@ -293,22 +328,10 @@ export const getStaticProps: GetStaticProps = async ({
   preview = false,
 }) => {
   let player: Player | null = null;
-  let postseasonStats: PlayerStats[] | null = null;
   let team: Team | null = null;
-  let stats: PlayerStats[] | null = null;
 
   try {
     player = await dbApiFetcher(`/players/${params.playerSlug}`);
-  } catch (error) {
-    console.log(error);
-  }
-
-  try {
-    if (player != null) {
-      postseasonStats = await dbApiFetcher(
-        `/stats?group=hitting,pitching&type=season&gameType=P&playerId=${player.player_id}`
-      );
-    }
   } catch (error) {
     console.log(error);
   }
@@ -321,23 +344,11 @@ export const getStaticProps: GetStaticProps = async ({
     console.log(error);
   }
 
-  try {
-    if (player != null) {
-      stats = await dbApiFetcher(
-        `/stats?group=hitting,pitching&type=season&playerId=${player.player_id}`
-      );
-    }
-  } catch (error) {
-    console.log(error);
-  }
-
   return {
     props: {
       player,
-      postseasonStats,
       preview,
       team,
-      stats,
     },
     revalidate: 2700,
   };
