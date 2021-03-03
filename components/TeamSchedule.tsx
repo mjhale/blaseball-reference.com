@@ -20,6 +20,8 @@ import {
   Square,
   Text,
   VisuallyHidden,
+  useColorModeValue,
+  useColorMode,
 } from "@chakra-ui/react";
 import ForbiddenKnowledgeToggle from "components/ForbiddenKnowledgeToggle";
 import NextLink from "next/link";
@@ -196,7 +198,13 @@ function TeamDailySchedule({
   const hasDarkHomeGameBackgroundColor = Color(
     homeGameBackgroundColor
   ).isDark();
-  const homeGameFontColor = hasDarkHomeGameBackgroundColor ? "white" : null;
+  const colorMode = useColorMode().colorMode;
+  let homeGameFontColor = null;
+  if (hasDarkHomeGameBackgroundColor) {
+    homeGameFontColor = "white";
+  } else if (colorMode === "dark") {
+    homeGameFontColor = "gray.900";
+  }
 
   return (
     <>
@@ -247,7 +255,7 @@ function TeamDailySchedule({
                   >
                     <Box
                       background={
-                        isHomeDay ? homeGameBackgroundColor : "gray.50"
+                        isHomeDay ? homeGameBackgroundColor : useColorModeValue("gray.50", "gray.700")
                       }
                       color={isHomeDay ? homeGameFontColor : null}
                       height="full"
