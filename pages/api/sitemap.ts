@@ -1,8 +1,13 @@
+import buildSeasonList from "utils/buildSeasonList";
 import { dbApiFetcher } from "lib/api-fetcher";
+import { NextApiRequest, NextApiResponse } from "next";
 import globby from "globby";
 import { SitemapStream, streamToPromise } from "sitemap";
+import { translateLeaderViewToSlug } from "utils/slugHelpers";
 
-import { NextApiRequest, NextApiResponse } from "next";
+import ApiConfig from "types/apiConfig";
+import Player from "types/player";
+import Team from "types/team";
 
 function getPageRoute(page: string): string {
   const path = page
@@ -10,7 +15,7 @@ function getPageRoute(page: string): string {
     .replace(".js", "")
     .replace(".tsx", "")
     .replace(".mdx", "");
-  const route = path === "/index" ? "" : path;
+  const route = path === "/index" ? "/" : path;
 
   return route;
 }
@@ -20,8 +25,19 @@ export default async function generateSitemap(
   res: NextApiResponse
 ) {
   try {
-    const players = await dbApiFetcher("/players");
-    const teams = await dbApiFetcher("/teams");
+    const apiConfig: ApiConfig = await dbApiFetcher("/config");
+    const players: Player[] = await dbApiFetcher("/players");
+    const teams: Team[] = await dbApiFetcher("/teams");
+
+    const minSeason =
+      apiConfig != null ? apiConfig.seasons?.minSeason : undefined;
+    const maxSeason =
+      apiConfig != null ? apiConfig.seasons?.maxSeason : undefined;
+    const seasonList = buildSeasonList({ minSeason, maxSeason });
+
+    const viewList = seasonList
+      ? seasonList.map((view) => translateLeaderViewToSlug(view))
+      : [];
 
     const smStream = new SitemapStream({
       hostname: "https://" + req.headers.host,
@@ -31,44 +47,61 @@ export default async function generateSitemap(
       "pages/**/*{.tsx,.js,.mdx}",
       "!pages/_*{.tsx,.js}",
       "!pages/api",
-      "!pages/players/[playerSlug].js",
-      "!pages/teams/[teamSlug].js",
-      "!pages/teams/[teamSlug]/schedule.js",
+      "!pages/players/[playerSlug].tsx",
+      "!pages/leaders/[[...viewSlug]].tsx",
+      "!pages/teams/[teamSlug].tsx",
+      "!pages/teams/[teamSlug]/schedule.tsx",
     ]);
 
     const playerSlugs =
-      players.map((player) => ({ slug: `/players/${player.url_slug}` })) || [];
-    const teamSlugs =
-      teams.map((team) => ({ slug: `/teams/${team.url_slug}` })) || [];
+      players.map((player) => `/players/${player.url_slug}`) || [];
+    const teamSlugs = teams.map((team) => `/teams/${team.url_slug}`) || [];
+    const leaderSlugs = [
+      "/leaders",
+      "/leaders/career",
+      ...viewList.map((view) => `/leaders/${view}`),
+    ];
 
-    pages.map((page) => {
+    for (const page of pages) {
+      const pageSlug = getPageRoute(page);
+      console.log(pageSlug);
+
       smStream.write({
-        url: getPageRoute(page),
+        url: pageSlug,
         lastmod: Date.now(),
         changefreq: "daily",
         priority: 0.8,
       });
-    });
+    }
 
-    for (const player of playerSlugs) {
+    for (const leaderSlug of leaderSlugs) {
       smStream.write({
-        url: player.url_slug,
+        url: leaderSlug,
+        lastmod: Date.now(),
+        changefreq: "hourly",
+        priority: 0.8,
+      });
+    }
+
+    for (const playerSlug of playerSlugs) {
+      smStream.write({
+        url: playerSlug,
         lastmod: Date.now(),
         changefreq: "hourly",
         priority: 0.6,
       });
     }
 
-    for (const team of teamSlugs) {
+    for (const teamSlug of teamSlugs) {
       smStream.write({
-        url: team.url_slug,
+        url: teamSlug,
         lastmod: Date.now(),
         changefreq: "hourly",
         priority: 0.6,
       });
 
       smStream.write({
-        url: `${team.url_slug}/schedule`,
+        url: `${teamSlug}/schedule`,
         lastmod: Date.now(),
         changefreq: "hourly",
         priority: 0.4,
