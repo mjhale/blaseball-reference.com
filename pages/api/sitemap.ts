@@ -31,17 +31,19 @@ export default async function generateSitemap(
       "pages/**/*{.tsx,.js,.mdx}",
       "!pages/_*{.tsx,.js}",
       "!pages/api",
-      "!pages/players/[playerSlug].js",
-      "!pages/teams/[teamSlug].js",
-      "!pages/teams/[teamSlug]/schedule.js",
+      "!pages/players/[playerSlug].tsx",
+      "!pages/leaders/[[...viewSlug]].tsx",
+      "!pages/teams/[teamSlug].tsx",
+      "!pages/teams/[teamSlug]/schedule.tsx",
     ]);
 
     const playerSlugs =
-      players.map((player) => ({ slug: `/players/${player.url_slug}` })) || [];
+      players.map((player) => ({ url_slug: `/players/${player.url_slug}` })) ||
+      [];
     const teamSlugs =
-      teams.map((team) => ({ slug: `/teams/${team.url_slug}` })) || [];
+      teams.map((team) => ({ url_slug: `/teams/${team.url_slug}` })) || [];
 
-    pages.map((page) => {
+    pages.forEach((page) => {
       smStream.write({
         url: getPageRoute(page),
         lastmod: Date.now(),
