@@ -50,9 +50,14 @@ const randomEmojis = [
     emoji: "😈",
   },
   {
-    id: "clownFace",
-    label: "Clown face",
-    emoji: "🤡",
+    id: "eye",
+    label: "Eye",
+    emoji: "👁",
+  },
+  {
+    id: "eyes",
+    label: "Eyes",
+    emoji: "👀",
   },
   {
     id: "ghost",
@@ -68,6 +73,26 @@ const randomEmojis = [
     id: "spoutingWhale",
     label: "Spouting whale",
     emoji: "🐳",
+  },
+  {
+    id: "chartWithUpwardsTrend",
+    label: "Chart with upwards trend",
+    emoji: "📈",
+  },
+  {
+    id: "informationDeskAttendant",
+    label: "Information desk attendant",
+    emoji: "💁",
+  },
+  {
+    id: "snowman",
+    label: "Snowman",
+    emoji: "⛄️",
+  },
+  {
+    id: "writingHand",
+    label: "Writing hand",
+    emoji: "✍️",
   },
 ];
 
@@ -87,6 +112,8 @@ function Feedback() {
   }, []);
 
   const handleEmojiSelect = async (emoji) => {
+    setStatus("submitted");
+
     await fetch("/api/feedback", {
       method: "POST",
       mode: "same-origin",
@@ -100,8 +127,6 @@ function Feedback() {
         page: router.asPath,
       }),
     });
-
-    setStatus("submitted");
   };
 
   return (
