@@ -194,8 +194,13 @@ function CSVExport({
   filename: string;
   size?: "xs" | "sm" | "md" | "lg" | "xl";
 }) {
-  const { data, tableInstance } = useTableContext();
-  const { allColumns } = tableInstance;
+  const { tableInstance } = useTableContext();
+  const { allColumns, rows } = tableInstance;
+
+  const data = rows.reduce(
+    (accumulator, row) => [...accumulator, row.values],
+    []
+  );
 
   return (
     <Button
