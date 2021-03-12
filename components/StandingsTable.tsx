@@ -161,6 +161,7 @@ export default function StandingsTable({
             RS
           </Tooltip>
         ),
+        Cell: (params) => Math.round((params.value + Number.EPSILON) * 100) / 100,
         Footer: (info) => {
           const runsScored = React.useMemo<number>(
             () =>
@@ -168,7 +169,7 @@ export default function StandingsTable({
             [info.rows]
           );
 
-          return <>{runsScored}</>;
+          return <>{Math.round((runsScored + Number.EPSILON) * 100) / 100}</>;
         },
       },
       {
@@ -178,6 +179,7 @@ export default function StandingsTable({
             RA
           </Tooltip>
         ),
+        Cell: (params) => Math.round((params.value + Number.EPSILON) * 100) / 100,
         Footer: (info) => {
           const runsAllowed = React.useMemo<number>(
             () =>
@@ -185,7 +187,7 @@ export default function StandingsTable({
             [info.rows]
           );
 
-          return <>{runsAllowed}</>;
+          return <>{Math.round((runsAllowed + Number.EPSILON) * 100) / 100}</>;
         },
       },
       {
@@ -195,6 +197,7 @@ export default function StandingsTable({
             DIFF
           </Tooltip>
         ),
+        Cell: (params) => Math.round((params.value + Number.EPSILON) * 100) / 100,
         Footer: (info) => {
           const runDifferential = React.useMemo<number>(
             () =>
@@ -205,7 +208,7 @@ export default function StandingsTable({
             [info.rows]
           );
 
-          return <>{runDifferential}</>;
+          return <>{Math.round((runDifferential + Number.EPSILON) * 100) / 100}</>;
         },
         sortType: "basic",
       },
