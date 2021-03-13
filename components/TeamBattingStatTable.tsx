@@ -59,11 +59,13 @@ export default function TeamBattingStatTable({
     <Table columns={columns} data={data}>
       <Flex alignContent="baseline" justifyContent="space-between">
         <Table.Heading level="h3" size="sm">
-          Batting Stats
+          {isPostseason ? "Postseason Batting Stats" : "Standard Batting Stats"}
         </Table.Heading>
         <Flex alignItems="center">
           <Table.CSVExport
-            filename={`${statTargetName} Regular Season Batting Stats.csv`}
+            filename={`${statTargetName} ${splitView} ${
+              isPostseason ? "Postseason" : "Standard"
+            } Batting Stats.csv`}
           />
         </Flex>
       </Flex>

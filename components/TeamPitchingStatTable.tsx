@@ -56,11 +56,15 @@ export default function TeamPitchingStatTable({
     <Table columns={columns} data={data}>
       <Flex alignContent="baseline" justifyContent="space-between">
         <Table.Heading level="h3" size="sm">
-          Pitching Stats
+          {isPostseason
+            ? "Postseason Pitching Stats"
+            : "Standard Pitching Stats"}
         </Table.Heading>
         <Flex alignItems="center">
           <Table.CSVExport
-            filename={`${statTargetName} Regular Season Pitching Stats.csv`}
+            filename={`${statTargetName} ${splitView} ${
+              isPostseason ? "Postseason" : "Standard"
+            } Pitching Stats.csv`}
           />
         </Flex>
       </Flex>

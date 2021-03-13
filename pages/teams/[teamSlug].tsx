@@ -37,15 +37,21 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
     }
   );
 
-  const {
-    data: teamPlayerStats,
-    error: teamPlayerStatsError,
-    isValidating: teamPlayerStatsIsValidating,
-    mutate: mutateTeamPlayerStats,
-  } = useSWR(
+  const { data: playerStats, isValidating: playerStatsIsValidating } = useSWR(
     () =>
       selectedView && team
         ? `/stats?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team.team_id}`
+        : null,
+    dbApiFetcher
+  );
+
+  const {
+    data: playerPostseasonStats,
+    isValidating: playerPostseasonStatsIsValidating,
+  } = useSWR(
+    () =>
+      selectedView && team
+        ? `/stats?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team.team_id}`
         : null,
     dbApiFetcher
   );
@@ -61,7 +67,6 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
   ): void => {
     evt.preventDefault();
     setSelectedView(evt.currentTarget.value);
-    // mutateTeamPlayerStats();
   };
 
   if (!router.isFallback && !props.team) {
@@ -122,11 +127,14 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
           selectedView={selectedView}
           handleSelectChange={handleSelectChange}
         />
+
         <TeamPlayerStats
+          playerStats={playerStats}
+          playerStatsIsValidating={playerStatsIsValidating}
+          playerPostseasonStats={playerPostseasonStats}
+          playerPostseasonStatsIsValidating={playerPostseasonStatsIsValidating}
           selectedView={selectedView}
           team={team}
-          teamPlayerStats={teamPlayerStats}
-          teamPlayerStatsIsValidating={teamPlayerStatsIsValidating}
         />
       </Layout>
     </>
@@ -134,23 +142,33 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
 }
 
 type TeamPlayerStatsProps = {
+  playerStats: PlayerStats[];
+  playerStatsIsValidating: boolean;
+  playerPostseasonStats: PlayerStats[];
+  playerPostseasonStatsIsValidating: boolean;
   selectedView: string | null;
   team: Team;
-  teamPlayerStats: PlayerStats[];
-  teamPlayerStatsIsValidating: boolean;
 };
 
 function TeamPlayerStats({
+  playerStats,
+  playerStatsIsValidating,
+  playerPostseasonStats,
+  playerPostseasonStatsIsValidating,
   selectedView,
   team,
-  teamPlayerStats,
-  teamPlayerStatsIsValidating,
 }: TeamPlayerStatsProps) {
-  if (!team || (!teamPlayerStats && !teamPlayerStatsIsValidating)) {
+  if (
+    !team ||
+    (!playerStats &&
+      !playerStatsIsValidating &&
+      !playerPostseasonStats &&
+      !playerPostseasonStatsIsValidating)
+  ) {
     return null;
   }
 
-  if (!team || teamPlayerStatsIsValidating) {
+  if (!team || playerStatsIsValidating || playerPostseasonStatsIsValidating) {
     return (
       <Stack>
         <Skeleton height="20px" />
@@ -160,27 +178,58 @@ function TeamPlayerStats({
     );
   }
 
+  const battingStats: PlayerStats | null = playerStats
+    ? playerStats.find((statGroup) => statGroup.group === "hitting")
+    : null;
+  const pitchingStats: PlayerStats | null = playerStats
+    ? playerStats.find((statGroup) => statGroup.group === "pitching")
+    : null;
+  const postseasonBattingStats: PlayerStats | null = playerPostseasonStats
+    ? playerPostseasonStats.find((statGroup) => statGroup.group === "hitting")
+    : null;
+  const postseasonPitchingStats: PlayerStats | null = playerPostseasonStats
+    ? playerPostseasonStats.find((statGroup) => statGroup.group === "pitching")
+    : null;
+
   return (
     <>
       <Box mb={4}>
-        <TeamBattingStatTable
-          battingStats={teamPlayerStats.find(
-            (statGroup) => statGroup.group === "hitting"
-          )}
+        <TeamPitchingStatTable
+          pitchingStats={pitchingStats}
           splitView={selectedView}
           statTargetName={team.full_name}
         />
       </Box>
 
-      <Box>
-        <TeamPitchingStatTable
-          pitchingStats={teamPlayerStats.find(
-            (statGroup) => statGroup.group === "pitching"
-          )}
+      {postseasonPitchingStats && postseasonPitchingStats.totalSplits > 0 ? (
+        <Box mb={4}>
+          <TeamPitchingStatTable
+            isPostseason={true}
+            pitchingStats={postseasonPitchingStats}
+            splitView={selectedView}
+            statTargetName={team.full_name}
+          />
+        </Box>
+      ) : null}
+
+      <Box mb={4}>
+        <TeamBattingStatTable
+          battingStats={battingStats}
           splitView={selectedView}
           statTargetName={team.full_name}
         />
       </Box>
+
+      {postseasonBattingStats && postseasonBattingStats.totalSplits > 0 ? (
+        <Box>
+          <TeamBattingStatTable
+            battingStats={postseasonBattingStats}
+            isPostseason={true}
+            splitView={selectedView}
+            statTargetName={team.full_name}
+          />
+        </Box>
+      ) : null}
     </>
   );
 }
@@ -189,14 +238,7 @@ export const getStaticProps: GetStaticProps = async ({
   params,
   preview = false,
 }) => {
-  let apiConfig: ApiConfig | null = null;
   let team: Team | null = null;
-
-  try {
-    apiConfig = await dbApiFetcher("/config");
-  } catch (error) {
-    console.log(error);
-  }
 
   try {
     team = await dbApiFetcher(`/teams/${params.teamSlug}`);
