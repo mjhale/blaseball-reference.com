@@ -1,6 +1,16 @@
 /* eslint-disable react/display-name */
 
-import { getColumnAverage, getColumnSum } from "utils/columnHelpers";
+import {
+  getAggregateEarnedRunAverage,
+  getAggregateHitsPer9,
+  getAggregateHomeRunsPer9,
+  getAggregateStrikeoutsPer9,
+  getAggregateStrikeoutToWalkRatio,
+  getAggregateWalksPer9,
+  getAggregateWhip,
+  getAggregateWinningPercentage,
+  getColumnSum,
+} from "utils/columnHelpers";
 import * as React from "react";
 
 import { Cell, Column } from "react-table";
@@ -100,10 +110,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
         </Tooltip>
       ),
       Footer: (original): number =>
-        React.useMemo(
-          () => getColumnSum(original.rows, original.column.id),
-          []
-        ),
+        React.useMemo(() => getColumnSum(original.rows, "wins"), []),
     },
     {
       accessor: (row) => row.stat.losses,
@@ -114,10 +121,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
         </Tooltip>
       ),
       Footer: (original): number =>
-        React.useMemo(
-          () => getColumnSum(original.rows, original.column.id),
-          []
-        ),
+        React.useMemo(() => getColumnSum(original.rows, "losses"), []),
     },
     {
       accessor: (row) => row.stat.win_pct,
@@ -134,7 +138,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
       ),
       Footer: (original): string =>
         React.useMemo(
-          () => getColumnAverage(original.rows, original.column.id).toFixed(2),
+          () => getAggregateWinningPercentage(original.rows).toFixed(2),
           []
         ),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(2),
@@ -155,7 +159,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
       ),
       Footer: (original): string =>
         React.useMemo(
-          () => getColumnAverage(original.rows, original.column.id).toFixed(2),
+          () => getAggregateEarnedRunAverage(original.rows).toFixed(2),
           []
         ),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(2),
@@ -175,10 +179,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
         </Tooltip>
       ),
       Footer: (original): number =>
-        React.useMemo(
-          () => getColumnSum(original.rows, original.column.id),
-          []
-        ),
+        React.useMemo(() => getColumnSum(original.rows, "games"), []),
     },
     {
       accessor: (row) => row.stat.shutouts,
@@ -189,10 +190,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
         </Tooltip>
       ),
       Footer: (original): number =>
-        React.useMemo(
-          () => getColumnSum(original.rows, original.column.id),
-          []
-        ),
+        React.useMemo(() => getColumnSum(original.rows, "shutouts"), []),
     },
     {
       accessor: (row) => row.stat.innings,
@@ -209,10 +207,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
       ),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
       Footer: (original): number =>
-        React.useMemo(
-          () => getColumnSum(original.rows, original.column.id),
-          []
-        ),
+        React.useMemo(() => getColumnSum(original.rows, "innings"), []),
       sortType: "basic",
     },
     {
@@ -229,10 +224,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
         </Tooltip>
       ),
       Footer: (original): number =>
-        React.useMemo(
-          () => getColumnSum(original.rows, original.column.id),
-          []
-        ),
+        React.useMemo(() => getColumnSum(original.rows, "hits_allowed"), []),
     },
     {
       accessor: (row) => row.stat.runs_allowed,
@@ -248,10 +240,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
         </Tooltip>
       ),
       Footer: (original): number =>
-        React.useMemo(
-          () => getColumnSum(original.rows, original.column.id),
-          []
-        ),
+        React.useMemo(() => getColumnSum(original.rows, "runs_allowed"), []),
     },
     {
       accessor: (row) => row.stat.home_runs_allowed,
@@ -268,7 +257,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
       ),
       Footer: (original): number =>
         React.useMemo(
-          () => getColumnSum(original.rows, original.column.id),
+          () => getColumnSum(original.rows, "home_runs_allowed"),
           []
         ),
     },
@@ -286,10 +275,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
         </Tooltip>
       ),
       Footer: (original): number =>
-        React.useMemo(
-          () => getColumnSum(original.rows, original.column.id),
-          []
-        ),
+        React.useMemo(() => getColumnSum(original.rows, "walks"), []),
     },
     {
       accessor: (row) => row.stat.strikeouts,
@@ -305,10 +291,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
         </Tooltip>
       ),
       Footer: (original): number =>
-        React.useMemo(
-          () => getColumnSum(original.rows, original.column.id),
-          []
-        ),
+        React.useMemo(() => getColumnSum(original.rows, "strikeouts"), []),
     },
     {
       accessor: (row) => row.stat.quality_starts,
@@ -324,10 +307,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
         </Tooltip>
       ),
       Footer: (original): number =>
-        React.useMemo(
-          () => getColumnSum(original.rows, original.column.id),
-          []
-        ),
+        React.useMemo(() => getColumnSum(original.rows, "quality_starts"), []),
     },
     {
       accessor: (row) => row.stat.batters_faced,
@@ -343,10 +323,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
         </Tooltip>
       ),
       Footer: (original): number =>
-        React.useMemo(
-          () => getColumnSum(original.rows, original.column.id),
-          []
-        ),
+        React.useMemo(() => getColumnSum(original.rows, "batters_faced"), []),
     },
     {
       accessor: (row) => row.stat.whip,
@@ -362,10 +339,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
         </Tooltip>
       ),
       Footer: (original): string =>
-        React.useMemo(
-          () => getColumnAverage(original.rows, original.column.id).toFixed(3),
-          []
-        ),
+        React.useMemo(() => getAggregateWhip(original.rows).toFixed(3), []),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(3),
       sortType: "basic",
     },
@@ -383,10 +357,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
         </Tooltip>
       ),
       Footer: (original): string =>
-        React.useMemo(
-          () => getColumnAverage(original.rows, original.column.id).toFixed(1),
-          []
-        ),
+        React.useMemo(() => getAggregateHitsPer9(original.rows).toFixed(1), []),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
       sortType: "basic",
     },
@@ -405,7 +376,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
       ),
       Footer: (original): string =>
         React.useMemo(
-          () => getColumnAverage(original.rows, original.column.id).toFixed(1),
+          () => getAggregateHomeRunsPer9(original.rows).toFixed(1),
           []
         ),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
@@ -426,7 +397,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
       ),
       Footer: (original): string =>
         React.useMemo(
-          () => getColumnAverage(original.rows, original.column.id).toFixed(1),
+          () => getAggregateWalksPer9(original.rows).toFixed(1),
           []
         ),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
@@ -447,7 +418,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
       ),
       Footer: (original): string =>
         React.useMemo(
-          () => getColumnAverage(original.rows, original.column.id).toFixed(1),
+          () => getAggregateStrikeoutsPer9(original.rows).toFixed(1),
           []
         ),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
@@ -468,7 +439,7 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
       ),
       Footer: (original): string =>
         React.useMemo(
-          () => getColumnAverage(original.rows, original.column.id).toFixed(2),
+          () => getAggregateStrikeoutToWalkRatio(original.rows).toFixed(2),
           []
         ),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(2),

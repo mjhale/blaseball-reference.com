@@ -1,4 +1,5 @@
 export interface BattingStats {
+  appearances: number;
   batting_average: number;
   on_base_percentage: number;
   slugging: number;
