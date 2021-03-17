@@ -4,6 +4,7 @@ import { useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 import { Box, Fade, Flex, IconButton, Text } from "@chakra-ui/react";
+import ReportBug from "components/ReportBug";
 
 const persistentEmojis = [
   {
@@ -137,6 +138,7 @@ function Feedback() {
       borderColor={useColorModeValue("gray.200", "gray.700")}
       justifyContent="space-evenly"
       flexWrap="wrap"
+      flexDirection="column"
       mt={8}
       p={4}
     >
@@ -152,9 +154,11 @@ function Feedback() {
           <Flex>
             {emojis.map((emoji) => (
               <IconButton
+                _notLast={{
+                  mr: 4,
+                }}
                 aria-label={emoji.label}
                 key={emoji.id}
-                mr={2}
                 onClick={() => handleEmojiSelect(emoji)}
               >
                 <Text as="span" display="block" fontSize="xl" role="img">
@@ -165,6 +169,10 @@ function Feedback() {
           </Flex>
         </>
       )}
+
+      <Box mt={4}>
+        <ReportBug />
+      </Box>
     </Flex>
   );
 }
