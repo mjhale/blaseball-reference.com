@@ -1,12 +1,14 @@
 import apiFetcher from "lib/api-fetcher";
 import { AppProps } from "next/app";
-import theme from "theme";
 import { SWRConfig } from "swr";
 
 import "@reach/skip-nav/styles.css";
 
+import { GetServerSideProps } from "next";
+
 import { ApiConfigWrapper } from "context/ApiConfig";
-import { ChakraProvider, CSSReset } from "@chakra-ui/react";
+import { Chakra } from "components/Chakra";
+import { CSSReset } from "@chakra-ui/react";
 import Head from "next/head";
 
 export default function BRApp({ Component, pageProps }: AppProps) {
@@ -56,7 +58,7 @@ export default function BRApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@blaseball_ref" />
       </Head>
-      <ChakraProvider theme={theme}>
+      <Chakra cookies={pageProps.cookies}>
         <CSSReset />
         <SWRConfig
           value={{
@@ -70,7 +72,15 @@ export default function BRApp({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </ApiConfigWrapper>
         </SWRConfig>
-      </ChakraProvider>
+      </Chakra>
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  return {
+    props: {
+      cookies: req.headers.cookie ?? "",
+    },
+  };
+};
