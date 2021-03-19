@@ -29,13 +29,13 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
 
   const [selectedView, setSelectedView] = React.useState(null);
 
-  const { data: team, error: teamError } = useSWR(
-    `/teams/${router.query.teamSlug}`,
-    dbApiFetcher,
-    {
-      initialData: props.team,
-    }
-  );
+  const {
+    data: team,
+    error: teamError,
+    isValidating: teamIsValidating,
+  } = useSWR(() => `/teams/${router.query.teamSlug}`, dbApiFetcher, {
+    initialData: props.team,
+  });
 
   const { data: playerStats, isValidating: playerStatsIsValidating } = useSWR(
     () =>
@@ -69,23 +69,30 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
     setSelectedView(evt.currentTarget.value);
   };
 
-  if (!router.isFallback && !props.team) {
+  if (!router.isFallback && team == null && !teamIsValidating) {
     return <ErrorPage statusCode={404} />;
   }
 
   return (
     <>
       <Head>
-        <title>{team.full_name} Stats - Blaseball-Reference.com</title>
+        <title>
+          {team != null ? team.full_name : "Team"} Stats -
+          Blaseball-Reference.com
+        </title>
         <meta
           property="og:title"
-          content={`${team.full_name} Stats - Blaseball-Reference.com`}
+          content={`${
+            team != null ? team.full_name : "Team"
+          } Stats - Blaseball-Reference.com`}
           key="og:title"
         />
         <meta
           name="description"
           property="og:description"
-          content={`Get the latest ${team.full_name} scores, stats, standings, and more.`}
+          content={`Get the latest ${
+            team != null ? team.full_name : "team"
+          } scores, stats, standings, and more.`}
         />
       </Head>
       <Layout>
@@ -94,49 +101,82 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
             Sorry, we're currently having a siesta and are unable to provide you
             the latest team information.
           </Box>
-        ) : null}
-        <Heading as="h1" mb={2} size="lg">
-          {team.full_name}
-        </Heading>
-        <TeamHistory teamDetails={team} />
-        <Heading as="h2" mb={2} size="md">
-          Team Pages
-        </Heading>
-        <Flex mb={2}>
-          <NextLink href={`/teams/${router.query.teamSlug}/schedule`} passHref>
-            <Link fontSize="md" textDecoration="underline">
-              Season Schedule
-            </Link>
-          </NextLink>
-          <Box mx={1}>-</Box>
-          <NextLink
-            href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI_URL}/${team.team_id}`}
-            passHref
-          >
-            <Link fontSize="md" isExternal textDecoration="underline">
-              Blaseball Wiki
-            </Link>
-          </NextLink>
-        </Flex>
-        <Box mb={2}>
-          <Heading as="h2" size="md">
-            Player Stats
-          </Heading>
-        </Box>
-        <SplitViewSelect
-          selectedView={selectedView}
-          handleSelectChange={handleSelectChange}
-        />
-
-        <TeamPlayerStats
-          playerStats={playerStats}
-          playerStatsIsValidating={playerStatsIsValidating}
-          playerPostseasonStats={playerPostseasonStats}
-          playerPostseasonStatsIsValidating={playerPostseasonStatsIsValidating}
-          selectedView={selectedView}
-          team={team}
-        />
+        ) : (
+          <>
+            <TeamDetails team={team} teamIsValidating={teamIsValidating} />
+            <Box mb={2}>
+              <Heading as="h2" size="md">
+                Player Stats
+              </Heading>
+            </Box>
+            <SplitViewSelect
+              selectedView={selectedView}
+              handleSelectChange={handleSelectChange}
+            />
+            <TeamPlayerStats
+              playerStats={playerStats}
+              playerStatsIsValidating={playerStatsIsValidating}
+              playerPostseasonStats={playerPostseasonStats}
+              playerPostseasonStatsIsValidating={
+                playerPostseasonStatsIsValidating
+              }
+              selectedView={selectedView}
+              team={team}
+              teamIsValidating={teamIsValidating}
+            />
+          </>
+        )}
       </Layout>
+    </>
+  );
+}
+
+type TeamDetailsProps = {
+  team: Team | null;
+  teamIsValidating: boolean;
+};
+
+function TeamDetails({ team, teamIsValidating }: TeamDetailsProps) {
+  const router = useRouter();
+
+  if (team == null && teamIsValidating) {
+    return (
+      <>
+        <Skeleton height="20px" mb={4} width="2xs" />
+        <Stack>
+          <Skeleton height="20px" />
+          <Skeleton height="20px" />
+          <Skeleton height="20px" />
+        </Stack>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Heading as="h1" mb={2} size="lg">
+        {team.full_name}
+      </Heading>
+      <TeamHistory teamDetails={team} />
+      <Heading as="h2" mb={2} size="md">
+        Team Pages
+      </Heading>
+      <Flex mb={2}>
+        <NextLink href={`/teams/${router.query.teamSlug}/schedule`} passHref>
+          <Link fontSize="md" textDecoration="underline">
+            Season Schedule
+          </Link>
+        </NextLink>
+        <Box mx={1}>-</Box>
+        <NextLink
+          href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI_URL}/${team.team_id}`}
+          passHref
+        >
+          <Link fontSize="md" isExternal textDecoration="underline">
+            Blaseball Wiki
+          </Link>
+        </NextLink>
+      </Flex>
     </>
   );
 }
@@ -148,6 +188,7 @@ type TeamPlayerStatsProps = {
   playerPostseasonStatsIsValidating: boolean;
   selectedView: string | null;
   team: Team;
+  teamIsValidating: boolean;
 };
 
 function TeamPlayerStats({
@@ -157,9 +198,10 @@ function TeamPlayerStats({
   playerPostseasonStatsIsValidating,
   selectedView,
   team,
+  teamIsValidating,
 }: TeamPlayerStatsProps) {
   if (
-    !team ||
+    (team == null && !teamIsValidating) ||
     (!playerStats &&
       !playerStatsIsValidating &&
       !playerPostseasonStats &&
@@ -168,7 +210,11 @@ function TeamPlayerStats({
     return null;
   }
 
-  if (!team || playerStatsIsValidating || playerPostseasonStatsIsValidating) {
+  if (
+    (team == null && teamIsValidating) ||
+    playerStatsIsValidating ||
+    playerPostseasonStatsIsValidating
+  ) {
     return (
       <Stack>
         <Skeleton height="20px" />
@@ -269,6 +315,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
       Array.isArray(teams) && teams.length > 0
         ? teams.map((team) => `/teams/${team.url_slug}`)
         : [],
-    fallback: false,
+    fallback: true,
   };
 };
