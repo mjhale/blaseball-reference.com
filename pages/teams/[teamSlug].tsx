@@ -169,7 +169,7 @@ function TeamDetails({ team, teamIsValidating }: TeamDetailsProps) {
         </NextLink>
         <Box mx={1}>-</Box>
         <NextLink
-          href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI_URL}/${team.team_id}`}
+          href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI_URL}/UUID:${team.team_id}`}
           passHref
         >
           <Link fontSize="md" isExternal textDecoration="underline">
