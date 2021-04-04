@@ -191,7 +191,7 @@ function PlayerDetails({ player, team }: PlayerDetailsProps) {
       </Heading>
       <Flex mb={2}>
         <NextLink
-          href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI_URL}/${player.player_id}`}
+          href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI_URL}/UUID:${player.player_id}`}
           passHref
         >
           <Link fontSize="md" isExternal textDecoration="underline">
