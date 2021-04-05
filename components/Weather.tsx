@@ -10,6 +10,7 @@ import {
   GiCoffeeCup,
   GiFlood,
   GiHelp,
+  GiSalmon,
 } from "react-icons/gi";
 import {
   WiMoonFull,
@@ -159,8 +160,8 @@ const WEATHERS: { [weatherId: number]: Weather } = {
   },
   19: {
     id: 19,
-    name: "???",
-    icon: GiHelp,
+    name: "Salmon",
+    icon: GiSalmon,
     background: "#ba7b97",
     color: "#f2c7e3",
   },
