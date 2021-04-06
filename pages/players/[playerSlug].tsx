@@ -262,25 +262,6 @@ function PlayerStatTables({
 
   return (
     <>
-      {pitchingStats && pitchingStats.totalSplits > 0 ? (
-        <Box my={4}>
-          <PitchingStatTable
-            pitchingStats={pitchingStats}
-            statTargetName={player.player_name}
-          />
-        </Box>
-      ) : null}
-
-      {postseasonPitchingStats && postseasonPitchingStats.totalSplits > 0 ? (
-        <Box my={4}>
-          <PitchingStatTable
-            pitchingStats={postseasonPitchingStats}
-            isPostseason={true}
-            statTargetName={player.player_name}
-          />
-        </Box>
-      ) : null}
-
       {battingStats && battingStats.totalSplits > 0 ? (
         <Box my={4}>
           <BattingStatTable
@@ -294,6 +275,25 @@ function PlayerStatTables({
         <Box my={4}>
           <BattingStatTable
             battingStats={postseasonBattingStats}
+            isPostseason={true}
+            statTargetName={player.player_name}
+          />
+        </Box>
+      ) : null}
+
+      {pitchingStats && pitchingStats.totalSplits > 0 ? (
+        <Box my={4}>
+          <PitchingStatTable
+            pitchingStats={pitchingStats}
+            statTargetName={player.player_name}
+          />
+        </Box>
+      ) : null}
+
+      {postseasonPitchingStats && postseasonPitchingStats.totalSplits > 0 ? (
+        <Box my={4}>
+          <PitchingStatTable
+            pitchingStats={postseasonPitchingStats}
             isPostseason={true}
             statTargetName={player.player_name}
           />

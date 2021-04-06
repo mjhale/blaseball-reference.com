@@ -240,25 +240,6 @@ function TeamPlayerStats({
   return (
     <>
       <Box mb={4}>
-        <TeamPitchingStatTable
-          pitchingStats={pitchingStats}
-          splitView={selectedView}
-          statTargetName={team.full_name}
-        />
-      </Box>
-
-      {postseasonPitchingStats && postseasonPitchingStats.totalSplits > 0 ? (
-        <Box mb={4}>
-          <TeamPitchingStatTable
-            isPostseason={true}
-            pitchingStats={postseasonPitchingStats}
-            splitView={selectedView}
-            statTargetName={team.full_name}
-          />
-        </Box>
-      ) : null}
-
-      <Box mb={4}>
         <TeamBattingStatTable
           battingStats={battingStats}
           splitView={selectedView}
@@ -267,10 +248,29 @@ function TeamPlayerStats({
       </Box>
 
       {postseasonBattingStats && postseasonBattingStats.totalSplits > 0 ? (
-        <Box>
+        <Box mb={4}>
           <TeamBattingStatTable
             battingStats={postseasonBattingStats}
             isPostseason={true}
+            splitView={selectedView}
+            statTargetName={team.full_name}
+          />
+        </Box>
+      ) : null}
+
+      <Box mb={4}>
+        <TeamPitchingStatTable
+          pitchingStats={pitchingStats}
+          splitView={selectedView}
+          statTargetName={team.full_name}
+        />
+      </Box>
+
+      {postseasonPitchingStats && postseasonPitchingStats.totalSplits > 0 ? (
+        <Box>
+          <TeamPitchingStatTable
+            isPostseason={true}
+            pitchingStats={postseasonPitchingStats}
             splitView={selectedView}
             statTargetName={team.full_name}
           />
