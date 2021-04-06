@@ -356,17 +356,14 @@ export function commonBattingStatColumns(): Column<StatSplit>[] {
           BA/RISP
         </Tooltip>
       ),
-      Footer: (original): string => {
-        console.log(original);
-
-        return React.useMemo(
+      Footer: (original): string =>
+        React.useMemo(
           () =>
             Number(
               getColumnsQuotient(original.rows, "hits_risp", "at_bats_risp")
             ).toFixed(3),
           []
-        );
-      },
+        ),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(3),
       sortType: "basic",
     },

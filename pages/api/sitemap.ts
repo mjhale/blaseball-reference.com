@@ -64,7 +64,6 @@ export default async function generateSitemap(
 
     for (const page of pages) {
       const pageSlug = getPageRoute(page);
-      console.log(pageSlug);
 
       smStream.write({
         url: pageSlug,
