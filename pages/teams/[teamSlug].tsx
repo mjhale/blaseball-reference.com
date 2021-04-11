@@ -299,6 +299,15 @@ function TeamPlayerStats({
         />
       </Box>
 
+      <Box mb={4}>
+        <TeamPitchingStatTable
+          pitchingStats={pitchingStats}
+          splitView={selectedView}
+          statTargetName={team.full_name}
+          teamPitchingStats={teamPitchingStats}
+        />
+      </Box>
+
       {postseasonBattingStats && postseasonBattingStats.totalSplits > 0 ? (
         <Box mb={4}>
           <TeamBattingStatTable
@@ -310,15 +319,6 @@ function TeamPlayerStats({
           />
         </Box>
       ) : null}
-
-      <Box mb={4}>
-        <TeamPitchingStatTable
-          pitchingStats={pitchingStats}
-          splitView={selectedView}
-          statTargetName={team.full_name}
-          teamPitchingStats={teamPitchingStats}
-        />
-      </Box>
 
       {postseasonPitchingStats && postseasonPitchingStats.totalSplits > 0 ? (
         <Box>

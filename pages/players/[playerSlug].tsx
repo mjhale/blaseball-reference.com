@@ -328,22 +328,22 @@ function PlayerStatTables({
         </Box>
       ) : null}
 
+      {pitchingStats && pitchingStats.totalSplits > 0 ? (
+        <Box my={4}>
+          <PitchingStatTable
+            pitchingStats={pitchingStats}
+            careerPitchingStats={careerPitchingStats}
+            statTargetName={player.player_name}
+          />
+        </Box>
+      ) : null}
+
       {postseasonBattingStats && postseasonBattingStats.totalSplits > 0 ? (
         <Box my={4}>
           <BattingStatTable
             battingStats={postseasonBattingStats}
             careerBattingStats={careerPostseasonBattingStats}
             isPostseason={true}
-            statTargetName={player.player_name}
-          />
-        </Box>
-      ) : null}
-
-      {pitchingStats && pitchingStats.totalSplits > 0 ? (
-        <Box my={4}>
-          <PitchingStatTable
-            pitchingStats={pitchingStats}
-            careerPitchingStats={careerPitchingStats}
             statTargetName={player.player_name}
           />
         </Box>
