@@ -8,6 +8,7 @@ import ApiConfig from "types/apiConfig";
 import { GetStaticPaths, GetStaticProps } from "next";
 import PlayerStats from "types/playerStats";
 import Team from "types/team";
+import TeamStats from "types/teamStats";
 
 import { Box, Flex, Heading, Link, Skeleton, Stack } from "@chakra-ui/react";
 import ErrorPage from "next/error";
@@ -52,6 +53,25 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
     () =>
       selectedView && team
         ? `/stats?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team.team_id}`
+        : null,
+    dbApiFetcher
+  );
+
+  const { data: teamStats, isValidating: teamStatsIsValidating } = useSWR(
+    () =>
+      selectedView && team
+        ? `/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team.team_id}`
+        : null,
+    dbApiFetcher
+  );
+
+  const {
+    data: teamPostseasonStats,
+    isValidating: teamPostseasonStatsIsValidating,
+  } = useSWR(
+    () =>
+      selectedView && team
+        ? `/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team.team_id}`
         : null,
     dbApiFetcher
   );
@@ -123,6 +143,10 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
               selectedView={selectedView}
               team={team}
               teamIsValidating={teamIsValidating}
+              teamStats={teamStats}
+              teamStatsIsValidating={teamStatsIsValidating}
+              teamPostseasonStats={teamPostseasonStats}
+              teamPostseasonStatsIsValidating={teamPostseasonStatsIsValidating}
             />
           </>
         )}
@@ -189,6 +213,10 @@ type TeamPlayerStatsProps = {
   selectedView: string | null;
   team: Team;
   teamIsValidating: boolean;
+  teamStats: TeamStats[];
+  teamStatsIsValidating: boolean;
+  teamPostseasonStats: TeamStats[];
+  teamPostseasonStatsIsValidating: boolean;
 };
 
 function TeamPlayerStats({
@@ -199,13 +227,21 @@ function TeamPlayerStats({
   selectedView,
   team,
   teamIsValidating,
+  teamStats,
+  teamStatsIsValidating,
+  teamPostseasonStats,
+  teamPostseasonStatsIsValidating,
 }: TeamPlayerStatsProps) {
   if (
     (team == null && !teamIsValidating) ||
     (!playerStats &&
       !playerStatsIsValidating &&
       !playerPostseasonStats &&
-      !playerPostseasonStatsIsValidating)
+      !playerPostseasonStatsIsValidating &&
+      !teamStats &&
+      !teamStatsIsValidating &&
+      !teamPostseasonStats &&
+      !teamPostseasonStatsIsValidating)
   ) {
     return null;
   }
@@ -213,7 +249,9 @@ function TeamPlayerStats({
   if (
     (team == null && teamIsValidating) ||
     playerStatsIsValidating ||
-    playerPostseasonStatsIsValidating
+    playerPostseasonStatsIsValidating ||
+    teamStatsIsValidating ||
+    teamPostseasonStatsIsValidating
   ) {
     return (
       <Stack>
@@ -237,6 +275,19 @@ function TeamPlayerStats({
     ? playerPostseasonStats.find((statGroup) => statGroup.group === "pitching")
     : null;
 
+  const teamBattingStats: TeamStats | null = teamStats
+    ? teamStats.find((statGroup) => statGroup.group === "hitting")
+    : null;
+  const teamPitchingStats: TeamStats | null = teamStats
+    ? teamStats.find((statGroup) => statGroup.group === "pitching")
+    : null;
+  const teamPostseasonBattingStats: TeamStats | null = teamPostseasonStats
+    ? teamPostseasonStats.find((statGroup) => statGroup.group === "hitting")
+    : null;
+  const teamPostseasonPitchingStats: TeamStats | null = teamPostseasonStats
+    ? teamPostseasonStats.find((statGroup) => statGroup.group === "pitching")
+    : null;
+
   return (
     <>
       <Box mb={4}>
@@ -244,6 +295,7 @@ function TeamPlayerStats({
           battingStats={battingStats}
           splitView={selectedView}
           statTargetName={team.full_name}
+          teamBattingStats={teamBattingStats}
         />
       </Box>
 
@@ -254,6 +306,7 @@ function TeamPlayerStats({
             isPostseason={true}
             splitView={selectedView}
             statTargetName={team.full_name}
+            teamBattingStats={teamPostseasonBattingStats}
           />
         </Box>
       ) : null}
@@ -263,6 +316,7 @@ function TeamPlayerStats({
           pitchingStats={pitchingStats}
           splitView={selectedView}
           statTargetName={team.full_name}
+          teamPitchingStats={teamPitchingStats}
         />
       </Box>
 
@@ -273,6 +327,7 @@ function TeamPlayerStats({
             pitchingStats={postseasonPitchingStats}
             splitView={selectedView}
             statTargetName={team.full_name}
+            teamPitchingStats={teamPostseasonPitchingStats}
           />
         </Box>
       ) : null}

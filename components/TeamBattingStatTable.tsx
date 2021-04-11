@@ -4,6 +4,7 @@ import * as React from "react";
 import { Cell, Column } from "react-table";
 import PlayerStats from "types/playerStats";
 import StatSplit from "types/statSplit";
+import TeamStats from "types/teamStats";
 
 import { Flex, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
@@ -15,6 +16,7 @@ type StatTableProps = {
   isPostseason?: boolean;
   splitView: string | number;
   statTargetName: string;
+  teamBattingStats: TeamStats;
 };
 
 export default function TeamBattingStatTable({
@@ -22,12 +24,14 @@ export default function TeamBattingStatTable({
   isPostseason = false,
   splitView,
   statTargetName,
+  teamBattingStats,
 }: StatTableProps) {
   const data = React.useMemo<StatSplit[]>(() => battingStats.splits, [
     isPostseason,
     splitView,
     statTargetName,
   ]);
+  const teamData = teamBattingStats.splits[0];
 
   const columns = React.useMemo<
     Column<StatSplit & { name: typeof NextLink | null }>[]
@@ -50,7 +54,7 @@ export default function TeamBattingStatTable({
         },
       },
       // @ts-expect-error: Type not assignable error
-      ...commonBattingStatColumns(),
+      ...commonBattingStatColumns(teamData),
     ],
     []
   );

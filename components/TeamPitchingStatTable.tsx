@@ -4,6 +4,7 @@ import * as React from "react";
 import { Cell, Column } from "react-table";
 import PlayerStats from "types/playerStats";
 import StatSplit from "types/statSplit";
+import TeamStats from "types/teamStats";
 
 import { Flex, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
@@ -15,6 +16,7 @@ type StatTableProps = {
   pitchingStats: PlayerStats;
   splitView: string | number;
   statTargetName: string;
+  teamPitchingStats: TeamStats;
 };
 
 export default function TeamPitchingStatTable({
@@ -22,12 +24,14 @@ export default function TeamPitchingStatTable({
   splitView,
   pitchingStats,
   statTargetName,
+  teamPitchingStats,
 }: StatTableProps) {
   const data = React.useMemo<StatSplit[]>(() => pitchingStats.splits, [
     isPostseason,
     splitView,
     statTargetName,
   ]);
+  const teamData = teamPitchingStats.splits[0];
 
   const columns = React.useMemo<Column<StatSplit>[]>(
     () => [
@@ -47,7 +51,7 @@ export default function TeamPitchingStatTable({
           ) : null;
         },
       },
-      ...commonPitchingStatColumns(),
+      ...commonPitchingStatColumns(teamData),
     ],
     [isPostseason, statTargetName]
   );

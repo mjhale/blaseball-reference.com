@@ -4,7 +4,7 @@ import Team from "types/team";
 
 export default interface StatSplit {
   stat: BattingStats & PitchingStats;
-  player: {
+  player?: {
     id: string;
     fullName: string;
   };

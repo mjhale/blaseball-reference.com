@@ -54,6 +54,28 @@ export default function PlayerPage() {
         : null,
     dbApiFetcher
   );
+  const {
+    data: careerStats,
+    error: careerStatsError,
+    isValidating: isCareerStatsValidating,
+  } = useSWR(
+    () =>
+      player !== undefined
+        ? `/stats?group=pitching,hitting&type=career&gameType=R&playerId=${player.player_id}`
+        : null,
+    dbApiFetcher
+  );
+  const {
+    data: careerPostseasonStats,
+    error: careerPostseasonStatsError,
+    isValidating: isCareerPostseasonStatsValidating,
+  } = useSWR(
+    () =>
+      player !== undefined
+        ? `/stats?group=pitching,hitting&type=career&gameType=P&playerId=${player.player_id}`
+        : null,
+    dbApiFetcher
+  );
   const { data: team, error: teamError } = useSWR(
     () =>
       player !== undefined && player.team_id != null
@@ -91,11 +113,17 @@ export default function PlayerPage() {
           <>
             <PlayerDetails player={player} team={team} />
             <PlayerStatTables
-              isPostseasonStatsValidating={isPostseasonStatsValidating}
-              isStatsValidating={isStatsValidating}
-              player={player}
-              postseasonStats={postseasonStats}
               stats={stats}
+              isStatsValidating={isStatsValidating}
+              postseasonStats={postseasonStats}
+              isPostseasonStatsValidating={isPostseasonStatsValidating}
+              careerStats={careerStats}
+              isCareerStatsValidating={isCareerStatsValidating}
+              careerPostseasonStats={careerPostseasonStats}
+              isCareerPostseasonStatsValidating={
+                isCareerPostseasonStatsValidating
+              }
+              player={player}
             />
           </>
         )}
@@ -204,30 +232,45 @@ function PlayerDetails({ player, team }: PlayerDetailsProps) {
 }
 
 type PlayerStatTablesProps = {
-  isPostseasonStatsValidating: boolean;
-  isStatsValidating: boolean;
-  player: Player;
-  postseasonStats: PlayerStats[];
   stats: PlayerStats[];
+  isStatsValidating: boolean;
+  postseasonStats: PlayerStats[];
+  isPostseasonStatsValidating: boolean;
+  careerStats: PlayerStats[];
+  isCareerStatsValidating: boolean;
+  careerPostseasonStats: PlayerStats[];
+  isCareerPostseasonStatsValidating: boolean;
+  player: Player;
 };
 
 function PlayerStatTables({
-  isPostseasonStatsValidating,
-  isStatsValidating,
-  player,
-  postseasonStats,
   stats,
+  isStatsValidating,
+  postseasonStats,
+  isPostseasonStatsValidating,
+  careerStats,
+  isCareerStatsValidating,
+  careerPostseasonStats,
+  isCareerPostseasonStatsValidating,
+  player,
 }: PlayerStatTablesProps) {
   if (
     !stats &&
     !postseasonStats &&
+    !careerStats &&
+    !careerPostseasonStats &&
     !isStatsValidating &&
     !isPostseasonStatsValidating
   ) {
     return null;
   }
 
-  if (isStatsValidating || isPostseasonStatsValidating) {
+  if (
+    isStatsValidating ||
+    isPostseasonStatsValidating ||
+    isCareerStatsValidating ||
+    isCareerPostseasonStatsValidating
+  ) {
     return (
       <>
         <Skeleton height="20px" mb={4} width="2xs" />
@@ -260,12 +303,26 @@ function PlayerStatTables({
     ? postseasonStats.find((statGroup) => statGroup.group === "pitching")
     : null;
 
+  const careerBattingStats: PlayerStats | null = careerStats
+    ? careerStats.find((statGroup) => statGroup.group === "hitting")
+    : null;
+  const careerPitchingStats: PlayerStats | null = stats
+    ? careerStats.find((statGroup) => statGroup.group === "pitching")
+    : null;
+  const careerPostseasonBattingStats: PlayerStats | null = careerPostseasonStats
+    ? careerPostseasonStats.find((statGroup) => statGroup.group === "hitting")
+    : null;
+  const careerPostseasonPitchingStats: PlayerStats | null = careerPostseasonStats
+    ? careerPostseasonStats.find((statGroup) => statGroup.group === "pitching")
+    : null;
+
   return (
     <>
       {battingStats && battingStats.totalSplits > 0 ? (
         <Box my={4}>
           <BattingStatTable
             battingStats={battingStats}
+            careerBattingStats={careerBattingStats}
             statTargetName={player.player_name}
           />
         </Box>
@@ -275,6 +332,7 @@ function PlayerStatTables({
         <Box my={4}>
           <BattingStatTable
             battingStats={postseasonBattingStats}
+            careerBattingStats={careerPostseasonBattingStats}
             isPostseason={true}
             statTargetName={player.player_name}
           />
@@ -285,6 +343,7 @@ function PlayerStatTables({
         <Box my={4}>
           <PitchingStatTable
             pitchingStats={pitchingStats}
+            careerPitchingStats={careerPitchingStats}
             statTargetName={player.player_name}
           />
         </Box>
@@ -294,6 +353,7 @@ function PlayerStatTables({
         <Box my={4}>
           <PitchingStatTable
             pitchingStats={postseasonPitchingStats}
+            careerPitchingStats={careerPostseasonPitchingStats}
             isPostseason={true}
             statTargetName={player.player_name}
           />

@@ -1,16 +1,5 @@
 /* eslint-disable react/display-name */
 
-import {
-  getAggregateEarnedRunAverage,
-  getAggregateHitsPer9,
-  getAggregateHomeRunsPer9,
-  getAggregateStrikeoutsPer9,
-  getAggregateStrikeoutToWalkRatio,
-  getAggregateWalksPer9,
-  getAggregateWhip,
-  getAggregateWinningPercentage,
-  getColumnSum,
-} from "utils/columnHelpers";
 import * as React from "react";
 
 import { Cell, Column } from "react-table";
@@ -23,12 +12,14 @@ import Table from "components/Table";
 import { Flex, Link, Tooltip } from "@chakra-ui/react";
 
 type StatTableProps = {
+  careerPitchingStats;
   isPostseason?: boolean;
   pitchingStats: PlayerStats;
   statTargetName: string;
 };
 
 export default function PitchingStatTable({
+  careerPitchingStats,
   isPostseason = false,
   pitchingStats,
   statTargetName,
@@ -36,6 +27,7 @@ export default function PitchingStatTable({
   const data = React.useMemo<StatSplit[]>(() => pitchingStats.splits, [
     statTargetName,
   ]);
+  const careerData = careerPitchingStats.splits[0];
 
   const columns = React.useMemo<
     Column<StatSplit & { season: number; teamName: typeof NextLink | null }>[]
@@ -73,7 +65,7 @@ export default function PitchingStatTable({
         },
       },
       // @ts-expect-error: Type not assignable error
-      ...commonPitchingStatColumns(),
+      ...commonPitchingStatColumns(careerData),
     ],
     [isPostseason, statTargetName]
   );
@@ -99,7 +91,9 @@ export default function PitchingStatTable({
   );
 }
 
-export function commonPitchingStatColumns(): Column<StatSplit>[] {
+export function commonPitchingStatColumns(
+  summaryData: StatSplit
+): Column<StatSplit>[] {
   return [
     {
       accessor: (row) => row.stat.wins,
@@ -109,8 +103,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           W
         </Tooltip>
       ),
-      Footer: (original): number =>
-        React.useMemo(() => getColumnSum(original.rows, "wins"), []),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.wins ?? null, []),
     },
     {
       accessor: (row) => row.stat.losses,
@@ -120,8 +114,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           L
         </Tooltip>
       ),
-      Footer: (original): number =>
-        React.useMemo(() => getColumnSum(original.rows, "losses"), []),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.losses ?? null, []),
     },
     {
       accessor: (row) => row.stat.win_pct,
@@ -136,11 +130,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           W-L%
         </Tooltip>
       ),
-      Footer: (original): string =>
-        React.useMemo(
-          () => getAggregateWinningPercentage(original.rows).toFixed(2),
-          []
-        ),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.win_pct ?? null, []),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(2),
       sortType: "basic",
     },
@@ -157,11 +148,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           ERA
         </Tooltip>
       ),
-      Footer: (original): string =>
-        React.useMemo(
-          () => getAggregateEarnedRunAverage(original.rows).toFixed(2),
-          []
-        ),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.earned_run_average ?? null, []),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(2),
       sortType: "basic",
     },
@@ -178,8 +166,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           G
         </Tooltip>
       ),
-      Footer: (original): number =>
-        React.useMemo(() => getColumnSum(original.rows, "games"), []),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.games ?? null, []),
     },
     {
       accessor: (row) => row.stat.shutouts,
@@ -189,8 +177,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           SHO
         </Tooltip>
       ),
-      Footer: (original): number =>
-        React.useMemo(() => getColumnSum(original.rows, "shutouts"), []),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.shutouts ?? null, []),
     },
     {
       accessor: (row) => row.stat.innings,
@@ -206,8 +194,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
         </Tooltip>
       ),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
-      Footer: (original): number =>
-        React.useMemo(() => getColumnSum(original.rows, "innings"), []),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.innings ?? null, []),
       sortType: "basic",
     },
     {
@@ -223,8 +211,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           H
         </Tooltip>
       ),
-      Footer: (original): number =>
-        React.useMemo(() => getColumnSum(original.rows, "hits_allowed"), []),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.hits_allowed ?? null, []),
     },
     {
       accessor: (row) => row.stat.runs_allowed,
@@ -239,8 +227,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           R
         </Tooltip>
       ),
-      Footer: (original): number =>
-        React.useMemo(() => getColumnSum(original.rows, "runs_allowed"), []),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.runs_allowed ?? null, []),
     },
     {
       accessor: (row) => row.stat.home_runs_allowed,
@@ -255,11 +243,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           HR
         </Tooltip>
       ),
-      Footer: (original): number =>
-        React.useMemo(
-          () => getColumnSum(original.rows, "home_runs_allowed"),
-          []
-        ),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.home_runs_allowed ?? null, []),
     },
     {
       accessor: (row) => row.stat.walks,
@@ -274,8 +259,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           BB
         </Tooltip>
       ),
-      Footer: (original): number =>
-        React.useMemo(() => getColumnSum(original.rows, "walks"), []),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.walks ?? null, []),
     },
     {
       accessor: (row) => row.stat.strikeouts,
@@ -290,8 +275,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           SO
         </Tooltip>
       ),
-      Footer: (original): number =>
-        React.useMemo(() => getColumnSum(original.rows, "strikeouts"), []),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.strikeouts ?? null, []),
     },
     {
       accessor: (row) => row.stat.quality_starts,
@@ -306,8 +291,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           QS
         </Tooltip>
       ),
-      Footer: (original): number =>
-        React.useMemo(() => getColumnSum(original.rows, "quality_starts"), []),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.quality_starts ?? null, []),
     },
     {
       accessor: (row) => row.stat.batters_faced,
@@ -322,8 +307,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           BF
         </Tooltip>
       ),
-      Footer: (original): number =>
-        React.useMemo(() => getColumnSum(original.rows, "batters_faced"), []),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.batters_faced ?? null, []),
     },
     {
       accessor: (row) => row.stat.whip,
@@ -338,8 +323,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           WHIP
         </Tooltip>
       ),
-      Footer: (original): string =>
-        React.useMemo(() => getAggregateWhip(original.rows).toFixed(3), []),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.whip ?? null, []),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(3),
       sortType: "basic",
     },
@@ -356,8 +341,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           H9
         </Tooltip>
       ),
-      Footer: (original): string =>
-        React.useMemo(() => getAggregateHitsPer9(original.rows).toFixed(1), []),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.hits_per_9 ?? null, []),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
       sortType: "basic",
     },
@@ -374,11 +359,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           HR9
         </Tooltip>
       ),
-      Footer: (original): string =>
-        React.useMemo(
-          () => getAggregateHomeRunsPer9(original.rows).toFixed(1),
-          []
-        ),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.home_runs_per_9 ?? null, []),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
       sortType: "basic",
     },
@@ -395,11 +377,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           BB9
         </Tooltip>
       ),
-      Footer: (original): string =>
-        React.useMemo(
-          () => getAggregateWalksPer9(original.rows).toFixed(1),
-          []
-        ),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.walks_per_9 ?? null, []),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
       sortType: "basic",
     },
@@ -416,11 +395,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           SO9
         </Tooltip>
       ),
-      Footer: (original): string =>
-        React.useMemo(
-          () => getAggregateStrikeoutsPer9(original.rows).toFixed(1),
-          []
-        ),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.strikeouts_per_9 ?? null, []),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
       sortType: "basic",
     },
@@ -437,11 +413,8 @@ export function commonPitchingStatColumns(): Column<StatSplit>[] {
           SO/BB
         </Tooltip>
       ),
-      Footer: (original): string =>
-        React.useMemo(
-          () => getAggregateStrikeoutToWalkRatio(original.rows).toFixed(2),
-          []
-        ),
+      Footer: (): number =>
+        React.useMemo(() => summaryData?.stat?.strikeouts_per_walk ?? null, []),
       Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(2),
       sortType: "basic",
     },
