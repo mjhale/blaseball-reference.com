@@ -44,7 +44,7 @@ export default function TeamSchedulePage(props: Props) {
     initialData: props.team,
   });
 
-  const { data: teams, error: teamsError } = useSWR(`/teams.json`, undefined, {
+  const { data: teams, error: teamsError } = useSWR(`/teams`, dbApiFetcher, {
     initialData: props.teams,
   });
 

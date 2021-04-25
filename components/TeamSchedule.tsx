@@ -100,19 +100,21 @@ export default function TeamSchedule({
       });
 
       // Create real world day bucket if it doens't exist, otherwise append games to existing bucket
-      if (!currDayGames) {
-        gamesByDay.push({
-          day: currDay,
-          startingDate: new Date(currGameDate),
-          gamesByHour: {
+      if (Array.isArray(currHourGames) && currHourGames.length > 0) {
+        if (!currDayGames) {
+          gamesByDay.push({
+            day: currDay,
+            startingDate: new Date(currGameDate),
+            gamesByHour: {
+              [currHour]: currHourGames,
+            },
+          });
+        } else {
+          currDayGames.gamesByHour = {
+            ...currDayGames.gamesByHour,
             [currHour]: currHourGames,
-          },
-        });
-      } else {
-        currDayGames.gamesByHour = {
-          ...currDayGames.gamesByHour,
-          [currHour]: currHourGames,
-        };
+          };
+        }
       }
 
       // At the end of the regular season, assign future postseason games into real world's next date
