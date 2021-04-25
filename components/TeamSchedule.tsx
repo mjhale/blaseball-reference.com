@@ -68,7 +68,7 @@ export default function TeamSchedule({
     }
   }, [JSON.stringify(seasonList)]);
 
-  // Group games into daily buckets (e.g., Aug. 1, games 1-12; Aug. 2, games 13-36; ...))
+  // Group games into daily buckets (e.g., Aug. 1, games 1-12; Aug. 2, games 13-36; ...)
   const selectedSeasonScheduleByDate = React.useMemo(() => {
     if (selectedSeason === null || !seasonStartDates) {
       return;
@@ -76,9 +76,9 @@ export default function TeamSchedule({
 
     const seasonStartDate = new Date(`${seasonStartDates[selectedSeason]} UTC`);
     const gamesByDay = [];
-
     let previousGameHasStarted = false;
     const currGameDate = seasonStartDate;
+
     for (const day in schedule[selectedSeason]) {
       // Get real world day and hour for current game day
       const currDay = currGameDate.getDate();
@@ -99,6 +99,7 @@ export default function TeamSchedule({
         };
       });
 
+      // Create real world day bucket if it doens't exist, otherwise append games to existing bucket
       if (!currDayGames) {
         gamesByDay.push({
           day: currDay,
@@ -123,8 +124,18 @@ export default function TeamSchedule({
       }
 
       // Increment real world hour by one
-      // - Increments the day by one if the hour exceeds 24
+      // - (which also increments the day by one if the hour exceeds 24)
       currGameDate.setHours(currHour + 1);
+
+      // If game day precedes earlsiesta or latesiesta, increment real world hour by one again
+      // - Starting in season 12, earlsiesta begins after day 27 and latesiesta after day 72. Each last
+      //   for one hour
+      if (
+        Number(selectedSeason) >= 11 &&
+        (Number(day) === 26 || Number(day) === 71)
+      ) {
+        currGameDate.setHours(currHour + 2);
+      }
     }
 
     return gamesByDay;
@@ -191,15 +202,14 @@ function TeamDailySchedule({
   team: Team;
   teams: Team[];
 }) {
-  const homeGameBackgroundColor =
-    Color(team.team_main_color).getLuminance() < 0.9
-      ? team.team_main_color
-      : team.team_secondary_color;
+  const colorMode = useColorMode().colorMode;
+
+  let homeGameBackgroundColor = getHomeBackgroundColor({ team });
   const hasDarkHomeGameBackgroundColor = Color(
     homeGameBackgroundColor
   ).isDark();
-  const colorMode = useColorMode().colorMode;
   let homeGameFontColor = null;
+
   if (hasDarkHomeGameBackgroundColor) {
     homeGameFontColor = "white";
   } else if (colorMode === "dark") {
@@ -255,7 +265,9 @@ function TeamDailySchedule({
                   >
                     <Box
                       background={
-                        isHomeDay ? homeGameBackgroundColor : useColorModeValue("gray.50", "gray.700")
+                        isHomeDay
+                          ? homeGameBackgroundColor
+                          : useColorModeValue("gray.50", "gray.700")
                       }
                       color={isHomeDay ? homeGameFontColor : null}
                       height="full"
@@ -387,10 +399,7 @@ function TeamDailySchedule({
 }
 
 function TeamDailyScheduleKey({ team }: { team: Team }) {
-  const homeGameBackgroundColor =
-    Color(team.team_main_color).getLuminance() < 0.9
-      ? team.team_main_color
-      : team.team_secondary_color;
+  const homeGameBackgroundColor = getHomeBackgroundColor({ team });
   const formattedUserTimezone = Intl.DateTimeFormat(undefined, {
     timeZoneName: "short",
   })
@@ -431,4 +440,34 @@ function TeamDailyScheduleKey({ team }: { team: Team }) {
       </Flex>
     </Flex>
   );
+}
+
+// Find a suitable background color to be used to distinguish home games from away games
+// - Away games use light gray in light mode and medium gray in dark mode
+function getHomeBackgroundColor({ team }: { team: Team }) {
+  if (
+    team == null ||
+    team.team_main_color == null ||
+    team.team_secondary_color == null
+  ) {
+    // Default to teal if data is unavailable
+    return "hsl(198, 66%, 23%)";
+  }
+
+  let homeGameBackgroundColor = team.team_main_color;
+
+  // When the main color has a high luminosity, either:
+  // - Use the secondary if it does not also have a high luminosity, or
+  // - Darken the main color
+  if (Color(team.team_main_color).getLuminance() > 0.9) {
+    if (Color(team.team_secondary_color).getLuminance() < 0.9) {
+      homeGameBackgroundColor = team.team_secondary_color;
+    } else {
+      homeGameBackgroundColor = Color(team.team_main_color)
+        .darken(30)
+        .toString();
+    }
+  }
+
+  return homeGameBackgroundColor;
 }
