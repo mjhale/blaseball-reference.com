@@ -57,14 +57,14 @@ export default function TeamSchedule({
   React.useEffect(() => {
     setSeasonList([
       ...(schedule
-        ? Object.keys(schedule).sort((a, b) => Number(a) - Number(b))
+        ? Object.keys(schedule).sort((a, b) => Number(b) - Number(a))
         : []),
     ]);
   }, [team.team_id]);
 
   React.useEffect(() => {
     if (seasonList?.length > 0) {
-      setSelectedSeason(seasonList[seasonList.length - 1]);
+      setSelectedSeason(seasonList[0]);
     }
   }, [JSON.stringify(seasonList)]);
 
