@@ -10,13 +10,12 @@ import PlayerStats from "types/playerStats";
 import Team from "types/team";
 import TeamStats from "types/teamStats";
 
-import { Box, Flex, Heading, Link, Skeleton, Stack } from "@chakra-ui/react";
+import { Box, Heading, Skeleton, Stack } from "@chakra-ui/react";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import Layout from "components/Layout";
-import NextLink from "next/link";
 import TeamBattingStatTable from "components/TeamBattingStatTable";
-import TeamHistory from "components/TeamHistory";
+import TeamDetails from "components/TeamDetails";
 import TeamPitchingStatTable from "components/TeamPitchingStatTable";
 import SplitViewSelect from "components/SplitViewSelect";
 
@@ -151,56 +150,6 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
           </>
         )}
       </Layout>
-    </>
-  );
-}
-
-type TeamDetailsProps = {
-  team: Team | null;
-  teamIsValidating: boolean;
-};
-
-function TeamDetails({ team, teamIsValidating }: TeamDetailsProps) {
-  const router = useRouter();
-
-  if (team == null && teamIsValidating) {
-    return (
-      <>
-        <Skeleton height="20px" mb={4} width="2xs" />
-        <Stack>
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-        </Stack>
-      </>
-    );
-  }
-
-  return (
-    <>
-      <Heading as="h1" mb={2} size="lg">
-        {team.full_name}
-      </Heading>
-      <TeamHistory teamDetails={team} />
-      <Heading as="h2" mb={2} size="md">
-        Team Pages
-      </Heading>
-      <Flex mb={2}>
-        <NextLink href={`/teams/${router.query.teamSlug}/schedule`} passHref>
-          <Link fontSize="md" textDecoration="underline">
-            Season Schedule
-          </Link>
-        </NextLink>
-        <Box mx={1}>-</Box>
-        <NextLink
-          href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI_URL}/UUID:${team.team_id}`}
-          passHref
-        >
-          <Link fontSize="md" isExternal textDecoration="underline">
-            Blaseball Wiki
-          </Link>
-        </NextLink>
-      </Flex>
     </>
   );
 }

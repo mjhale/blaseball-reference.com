@@ -5,10 +5,11 @@ import useSWR from "swr";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Team from "types/team";
 
-import { Heading } from "@chakra-ui/react";
 import ErrorPage from "next/error";
 import Head from "next/head";
+import { Heading } from "@chakra-ui/react";
 import Layout from "components/Layout";
+import TeamDetails from "components/TeamDetails";
 import TeamSchedule from "components/TeamSchedule";
 
 type Props = {
@@ -35,13 +36,13 @@ export default function TeamSchedulePage(props: Props) {
       initialData: props.seasonStartDates,
     }
   );
-  const { data: team, error: teamError } = useSWR(
-    `/teams/${router.query.teamSlug}/details.json`,
-    undefined,
-    {
-      initialData: props.team,
-    }
-  );
+  const {
+    data: team,
+    error: teamError,
+    isValidating: teamIsValidating,
+  } = useSWR(`/teams/${router.query.teamSlug}`, dbApiFetcher, {
+    initialData: props.team,
+  });
 
   const { data: teams, error: teamsError } = useSWR(`/teams.json`, undefined, {
     initialData: props.teams,
@@ -67,8 +68,9 @@ export default function TeamSchedulePage(props: Props) {
         />
       </Head>
       <Layout>
-        <Heading as="h1" mb={4} size="lg">
-          {team.full_name} Schedule
+        <TeamDetails team={team} teamIsValidating={teamIsValidating} />
+        <Heading as="h2" mb={4} size="md">
+          Season Schedule
         </Heading>
         <TeamSchedule
           schedule={schedule}
