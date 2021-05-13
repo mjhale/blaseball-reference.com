@@ -2,12 +2,15 @@
 const fetch = require("@zeit/fetch-retry")(require("node-fetch"));
 
 module.exports = {
+  future: {
+    webpack5: true,
+  },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
     // your project has type errors.
     // !! WARN !!
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   target: "serverless",
   // Build redirect lists for player IDs and team IDs
