@@ -5,79 +5,59 @@ import * as React from "react";
 import { Cell, Column } from "react-table";
 import PlayerStats from "types/playerStats";
 import StatSplit from "types/statSplit";
-import Team from "types/team";
 
 import NextLink from "next/link";
 import Table from "components/Table";
 import { Flex, Link, Tooltip } from "@chakra-ui/react";
 
 type StatTableProps = {
-  careerPitchingStats;
+  isPaginated?: boolean;
   isPostseason?: boolean;
   pitchingStats: PlayerStats;
   statTargetName: string;
 };
 
 export default function PitchingStatTable({
-  careerPitchingStats,
+  isPaginated = false,
   isPostseason = false,
   pitchingStats,
   statTargetName,
 }: StatTableProps) {
   const data = React.useMemo<StatSplit[]>(() => pitchingStats.splits, [
+    isPostseason,
     statTargetName,
   ]);
-  const careerData = careerPitchingStats.splits[0];
 
   const columns = React.useMemo<
-    Column<StatSplit & { season: number; teamName: typeof NextLink | null }>[]
+    Column<StatSplit & { season: number; teamName?: typeof NextLink | null }>[]
   >(
     () => [
       {
-        accessor: "season",
+        accessor: (row) => row.player.fullName,
+        id: "name",
         Header: () => (
-          <Tooltip closeOnClick={false} hasArrow label="Year" placement="top">
-            Yr
+          <Tooltip hasArrow label="Team" placement="top">
+            Player
           </Tooltip>
         ),
-        Cell: ({ value }: Cell<StatSplit>) => {
-          // Return an asterisk for seasons 1 and 2 due to limited data
-          return [0, 1].includes(Number(value))
-            ? `${Number(value) + 1}*`
-            : Number(value) + 1;
-        },
-      },
-      {
-        accessor: "teamName",
-        Header: () => (
-          <Tooltip closeOnClick={false} hasArrow label="Team" placement="top">
-            Tm
-          </Tooltip>
-        ),
-        Cell: ({ row }: Cell<StatSplit>) => {
-          const team: Team | undefined = row.original.team;
-
-          return team && team.url_slug ? (
-            <NextLink href={`/teams/${team.url_slug}`} passHref>
-              <Link>{team.nickname}</Link>
+        Cell: ({ row, value }: Cell<StatSplit>) => {
+          return row.original?.player?.id ? (
+            <NextLink href={`/players/${row.original.player.id}`} passHref>
+              <Link>{value}</Link>
             </NextLink>
           ) : null;
         },
       },
       // @ts-expect-error: Type not assignable error
-      ...commonPitchingStatColumns(careerData),
+      ...commonPitchingStatColumns(),
     ],
     [isPostseason, statTargetName]
   );
 
   return (
-    <Table columns={columns} data={data}>
+    <Table columns={columns} data={data} isPaginated={isPaginated}>
       <Flex alignContent="center" justifyContent="space-between" mb={1}>
-        <Table.Heading>
-          {isPostseason
-            ? "Postseason Pitching Stats"
-            : "Standard Pitching Stats"}
-        </Table.Heading>
+        <Table.Heading>Pitching Stats</Table.Heading>
         <Flex alignItems="center">
           <Table.CSVExport
             filename={`${statTargetName} ${

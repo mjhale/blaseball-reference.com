@@ -150,6 +150,7 @@ export default function Navigation() {
           >
             <MenuItem href="/players">Players</MenuItem>
             <MenuItem href="/teams">Teams</MenuItem>
+            <MenuItem href="/stats">Stats</MenuItem>
             <MenuItem href="/leaders">Leaders</MenuItem>
             <MenuItem href="/standings">Standings</MenuItem>
             <MenuItem href="/schedule">Schedule</MenuItem>

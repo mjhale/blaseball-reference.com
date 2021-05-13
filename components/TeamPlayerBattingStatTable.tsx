@@ -2,8 +2,9 @@ import { commonBattingStatColumns } from "components/BattingStatTable";
 import * as React from "react";
 
 import { Cell, Column } from "react-table";
+import PlayerStats from "types/playerStats";
 import StatSplit from "types/statSplit";
-import TeamStats from "types/teamStats";
+import TeamPlayerStats from "types/teamPlayerStats";
 
 import { Flex, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
@@ -11,46 +12,49 @@ import Table from "components/Table";
 import { Tooltip } from "@chakra-ui/react";
 
 type StatTableProps = {
-  battingStats: TeamStats;
+  battingStats: PlayerStats;
   isPostseason?: boolean;
   splitView: string | number;
   statTargetName: string;
+  teamBattingStats: TeamPlayerStats;
 };
 
-export default function TeamBattingStatTable({
+export default function TeamPlayerBattingStatTable({
   battingStats,
   isPostseason = false,
   splitView,
   statTargetName,
+  teamBattingStats,
 }: StatTableProps) {
   const data = React.useMemo<StatSplit[]>(() => battingStats.splits, [
     isPostseason,
     splitView,
     statTargetName,
   ]);
+  const teamData = teamBattingStats.splits[0];
 
   const columns = React.useMemo<
     Column<StatSplit & { name: typeof NextLink | null }>[]
   >(
     () => [
       {
-        accessor: (row) => row.team.full_name,
+        accessor: (row) => row.player.fullName,
         id: "name",
         Header: () => (
           <Tooltip hasArrow label="Team" placement="top">
-            Team
+            Player
           </Tooltip>
         ),
         Cell: ({ row, value }: Cell<StatSplit>) => {
-          return row.original?.team?.team_id ? (
-            <NextLink href={`/teams/${row.original.team.team_id}`} passHref>
+          return row.original?.player?.id ? (
+            <NextLink href={`/players/${row.original.player.id}`} passHref>
               <Link>{value}</Link>
             </NextLink>
           ) : null;
         },
       },
       // @ts-expect-error: Type not assignable error
-      ...commonBattingStatColumns(),
+      ...commonBattingStatColumns(teamData),
     ],
     []
   );
@@ -59,7 +63,7 @@ export default function TeamBattingStatTable({
     <Table columns={columns} data={data}>
       <Flex alignContent="baseline" justifyContent="space-between">
         <Table.Heading level="h3" size="sm">
-          Batting Stats
+          {isPostseason ? "Postseason Batting Stats" : "Standard Batting Stats"}
         </Table.Heading>
         <Flex alignItems="center">
           <Table.CSVExport

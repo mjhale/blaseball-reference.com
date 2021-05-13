@@ -2,12 +2,11 @@ import { dbApiFetcher } from "lib/api-fetcher";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
-import { GetStaticPaths, GetStaticProps } from "next";
+// import { GetStaticPaths, GetStaticProps } from "next";
 import Player from "types/player";
 import PlayerStats from "types/playerStats";
 import Team from "types/team";
 
-import BattingStatTable from "components/BattingStatTable";
 import {
   Box,
   Heading,
@@ -21,7 +20,8 @@ import Error from "components/Error";
 import Head from "next/head";
 import Layout from "components/Layout";
 import NextLink from "next/link";
-import PitchingStatTable from "components/PitchingStatTable";
+import PlayerBattingStatTable from "components/PlayerBattingStatTable";
+import PlayerPitchingStatTable from "components/PlayerPitchingStatTable";
 
 export default function PlayerPage() {
   const router = useRouter();
@@ -320,7 +320,7 @@ function PlayerStatTables({
     <>
       {battingStats && battingStats.totalSplits > 0 ? (
         <Box my={4}>
-          <BattingStatTable
+          <PlayerBattingStatTable
             battingStats={battingStats}
             careerBattingStats={careerBattingStats}
             statTargetName={player.player_name}
@@ -330,7 +330,7 @@ function PlayerStatTables({
 
       {pitchingStats && pitchingStats.totalSplits > 0 ? (
         <Box my={4}>
-          <PitchingStatTable
+          <PlayerPitchingStatTable
             pitchingStats={pitchingStats}
             careerPitchingStats={careerPitchingStats}
             statTargetName={player.player_name}
@@ -340,7 +340,7 @@ function PlayerStatTables({
 
       {postseasonBattingStats && postseasonBattingStats.totalSplits > 0 ? (
         <Box my={4}>
-          <BattingStatTable
+          <PlayerBattingStatTable
             battingStats={postseasonBattingStats}
             careerBattingStats={careerPostseasonBattingStats}
             isPostseason={true}
@@ -351,7 +351,7 @@ function PlayerStatTables({
 
       {postseasonPitchingStats && postseasonPitchingStats.totalSplits > 0 ? (
         <Box my={4}>
-          <PitchingStatTable
+          <PlayerPitchingStatTable
             pitchingStats={postseasonPitchingStats}
             careerPitchingStats={careerPostseasonPitchingStats}
             isPostseason={true}

@@ -1,7 +1,7 @@
 import buildSeasonList from "utils/buildSeasonList";
 import { dbApiFetcher } from "lib/api-fetcher";
 import {
-  getLeaderViewFromSlug,
+  getSplitViewFromSlugWithApiConfig,
   translateLeaderViewToSlug,
 } from "utils/slugHelpers";
 import { useApiConfigContext } from "context/ApiConfig";
@@ -32,7 +32,7 @@ export default function LeadersPage(props: Props) {
   const [isLoading, setIsLoading] = React.useState(false);
   const router = useRouter();
 
-  const leaderView = getLeaderView({
+  const leaderView = getSplitViewFromSlugWithApiConfig({
     apiConfig,
     viewSlug: router.query.viewSlug,
   });
@@ -107,24 +107,6 @@ export default function LeadersPage(props: Props) {
   );
 }
 
-// Get the correct leader view based on the current route
-function getLeaderView({
-  apiConfig,
-  viewSlug,
-}: {
-  apiConfig: ApiConfig;
-  viewSlug: string | string[];
-}) {
-  // Once the apiConfig context has been loaded, the view should be set as:
-  // - The `maxSeason` on the `/leaders` page
-  // - Derived from the slug on `/leaders/:viewSlug` pages
-  return apiConfig !== undefined
-    ? viewSlug == undefined
-      ? String(apiConfig.seasons.maxSeason)
-      : getLeaderViewFromSlug(String(viewSlug))
-    : null;
-}
-
 export const getStaticProps: GetStaticProps = async ({
   params,
   preview = false,
@@ -139,7 +121,7 @@ export const getStaticProps: GetStaticProps = async ({
     console.log(error);
   }
 
-  const leaderView = getLeaderView({
+  const leaderView = getSplitViewFromSlugWithApiConfig({
     apiConfig,
     viewSlug:
       params.viewSlug !== undefined ? String(params.viewSlug) : undefined,

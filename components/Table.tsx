@@ -2,13 +2,20 @@
 
 import * as React from "react";
 import { useColorModeValue } from "@chakra-ui/react";
-import { useSortBy, useTable } from "react-table";
+import { usePagination, useSortBy, useTable } from "react-table";
 
-import { Cell, Column, HeaderGroup, Row, TableInstance } from "react-table";
+import {
+  Cell,
+  HeaderGroup,
+  Row,
+  TableInstance,
+  TableOptions,
+} from "react-table";
 
 import {
   Box,
   Button,
+  Flex,
   Heading,
   Table as ChakraTable,
   Thead,
@@ -23,32 +30,56 @@ import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 
 const TableContext = React.createContext(undefined);
 
-interface Table<T extends Record<string, unknown>> {
-  columns: Array<Column<T>>;
-  children: React.ReactNode;
-  data: T[];
+// @TODO: Properly type table data and columns
+interface TableProperties<T extends Record<string, unknown>>
+  extends TableOptions<T> {
+  columns: any;
+  name?: string;
+  data: any;
+  isPaginated?: boolean;
 }
 
-export default function Table({ columns, children, data }: Table<any>) {
-  const tableInstance = useTable({ columns, data }, useSortBy);
+export default function Table<T extends Record<string, unknown>>(
+  props: React.PropsWithChildren<TableProperties<T>>
+): React.ReactElement {
+  const { children, columns, data, isPaginated = false } = props;
+
+  const tableInstance = useTable<T>(
+    {
+      columns,
+      data,
+      initialState: { pageIndex: 0, pageSize: isPaginated ? 25 : -1 },
+    },
+    useSortBy,
+    usePagination
+  );
   const { rows } = tableInstance;
   const value = React.useMemo(() => ({ data, tableInstance }), [data, rows]);
 
   return (
-    <TableContext.Provider value={value}>{children}</TableContext.Provider>
+    <TableContext.Provider value={{ ...value, isPaginated }}>
+      {children}
+    </TableContext.Provider>
   );
 }
 
 function Content() {
-  const { tableInstance }: { tableInstance: TableInstance } = useTableContext();
+  const {
+    isPaginated,
+    tableInstance,
+  }: { isPaginated: boolean; tableInstance: TableInstance } = useTableContext();
 
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     footerGroups,
-    rows,
+    page,
     prepareRow,
+    state: { pageIndex },
+    pageOptions,
+    pageCount,
+    gotoPage,
   } = tableInstance;
 
   const fixedCellStyles = {
@@ -67,107 +98,128 @@ function Content() {
   const TdBottomBorderColor = useColorModeValue("gray.300", "gray.600");
 
   return (
-    <Box position="relative" maxWidth="100vw">
-      <Box overflowX="auto">
-        <ChakraTable
-          marginTop={2}
-          size="sm"
-          variant="unstyled"
-          width="100%"
-          {...getTableProps()}
-        >
-          <Thead
-            borderBottomWidth="2px"
-            borderBottomColor={useColorModeValue("black", "gray.600")}
+    <>
+      <Box position="relative" maxWidth="100vw">
+        <Box overflowX="auto">
+          <ChakraTable
+            marginTop={2}
+            size="sm"
+            variant="unstyled"
+            width="100%"
+            {...getTableProps()}
           >
-            {headerGroups.map((headerGroup: HeaderGroup) => (
-              <Tr
-                backgroundColor={RowBackgroundColor}
-                {...headerGroup.getHeaderGroupProps()}
-              >
-                {headerGroup.headers.map((column, index) => (
-                  <Th
-                    fontSize="xs"
-                    fontWeight="normal"
-                    letterSpacing="tight"
-                    paddingX={1}
-                    paddingY={2}
-                    textAlign="center"
-                    textTransform="uppercase"
-                    sx={index === 0 ? fixedCellStyles : null}
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                  >
-                    {column.render("Header")}
-                    {column.isSorted ? (
-                      column.isSortedDesc ? (
-                        <TriangleDownIcon boxSize={4} ml={{ base: 0, md: 2 }} />
-                      ) : (
-                        <TriangleUpIcon boxSize={4} ml={{ base: 0, md: 2 }} />
-                      )
-                    ) : null}
-                  </Th>
-                ))}
-              </Tr>
-            ))}
-          </Thead>
-          <Tbody {...getTableBodyProps()}>
-            {rows.map((row: Row<any>) => {
-              prepareRow(row);
-
-              return (
+            <Thead
+              borderBottomWidth="2px"
+              borderBottomColor={useColorModeValue("black", "gray.600")}
+            >
+              {headerGroups.map((headerGroup: HeaderGroup) => (
                 <Tr
-                  _hover={{
-                    backgroundColor: TrActiveRowBackgroundColor,
-                  }}
                   backgroundColor={RowBackgroundColor}
-                  {...row.getRowProps()}
+                  {...headerGroup.getHeaderGroupProps()}
                 >
-                  {row.cells.map((cell: Cell, index) => (
-                    <Td
-                      borderBottom="1px"
-                      borderBottomColor={TdBottomBorderColor}
+                  {headerGroup.headers.map((column, index) => (
+                    <Th
                       fontSize="xs"
                       fontWeight="normal"
                       letterSpacing="tight"
                       paddingX={1}
                       paddingY={2}
+                      textAlign="center"
+                      textTransform="uppercase"
+                      sx={index === 0 ? fixedCellStyles : null}
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                    >
+                      {column.render("Header")}
+                      {column.isSorted ? (
+                        column.isSortedDesc ? (
+                          <TriangleDownIcon
+                            boxSize={4}
+                            ml={{ base: 0, md: 2 }}
+                          />
+                        ) : (
+                          <TriangleUpIcon boxSize={4} ml={{ base: 0, md: 2 }} />
+                        )
+                      ) : null}
+                    </Th>
+                  ))}
+                </Tr>
+              ))}
+            </Thead>
+            <Tbody {...getTableBodyProps()}>
+              {page.map((row: Row<any>) => {
+                prepareRow(row);
+
+                return (
+                  <Tr
+                    _hover={{
+                      backgroundColor: TrActiveRowBackgroundColor,
+                    }}
+                    backgroundColor={RowBackgroundColor}
+                    {...row.getRowProps()}
+                  >
+                    {row.cells.map((cell: Cell, index) => (
+                      <Td
+                        borderBottom="1px"
+                        borderBottomColor={TdBottomBorderColor}
+                        fontSize="xs"
+                        fontWeight="normal"
+                        letterSpacing="tight"
+                        paddingX={1}
+                        paddingY={2}
+                        sx={index === 0 ? fixedCellStyles : null}
+                        textAlign="center"
+                        {...cell.getCellProps()}
+                      >
+                        {cell.render("Cell")}
+                      </Td>
+                    ))}
+                  </Tr>
+                );
+              })}
+            </Tbody>
+            <Tfoot>
+              {footerGroups.map((group) => (
+                <Tr
+                  backgroundColor={RowBackgroundColor}
+                  {...group.getFooterGroupProps()}
+                >
+                  {group.headers.map((column, index) => (
+                    <Td
+                      fontSize="xs"
+                      fontWeight="bold"
+                      letterSpacing="tight"
+                      paddingX={2}
+                      paddingY={1}
                       sx={index === 0 ? fixedCellStyles : null}
                       textAlign="center"
-                      {...cell.getCellProps()}
+                      {...column.getFooterProps()}
                     >
-                      {cell.render("Cell")}
+                      {column.render("Footer")}
                     </Td>
                   ))}
                 </Tr>
-              );
-            })}
-          </Tbody>
-          <Tfoot>
-            {footerGroups.map((group) => (
-              <Tr
-                backgroundColor={RowBackgroundColor}
-                {...group.getFooterGroupProps()}
-              >
-                {group.headers.map((column, index) => (
-                  <Td
-                    fontSize="xs"
-                    fontWeight="bold"
-                    letterSpacing="tight"
-                    paddingX={2}
-                    paddingY={1}
-                    sx={index === 0 ? fixedCellStyles : null}
-                    textAlign="center"
-                    {...column.getFooterProps()}
-                  >
-                    {column.render("Footer")}
-                  </Td>
-                ))}
-              </Tr>
-            ))}
-          </Tfoot>
-        </ChakraTable>
+              ))}
+            </Tfoot>
+          </ChakraTable>
+        </Box>
       </Box>
-    </Box>
+      {isPaginated && pageCount > 1 ? (
+        <Flex justifyContent="center">
+          {pageOptions.map((page) => (
+            <Button
+              aria-label={`Go to page ${page + 1}`}
+              key={page}
+              disabled={pageIndex === page}
+              onClick={() => gotoPage(page)}
+              px={6}
+              variant="link"
+            >
+              {page + 1}
+            </Button>
+          ))}
+        </Flex>
+      ) : null}
+    </>
   );
 }
 

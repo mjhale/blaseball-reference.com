@@ -8,15 +8,15 @@ import ApiConfig from "types/apiConfig";
 import { GetStaticPaths, GetStaticProps } from "next";
 import PlayerStats from "types/playerStats";
 import Team from "types/team";
-import TeamStats from "types/teamStats";
+import TeamPlayerStats from "types/teamPlayerStats";
 
 import { Box, Heading, Skeleton, Stack } from "@chakra-ui/react";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import Layout from "components/Layout";
-import TeamBattingStatTable from "components/TeamBattingStatTable";
+import TeamPlayerBattingStatTable from "components/TeamPlayerBattingStatTable";
 import TeamDetails from "components/TeamDetails";
-import TeamPitchingStatTable from "components/TeamPitchingStatTable";
+import TeamPlayerPitchingStatTable from "components/TeamPlayerPitchingStatTable";
 import SplitViewSelect from "components/SplitViewSelect";
 
 type TeamDetailsAndStatsProps = {
@@ -132,7 +132,7 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
               selectedView={selectedView}
               handleSelectChange={handleSelectChange}
             />
-            <TeamPlayerStats
+            <TeamPlayerStatTables
               playerStats={playerStats}
               playerStatsIsValidating={playerStatsIsValidating}
               playerPostseasonStats={playerPostseasonStats}
@@ -154,7 +154,7 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
   );
 }
 
-type TeamPlayerStatsProps = {
+type TeamPlayerStatTablesProps = {
   playerStats: PlayerStats[];
   playerStatsIsValidating: boolean;
   playerPostseasonStats: PlayerStats[];
@@ -162,13 +162,13 @@ type TeamPlayerStatsProps = {
   selectedView: string | null;
   team: Team;
   teamIsValidating: boolean;
-  teamStats: TeamStats[];
+  teamStats: TeamPlayerStats[];
   teamStatsIsValidating: boolean;
-  teamPostseasonStats: TeamStats[];
+  teamPostseasonStats: TeamPlayerStats[];
   teamPostseasonStatsIsValidating: boolean;
 };
 
-function TeamPlayerStats({
+function TeamPlayerStatTables({
   playerStats,
   playerStatsIsValidating,
   playerPostseasonStats,
@@ -180,7 +180,7 @@ function TeamPlayerStats({
   teamStatsIsValidating,
   teamPostseasonStats,
   teamPostseasonStatsIsValidating,
-}: TeamPlayerStatsProps) {
+}: TeamPlayerStatTablesProps) {
   if (
     (team == null && !teamIsValidating) ||
     (!playerStats &&
@@ -224,23 +224,23 @@ function TeamPlayerStats({
     ? playerPostseasonStats.find((statGroup) => statGroup.group === "pitching")
     : null;
 
-  const teamBattingStats: TeamStats | null = teamStats
+  const teamBattingStats: TeamPlayerStats | null = teamStats
     ? teamStats.find((statGroup) => statGroup.group === "hitting")
     : null;
-  const teamPitchingStats: TeamStats | null = teamStats
+  const teamPitchingStats: TeamPlayerStats | null = teamStats
     ? teamStats.find((statGroup) => statGroup.group === "pitching")
     : null;
-  const teamPostseasonBattingStats: TeamStats | null = teamPostseasonStats
+  const teamPostseasonBattingStats: TeamPlayerStats | null = teamPostseasonStats
     ? teamPostseasonStats.find((statGroup) => statGroup.group === "hitting")
     : null;
-  const teamPostseasonPitchingStats: TeamStats | null = teamPostseasonStats
+  const teamPostseasonPitchingStats: TeamPlayerStats | null = teamPostseasonStats
     ? teamPostseasonStats.find((statGroup) => statGroup.group === "pitching")
     : null;
 
   return (
     <>
       <Box mb={4}>
-        <TeamBattingStatTable
+        <TeamPlayerBattingStatTable
           battingStats={battingStats}
           splitView={selectedView}
           statTargetName={team.full_name}
@@ -249,7 +249,7 @@ function TeamPlayerStats({
       </Box>
 
       <Box mb={4}>
-        <TeamPitchingStatTable
+        <TeamPlayerPitchingStatTable
           pitchingStats={pitchingStats}
           splitView={selectedView}
           statTargetName={team.full_name}
@@ -259,7 +259,7 @@ function TeamPlayerStats({
 
       {postseasonBattingStats && postseasonBattingStats.totalSplits > 0 ? (
         <Box mb={4}>
-          <TeamBattingStatTable
+          <TeamPlayerBattingStatTable
             battingStats={postseasonBattingStats}
             isPostseason={true}
             splitView={selectedView}
@@ -271,7 +271,7 @@ function TeamPlayerStats({
 
       {postseasonPitchingStats && postseasonPitchingStats.totalSplits > 0 ? (
         <Box>
-          <TeamPitchingStatTable
+          <TeamPlayerPitchingStatTable
             isPostseason={true}
             pitchingStats={postseasonPitchingStats}
             splitView={selectedView}

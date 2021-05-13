@@ -2,9 +2,9 @@ import { BattingStats } from "types/battingStats";
 import { PitchingStats } from "types/pitchingStats";
 import Team from "types/team";
 
-export default interface TeamStats {
+export default interface TeamPlayerStats {
   group: "hitting" | "pitching";
-  type: "career" | "season";
+  type: "season";
   totalSplits: number;
   splits: Array<{
     season?: number;
