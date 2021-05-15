@@ -44,11 +44,14 @@ export default function Table<T extends Record<string, unknown>>(
 ): React.ReactElement {
   const { children, columns, data, isPaginated = false } = props;
 
-  const tableInstance = useTable<T>(
+  let tableInstance = useTable<T>(
     {
       columns,
       data,
-      initialState: { pageIndex: 0, pageSize: isPaginated ? 25 : -1 },
+      initialState: {
+        pageIndex: 0,
+        pageSize: isPaginated ? 25 : Number.MAX_SAFE_INTEGER,
+      },
     },
     useSortBy,
     usePagination
@@ -77,6 +80,10 @@ function Content() {
     page,
     prepareRow,
     state: { pageIndex },
+    nextPage,
+    canNextPage,
+    previousPage,
+    canPreviousPage,
     pageOptions,
     pageCount,
     gotoPage,
@@ -204,20 +211,49 @@ function Content() {
         </Box>
       </Box>
       {isPaginated && pageCount > 1 ? (
-        <Flex justifyContent="center">
-          {pageOptions.map((page) => (
+        <>
+          <Box
+            alignContent="center"
+            display={{ base: "none", md: "flex" }}
+            justifyContent="center"
+          >
+            {pageOptions.map((page) => (
+              <Button
+                aria-label={`Go to page ${page + 1}`}
+                key={page}
+                disabled={pageIndex === page}
+                onClick={() => gotoPage(page)}
+                px={6}
+                variant="link"
+              >
+                {page + 1}
+              </Button>
+            ))}
+          </Box>
+          <Box
+            alignContent="center"
+            display={{ base: "flex", md: "none" }}
+            justifyContent="center"
+          >
             <Button
-              aria-label={`Go to page ${page + 1}`}
-              key={page}
-              disabled={pageIndex === page}
-              onClick={() => gotoPage(page)}
-              px={6}
-              variant="link"
+              aria-label={`Go to previous page`}
+              disabled={!canPreviousPage}
+              onClick={() => previousPage()}
+              mt={6}
+              mr={4}
             >
-              {page + 1}
+              Previous page
             </Button>
-          ))}
-        </Flex>
+            <Button
+              aria-label={`Go to next page`}
+              disabled={!canNextPage}
+              onClick={() => nextPage()}
+              mt={6}
+            >
+              Next page
+            </Button>
+          </Box>
+        </>
       ) : null}
     </>
   );
