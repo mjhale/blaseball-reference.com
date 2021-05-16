@@ -15,8 +15,8 @@ import {
 import {
   Box,
   Button,
-  Flex,
   Heading,
+  Link,
   Table as ChakraTable,
   Thead,
   Tbody,
@@ -214,8 +214,10 @@ function Content() {
         <>
           <Box
             alignContent="center"
+            as="nav"
             display={{ base: "none", md: "flex" }}
             justifyContent="center"
+            role="navigation"
           >
             {pageOptions.map((page) => (
               <Button
@@ -275,6 +277,31 @@ function SectionHeading({
   );
 }
 
+function JsonDownload({
+  filename,
+  size = "xs",
+}: {
+  filename: string;
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+}) {
+  const { tableInstance } = useTableContext();
+  const { data } = tableInstance;
+
+  return (
+    <Button
+      as={Link}
+      download={filename}
+      href={`data:text/json;charset=utf-8,${encodeURIComponent(
+        JSON.stringify(data, null, "\t")
+      )}`}
+      px={2}
+      size={size}
+    >
+      Download JSON
+    </Button>
+  );
+}
+
 function CSVExport({
   filename,
   size = "xs",
@@ -291,13 +318,7 @@ function CSVExport({
   );
 
   return (
-    <Button
-      as={CSVLink}
-      columns={allColumns}
-      data={data}
-      download={filename}
-      size={size}
-    >
+    <Button as={CSVLink} data={data} download={filename} px={2} size={size}>
       Export as CSV
     </Button>
   );
@@ -318,3 +339,4 @@ function useTableContext() {
 Table.Heading = SectionHeading;
 Table.Content = Content;
 Table.CSVExport = CSVExport;
+Table.JsonDownload = JsonDownload;

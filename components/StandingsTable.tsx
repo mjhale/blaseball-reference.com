@@ -5,7 +5,7 @@ import Division from "types/division";
 import Team from "types/team";
 import { TeamStanding } from "types/standings";
 
-import { Flex, Link, Tooltip } from "@chakra-ui/react";
+import { Box, Flex, Grid, Link, Tooltip } from "@chakra-ui/react";
 import NextLink from "next/link";
 import Table from "components/Table";
 
@@ -161,7 +161,8 @@ export default function StandingsTable({
             RS
           </Tooltip>
         ),
-        Cell: (params) => Math.round((params.value + Number.EPSILON) * 100) / 100,
+        Cell: (params) =>
+          Math.round((params.value + Number.EPSILON) * 100) / 100,
         Footer: (info) => {
           const runsScored = React.useMemo<number>(
             () =>
@@ -179,7 +180,8 @@ export default function StandingsTable({
             RA
           </Tooltip>
         ),
-        Cell: (params) => Math.round((params.value + Number.EPSILON) * 100) / 100,
+        Cell: (params) =>
+          Math.round((params.value + Number.EPSILON) * 100) / 100,
         Footer: (info) => {
           const runsAllowed = React.useMemo<number>(
             () =>
@@ -197,7 +199,8 @@ export default function StandingsTable({
             DIFF
           </Tooltip>
         ),
-        Cell: (params) => Math.round((params.value + Number.EPSILON) * 100) / 100,
+        Cell: (params) =>
+          Math.round((params.value + Number.EPSILON) * 100) / 100,
         Footer: (info) => {
           const runDifferential = React.useMemo<number>(
             () =>
@@ -208,7 +211,9 @@ export default function StandingsTable({
             [info.rows]
           );
 
-          return <>{Math.round((runDifferential + Number.EPSILON) * 100) / 100}</>;
+          return (
+            <>{Math.round((runDifferential + Number.EPSILON) * 100) / 100}</>
+          );
         },
         sortType: "basic",
       },
@@ -449,15 +454,22 @@ export default function StandingsTable({
     []
   );
 
+  const exportFilename = `Team Standings ${division.name} Season ${season}`;
+
   return (
     <Table columns={columns} data={data}>
-      <Flex alignContent="baseline" justifyContent="space-between" mt={4}>
-        <Table.Heading>{`${division.name} Standings`}</Table.Heading>
-        <Flex alignItems="center">
-          <Table.CSVExport
-            filename={`Team Standings ${division.name} Season ${season}.csv`}
-          />
-        </Flex>
+      <Flex
+        alignContent="center"
+        flexWrap="wrap"
+        justifyContent="space-between"
+      >
+        <Box mt={2}>
+          <Table.Heading>{`${division.name} Standings`}</Table.Heading>
+        </Box>
+        <Grid gap={2} mt={2} templateColumns="repeat(2, 1fr)">
+          <Table.JsonDownload filename={`${exportFilename}.json`} />
+          <Table.CSVExport filename={`${exportFilename}.csv`} />
+        </Grid>
       </Flex>
       <Table.Content />
     </Table>

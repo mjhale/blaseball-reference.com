@@ -8,7 +8,7 @@ import StatSplit from "types/statSplit";
 
 import NextLink from "next/link";
 import Table from "components/Table";
-import { Flex, Link, Tooltip } from "@chakra-ui/react";
+import { Box, Flex, Grid, Link, Tooltip } from "@chakra-ui/react";
 
 type StatTableProps = {
   battingStats: PlayerStats;
@@ -24,10 +24,10 @@ export default function BattingStatTable({
   isPostseason = false,
   statTargetName,
 }: StatTableProps) {
-  const data = React.useMemo<StatSplit[]>(() => battingStats.splits, [
-    isPostseason,
-    statTargetName,
-  ]);
+  const data = React.useMemo<StatSplit[]>(
+    () => battingStats.splits,
+    [isPostseason, statTargetName]
+  );
 
   const columns = React.useMemo<
     Column<StatSplit & { season: number; teamName?: typeof NextLink | null }>[]
@@ -55,18 +55,25 @@ export default function BattingStatTable({
     [isPostseason, statTargetName]
   );
 
+  const exportFilename = `${statTargetName} ${
+    isPostseason ? "Postseason" : "Regular Season"
+  } Batting Stats`;
+
   return (
     <>
       <Table columns={columns} data={data} isPaginated={isPaginated}>
-        <Flex alignContent="center" justifyContent="space-between" mb={1}>
-          <Table.Heading>Hitting Stats</Table.Heading>
-          <Flex alignItems="center">
-            <Table.CSVExport
-              filename={`${statTargetName} ${
-                isPostseason ? "Postseason" : "Regular Season"
-              } Batting Stats.csv`}
-            />
-          </Flex>
+        <Flex
+          alignContent="center"
+          flexWrap="wrap"
+          justifyContent="space-between"
+        >
+          <Box mt={2}>
+            <Table.Heading>Hitting Stats</Table.Heading>
+          </Box>
+          <Grid gap={2} mt={2} templateColumns="repeat(2, 1fr)">
+            <Table.JsonDownload filename={`${exportFilename}.json`} />
+            <Table.CSVExport filename={`${exportFilename}.csv`} />
+          </Grid>
         </Flex>
         <Table.Content />
       </Table>

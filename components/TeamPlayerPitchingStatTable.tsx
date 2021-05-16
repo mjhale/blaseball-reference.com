@@ -6,7 +6,7 @@ import PlayerStats from "types/playerStats";
 import StatSplit from "types/statSplit";
 import TeamPlayerStats from "types/teamPlayerStats";
 
-import { Flex, Link } from "@chakra-ui/react";
+import { Box, Flex, Grid, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
 import Table from "components/Table";
 import { Tooltip } from "@chakra-ui/react";
@@ -26,11 +26,10 @@ export default function TeamPlayerPitchingStatTable({
   statTargetName,
   teamPitchingStats,
 }: StatTableProps) {
-  const data = React.useMemo<StatSplit[]>(() => pitchingStats.splits, [
-    isPostseason,
-    splitView,
-    statTargetName,
-  ]);
+  const data = React.useMemo<StatSplit[]>(
+    () => pitchingStats.splits,
+    [isPostseason, splitView, statTargetName]
+  );
   const teamData = teamPitchingStats.splits[0];
 
   const columns = React.useMemo<Column<StatSplit>[]>(
@@ -56,22 +55,30 @@ export default function TeamPlayerPitchingStatTable({
     [isPostseason, statTargetName]
   );
 
+  const exportFilename = `${statTargetName} ${splitView} ${
+    isPostseason ? "Postseason" : "Standard"
+  } Pitching Stats`;
+
   return (
     <Table columns={columns} data={data}>
-      <Flex alignContent="baseline" justifyContent="space-between">
-        <Table.Heading level="h3" size="sm">
-          {isPostseason
-            ? "Postseason Pitching Stats"
-            : "Standard Pitching Stats"}
-        </Table.Heading>
-        <Flex alignItems="center">
-          <Table.CSVExport
-            filename={`${statTargetName} ${splitView} ${
-              isPostseason ? "Postseason" : "Standard"
-            } Pitching Stats.csv`}
-          />
-        </Flex>
+      <Flex
+        alignContent="center"
+        flexWrap="wrap"
+        justifyContent="space-between"
+      >
+        <Box mt={2}>
+          <Table.Heading>
+            {isPostseason
+              ? "Postseason Pitching Stats"
+              : "Standard Pitching Stats"}
+          </Table.Heading>
+        </Box>
+        <Grid gap={2} mt={2} templateColumns="repeat(2, 1fr)">
+          <Table.JsonDownload filename={`${exportFilename}.json`} />
+          <Table.CSVExport filename={`${exportFilename}.csv`} />
+        </Grid>
       </Flex>
+
       {Array.isArray(data) && data.length > 0 ? (
         <Table.Content />
       ) : (
