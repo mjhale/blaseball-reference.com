@@ -13,7 +13,8 @@ import ApiConfig from "types/apiConfig";
 import { GetStaticPaths, GetStaticProps } from "next";
 import PlayerStats from "types/playerStats";
 
-import { Box, Skeleton, Stack } from "@chakra-ui/react";
+import ApiUsageHelper from "components/ApiUsageHelper";
+import { Box, Flex, Skeleton, Stack } from "@chakra-ui/react";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import Layout from "components/Layout";
@@ -114,6 +115,15 @@ export default function PitchingStats(props: PitchingStatsProps) {
               playerStatsIsValidating={playerStatsIsValidating}
               selectedView={selectedView}
             />
+
+            <Flex justifyContent="center" mt={6}>
+              <ApiUsageHelper
+                apiCalls={[
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/config`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=pitching&type=seasonCombined&season=${selectedView}`,
+                ]}
+              />
+            </Flex>
           </>
         )}
       </Layout>

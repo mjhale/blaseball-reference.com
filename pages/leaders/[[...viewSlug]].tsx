@@ -14,8 +14,9 @@ import { LeaderGroup } from "types/leader";
 import PlayerStats from "types/playerStats";
 import Team from "types/team";
 
+import ApiUsageHelper from "components/ApiUsageHelper";
+import { Box, Flex, Heading } from "@chakra-ui/react";
 import Head from "next/head";
-import { Box, Heading } from "@chakra-ui/react";
 import Layout from "components/Layout";
 import LeaderView from "components/LeaderView";
 import SplitViewSelect from "components/SplitViewSelect";
@@ -102,6 +103,18 @@ export default function LeadersPage(props: Props) {
           selectedView={selectedView}
           teams={teams}
         />
+
+        <Flex justifyContent="center" mt={6}>
+          <ApiUsageHelper
+            apiCalls={[
+              `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/config`,
+              `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/teams`,
+              leaderView === "career"
+                ? `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats/leaders?group=hitting,pitching&type=career`
+                : `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats/leaders?group=hitting,pitching&season=${leaderView}`,
+            ]}
+          />
+        </Flex>
       </Layout>
     </>
   );

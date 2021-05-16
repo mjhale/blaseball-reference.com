@@ -4,9 +4,10 @@ import useSWR from "swr";
 
 import Player from "types/player";
 
+import ApiUsageHelper from "components/ApiUsageHelper";
 import Error from "components/Error";
+import { Flex, Heading, Text } from "@chakra-ui/react";
 import Head from "next/head";
-import { Heading, Text } from "@chakra-ui/react";
 import Layout from "components/Layout";
 import PlayerList from "components/PlayerList";
 
@@ -44,11 +45,21 @@ export default function PlayersPage(props: Props) {
             <Heading as="h1" size="lg">
               Encyclopedia of Blaseball Players
             </Heading>
+
             <Text>
               Search the Blaseball encyclopedia of players by the first letter
               of the player's last name.
             </Text>
+
             <PlayerList players={data} />
+
+            <Flex justifyContent="center" mt={6}>
+              <ApiUsageHelper
+                apiCalls={[
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/players`,
+                ]}
+              />
+            </Flex>
           </>
         )}
       </Layout>

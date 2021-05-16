@@ -13,8 +13,9 @@ import ApiConfig from "types/apiConfig";
 import { GetStaticPaths, GetStaticProps } from "next";
 import PlayerStats from "types/playerStats";
 
+import ApiUsageHelper from "components/ApiUsageHelper";
 import BattingStatTable from "components/BattingStatTable";
-import { Box, Skeleton, Stack } from "@chakra-ui/react";
+import { Box, Flex, Skeleton, Stack } from "@chakra-ui/react";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import Layout from "components/Layout";
@@ -112,6 +113,15 @@ export default function HittingStats(props: HittingStatsProps) {
               playerStatsIsValidating={playerStatsIsValidating}
               selectedView={selectedView}
             />
+
+            <Flex justifyContent="center" mt={6}>
+              <ApiUsageHelper
+                apiCalls={[
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/config`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=hitting&type=seasonCombined&season=${selectedView}`,
+                ]}
+              />
+            </Flex>
           </>
         )}
       </Layout>

@@ -13,7 +13,8 @@ import ApiConfig from "types/apiConfig";
 import { GetStaticPaths, GetStaticProps } from "next";
 import TeamStats from "types/teamStats";
 
-import { Box, Skeleton, Stack } from "@chakra-ui/react";
+import ApiUsageHelper from "components/ApiUsageHelper";
+import { Box, Flex, Skeleton, Stack } from "@chakra-ui/react";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import Layout from "components/Layout";
@@ -116,6 +117,15 @@ export default function TeamPitchingStats(props: TeamPitchingStatsProps) {
               teamStatsIsValidating={teamStatsIsValidating}
               selectedView={selectedView}
             />
+
+            <Flex justifyContent="center" mt={6}>
+              <ApiUsageHelper
+                apiCalls={[
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/config`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats/teams?group=pitching&type=season&season=${selectedView}`,
+                ]}
+              />
+            </Flex>
           </>
         )}
       </Layout>
@@ -185,13 +195,9 @@ export const getStaticProps: GetStaticProps = async ({
   });
 
   try {
-    if (splitView === "career") {
-      teamStats = await dbApiFetcher(`/stats/teams?type=career&group=pitching`);
-    } else {
-      teamStats = await dbApiFetcher(
-        `/stats/teams?type=season&season=${splitView}&group=pitching`
-      );
-    }
+    teamStats = await dbApiFetcher(
+      `/stats/teams?type=season&season=${splitView}&group=pitching`
+    );
   } catch (error) {
     console.log(error);
   }

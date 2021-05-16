@@ -10,7 +10,8 @@ import PlayerStats from "types/playerStats";
 import Team from "types/team";
 import TeamPlayerStats from "types/teamPlayerStats";
 
-import { Box, Heading, Skeleton, Stack } from "@chakra-ui/react";
+import ApiUsageHelper from "components/ApiUsageHelper";
+import { Box, Flex, Heading, Skeleton, Stack } from "@chakra-ui/react";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import Layout from "components/Layout";
@@ -147,6 +148,19 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
               teamPostseasonStats={teamPostseasonStats}
               teamPostseasonStatsIsValidating={teamPostseasonStatsIsValidating}
             />
+
+            <Flex justifyContent="center" mt={6}>
+              <ApiUsageHelper
+                apiCalls={[
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/config`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/teams/${router.query.teamSlug}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team?.team_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team?.team_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team?.team_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team?.team_id}`,
+                ]}
+              />
+            </Flex>
           </>
         )}
       </Layout>
@@ -233,9 +247,10 @@ function TeamPlayerStatTables({
   const teamPostseasonBattingStats: TeamPlayerStats | null = teamPostseasonStats
     ? teamPostseasonStats.find((statGroup) => statGroup.group === "hitting")
     : null;
-  const teamPostseasonPitchingStats: TeamPlayerStats | null = teamPostseasonStats
-    ? teamPostseasonStats.find((statGroup) => statGroup.group === "pitching")
-    : null;
+  const teamPostseasonPitchingStats: TeamPlayerStats | null =
+    teamPostseasonStats
+      ? teamPostseasonStats.find((statGroup) => statGroup.group === "pitching")
+      : null;
 
   return (
     <>

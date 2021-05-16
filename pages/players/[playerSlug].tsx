@@ -7,6 +7,7 @@ import Player from "types/player";
 import PlayerStats from "types/playerStats";
 import Team from "types/team";
 
+import ApiUsageHelper from "components/ApiUsageHelper";
 import {
   Box,
   Heading,
@@ -125,6 +126,19 @@ export default function PlayerPage() {
               }
               player={player}
             />
+
+            <Flex justifyContent="center" mt={6}>
+              <ApiUsageHelper
+                apiCalls={[
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/config`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/players/${router.query.playerSlug}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=pitching,hitting&type=season&gameType=R&playerId=${player?.player_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=pitching,hitting&type=season&gameType=P&playerId=${player?.player_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=pitching,hitting&type=career&gameType=R&playerId=${player?.player_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=pitching,hitting&type=career&gameType=P&playerId=${player?.player_id}`,
+                ]}
+              />
+            </Flex>
           </>
         )}
       </Layout>
@@ -312,9 +326,12 @@ function PlayerStatTables({
   const careerPostseasonBattingStats: PlayerStats | null = careerPostseasonStats
     ? careerPostseasonStats.find((statGroup) => statGroup.group === "hitting")
     : null;
-  const careerPostseasonPitchingStats: PlayerStats | null = careerPostseasonStats
-    ? careerPostseasonStats.find((statGroup) => statGroup.group === "pitching")
-    : null;
+  const careerPostseasonPitchingStats: PlayerStats | null =
+    careerPostseasonStats
+      ? careerPostseasonStats.find(
+          (statGroup) => statGroup.group === "pitching"
+        )
+      : null;
 
   return (
     <>

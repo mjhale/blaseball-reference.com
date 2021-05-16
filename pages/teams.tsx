@@ -3,8 +3,9 @@ import { dbApiFetcher } from "lib/api-fetcher";
 import { GetStaticProps } from "next";
 import Team from "types/team";
 
+import ApiUsageHelper from "components/ApiUsageHelper";
+import { Box, Flex, Heading, Stack } from "@chakra-ui/react";
 import Head from "next/head";
-import { Box, Heading, Stack } from "@chakra-ui/react";
 import Layout from "components/Layout";
 import TeamCardList from "components/TeamCardList";
 
@@ -45,6 +46,12 @@ export default function Teams(props: Props) {
             <TeamCardList teams={teams} />
           )}
         </Stack>
+
+        <Flex justifyContent="center" mt={6}>
+          <ApiUsageHelper
+            apiCalls={[`${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/teams`]}
+          />
+        </Flex>
       </Layout>
     </>
   );
