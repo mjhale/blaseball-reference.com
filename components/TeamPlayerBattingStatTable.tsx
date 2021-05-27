@@ -70,7 +70,11 @@ export default function TeamPlayerBattingStatTable({
         justifyContent="space-between"
       >
         <Box mt={2}>
-          <Table.Heading>Batting Stats</Table.Heading>
+          <Table.Heading>
+            {isPostseason
+              ? "Postseason Batting Stats"
+              : "Standard Batting Stats"}
+          </Table.Heading>
         </Box>
         <Grid gap={2} mt={2} templateColumns="repeat(2, 1fr)">
           <Table.JsonDownload filename={`${exportFilename}.json`} />
