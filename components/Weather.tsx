@@ -11,6 +11,8 @@ import {
   GiFlood,
   GiHelp,
   GiSalmon,
+  GiBatteryPlus,
+  GiBatteryMinus,
 } from "react-icons/gi";
 import {
   WiMoonFull,
@@ -167,16 +169,16 @@ const WEATHERS: { [weatherId: number]: Weather } = {
   },
   20: {
     id: 20,
-    name: "???",
-    icon: GiHelp,
-    background: "#92b3b0",
+    name: "Polarity +",
+    icon: GiBatteryPlus,
+    background: "#042e16",
     color: "#d3e3e2",
   },
   21: {
     id: 21,
-    name: "???",
-    icon: GiHelp,
-    background: "#d3e3e2",
+    name: "Polarity -",
+    icon: GiBatteryMinus,
+    background: "#3b0422",
     color: "#ff6be6",
   },
   22: {
