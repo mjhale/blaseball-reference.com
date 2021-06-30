@@ -13,6 +13,11 @@ import {
   GiSalmon,
   GiBatteryPlus,
   GiBatteryMinus,
+  GiMusicSpell,
+  GiNightSleep,
+  GiStripedSun,
+  GiBarbedSun,
+  GiSunRadiations,
 } from "react-icons/gi";
 import {
   WiMoonFull,
@@ -187,6 +192,41 @@ const WEATHERS: { [weatherId: number]: Weather } = {
     icon: GiHelp,
     background: "#0e4e8a",
     color: "#ffc400",
+  },
+  23: {
+    id: 23,
+    name: "Sun 90",
+    icon: GiBarbedSun,
+    background: "#0e4e8a",
+    color: "#ffc400",
+  },
+  24: {
+    id: 24,
+    name: "Sun .1",
+    icon: GiStripedSun,
+    background: "#0e4e8a",
+    color: "#ffc400",
+  },
+  25: {
+    id: 25,
+    name: "Sun Sun",
+    icon: GiSunRadiations,
+    background: "#0e4e8a",
+    color: "#ffc400",
+  },
+  26: {
+    id: 26,
+    name: "Jazz",
+    icon: GiMusicSpell,
+    background: "#570b0b",
+    color: "#000",
+  },
+  27: {
+    id: 27,
+    name: "Night",
+    icon: GiNightSleep,
+    background: "#000",
+    color: "#ff8d13",
   },
 };
 
