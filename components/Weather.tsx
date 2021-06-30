@@ -232,6 +232,26 @@ const WEATHERS: { [weatherId: number]: Weather } = {
 
 // Weather type defaults to 'Sunny (ID 1)'
 export function WeatherIcon({ for: weather = 1 }: { for: number }) {
+  if (!Object.prototype.hasOwnProperty.call(WEATHERS, weather)) {
+    return (
+      <Flex
+        color="#993f3fad"
+        bg="#bdb8b8"
+        align="center"
+        justify="center"
+        fontSize="1em"
+        height="1.5em"
+        width="1.5em"
+        rounded="0.2em"
+        display="inline-flex"
+        verticalAlign="text-bottom"
+        role="img"
+      >
+        ?
+      </Flex>
+    );
+  }
+
   const { icon: Icon, background, color } = WEATHERS[weather];
 
   return (
@@ -255,5 +275,5 @@ export function WeatherIcon({ for: weather = 1 }: { for: number }) {
 
 // Weather type defaults to 'Sunny (ID 1)'
 export function WeatherName({ for: weather = 1 }: { for: number }) {
-  return <>{WEATHERS[weather].name}</>;
+  return <>{WEATHERS[weather]?.name ?? "Unknown"}</>;
 }

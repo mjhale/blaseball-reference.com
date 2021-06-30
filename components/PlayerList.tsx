@@ -5,12 +5,13 @@ import Player from "types/player";
 import { Box, Divider, Heading, Link, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 
-function groupPlayersByLastName(
-  players: Player[]
-): { [alphabeticGroup: string]: { group: string; children: Player[] } } {
+function groupPlayersByLastName(players: Player[]): {
+  [alphabeticGroup: string]: { group: string; children: Player[] };
+} {
   return players.reduce((accumulator, player) => {
     const lastName = player.player_name.split(" ").pop();
-    const group = lastName[0].toLocaleLowerCase();
+    // Default to "?" when unable to find or group last name
+    const group = lastName[0]?.toLocaleLowerCase() ?? "?";
 
     if (!accumulator[group]) {
       accumulator[group] = { group, children: [player] };
