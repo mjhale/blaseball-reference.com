@@ -9,9 +9,11 @@ function groupPlayersByLastName(players: Player[]): {
   [alphabeticGroup: string]: { group: string; children: Player[] };
 } {
   return players.reduce((accumulator, player) => {
-    const lastName = player.player_name.split(" ").pop();
-    // Default to "?" when unable to find or group last name
-    const group = lastName[0]?.toLocaleLowerCase() ?? "?";
+    const splitName = player.player_name.split(" ");
+    // Use second word of name unless there is only one word available
+    const groupNameSegment = splitName.length > 1 ? splitName[1] : splitName[0];
+    // Take first letter of selected name segment, falling back to '?' when impossible
+    const group = groupNameSegment?.[0].toLocaleLowerCase() ?? "?";
 
     if (!accumulator[group]) {
       accumulator[group] = { group, children: [player] };
@@ -38,18 +40,18 @@ export default function PlayerList({ players }: { players: Player[] }) {
           const playersInAlphabeticGroup = playersGroupedByLastName[
             alphabeticGroup
           ].children.sort((a, b) => {
-            const aLastName = a.player_name
+            const aGroupNameSegment = a.player_name
               .split(" ")
-              .slice(-1)
+              .slice(0, 2)
               .pop()
               .toLocaleLowerCase();
-            const bLastName = b.player_name
+            const bGroupNameSegment = b.player_name
               .split(" ")
-              .slice(-1)
+              .slice(0, 2)
               .pop()
               .toLocaleLowerCase();
 
-            return aLastName.localeCompare(bLastName);
+            return aGroupNameSegment.localeCompare(bGroupNameSegment);
           });
 
           return (
