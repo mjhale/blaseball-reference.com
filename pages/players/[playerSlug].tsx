@@ -130,12 +130,12 @@ export default function PlayerPage() {
             <Flex justifyContent="center" mt={6}>
               <ApiUsageHelper
                 apiCalls={[
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/config`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/players/${router.query.playerSlug}`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=pitching,hitting&type=season&gameType=R&playerId=${player?.player_id}`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=pitching,hitting&type=season&gameType=P&playerId=${player?.player_id}`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=pitching,hitting&type=career&gameType=R&playerId=${player?.player_id}`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=pitching,hitting&type=career&gameType=P&playerId=${player?.player_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/config`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/players/${router.query.playerSlug}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=pitching,hitting&type=season&gameType=R&playerId=${player?.player_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=pitching,hitting&type=season&gameType=P&playerId=${player?.player_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=pitching,hitting&type=career&gameType=R&playerId=${player?.player_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=pitching,hitting&type=career&gameType=P&playerId=${player?.player_id}`,
                 ]}
               />
             </Flex>
@@ -233,7 +233,7 @@ function PlayerDetails({ player, team }: PlayerDetailsProps) {
       </Heading>
       <Flex mb={2}>
         <NextLink
-          href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI_URL}/UUID:${player.player_id}`}
+          href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI}/UUID:${player.player_id}`}
           passHref
         >
           <Link fontSize="md" isExternal textDecoration="underline">

@@ -56,7 +56,7 @@ export default function PlayersPage(props: Props) {
             <Flex justifyContent="center" mt={6}>
               <ApiUsageHelper
                 apiCalls={[
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/players`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/players`,
                 ]}
               />
             </Flex>

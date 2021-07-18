@@ -117,8 +117,8 @@ export default function HittingStats(props: HittingStatsProps) {
             <Flex justifyContent="center" mt={6}>
               <ApiUsageHelper
                 apiCalls={[
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/config`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=hitting&type=seasonCombined&season=${selectedView}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/config`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=hitting&type=seasonCombined&season=${selectedView}`,
                 ]}
               />
             </Flex>

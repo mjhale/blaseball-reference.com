@@ -21,7 +21,7 @@ export default (request: NowRequest, response: NowResponse) => {
   }
 
   const client = new faunadb.Client({
-    secret: process.env.FAUNADB_SERVER_SECRET,
+    secret: process.env.FAUNA_SECRET,
   });
   const query = faunadb.query;
 

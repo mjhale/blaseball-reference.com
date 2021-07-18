@@ -107,11 +107,11 @@ export default function LeadersPage(props: Props) {
         <Flex justifyContent="center" mt={6}>
           <ApiUsageHelper
             apiCalls={[
-              `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/config`,
-              `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/teams`,
+              `${process.env.NEXT_PUBLIC_DATABLASE_API}/config`,
+              `${process.env.NEXT_PUBLIC_DATABLASE_API}/teams`,
               leaderView === "career"
-                ? `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats/leaders?group=hitting,pitching&type=career`
-                : `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats/leaders?group=hitting,pitching&season=${leaderView}`,
+                ? `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats/leaders?group=hitting,pitching&type=career`
+                : `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats/leaders?group=hitting,pitching&season=${leaderView}`,
             ]}
           />
         </Flex>

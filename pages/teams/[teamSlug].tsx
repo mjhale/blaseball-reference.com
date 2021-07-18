@@ -152,12 +152,12 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
             <Flex justifyContent="center" mt={6}>
               <ApiUsageHelper
                 apiCalls={[
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/config`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/teams/${router.query.teamSlug}`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team?.team_id}`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team?.team_id}`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team?.team_id}`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team?.team_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/config`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/teams/${router.query.teamSlug}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team?.team_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team?.team_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team?.team_id}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team?.team_id}`,
                 ]}
               />
             </Flex>

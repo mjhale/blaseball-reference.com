@@ -52,7 +52,7 @@ export default function SchedulePage(props: Props) {
     isValidating: scheduleIsValidating,
   } = useSWR<Chronicler<ChroniclerGame>>(
     apiConfig != null
-      ? `${process.env.NEXT_PUBLIC_CHRONICLER_API_URL}/v1/games?season=${
+      ? `${process.env.NEXT_PUBLIC_CHRONICLER_API}/v1/games?season=${
           selectedSeason ?? apiConfig.seasons?.maxSeason
         }&order=asc`
       : null
@@ -438,7 +438,7 @@ function DailySchedule({
                 {game.gameStart === true ? (
                   <>
                     <NextLink
-                      href={`${process.env.NEXT_PUBLIC_REBLASE_URL}/game/${game.id}`}
+                      href={`${process.env.NEXT_PUBLIC_REBLASE}/game/${game.id}`}
                       passHref
                     >
                       <Link isExternal>

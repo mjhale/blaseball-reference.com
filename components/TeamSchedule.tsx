@@ -362,7 +362,7 @@ function TeamDailySchedule({
                                   {isWinningTeam ? "W" : "L"},{" "}
                                 </Text>
                                 <NextLink
-                                  href={`${process.env.NEXT_PUBLIC_REBLASE_URL}/game/${game.id}`}
+                                  href={`${process.env.NEXT_PUBLIC_REBLASE}/game/${game.id}`}
                                   passHref
                                 >
                                   <Link isExternal>

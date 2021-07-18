@@ -119,8 +119,8 @@ export default function PitchingStats(props: PitchingStatsProps) {
             <Flex justifyContent="center" mt={6}>
               <ApiUsageHelper
                 apiCalls={[
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/config`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/stats?group=pitching&type=seasonCombined&season=${selectedView}`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/config`,
+                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=pitching&type=seasonCombined&season=${selectedView}`,
                 ]}
               />
             </Flex>

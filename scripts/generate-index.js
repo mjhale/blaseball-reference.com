@@ -5,7 +5,7 @@ const renderTeamEmoji = require("../utils/renderTeamEmoji.js").default;
 
 export default async function apiFetcher(endpoint) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}${endpoint}`
+    `${process.env.NEXT_PUBLIC_DATABLASE_API}${endpoint}`
   );
 
   return res.json();
