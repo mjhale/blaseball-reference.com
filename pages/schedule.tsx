@@ -1,12 +1,16 @@
+import buildSeasonList from "utils/buildSeasonList";
 import { dbApiFetcher } from "lib/api-fetcher";
 import renderTeamEmoji from "utils/renderTeamEmoji";
 import * as React from "react";
+import { useApiConfigContext } from "context/ApiConfig";
 import { useColorModeValue } from "@chakra-ui/react";
 import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 import useSWR from "swr";
 
+import ApiConfig from "types/apiConfig";
+import Chronicler from "types/chronicler";
+import ChroniclerGame from "types/chroniclerGame";
 import { GetStaticProps } from "next";
-import Schedule from "types/schedule";
 import Team from "types/team";
 
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
@@ -30,16 +34,96 @@ import NextLink from "next/link";
 import { WeatherIcon, WeatherName } from "components/Weather";
 
 type Props = {
-  schedule: Schedule;
+  schedule: Chronicler<ChroniclerGame>;
   teams: Team[];
 };
 
 export default function SchedulePage(props: Props) {
-  const { data: schedule, error: scheduleError } = useSWR("/gameResults.json");
+  const apiConfig: ApiConfig = useApiConfigContext();
+
+  const [dayList, setDayList] = React.useState([]);
+  const [seasonList, setSeasonList] = React.useState([]);
+  const [selectedSeason, setSelectedSeason] = React.useState(null);
+  const [selectedDay, setSelectedDay] = React.useState(null);
+
+  const {
+    data: { data: schedule } = {},
+    error: scheduleError,
+    isValidating: scheduleIsValidating,
+  } = useSWR<Chronicler<ChroniclerGame>>(
+    apiConfig != null
+      ? `${process.env.NEXT_PUBLIC_CHRONICLER_API_URL}/v1/games?season=${
+          selectedSeason ?? apiConfig.seasons?.maxSeason
+        }&order=asc`
+      : null
+  );
 
   const { data: teams, error: teamsError } = useSWR("/teams", dbApiFetcher, {
     initialData: props.teams,
   });
+
+  /**
+   * Populate the season list with the Datablase API configuration response
+   */
+  React.useEffect(() => {
+    setSeasonList(
+      buildSeasonList({
+        minSeason: apiConfig?.seasons?.minSeason,
+        maxSeason: apiConfig?.seasons?.maxSeason,
+      })
+    );
+  }, [apiConfig]);
+
+  /**
+   * Select the most recent season based on `seasonList`
+   */
+  React.useEffect(() => {
+    if (selectedSeason === null && seasonList.length > 0) {
+      setSelectedSeason(seasonList[0]);
+    }
+  }, [seasonList, selectedSeason]);
+
+  /**
+   * Create a list of days based on the day reported by the final game of a season
+   */
+  React.useEffect(() => {
+    if (Array.isArray(schedule) && schedule.length > 0) {
+      const finalGameDay = schedule[schedule.length - 1].data.day;
+
+      setDayList(
+        Array.from(
+          {
+            length: finalGameDay + 1,
+          },
+          (value, key) => key
+        )
+      );
+    }
+  }, [selectedSeason, schedule]);
+
+  /**
+   * Find the last active day in a season
+   *
+   * Because some seasons contain days with inaccurate gameComplete values, the
+   * games should be searched in desc order, selecting the most recent game
+   * marked as complete and using its day value.
+   */
+  React.useEffect(() => {
+    if (schedule != null && Array.isArray(dayList) && dayList.length > 0) {
+      let lastDayWithCompletedGames;
+
+      for (let i = schedule.length - 1; i > 0; i--) {
+        const { data: game } = schedule[i];
+
+        if (game.gameComplete === true) {
+          lastDayWithCompletedGames = game.day;
+          break;
+        }
+      }
+
+      setSelectedDay(lastDayWithCompletedGames);
+    }
+  }, [dayList, schedule]);
 
   return (
     <>
@@ -53,96 +137,68 @@ export default function SchedulePage(props: Props) {
         <meta
           name="description"
           property="og:description"
-          content="Full schedule for the current season of Blaseball including probable pitchers."
+          content="Full schedule for the current season of Blaseball, including probable pitchers and future weather."
         />
       </Head>
       <Layout>
         <Heading as="h1" mb={4} size="lg">
           League Schedule
         </Heading>
-        <DailySchedule schedule={schedule} teams={teams} />
+        <ScheduleSelect
+          dayList={dayList}
+          scheduleIsValidating={scheduleIsValidating}
+          seasonList={seasonList}
+          selectedDay={selectedDay}
+          selectedSeason={selectedSeason}
+          setSelectedDay={setSelectedDay}
+          setSelectedSeason={setSelectedSeason}
+        />
+        <DailySchedule
+          schedule={schedule}
+          scheduleIsValidating={scheduleIsValidating}
+          selectedDay={selectedDay}
+          selectedSeason={selectedSeason}
+          teams={teams}
+        />
         <ForbiddenKnowledgeToggle />
       </Layout>
     </>
   );
 }
 
-function DailySchedule({
-  schedule,
-  teams,
-}: {
-  schedule: Schedule;
-  teams: Team[];
-}) {
-  const sortedSeasonList = () =>
-    schedule ? Object.keys(schedule).sort((a, b) => Number(b) - Number(a)) : [];
-  const mostRecentSeason = () => sortedSeasonList().shift();
+type ScheduleSelectProps = {
+  dayList: number[];
+  scheduleIsValidating: boolean;
+  seasonList: number[];
+  selectedDay: number | null;
+  selectedSeason: number | null;
+  setSelectedDay: React.Dispatch<React.SetStateAction<number>>;
+  setSelectedSeason: React.Dispatch<React.SetStateAction<number>>;
+};
 
-  // List of days in a selected season
-  const [dayList, setDayList] = React.useState([]);
-  // The selected day to view in the selected season
-  const [selectedDay, setSelectedDay] = React.useState(null);
-  // The selected season
-  const [selectedSeason, setSelectedSeason] = React.useState(null);
-  // A list of seasons found in the schedule
-  const [seasonList, setSeasonList] = React.useState([]);
-
-  React.useEffect(() => {
-    setSeasonList(sortedSeasonList);
-  }, [JSON.stringify(sortedSeasonList())]);
-
-  React.useEffect(() => {
-    setSelectedSeason(mostRecentSeason());
-  }, [JSON.stringify(seasonList)]);
-
-  React.useEffect(() => {
-    setDayList([
-      ...(schedule && Object.hasOwnProperty.call(schedule, selectedSeason)
-        ? Object.keys(schedule[selectedSeason]).sort(
-            (a, b) => Number(a) - Number(b)
-          )
-        : []),
-    ]);
-  }, [selectedSeason]);
-
-  /**
-   * Find the last day in a season
-   *
-   * Because some seasons contain days with inaccurate gameComplete values, we
-   * must iterate through all games to find the correct day with active games.
-   */
-  React.useEffect(() => {
-    if (Array.isArray(dayList) && dayList.length > 0) {
-      let lastDayWithCompletedGames;
-
-      for (const day of dayList) {
-        for (const game of schedule[selectedSeason][day]) {
-          if (game.gameComplete === true) {
-            lastDayWithCompletedGames = day;
-            break;
-          }
-        }
-      }
-
-      setSelectedDay(lastDayWithCompletedGames);
-    }
-  }, [JSON.stringify(dayList)]);
-
-  // Get forbidden knowledge setting in order to show or hide future weather events
-  const [showForbiddenKnowledge] = useForbiddenKnowledge();
+function ScheduleSelect(props: ScheduleSelectProps) {
+  const {
+    dayList,
+    scheduleIsValidating,
+    seasonList,
+    selectedDay,
+    selectedSeason,
+    setSelectedDay,
+    setSelectedSeason,
+  } = props;
 
   const handleSeasonSelectChange = (
     evt: React.FormEvent<HTMLSelectElement>
   ): void => {
     evt.preventDefault();
-    setSelectedSeason(evt.currentTarget.value);
+    setSelectedSeason(Number(evt.currentTarget.value));
   };
 
   const handleDaySelectChange = (
     evt: React.FormEvent<HTMLSelectElement>
   ): void => {
     evt.preventDefault();
-    setSelectedDay(evt.currentTarget.value);
+    setSelectedDay(Number(evt.currentTarget.value));
   };
 
   const handleNextDayClick = (): void => {
@@ -157,61 +213,91 @@ function DailySchedule({
     }
   };
 
-  const borderColor = useColorModeValue("gray.500", "gray.600");
-  const borderInteriorSeparatorColor = useColorModeValue(
-    "gray.100",
-    "gray.700"
-  );
-  const secondaryFontColor = useColorModeValue("gray.600", "gray.400");
-
-  if (
-    !schedule ||
-    !teams ||
-    !Object.hasOwnProperty.call(schedule, selectedSeason) ||
-    !Object.hasOwnProperty.call(schedule[selectedSeason], selectedDay)
-  ) {
+  if (selectedSeason === null || selectedDay === null || scheduleIsValidating) {
     return (
-      <>
-        <Flex mb={4}>
-          <Select
-            isDisabled={true}
-            fontSize={{ base: "lg", md: "md" }}
-            maxWidth="2xs"
-            placeholder="Loading..."
-            size="md"
-          />
-          <Select
-            isDisabled={true}
-            fontSize={{ base: "lg", md: "md" }}
-            maxWidth="2xs"
-            ml={{ base: 2, md: 4 }}
-            placeholder="Loading..."
-            size="md"
-          />
-        </Flex>
-        <Skeleton height="20px" mb={4} width="2xs" />
-        <Stack>
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-        </Stack>
-      </>
+      <ScheduleLoading
+        handleSeasonSelectChange={handleSeasonSelectChange}
+        seasonList={seasonList}
+        selectedDay={selectedDay}
+        selectedSeason={selectedSeason}
+      />
     );
   }
 
-  const selectedDaySchedule = schedule[selectedSeason][selectedDay];
-  const formattedDay = Number(selectedDay) + 1;
-  const formattedSeason = Number(selectedSeason) + 1;
-
-  const previousDaySchedule =
-    schedule[selectedSeason][String(Number(selectedDay) - 1)];
-  const visibleOnSite =
-    selectedDaySchedule.some((game) => game.gameStart) ||
-    (previousDaySchedule && previousDaySchedule.some((game) => game.gameStart));
-
   return (
-    <>
-      <Flex mb={4}>
+    <Flex mb={4}>
+      <Select
+        fontSize={{ base: "lg", md: "md" }}
+        maxWidth="2xs"
+        onChange={handleSeasonSelectChange}
+        size="md"
+        value={selectedSeason}
+      >
+        {seasonList.map((season) => (
+          <option key={season} value={season}>
+            {`Season ${Number(season) + 1}`}
+          </option>
+        ))}
+      </Select>
+      <Select
+        fontSize={{ base: "lg", md: "md" }}
+        maxWidth="2xs"
+        onChange={handleDaySelectChange}
+        ml={{ base: 2, md: 4 }}
+        size="md"
+        value={selectedDay}
+      >
+        {dayList.map((day) => (
+          <option key={day} value={day}>
+            {`Day ${Number(day) + 1}`}
+          </option>
+        ))}
+      </Select>
+      <Flex ml={2}>
+        <IconButton
+          aria-label="Previous Day"
+          fontSize="xl"
+          icon={<ArrowBackIcon />}
+          isDisabled={selectedDay - 1 < dayList[0]}
+          onClick={handlePreviousDayClick}
+        />
+        <IconButton
+          aria-label="Next Day"
+          fontSize="xl"
+          icon={<ArrowForwardIcon />}
+          isDisabled={selectedDay + 1 > dayList[dayList.length - 1]}
+          ml={1}
+          onClick={handleNextDayClick}
+        />
+      </Flex>
+    </Flex>
+  );
+}
+
+function ScheduleLoading({
+  handleSeasonSelectChange,
+  seasonList,
+  selectedDay,
+  selectedSeason,
+}: {
+  handleSeasonSelectChange: (evt: React.FormEvent<HTMLSelectElement>) => void;
+  seasonList: number[];
+  selectedDay: number | null;
+  selectedSeason: number | null;
+}) {
+  return (
+    <Flex mb={4}>
+      {seasonList.length === 0 ||
+      selectedSeason === null ||
+      selectedDay === null ? (
+        <Select
+          isDisabled={true}
+          fontSize={{ base: "lg", md: "md" }}
+          maxWidth="2xs"
+          placeholder="Loading..."
+          size="md"
+        />
+      ) : (
         <Select
           fontSize={{ base: "lg", md: "md" }}
           maxWidth="2xs"
@@ -225,44 +311,91 @@ function DailySchedule({
             </option>
           ))}
         </Select>
-        <Select
-          fontSize={{ base: "lg", md: "md" }}
-          maxWidth="2xs"
-          onChange={handleDaySelectChange}
-          ml={{ base: 2, md: 4 }}
-          size="md"
-          value={selectedDay}
-        >
-          {dayList.map((day) => (
-            <option key={day} value={day}>
-              {`Day ${Number(day) + 1}`}
-            </option>
-          ))}
-        </Select>
-        <Flex ml={2}>
-          <IconButton
-            aria-label="Previous Day"
-            fontSize="xl"
-            icon={<ArrowBackIcon />}
-            isDisabled={selectedDay - 1 < dayList[0]}
-            onClick={handlePreviousDayClick}
-          />
-          <IconButton
-            aria-label="Next Day"
-            fontSize="xl"
-            icon={<ArrowForwardIcon />}
-            isDisabled={selectedDay + 1 > dayList[dayList.length - 1]}
-            ml={1}
-            onClick={handleNextDayClick}
-          />
-        </Flex>
+      )}
+      <Select
+        isDisabled={true}
+        fontSize={{ base: "lg", md: "md" }}
+        maxWidth="2xs"
+        ml={{ base: 2, md: 4 }}
+        placeholder="Loading..."
+        size="md"
+      />
+      <Flex ml={2}>
+        <IconButton
+          aria-label="Previous Day"
+          fontSize="xl"
+          icon={<ArrowBackIcon />}
+          isDisabled={true}
+        />
+        <IconButton
+          aria-label="Next Day"
+          fontSize="xl"
+          icon={<ArrowForwardIcon />}
+          isDisabled={true}
+          ml={1}
+        />
       </Flex>
+    </Flex>
+  );
+}
 
+function DailySchedule({
+  schedule,
+  scheduleIsValidating,
+  selectedDay,
+  selectedSeason,
+  teams,
+}: {
+  schedule: ChroniclerGame[];
+  scheduleIsValidating: boolean;
+  selectedDay: number;
+  selectedSeason: number;
+  teams: Team[];
+}) {
+  // Get forbidden knowledge setting in order to show or hide future weather events
+  const [showForbiddenKnowledge] = useForbiddenKnowledge();
+
+  const borderColor = useColorModeValue("gray.500", "gray.600");
+  const borderInteriorSeparatorColor = useColorModeValue(
+    "gray.100",
+    "gray.700"
+  );
+  const secondaryFontColor = useColorModeValue("gray.600", "gray.400");
+
+  if (!schedule || !teams || scheduleIsValidating) {
+    return (
+      <>
+        <Skeleton height="20px" mb={4} width="2xs" />
+        <Stack>
+          <Skeleton height="20px" />
+          <Skeleton height="20px" />
+          <Skeleton height="20px" />
+        </Stack>
+      </>
+    );
+  }
+
+  const formattedDay = Number(selectedDay) + 1;
+  const formattedSeason = Number(selectedSeason) + 1;
+
+  const selectedDaySchedule = schedule?.filter(
+    ({ data: game }) => game.day === selectedDay
+  );
+  const previousDaySchedule = schedule?.filter(
+    ({ data: game }) => game.day === selectedDay - 1
+  );
+  const visibleOnSite =
+    selectedDaySchedule.some(({ data: game }) => game.gameStart) ||
+    (previousDaySchedule &&
+      previousDaySchedule.some(({ data: game }) => game.gameStart));
+
+  return (
+    <>
       <Heading as="h2" mb={4} size="md">
         Season {formattedSeason} Day {formattedDay}
       </Heading>
       <Flex border="1px solid" borderColor={borderColor} flexDirection="column">
-        {selectedDaySchedule.map((game) => {
+        {selectedDaySchedule.map(({ data: game }) => {
           const awayTeam = teams.find((team) => team.team_id === game.awayTeam);
           const homeTeam = teams.find((team) => team.team_id === game.homeTeam);
 
