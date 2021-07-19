@@ -1,10 +1,20 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-export default class BRDocument extends Document {
+class BRDocument extends Document {
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
+  }
+
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
@@ -13,3 +23,5 @@ export default class BRDocument extends Document {
     );
   }
 }
+
+export default BRDocument;
