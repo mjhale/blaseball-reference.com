@@ -46,19 +46,16 @@ export default function SchedulePage(props: Props) {
   const [selectedSeason, setSelectedSeason] = React.useState(null);
   const [selectedDay, setSelectedDay] = React.useState(null);
 
-  const {
-    data: { data: schedule } = {},
-    error: scheduleError,
-    isValidating: scheduleIsValidating,
-  } = useSWR<Chronicler<ChroniclerGame>>(
-    apiConfig != null
-      ? `${process.env.NEXT_PUBLIC_CHRONICLER_API}/v1/games?season=${
-          selectedSeason ?? apiConfig.seasons?.maxSeason
-        }&order=asc`
-      : null
-  );
+  const { data: { data: schedule } = {}, isValidating: scheduleIsValidating } =
+    useSWR<Chronicler<ChroniclerGame>>(
+      apiConfig != null
+        ? `${process.env.NEXT_PUBLIC_CHRONICLER_API}/v1/games?season=${
+            selectedSeason ?? apiConfig.seasons?.maxSeason
+          }&order=asc`
+        : null
+    );
 
-  const { data: teams, error: teamsError } = useSWR("/teams", dbApiFetcher, {
+  const { data: teams } = useSWR("/teams", dbApiFetcher, {
     initialData: props.teams,
   });
 
@@ -110,7 +107,7 @@ export default function SchedulePage(props: Props) {
    */
   React.useEffect(() => {
     if (schedule != null && Array.isArray(dayList) && dayList.length > 0) {
-      let lastDayWithCompletedGames;
+      let lastDayWithCompletedGames = 0;
 
       for (let i = schedule.length - 1; i > 0; i--) {
         const { data: game } = schedule[i];
