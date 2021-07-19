@@ -209,20 +209,34 @@ const WEATHERS: { [weatherId: number]: Weather } = {
   },
   25: {
     id: 25,
-    name: "Sun Sun",
+    name: "Sum Sun",
     icon: GiSunRadiations,
     background: "#0e4e8a",
     color: "#ffc400",
   },
   26: {
     id: 26,
+    name: "???",
+    icon: GiHelp,
+    background: "#36001b",
+    color: "#ffc400",
+  },
+  27: {
+    id: 27,
+    name: "???",
+    icon: GiHelp,
+    background: "#36001b",
+    color: "#ffc400",
+  },
+  28: {
+    id: 28,
     name: "Jazz",
     icon: GiMusicSpell,
     background: "#570b0b",
     color: "#000",
   },
-  27: {
-    id: 27,
+  29: {
+    id: 29,
     name: "Night",
     icon: GiNightSleep,
     background: "#000",
