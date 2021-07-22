@@ -33,33 +33,22 @@ export default function PlayerPage() {
       : null,
     dbApiFetcher
   );
-  const {
-    data: stats,
-    error: statsError,
-    isValidating: isStatsValidating,
-  } = useSWR(
+  const { data: stats, isValidating: isStatsValidating } = useSWR(
     () =>
       player !== undefined
         ? `/stats?group=pitching,hitting&type=season&gameType=R&playerId=${player.player_id}`
         : null,
     dbApiFetcher
   );
-  const {
-    data: postseasonStats,
-    error: postseasonStatsError,
-    isValidating: isPostseasonStatsValidating,
-  } = useSWR(
-    () =>
-      player !== undefined
-        ? `/stats?group=pitching,hitting&type=season&gameType=P&playerId=${player.player_id}`
-        : null,
-    dbApiFetcher
-  );
-  const {
-    data: careerStats,
-    error: careerStatsError,
-    isValidating: isCareerStatsValidating,
-  } = useSWR(
+  const { data: postseasonStats, isValidating: isPostseasonStatsValidating } =
+    useSWR(
+      () =>
+        player !== undefined
+          ? `/stats?group=pitching,hitting&type=season&gameType=P&playerId=${player.player_id}`
+          : null,
+      dbApiFetcher
+    );
+  const { data: careerStats, isValidating: isCareerStatsValidating } = useSWR(
     () =>
       player !== undefined
         ? `/stats?group=pitching,hitting&type=career&gameType=R&playerId=${player.player_id}`
@@ -68,7 +57,6 @@ export default function PlayerPage() {
   );
   const {
     data: careerPostseasonStats,
-    error: careerPostseasonStatsError,
     isValidating: isCareerPostseasonStatsValidating,
   } = useSWR(
     () =>
@@ -77,7 +65,7 @@ export default function PlayerPage() {
         : null,
     dbApiFetcher
   );
-  const { data: team, error: teamError } = useSWR(
+  const { data: team } = useSWR(
     () =>
       player !== undefined && player.team_id != null
         ? `/teams/${player.team_id}`

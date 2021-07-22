@@ -55,12 +55,12 @@ export default function IndexPage(props: IndexPageProps) {
   // @TODO: Fallback if `players` doesn't exist
   const recentPlayerDebuts: Player[] = React.useMemo(
     () => sortPlayersByDebut(players).slice(0, 15),
-    [players.length]
+    [players]
   );
 
   const recentPlayerIncinerations: Player[] = React.useMemo(
     () => sortPlayersByIncineration(players),
-    [players.length]
+    [players]
   );
 
   return (

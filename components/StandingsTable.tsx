@@ -26,7 +26,7 @@ export default function StandingsTable({
 }: StandingsTableProps) {
   const data = React.useMemo<TeamStanding[]>(() => {
     return standings;
-  }, [season]);
+  }, [standings]);
 
   const columns = React.useMemo<Column<TeamStanding>[]>(
     () => [
@@ -451,7 +451,7 @@ export default function StandingsTable({
         };
       }),
     ],
-    []
+    [division, divisions, teams]
   );
 
   const exportFilename = `Team Standings ${division.name} Season ${season}`;

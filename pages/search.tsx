@@ -3,6 +3,8 @@ import * as React from "react";
 import { useRouter } from "next/router";
 
 import { GetStaticProps } from "next";
+import Player from "types/player";
+import Team from "types/team";
 
 import { Box, Flex, Heading, Image, Link } from "@chakra-ui/react";
 import Head from "next/head";
@@ -11,16 +13,16 @@ import Layout from "components/Layout";
 
 export default function SearchPage() {
   const router = useRouter();
-  const [
-    { isError, isLoading, results },
-    setSearchTerm,
-  ] = useAlgoliaSearchResults();
+  const [{ isError, isLoading, results }, setSearchTerm] =
+    useAlgoliaSearchResults();
+
+  const searchTerm = String(router.query.searchTerm);
 
   React.useEffect(() => {
-    if (router.query?.searchTerm) {
-      setSearchTerm(String(router.query.searchTerm));
+    if (searchTerm != null) {
+      setSearchTerm(searchTerm);
     }
-  }, [String(router.query.searchTerm)]);
+  }, [searchTerm, setSearchTerm]);
 
   return (
     <>
@@ -61,7 +63,7 @@ export default function SearchPage() {
 type SearchResultsProps = {
   isError: boolean;
   isLoading: boolean;
-  searchResults: any;
+  searchResults: { players?: Player[]; teams?: Team[] };
 };
 function SearchResults({
   isError,

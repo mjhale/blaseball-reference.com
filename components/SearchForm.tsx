@@ -246,7 +246,7 @@ export default function SearchForm() {
                                 {resultGroup}
                               </Heading>
                               <Box>
-                                {results[resultGroup].map((result, index) => {
+                                {results[resultGroup].map((result) => {
                                   resultComboboxOptionData.current[
                                     result.title
                                   ] = {
@@ -256,10 +256,12 @@ export default function SearchForm() {
                                   return (
                                     <ListItem
                                       _hover={{
-                                        bgColor: comboListItemHoverBackgroundColor,
+                                        bgColor:
+                                          comboListItemHoverBackgroundColor,
                                       }}
                                       _selected={{
-                                        bgColor: comboListItemSelectBackgroundColor,
+                                        bgColor:
+                                          comboListItemSelectBackgroundColor,
                                       }}
                                       as={StyledComboboxOption}
                                       cursor="pointer"

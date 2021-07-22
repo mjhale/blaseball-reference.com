@@ -1,8 +1,11 @@
 import faunadb from "faunadb";
 
-import { NowRequest, NowResponse } from "@vercel/node";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 
-export default (request: NowRequest, response: NowResponse) => {
+export default function reportBugApi(
+  request: VercelRequest,
+  response: VercelResponse
+) {
   if (request.method !== "POST") {
     return response.status(405).json({
       status: 405,
@@ -42,4 +45,4 @@ export default (request: NowRequest, response: NowResponse) => {
         message: "Error: Unable to submit bug report due to database response.",
       });
     });
-};
+}

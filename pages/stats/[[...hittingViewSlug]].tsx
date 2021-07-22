@@ -28,7 +28,7 @@ type HittingStatsProps = {
 
 export default function HittingStats(props: HittingStatsProps) {
   const apiConfig: ApiConfig = useApiConfigContext();
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [, setIsLoading] = React.useState(false);
   const router = useRouter();
 
   const leaderView = getSplitViewFromSlugWithApiConfig({
@@ -56,7 +56,7 @@ export default function HittingStats(props: HittingStatsProps) {
     if (apiConfig !== undefined) {
       setSelectedView(leaderView);
     }
-  }, [apiConfig]);
+  }, [apiConfig, leaderView]);
 
   React.useEffect(() => {
     if (router.query.hittingViewSlug != null) {
@@ -135,11 +135,7 @@ type StatsTableProps = {
   selectedView: string | null;
 };
 
-function StatsTable({
-  playerStats,
-  playerStatsIsValidating,
-  selectedView,
-}: StatsTableProps) {
+function StatsTable({ playerStats, playerStatsIsValidating }: StatsTableProps) {
   if (!playerStats && !playerStatsIsValidating) {
     return null;
   }

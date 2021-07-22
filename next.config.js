@@ -2,9 +2,6 @@
 const fetch = require("@zeit/fetch-retry")(require("node-fetch"));
 
 module.exports = {
-  future: {
-    webpack5: true,
-  },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
@@ -73,7 +70,7 @@ async function getPlayers() {
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/players`
+      `${process.env.NEXT_PUBLIC_DATABLASE_API}/players`
     );
     players = await response.json();
   } catch (error) {
@@ -88,7 +85,7 @@ async function getTeams() {
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DATABLASE_API_URL}/teams`
+      `${process.env.NEXT_PUBLIC_DATABLASE_API}/teams`
     );
     teams = await response.json();
   } catch (error) {
