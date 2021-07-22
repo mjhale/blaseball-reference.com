@@ -2,13 +2,15 @@ import algoliasearch from "algoliasearch/lite";
 import useDebounce from "hooks/useDebounce";
 import * as React from "react";
 
+import Player from "types/player";
+import Team from "types/team";
 import SearchRecord from "types/searchRecord";
 
 export default function useAlgoliaSearchResults(): [
   {
     isError: boolean;
     isLoading: boolean;
-    results: Record<string, SearchRecord[]>;
+    results: { players?: Player[]; teams?: Team[] };
   },
   React.Dispatch<React.SetStateAction<string>>
 ] {
@@ -49,7 +51,7 @@ export default function useAlgoliaSearchResults(): [
 
             setResults(hitsGroupedByType);
           },
-          (_error) => {
+          () => {
             setIsError(true);
           }
         );

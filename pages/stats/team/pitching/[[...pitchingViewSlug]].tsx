@@ -28,7 +28,7 @@ type TeamPitchingStatsProps = {
 
 export default function TeamPitchingStats(props: TeamPitchingStatsProps) {
   const apiConfig: ApiConfig = useApiConfigContext();
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [, setIsLoading] = React.useState(false);
   const router = useRouter();
 
   const leaderView = getSplitViewFromSlugWithApiConfig({
@@ -56,7 +56,7 @@ export default function TeamPitchingStats(props: TeamPitchingStatsProps) {
     if (apiConfig !== undefined) {
       setSelectedView(leaderView);
     }
-  }, [apiConfig]);
+  }, [apiConfig, leaderView]);
 
   React.useEffect(() => {
     if (router.query.hittingViewSlug != null) {

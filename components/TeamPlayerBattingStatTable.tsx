@@ -28,7 +28,7 @@ export default function TeamPlayerBattingStatTable({
 }: StatTableProps) {
   const data = React.useMemo<StatSplit[]>(
     () => battingStats.splits,
-    [isPostseason, splitView, statTargetName]
+    [battingStats]
   );
   const teamData = teamBattingStats.splits[0];
 
@@ -55,7 +55,7 @@ export default function TeamPlayerBattingStatTable({
       // @ts-expect-error: Type not assignable error
       ...commonBattingStatColumns(teamData),
     ],
-    []
+    [teamData]
   );
 
   const exportFilename = `${statTargetName} ${splitView} ${

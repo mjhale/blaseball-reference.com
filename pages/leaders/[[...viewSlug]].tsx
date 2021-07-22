@@ -43,7 +43,7 @@ export default function LeadersPage(props: Props) {
     if (apiConfig !== undefined) {
       setSelectedView(leaderView);
     }
-  }, [apiConfig]);
+  }, [apiConfig, leaderView]);
 
   React.useEffect(() => {
     if (router.query.viewSlug != null) {

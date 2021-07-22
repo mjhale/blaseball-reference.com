@@ -2,11 +2,6 @@
 
 module.exports = {
   root: true,
-  env: {
-    browser: true,
-    node: true,
-    es6: true,
-  },
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 2020,
@@ -15,20 +10,17 @@ module.exports = {
       jsx: true,
     },
   },
-  settings: {
-    react: {
-      version: "detect",
-    },
+  env: {
+    browser: true,
+    node: true,
+    es6: true,
   },
+  plugins: ["@typescript-eslint"],
   extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended", // Always the last configuration in the extends array
+    "next",
+    "prettier",
   ],
   rules: {
     "@typescript-eslint/explicit-function-return-type": "off",
@@ -36,8 +28,5 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "react/display-name": "off",
     "react/no-unescaped-entities": 0,
-  },
-  globals: {
-    React: "writable",
   },
 };

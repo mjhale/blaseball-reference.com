@@ -42,10 +42,7 @@ export default function TeamSchedule({
 }: TeamScheduleProps) {
   const [selectedSeason, setSelectedSeason] = React.useState(null);
   const [seasonList, setSeasonList] = React.useState([]);
-  const [
-    showForbiddenKnowledge,
-    setShowForbiddenKnowledge,
-  ] = useForbiddenKnowledge();
+  const [showForbiddenKnowledge] = useForbiddenKnowledge();
 
   const handleSeasonSelectChange = (
     evt: React.FormEvent<HTMLSelectElement>
@@ -60,13 +57,13 @@ export default function TeamSchedule({
         ? Object.keys(schedule).sort((a, b) => Number(b) - Number(a))
         : []),
     ]);
-  }, [team.team_id]);
+  }, [team.team_id, schedule]);
 
   React.useEffect(() => {
     if (seasonList?.length > 0) {
       setSelectedSeason(seasonList[0]);
     }
-  }, [JSON.stringify(seasonList)]);
+  }, [seasonList]);
 
   // Group games into daily buckets (e.g., Aug. 1, games 1-12; Aug. 2, games 13-36; ...)
   const selectedSeasonScheduleByDate = React.useMemo(() => {
@@ -141,7 +138,7 @@ export default function TeamSchedule({
     }
 
     return gamesByDay;
-  }, [team.team_id, JSON.stringify(seasonStartDates), selectedSeason]);
+  }, [seasonStartDates, selectedSeason, schedule]);
 
   // Loading skeleton
   if (!selectedSeason || !selectedSeasonScheduleByDate) {
@@ -204,9 +201,11 @@ function TeamDailySchedule({
   team: Team;
   teams: Team[];
 }) {
+  console.log("daily schedule: ", dailySchedule);
   const colorMode = useColorMode().colorMode;
 
-  let homeGameBackgroundColor = getHomeBackgroundColor({ team });
+  const homeGameBackgroundColor = getHomeBackgroundColor({ team });
+  const awayGameBackgroundColor = useColorModeValue("gray.50", "gray.700");
   const hasDarkHomeGameBackgroundColor = Color(
     homeGameBackgroundColor
   ).isDark();
@@ -269,7 +268,7 @@ function TeamDailySchedule({
                       background={
                         isHomeDay
                           ? homeGameBackgroundColor
-                          : useColorModeValue("gray.50", "gray.700")
+                          : awayGameBackgroundColor
                       }
                       color={isHomeDay ? homeGameFontColor : null}
                       height="full"

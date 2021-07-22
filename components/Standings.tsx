@@ -26,26 +26,29 @@ export default function Standings({
   standings,
   teams,
 }: Props) {
-  const sortedSeasonList = () =>
-    standings
-      ? Object.keys(standings).sort((a, b) => Number(b) - Number(a))
-      : [];
-  const mostRecentSeason = () => sortedSeasonList().shift();
+  const sortedSeasonList: string[] = React.useMemo(
+    () =>
+      standings
+        ? Object.keys(standings).sort((a, b) => Number(b) - Number(a))
+        : [],
+    [standings]
+  );
+  const mostRecentSeason = () => sortedSeasonList.shift();
 
   const [selectedSeason, setSelectedSeason] = React.useState(
     mostRecentSeason()
   );
-  const [seasonList, setSeasonList] = React.useState(sortedSeasonList());
+  const [seasonList, setSeasonList] = React.useState(sortedSeasonList);
 
   React.useEffect(() => {
     setSeasonList(sortedSeasonList);
-  }, [JSON.stringify(sortedSeasonList)]);
+  }, [sortedSeasonList]);
 
   React.useEffect(() => {
     if (seasonList.length > 0) {
       setSelectedSeason(seasonList[0]);
     }
-  }, [JSON.stringify(seasonList)]);
+  }, [seasonList]);
 
   const handleSelectChange = (
     evt: React.FormEvent<HTMLSelectElement>

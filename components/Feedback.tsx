@@ -110,7 +110,7 @@ function Feedback() {
         ...randomEmojis.sort(() => 0.5 - Math.random()).slice(0, 2),
       ]);
     }
-  }, []);
+  }, [emojis]);
 
   const handleEmojiSelect = async (emoji) => {
     setStatus("submitted");

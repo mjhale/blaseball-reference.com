@@ -27,7 +27,7 @@ export default function PlayerPitchingStatTable({
 }: StatTableProps) {
   const data = React.useMemo<StatSplit[]>(
     () => pitchingStats.splits,
-    [statTargetName]
+    [pitchingStats]
   );
   const careerData = careerPitchingStats.splits[0];
 
@@ -69,7 +69,7 @@ export default function PlayerPitchingStatTable({
       // @ts-expect-error: Type not assignable error
       ...commonPitchingStatColumns(careerData),
     ],
-    [isPostseason, statTargetName]
+    [careerData]
   );
 
   const exportFilename = `${statTargetName} ${

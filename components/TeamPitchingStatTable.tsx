@@ -25,7 +25,7 @@ export default function TeamPitchingStatTable({
 }: StatTableProps) {
   const data = React.useMemo<StatSplit[]>(
     () => pitchingStats.splits,
-    [isPostseason, splitView, statTargetName]
+    [pitchingStats]
   );
 
   const columns = React.useMemo<

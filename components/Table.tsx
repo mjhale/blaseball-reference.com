@@ -44,7 +44,7 @@ export default function Table<T extends Record<string, unknown>>(
 ): React.ReactElement {
   const { children, columns, data, isPaginated = false } = props;
 
-  let tableInstance = useTable<T>(
+  const tableInstance = useTable<T>(
     {
       columns,
       data,
@@ -56,8 +56,10 @@ export default function Table<T extends Record<string, unknown>>(
     useSortBy,
     usePagination
   );
-  const { rows } = tableInstance;
-  const value = React.useMemo(() => ({ data, tableInstance }), [data, rows]);
+  const value = React.useMemo(
+    () => ({ data, tableInstance }),
+    [data, tableInstance]
+  );
 
   return (
     <TableContext.Provider value={{ ...value, isPaginated }}>
@@ -310,7 +312,7 @@ function CSVExport({
   size?: "xs" | "sm" | "md" | "lg" | "xl";
 }) {
   const { tableInstance } = useTableContext();
-  const { allColumns, rows } = tableInstance;
+  const { rows } = tableInstance;
 
   const data = rows.reduce(
     (accumulator, row) => [...accumulator, row.values],
