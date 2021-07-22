@@ -233,7 +233,9 @@ export function commonBattingStatColumns(
         </Tooltip>
       ),
       Footer: (): number =>
-        React.useMemo(() => summaryData?.stat?.runs_batted_in ?? null, []),
+        React.useMemo(() => summaryData?.stat?.runs_batted_in ?? null, []).toFixed(1),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
+      sortType: "basic",
     },
     {
       accessor: (row) => row.stat.stolen_bases,

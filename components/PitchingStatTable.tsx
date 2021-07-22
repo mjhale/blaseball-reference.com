@@ -180,9 +180,9 @@ export function commonPitchingStatColumns(
           IP
         </Tooltip>
       ),
-      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
       Footer: (): number =>
         React.useMemo(() => summaryData?.stat?.innings ?? null, []),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
       sortType: "basic",
     },
     {
@@ -215,7 +215,9 @@ export function commonPitchingStatColumns(
         </Tooltip>
       ),
       Footer: (): number =>
-        React.useMemo(() => summaryData?.stat?.runs_allowed ?? null, []),
+        React.useMemo(() => summaryData?.stat?.runs_allowed ?? null, []).toFixed(1),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
+      sortType: "basic",
     },
     {
       accessor: (row) => row.stat.home_runs_allowed,
