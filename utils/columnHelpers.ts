@@ -188,3 +188,13 @@ export function getAggregateWinningPercentage(rows) {
 
   return statSums.wins / (statSums.wins + statSums.losses);
 }
+
+export function roundNumber(
+  number: number | null,
+  decimalPlaces = 2
+): number | null {
+  return number != null
+    ? Math.round((number + Number.EPSILON) * 10 ** decimalPlaces) /
+        10 ** decimalPlaces
+    : null;
+}

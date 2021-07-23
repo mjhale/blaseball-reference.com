@@ -1,6 +1,7 @@
 /* eslint-disable react/display-name */
 
 import * as React from "react";
+import { roundNumber } from "utils/columnHelpers";
 
 import { Cell, Column } from "react-table";
 import PlayerStats from "types/playerStats";
@@ -215,8 +216,11 @@ export function commonPitchingStatColumns(
         </Tooltip>
       ),
       Footer: (): number =>
-        React.useMemo(() => summaryData?.stat?.runs_allowed ?? null, []).toFixed(1),
-      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(1),
+        React.useMemo(
+          () => roundNumber(summaryData?.stat?.runs_allowed) ?? null,
+          []
+        ),
+      Cell: ({ value }: Cell<StatSplit>) => roundNumber(value) ?? 0,
       sortType: "basic",
     },
     {
