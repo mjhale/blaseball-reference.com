@@ -33,7 +33,7 @@ export default function Standings({
         : [],
     [standings]
   );
-  const mostRecentSeason = () => sortedSeasonList.shift();
+  const mostRecentSeason = () => sortedSeasonList[0];
 
   const [selectedSeason, setSelectedSeason] = React.useState(
     mostRecentSeason()
