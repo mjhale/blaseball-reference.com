@@ -98,27 +98,25 @@ export default function Standings({
         ))}
       </Select>
 
-      {Object.entries(standings[selectedSeason]).map(
-        ([divisionId, divisionTeams]) => {
-          const division = leaguesAndDivisions.seasons[
-            selectedSeason
-          ].divisions.find((division) => division.id === divisionId);
-          const seasonDivisions =
-            leaguesAndDivisions.seasons[selectedSeason].divisions;
+      {Object.entries(standings[selectedSeason]).map(([divisionId]) => {
+        const division = leaguesAndDivisions.seasons[
+          selectedSeason
+        ].divisions.find((division) => division.id === divisionId);
+        const seasonDivisions =
+          leaguesAndDivisions.seasons[selectedSeason].divisions;
 
-          return (
-            <React.Fragment key={`${selectedSeason}-${divisionId}`}>
-              <StandingsTable
-                division={division}
-                divisions={seasonDivisions}
-                season={selectedSeason}
-                standings={standings[selectedSeason][divisionId]}
-                teams={teams}
-              />
-            </React.Fragment>
-          );
-        }
-      )}
+        return (
+          <React.Fragment key={`${selectedSeason}-${divisionId}`}>
+            <StandingsTable
+              division={division}
+              divisions={seasonDivisions}
+              season={selectedSeason}
+              standings={standings[selectedSeason][divisionId]}
+              teams={teams}
+            />
+          </React.Fragment>
+        );
+      })}
     </>
   );
 }

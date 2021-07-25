@@ -41,10 +41,10 @@ type Props = {
 export default function SchedulePage(props: Props) {
   const apiConfig: ApiConfig = useApiConfigContext();
 
-  const [dayList, setDayList] = React.useState([]);
-  const [seasonList, setSeasonList] = React.useState([]);
-  const [selectedSeason, setSelectedSeason] = React.useState(null);
-  const [selectedDay, setSelectedDay] = React.useState(null);
+  const [dayList, setDayList] = React.useState<number[]>([]);
+  const [seasonList, setSeasonList] = React.useState<number[]>([]);
+  const [selectedSeason, setSelectedSeason] = React.useState<number>(null);
+  const [selectedDay, setSelectedDay] = React.useState<number>(null);
 
   const { data: { data: schedule } = {}, isValidating: scheduleIsValidating } =
     useSWR<Chronicler<ChroniclerGame>>(
@@ -55,7 +55,7 @@ export default function SchedulePage(props: Props) {
         : null
     );
 
-  const { data: teams } = useSWR("/teams", dbApiFetcher, {
+  const { data: teams } = useSWR<Team[]>("/teams", dbApiFetcher, {
     initialData: props.teams,
   });
 
@@ -212,7 +212,7 @@ function ScheduleSelect(props: ScheduleSelectProps) {
 
   if (selectedSeason === null || selectedDay === null || scheduleIsValidating) {
     return (
-      <ScheduleLoading
+      <SeasonSelectLoading
         handleSeasonSelectChange={handleSeasonSelectChange}
         seasonList={seasonList}
         selectedDay={selectedDay}
@@ -271,7 +271,7 @@ function ScheduleSelect(props: ScheduleSelectProps) {
   );
 }
 
-function ScheduleLoading({
+function SeasonSelectLoading({
   handleSeasonSelectChange,
   seasonList,
   selectedDay,

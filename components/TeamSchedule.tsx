@@ -3,7 +3,9 @@ import * as React from "react";
 import renderTeamEmoji from "utils/renderTeamEmoji";
 import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
 
-import Schedule from "types/schedule";
+import ChroniclerGame from "types/chroniclerGame";
+import DailySchedule from "types/dailySchedule";
+import Game from "types/game";
 import SeasonStartDates from "types/seasonStartDates";
 import Team from "types/team";
 
@@ -13,7 +15,6 @@ import {
   Flex,
   Heading,
   Link,
-  Select,
   SimpleGrid,
   Skeleton,
   Stack,
@@ -28,158 +29,191 @@ import NextLink from "next/link";
 import { WeatherIcon, WeatherName } from "components/Weather";
 
 type TeamScheduleProps = {
-  schedule: Schedule;
+  schedule: ChroniclerGame[];
+  scheduleIsValidating: boolean;
   seasonStartDates: SeasonStartDates;
+  selectedSeason: number;
   team: Team;
   teams: Team[];
 };
 
 export default function TeamSchedule({
   schedule,
+  scheduleIsValidating,
   seasonStartDates,
+  selectedSeason,
   team,
   teams,
 }: TeamScheduleProps) {
-  const [selectedSeason, setSelectedSeason] = React.useState(null);
-  const [seasonList, setSeasonList] = React.useState([]);
   const [showForbiddenKnowledge] = useForbiddenKnowledge();
 
-  const handleSeasonSelectChange = (
-    evt: React.FormEvent<HTMLSelectElement>
-  ): void => {
-    evt.preventDefault();
-    setSelectedSeason(evt.currentTarget.value);
-  };
-
-  React.useEffect(() => {
-    setSeasonList([
-      ...(schedule
-        ? Object.keys(schedule).sort((a, b) => Number(b) - Number(a))
-        : []),
-    ]);
-  }, [team.team_id, schedule]);
-
-  React.useEffect(() => {
-    if (seasonList?.length > 0) {
-      setSelectedSeason(seasonList[0]);
-    }
-  }, [seasonList]);
-
-  // Group games into daily buckets (e.g., Aug. 1, games 1-12; Aug. 2, games 13-36; ...)
-  const selectedSeasonScheduleByDate = React.useMemo(() => {
-    if (selectedSeason === null || !seasonStartDates) {
+  /**
+   * Group games into daily buckets (e.g., Aug. 1, games 1-12; Aug. 2, games 13-36; ...)
+   *
+   * Assumptions:
+   * - A season start date has been recorded by the B-R API.
+   * - A team can potentially play multiple games during the same game day, so we also
+   *   store each game in an hourly bucket and append when necessary.
+   * - Each game day progresses the clock by one hour, except:
+   * - - After season 11, where each season has the same earlsiesta and latesiesta times.
+   * - The postseason begins on Saturdays at UTC hour 13, except:
+   * - - During and after season 11, when the first two rounds take place on Fridays
+   *  */
+  const seasonScheduleByDate = React.useMemo(() => {
+    if (
+      scheduleIsValidating ||
+      schedule == null ||
+      selectedSeason == null ||
+      seasonStartDates == null
+    ) {
       return;
     }
 
     const seasonStartDate = new Date(`${seasonStartDates[selectedSeason]} UTC`);
-    const gamesByDay = [];
-    let previousGameHasStarted = false;
+    const gamesByDay: DailySchedule[] = [];
+
     const currGameDate = seasonStartDate;
+    let prevGame: Game & { visibleOnSite: boolean };
+    let previousGameHasStarted = false;
+    let postseasonHasStarted = false;
+    let postseasonRound = 0;
 
-    for (const day in schedule[selectedSeason]) {
-      // Get real world day and hour for current game day
-      const currDay = currGameDate.getDate();
-      const currHour = currGameDate.getHours();
+    for (const { data: game } of schedule) {
+      const isNewGameDay = prevGame?.day !== game.day;
+      // Advance time with each new gay of games, not including day 0
+      if (isNewGameDay && game.day > 0 && game.day < 99) {
+        let advanceHourBy = 1;
 
-      // Find real world day bucket if it exists
-      const currDayGames = gamesByDay.find(
-        (dayGames) => dayGames.day === currDay
-      );
+        // Add an hour for earlsiesta and latesiesta
+        if (selectedSeason >= 11 && (game.day === 27 || game.day === 72)) {
+          advanceHourBy += 1;
+        }
 
-      const currHourGames = schedule[selectedSeason][day].map((game) => {
-        const visibleOnSite = previousGameHasStarted || game.gameStart;
-        previousGameHasStarted = !!game.gameStart;
+        currGameDate.setHours(currGameDate.getHours() + advanceHourBy);
+      } else if (isNewGameDay && game.day >= 99) {
+        /**
+         * For the first postseason game, advance day of month and set hour to 13 UTC (11 AM EST), except:
+         *  - During and after season 9, where the wildcard round of the postseason takes place an
+         *    hour after the end of the season on Friday [Phase 6, Series of 3].
+         *    The postseason then continues on Saturdays at 15 UTC (1 PM EST) [Phase 6, Series of 5].
+         *  - During and after season 11, where the wildcard round and divisional rounds of the postseason
+         *    take place an hour after the season on Friday [Phase 6, Requiring 2 and 3 Wins Respectively].
+         *    The postseason then continues on Saturdays at 13 UTC (11 AM EST) [First Game Phase 0 (?), then Phase 6].
+         *    (Exceptions: Season 13 postseason continued on Saturday at 10 AM EST)
+         */
 
-        return {
-          ...game,
-          visibleOnSite,
-        };
-      });
+        // The general guiding logic below is to find the game day that kicks off the next day, though this does not
+        // account for day spillovers yet as well as conditions where postseason days are skipped due to waiting for
+        // other teams to finish their games (!).
+        if (postseasonHasStarted === false) {
+          if (game.season < 8) {
+            currGameDate.setDate(currGameDate.getDate() + 1);
+            currGameDate.setUTCHours(13);
+          } else if (game.season >= 8) {
+            currGameDate.setHours(currGameDate.getHours() + 2);
 
-      // Create real world day bucket if it doens't exist, otherwise append games to existing bucket
-      if (Array.isArray(currHourGames) && currHourGames.length > 0) {
-        if (!currDayGames) {
-          gamesByDay.push({
-            day: currDay,
-            startingDate: new Date(currGameDate),
-            gamesByHour: {
-              [currHour]: currHourGames,
-            },
-          });
+            // If the start of the team's postseason is not game 99, they bypassed round 1 and will start at a
+            // later hour
+            if (game.day > 99) {
+              postseasonRound += 1;
+              currGameDate.setHours(currGameDate.getHours() + (game.day - 99));
+            }
+          }
+
+          postseasonHasStarted = true;
+          postseasonRound += 1;
         } else {
-          currDayGames.gamesByHour = {
-            ...currDayGames.gamesByHour,
-            [currHour]: currHourGames,
-          };
+          if (game.season < 8) {
+            currGameDate.setHours(currGameDate.getHours() + 1);
+          } else if (game.season >= 8 && game.season < 11) {
+            // Advance to next day on start of round 2
+            if (postseasonRound === 1 && game.seriesIndex === 1) {
+              currGameDate.setDate(currGameDate.getDate() + 1);
+              currGameDate.setUTCHours(15);
+
+              postseasonRound += 1;
+            } else {
+              currGameDate.setHours(currGameDate.getHours() + 1);
+            }
+          } else if (game.season >= 11) {
+            if (game.seriesIndex === 1) {
+              postseasonRound += 1;
+            }
+
+            // Find the start of the third round, and advance to Saturday
+            if (game.seriesIndex === 1 && postseasonRound === 3) {
+              currGameDate.setDate(currGameDate.getDate() + 1);
+
+              // Exception for season 13, which started an hour early
+              if (game.season === 12) {
+                currGameDate.setUTCHours(14);
+              } else {
+                currGameDate.setUTCHours(15);
+              }
+            } else {
+              currGameDate.setHours(currGameDate.getHours() + 1);
+            }
+          }
         }
       }
 
-      // At the end of the regular season, assign future postseason games into real world's next date
-      // - Also preset the start of the postseason time
-      if (Number(day) + 1 === 99) {
-        currGameDate.setDate(currDay + 1);
-        currGameDate.setUTCHours(13);
-        continue;
+      const currDayOfMonth = currGameDate.getDate();
+      const currHourOfDay = currGameDate.getHours();
+      const currDayGames = gamesByDay.find(
+        (dayGames) => dayGames.dayOfMonth === currDayOfMonth
+      );
+      const isNewDayOfMonth = currDayGames === undefined;
+
+      const visibleOnSite = previousGameHasStarted || game.gameStart;
+      const gameWithVisibilityStatus = { ...game, visibleOnSite };
+      previousGameHasStarted = Boolean(game.gameStart);
+
+      // Create day of month bucket if it doesn't exist, otherwise append games to hourly bucket
+      if (isNewDayOfMonth) {
+        gamesByDay.push({
+          dayOfMonth: currDayOfMonth,
+          startingDate: new Date(currGameDate),
+          gamesByHourOfDay: {
+            [currHourOfDay]: [gameWithVisibilityStatus],
+          },
+        });
+      } else {
+        const isNewHourOfDay = !Object.prototype.hasOwnProperty.call(
+          currDayGames.gamesByHourOfDay,
+          currHourOfDay
+        );
+
+        if (isNewHourOfDay) {
+          currDayGames.gamesByHourOfDay = {
+            ...currDayGames.gamesByHourOfDay,
+            [currHourOfDay]: [gameWithVisibilityStatus],
+          };
+        } else {
+          currDayGames.gamesByHourOfDay[currHourOfDay].push(
+            gameWithVisibilityStatus
+          );
+        }
       }
 
-      // Increment real world hour by one
-      // - (which also increments the day by one if the hour exceeds 24)
-      currGameDate.setHours(currHour + 1);
-
-      // If game day precedes earlsiesta or latesiesta, increment real world hour by one again
-      // - Starting in season 12, earlsiesta begins after day 27 and latesiesta after day 72. Each last
-      //   for one hour
-      if (
-        Number(selectedSeason) >= 11 &&
-        (Number(day) === 26 || Number(day) === 71)
-      ) {
-        currGameDate.setHours(currHour + 2);
-      }
+      prevGame = gameWithVisibilityStatus;
     }
 
     return gamesByDay;
-  }, [seasonStartDates, selectedSeason, schedule]);
+  }, [scheduleIsValidating, seasonStartDates, selectedSeason, schedule]);
 
-  // Loading skeleton
-  if (!selectedSeason || !selectedSeasonScheduleByDate) {
-    return (
-      <>
-        <Select
-          fontSize={{ base: "lg", md: "md" }}
-          isDisabled={true}
-          maxWidth="2xs"
-          mb={4}
-          placeholder="Loading..."
-          size="md"
-        />
-        <Stack>
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-        </Stack>
-      </>
-    );
+  if (
+    scheduleIsValidating ||
+    seasonScheduleByDate == null ||
+    team == null ||
+    teams == null
+  ) {
+    return <TeamDailyScheduleLoading />;
   }
 
   return (
     <>
-      <Flex mb={4}>
-        <Select
-          fontSize={{ base: "lg", md: "md" }}
-          maxWidth="2xs"
-          onChange={handleSeasonSelectChange}
-          size="md"
-          value={selectedSeason}
-        >
-          {seasonList.map((season) => (
-            <option key={season} value={season}>{`Season ${
-              Number(season) + 1
-            }`}</option>
-          ))}
-        </Select>
-      </Flex>
       <TeamDailySchedule
-        dailySchedule={selectedSeasonScheduleByDate}
+        dailySchedule={seasonScheduleByDate}
         showForbiddenKnowledge={showForbiddenKnowledge}
         team={team}
         teams={teams}
@@ -190,18 +224,37 @@ export default function TeamSchedule({
   );
 }
 
+function TeamDailyScheduleLoading() {
+  return (
+    <>
+      <Flex mb={4}>
+        <Skeleton
+          startColor="gray.500"
+          endColor="black"
+          height={6}
+          width={20}
+        />
+      </Flex>
+      <Stack>
+        <Skeleton height="20px" />
+        <Skeleton height="20px" />
+        <Skeleton height="20px" />
+      </Stack>
+    </>
+  );
+}
+
 function TeamDailySchedule({
   dailySchedule,
   showForbiddenKnowledge,
   team,
   teams,
 }: {
-  dailySchedule: any;
+  dailySchedule: DailySchedule[];
   showForbiddenKnowledge: boolean;
   team: Team;
   teams: Team[];
 }) {
-  console.log("daily schedule: ", dailySchedule);
   const colorMode = useColorMode().colorMode;
 
   const homeGameBackgroundColor = getHomeBackgroundColor({ team });
@@ -220,10 +273,7 @@ function TeamDailySchedule({
   return (
     <>
       {dailySchedule.map((day) => (
-        <Box
-          key={[day.startingDate.toString(), team.team_id].toString()}
-          mb={4}
-        >
+        <Box key={day.startingDate.toString()} mb={4}>
           <Heading as="h2" mb={4} size="md">
             {day.startingDate.toLocaleString(undefined, {
               day: "numeric",
@@ -238,23 +288,23 @@ function TeamDailySchedule({
             borderColor="black"
             columns={{ base: 3, md: 6 }}
           >
-            {Object.keys(day.gamesByHour)
+            {Object.keys(day.gamesByHourOfDay)
               .sort((a, b) => Number(a) - Number(b))
               .map((hour) => {
                 const dayStartingTime = new Date(day.startingDate);
                 dayStartingTime.setHours(Number(hour));
 
                 if (
-                  Array.isArray(day.gamesByHour[hour]) &&
-                  day.gamesByHour[hour].length === 0
+                  Array.isArray(day.gamesByHourOfDay[hour]) &&
+                  day.gamesByHourOfDay[hour].length === 0
                 ) {
                   return null;
                 }
 
                 // Use first game to determine day cell's background and game day
                 const isHomeDay =
-                  day.gamesByHour[hour][0].homeTeam === team.team_id;
-                const currGameDay = day.gamesByHour[hour][0].day;
+                  day.gamesByHourOfDay[hour][0].homeTeam === team.team_id;
+                const currGameDay = day.gamesByHourOfDay[hour][0].day;
 
                 return (
                   <Box
@@ -285,7 +335,7 @@ function TeamDailySchedule({
                           })}
                         </Box>
                       </Flex>
-                      {day.gamesByHour[hour].map((game) => {
+                      {day.gamesByHourOfDay[hour].map((game) => {
                         const isHomeTeam = game.homeTeam === team.team_id;
                         const isWinningTeam = isHomeTeam
                           ? game.homeScore > game.awayScore

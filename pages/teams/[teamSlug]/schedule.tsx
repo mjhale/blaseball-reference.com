@@ -1,52 +1,87 @@
 import apiFetcher, { dbApiFetcher } from "lib/api-fetcher";
+import buildSeasonList from "utils/buildSeasonList";
+import * as React from "react";
+import { useApiConfigContext } from "context/ApiConfig";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
+import ApiConfig from "types/apiConfig";
+import Chronicler from "types/chronicler";
+import ChroniclerGame from "types/chroniclerGame";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Team from "types/team";
 
 import ErrorPage from "next/error";
 import Head from "next/head";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Flex, Select } from "@chakra-ui/react";
 import Layout from "components/Layout";
 import TeamDetails from "components/TeamDetails";
 import TeamSchedule from "components/TeamSchedule";
+import SeasonStartDates from "types/seasonStartDates";
 
 type Props = {
-  schedule: any;
-  seasonStartDates: any;
+  schedule: Chronicler<ChroniclerGame>;
+  seasonStartDates: SeasonStartDates;
   team: Team;
   teams: Team[];
 };
 
 export default function TeamSchedulePage(props: Props) {
+  const apiConfig: ApiConfig = useApiConfigContext();
   const router = useRouter();
 
-  const { data: schedule, error: scheduleError } = useSWR(
-    `/teams/${router.query.teamSlug}/schedule.json`,
-    undefined,
-    {
-      initialData: props.schedule,
-    }
-  );
-  const { data: seasonStartDates, error: seasonStartDatesError } = useSWR(
+  const [seasonList, setSeasonList] = React.useState<number[]>([]);
+  const [selectedSeason, setSelectedSeason] = React.useState<number>(null);
+
+  const { data: seasonStartDates } = useSWR(
     "/seasonStartDates.json",
     undefined,
     {
       initialData: props.seasonStartDates,
     }
   );
-  const {
-    data: team,
-    error: teamError,
-    isValidating: teamIsValidating,
-  } = useSWR(`/teams/${router.query.teamSlug}`, dbApiFetcher, {
-    initialData: props.team,
-  });
-
-  const { data: teams, error: teamsError } = useSWR(`/teams`, dbApiFetcher, {
+  const { data: team, isValidating: teamIsValidating } = useSWR(
+    `/teams/${router.query.teamSlug}`,
+    dbApiFetcher,
+    {
+      initialData: props.team,
+    }
+  );
+  const { data: teams } = useSWR(`/teams`, dbApiFetcher, {
     initialData: props.teams,
   });
+
+  const { data: { data: schedule } = {}, isValidating: scheduleIsValidating } =
+    useSWR<Chronicler<ChroniclerGame>>(
+      () =>
+        apiConfig?.seasons?.maxSeason != null && team?.team_id != null
+          ? `${process.env.NEXT_PUBLIC_CHRONICLER_API}/v1/games?season=${
+              selectedSeason ?? apiConfig.seasons.maxSeason
+            }&team=${team.team_id}&order=asc`
+          : null,
+      undefined
+    );
+
+  /**
+   * Populate the season list with the Datablase API configuration response
+   */
+  React.useEffect(() => {
+    setSeasonList(
+      buildSeasonList({
+        minSeason: apiConfig?.seasons?.minSeason,
+        maxSeason: apiConfig?.seasons?.maxSeason,
+      })
+    );
+  }, [apiConfig]);
+
+  /**
+   * Select the most recent season based on `seasonList`
+   */
+  React.useEffect(() => {
+    if (selectedSeason === null && seasonList.length > 0) {
+      setSelectedSeason(seasonList[0]);
+    }
+  }, [seasonList, selectedSeason]);
 
   if (!router.isFallback && !team) {
     return <ErrorPage statusCode={404} />;
@@ -72,9 +107,17 @@ export default function TeamSchedulePage(props: Props) {
         <Heading as="h2" mb={4} size="md">
           Season Schedule
         </Heading>
+        <SeasonSelect
+          scheduleIsValidating={scheduleIsValidating}
+          seasonList={seasonList}
+          selectedSeason={selectedSeason}
+          setSelectedSeason={setSelectedSeason}
+        />
         <TeamSchedule
           schedule={schedule}
+          scheduleIsValidating={scheduleIsValidating}
           seasonStartDates={seasonStartDates}
+          selectedSeason={selectedSeason}
           team={team}
           teams={teams}
         />
@@ -87,44 +130,27 @@ export const getStaticProps: GetStaticProps = async ({
   params,
   preview = false,
 }) => {
-  let schedule = null;
-  let seasonStartDates = null;
-  let team = null;
-  let teams = null;
-
-  try {
-    schedule = await apiFetcher(`/teams/${params.teamSlug}/schedule.json`);
-  } catch (error) {
-    console.log(error);
-  }
+  let seasonStartDates: SeasonStartDates;
+  let team: Team;
+  let teams: Team[];
 
   try {
     seasonStartDates = await apiFetcher("/seasonStartDates.json");
-  } catch (error) {
-    console.log(error);
-  }
-
-  try {
     team = await dbApiFetcher(`/teams/${params.teamSlug}`);
-  } catch (error) {
-    console.log(error);
-  }
-
-  try {
     teams = await dbApiFetcher("/teams");
   } catch (error) {
     console.log(error);
+    throw error;
   }
 
   return {
     props: {
       preview,
-      schedule,
       seasonStartDates,
       team,
       teams,
     },
-    revalidate: 2700,
+    revalidate: 1800,
   };
 };
 
@@ -135,6 +161,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     teams = await dbApiFetcher("/teams");
   } catch (error) {
     console.log(error);
+    throw error;
   }
 
   return {
@@ -142,3 +169,57 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: false,
   };
 };
+
+type SeasonSelectProps = {
+  scheduleIsValidating: boolean;
+  seasonList: number[];
+  selectedSeason: number;
+  setSelectedSeason: React.Dispatch<React.SetStateAction<number>>;
+};
+
+function SeasonSelect(props: SeasonSelectProps) {
+  const { seasonList, selectedSeason, setSelectedSeason } = props;
+
+  const handleSeasonSelectChange = (
+    evt: React.FormEvent<HTMLSelectElement>
+  ): void => {
+    evt.preventDefault();
+    setSelectedSeason(Number(evt.currentTarget.value));
+  };
+
+  if (selectedSeason === null || seasonList == null) {
+    return <SeasonSelectLoading />;
+  }
+
+  return (
+    <Flex mb={4}>
+      <Select
+        fontSize={{ base: "lg", md: "md" }}
+        maxWidth="2xs"
+        onChange={handleSeasonSelectChange}
+        size="md"
+        value={selectedSeason}
+      >
+        {seasonList.map((season) => (
+          <option key={season} value={season}>
+            {`Season ${Number(season) + 1}`}
+          </option>
+        ))}
+      </Select>
+    </Flex>
+  );
+}
+
+function SeasonSelectLoading() {
+  return (
+    <Flex mb={4}>
+      <Select
+        isDisabled={true}
+        fontSize={{ base: "lg", md: "md" }}
+        maxWidth="2xs"
+        placeholder="Loading..."
+        size="md"
+      />
+    </Flex>
+  );
+}
