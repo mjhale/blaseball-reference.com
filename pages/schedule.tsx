@@ -396,6 +396,11 @@ function DailySchedule({
           const awayTeam = teams.find((team) => team.team_id === game.awayTeam);
           const homeTeam = teams.find((team) => team.team_id === game.homeTeam);
 
+          // If teams are not populated in Datablase yet, skip rendering game
+          if (awayTeam === undefined || homeTeam === undefined) {
+            return null;
+          }
+
           return (
             <Flex
               _last={{
