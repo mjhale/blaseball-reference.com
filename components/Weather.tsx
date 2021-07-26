@@ -18,6 +18,7 @@ import {
   GiStripedSun,
   GiBarbedSun,
   GiSunRadiations,
+  GiExplosiveMeeting,
 } from "react-icons/gi";
 import {
   WiMoonFull,
@@ -216,8 +217,8 @@ const WEATHERS: { [weatherId: number]: Weather } = {
   },
   26: {
     id: 26,
-    name: "???",
-    icon: GiHelp,
+    name: "Supernova Eclipse",
+    icon: GiExplosiveMeeting,
     background: "#36001b",
     color: "#ffc400",
   },
@@ -232,7 +233,7 @@ const WEATHERS: { [weatherId: number]: Weather } = {
     id: 28,
     name: "Jazz",
     icon: GiMusicSpell,
-    background: "#570b0b",
+    background: "#0f592f",
     color: "#000",
   },
   29: {
