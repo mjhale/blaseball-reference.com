@@ -233,7 +233,7 @@ export function commonBattingStatColumns(
           RBI
         </Tooltip>
       ),
-      Footer: (): number =>
+      Footer: (): string | null =>
         React.useMemo(
           () => roundNumber(summaryData?.stat?.runs_batted_in) ?? null,
           []
@@ -318,7 +318,7 @@ export function commonBattingStatColumns(
           BA
         </Tooltip>
       ),
-      Footer: (): number =>
+      Footer: (): string | null =>
         React.useMemo(
           () => roundNumber(summaryData?.stat?.batting_average, 3) ?? null,
           []

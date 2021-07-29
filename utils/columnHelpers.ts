@@ -192,9 +192,11 @@ export function getAggregateWinningPercentage(rows) {
 export function roundNumber(
   number: number | null,
   decimalPlaces = 2
-): number | null {
+): string | null {
   return number != null
-    ? Math.round((number + Number.EPSILON) * 10 ** decimalPlaces) /
-        10 ** decimalPlaces
+    ? Number(
+        Math.round((number + Number.EPSILON) * 10 ** decimalPlaces) /
+          10 ** decimalPlaces
+      ).toFixed(decimalPlaces)
     : null;
 }

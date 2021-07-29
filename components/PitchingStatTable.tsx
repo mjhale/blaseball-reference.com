@@ -215,7 +215,7 @@ export function commonPitchingStatColumns(
           R
         </Tooltip>
       ),
-      Footer: (): number =>
+      Footer: (): string | null =>
         React.useMemo(
           () => roundNumber(summaryData?.stat?.runs_allowed) ?? null,
           []
