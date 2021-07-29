@@ -1,6 +1,7 @@
 /* eslint-disable react/display-name */
 
 import * as React from "react";
+import { roundNumber } from "utils/columnHelpers";
 
 import { Cell, Column } from "react-table";
 import PlayerStats from "types/playerStats";
@@ -232,8 +233,13 @@ export function commonBattingStatColumns(
           RBI
         </Tooltip>
       ),
-      Footer: (): number =>
-        React.useMemo(() => summaryData?.stat?.runs_batted_in ?? null, []),
+      Footer: (): string | null =>
+        React.useMemo(
+          () => roundNumber(summaryData?.stat?.runs_batted_in) ?? null,
+          []
+        ),
+      Cell: ({ value }: Cell<StatSplit>) => roundNumber(value) ?? 0,
+      sortType: "basic",
     },
     {
       accessor: (row) => row.stat.stolen_bases,
@@ -312,9 +318,12 @@ export function commonBattingStatColumns(
           BA
         </Tooltip>
       ),
-      Footer: (): number =>
-        React.useMemo(() => summaryData?.stat?.batting_average ?? null, []),
-      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(3),
+      Footer: (): string | null =>
+        React.useMemo(
+          () => roundNumber(summaryData?.stat?.batting_average, 3) ?? null,
+          []
+        ),
+      Cell: ({ value }: Cell<StatSplit>) => roundNumber(value, 3) ?? 0,
       sortType: "basic",
     },
     {
@@ -335,7 +344,7 @@ export function commonBattingStatColumns(
           () => summaryData?.stat?.batting_average_risp ?? null,
           []
         ),
-      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(3),
+      Cell: ({ value }: Cell<StatSplit>) => Number(value).toFixed(3) ?? 0,
       sortType: "basic",
     },
     {
