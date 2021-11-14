@@ -154,6 +154,7 @@ export default function Navigation() {
             <MenuItem href="/leaders">Leaders</MenuItem>
             <MenuItem href="/standings">Standings</MenuItem>
             <MenuItem href="/schedule">Schedule</MenuItem>
+            <MenuItem href="/contribute">Contribute</MenuItem>
           </Box>
         </Flex>
       </Container>
