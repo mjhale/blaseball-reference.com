@@ -95,9 +95,9 @@ function SearchResults({
             </Heading>
             {searchResults[resultGroup].map((result) => (
               <Box key={result.objectID} py={1}>
-                <NextLink href={result.anchor} passHref>
-                  <Link>{result.title}</Link>
-                </NextLink>
+                <Link href={result.anchor} as={NextLink}>
+                  {result.title}
+                </Link>
               </Box>
             ))}
           </Box>

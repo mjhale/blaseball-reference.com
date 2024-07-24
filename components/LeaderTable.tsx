@@ -81,26 +81,22 @@ export default function LeaderTable({
                       >
                         {leader.rank}
                       </Text>
-                      <NextLink href={`/players/${leader.player_id}`} passHref>
-                        <Link>
-                          {leader.player_name}
-                          <VisuallyHidden>player information</VisuallyHidden>
-                        </Link>
-                      </NextLink>
+                      <Link href={`/players/${leader.player_id}`} as={NextLink}>
+                        {leader.player_name}
+                        <VisuallyHidden>player information</VisuallyHidden>
+                      </Link>
                       {leaderTeam ? (
                         <>
                           <Text as="span" ml={1}>
                             (
                           </Text>
-                          <NextLink
+                          <Link
                             href={`/teams/${leaderTeam.url_slug}`}
-                            passHref
+                            as={NextLink}
                           >
-                            <Link>
-                              {leaderTeam.team_abbreviation}
-                              <VisuallyHidden>team information</VisuallyHidden>
-                            </Link>
-                          </NextLink>
+                            {leaderTeam.team_abbreviation}
+                            <VisuallyHidden>team information</VisuallyHidden>
+                          </Link>
                           <Text as="span">)</Text>
                         </>
                       ) : null}

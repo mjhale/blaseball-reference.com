@@ -44,9 +44,9 @@ export default function TeamPlayerPitchingStatTable({
         ),
         Cell: ({ row, value }: Cell<any>) => {
           return row.original?.player?.id ? (
-            <NextLink href={`/players/${row.original.player.id}`} passHref>
-              <Link>{value}</Link>
-            </NextLink>
+            <Link href={`/players/${row.original.player.id}`} as={NextLink}>
+              {value}
+            </Link>
           ) : null;
         },
       },

@@ -15,7 +15,7 @@ export default function TeamCardList({ teams }: Props) {
   return (
     <Grid
       as={List}
-      gridGap="4"
+      gap="4"
       templateColumns={{
         base: "repeat(1, 1fr)",
         md: "repeat(2, 1fr)}",

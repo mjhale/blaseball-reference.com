@@ -50,11 +50,15 @@ function PreviewBuildWarning() {
       <AlertDescription>
         This is a subdomain intended for previewing unstable features. For the
         main website, visit{" "}
-        <NextLink href="https://blaseball-reference.com/" passHref>
-          <Link display="inline-block" isExternal textDecoration="underline">
-            www.blaseball-reference.com
-          </Link>
-        </NextLink>
+        <Link
+          href="https://blaseball-reference.com/"
+          as={NextLink}
+          display="inline-block"
+          isExternal
+          textDecoration="underline"
+        >
+          www.blaseball-reference.com
+        </Link>
         .
       </AlertDescription>
     </Alert>

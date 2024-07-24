@@ -439,16 +439,15 @@ function DailySchedule({
               >
                 {game.gameStart === true ? (
                   <>
-                    <NextLink
+                    <Link
                       href={`${process.env.NEXT_PUBLIC_REBLASE}/game/${game.id}`}
-                      passHref
+                      as={NextLink}
+                      isExternal
                     >
-                      <Link isExternal>
-                        {awayTeam.nickname} {game.awayScore},{" "}
-                        {homeTeam.nickname} {game.homeScore}
-                        <VisuallyHidden>view game in Reblase</VisuallyHidden>
-                      </Link>
-                    </NextLink>
+                      {awayTeam.nickname} {game.awayScore}, {homeTeam.nickname}{" "}
+                      {game.homeScore}
+                      <VisuallyHidden>view game in Reblase</VisuallyHidden>
+                    </Link>
                   </>
                 ) : null}
               </Box>
@@ -524,12 +523,10 @@ function TeamBlock({ team }: { team: Team }) {
             fontWeight="bold"
             whiteSpace="nowrap"
           >
-            <NextLink href={`/teams/${team.url_slug}/schedule`} passHref>
-              <Link>
-                {team.nickname}
-                <VisuallyHidden>season schedule</VisuallyHidden>
-              </Link>
-            </NextLink>
+            <Link href={`/teams/${team.url_slug}/schedule`} as={NextLink}>
+              {team.nickname}
+              <VisuallyHidden>season schedule</VisuallyHidden>
+            </Link>
           </Box>
         </Flex>
       </Box>

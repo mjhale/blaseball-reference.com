@@ -31,7 +31,7 @@ export default function BattingStatTable({
   );
 
   const columns = React.useMemo<
-    Column<StatSplit & { season: number; teamName?: typeof NextLink | null }>[]
+    Column<StatSplit & { season: number; teamName?: typeof Link | null }>[]
   >(
     () => [
       {
@@ -44,9 +44,9 @@ export default function BattingStatTable({
         ),
         Cell: ({ row, value }: Cell<StatSplit>) => {
           return row.original?.player?.id ? (
-            <NextLink href={`/players/${row.original.player.id}`} passHref>
-              <Link>{value}</Link>
-            </NextLink>
+            <Link href={`/players/${row.original.player.id}`} as={NextLink}>
+              {value}
+            </Link>
           ) : null;
         },
       },

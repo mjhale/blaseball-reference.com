@@ -38,26 +38,33 @@ export default function TeamDetails({ team, teamIsValidating }: Props) {
         Team Pages
       </Heading>
       <Flex mb={2}>
-        <NextLink href={`/teams/${router.query.teamSlug}`} passHref>
-          <Link fontSize="md" textDecoration="underline">
-            Player Stats
-          </Link>
-        </NextLink>
-        <Box mx={1}>-</Box>
-        <NextLink href={`/teams/${router.query.teamSlug}/schedule`} passHref>
-          <Link fontSize="md" textDecoration="underline">
-            Season Schedule
-          </Link>
-        </NextLink>
-        <Box mx={1}>-</Box>
-        <NextLink
-          href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI}/UUID:${team.team_id}`}
-          passHref
+        <Link
+          href={`/teams/${router.query.teamSlug}`}
+          as={NextLink}
+          fontSize="md"
+          textDecoration="underline"
         >
-          <Link fontSize="md" isExternal textDecoration="underline">
-            Blaseball Wiki
-          </Link>
-        </NextLink>
+          Player Stats
+        </Link>
+        <Box mx={1}>-</Box>
+        <Link
+          href={`/teams/${router.query.teamSlug}/schedule`}
+          as={NextLink}
+          fontSize="md"
+          textDecoration="underline"
+        >
+          Season Schedule
+        </Link>
+        <Box mx={1}>-</Box>
+        <Link
+          href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI}/UUID:${team.team_id}`}
+          as={NextLink}
+          fontSize="md"
+          isExternal
+          textDecoration="underline"
+        >
+          Blaseball Wiki
+        </Link>
       </Flex>
     </>
   );

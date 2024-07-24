@@ -64,9 +64,9 @@ export default function PlayerList({ players }: { players: Player[] }) {
                 {playersInAlphabeticGroup.map((player, index) => {
                   return (
                     <React.Fragment key={player.player_id}>
-                      <NextLink href={`players/${player.url_slug}`} passHref>
-                        <Link>{player.player_name}</Link>
-                      </NextLink>
+                      <Link href={`players/${player.url_slug}`} as={NextLink}>
+                        {player.player_name}
+                      </Link>
                       {player.deceased && (
                         // eslint-disable-next-line jsx-a11y/accessible-emoji
                         <Text

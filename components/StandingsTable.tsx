@@ -43,9 +43,9 @@ export default function StandingsTable({
           );
 
           return team ? (
-            <NextLink href={`/teams/${team.url_slug}`} passHref>
-              <Link>{value}</Link>
-            </NextLink>
+            <Link href={`/teams/${team.url_slug}`} as={NextLink}>
+              {value}
+            </Link>
           ) : null;
         },
       },

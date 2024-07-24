@@ -23,20 +23,20 @@ type MenuItemProps = {
 };
 
 const MenuItem = ({ children, href }: MenuItemProps) => (
-  <NextLink href={href} passHref>
-    <Link
-      _notLast={{
-        borderBottom: { base: "1px solid", md: "none" },
-        borderBottomColor: { base: "gray.200" },
-      }}
-      px={{ base: 6, md: 1 }}
-      py={{ base: 3, md: 2 }}
-      ml={{ md: 6 }}
-      display="block"
-    >
-      {children}
-    </Link>
-  </NextLink>
+  <Link
+    href={href}
+    as={NextLink}
+    _notLast={{
+      borderBottom: { base: "1px solid", md: "none" },
+      borderBottomColor: { base: "gray.200" },
+    }}
+    px={{ base: 6, md: 1 }}
+    py={{ base: 3, md: 2 }}
+    ml={{ md: 6 }}
+    display="block"
+  >
+    {children}
+  </Link>
 );
 
 export default function Navigation() {
@@ -65,36 +65,36 @@ export default function Navigation() {
             width={{ base: "100%", md: "auto" }}
           >
             <Heading as="h1" size="lg">
-              <NextLink href="/" passHref>
-                <Link
-                  _hover={{ textDecoration: "none" }}
-                  display="block"
-                  fontFamily="heading"
-                  lineHeight="0.9"
-                  textTransform="uppercase"
-                  textDecoration="none"
+              <Link
+                href="/"
+                as={NextLink}
+                _hover={{ textDecoration: "none" }}
+                display="block"
+                fontFamily="heading"
+                lineHeight="0.9"
+                textTransform="uppercase"
+                textDecoration="none"
+              >
+                <Text
+                  as="span"
+                  fontFamily="inherit"
+                  fontSize="4xl"
+                  fontWeight="bold"
+                  textTransform="inherit"
                 >
-                  <Text
-                    as="span"
-                    fontFamily="inherit"
-                    fontSize="4xl"
-                    fontWeight="bold"
-                    textTransform="inherit"
-                  >
-                    Blaseball
-                  </Text>
-                  <Text
-                    as="span"
-                    color="hsl(0, 100%, 50%)"
-                    display="block"
-                    fontFamily="inherit"
-                    fontSize="xl"
-                    textTransform="inherit"
-                  >
-                    Reference
-                  </Text>
-                </Link>
-              </NextLink>
+                  Blaseball
+                </Text>
+                <Text
+                  as="span"
+                  color="hsl(0, 100%, 50%)"
+                  display="block"
+                  fontFamily="inherit"
+                  fontSize="xl"
+                  textTransform="inherit"
+                >
+                  Reference
+                </Text>
+              </Link>
             </Heading>
             <Button
               aria-label={!isOpen ? "Open menu" : "Close menu"}

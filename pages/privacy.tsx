@@ -80,21 +80,6 @@ export default function PrivacyPolicy() {
                 .
               </ListItem>
               <ListItem>
-                Heap Analytics: Heap Analytics is an analytics service offered
-                by Heap, Inc., that tracks and reports website traffic. Heap
-                uses the data collected to track and monitor the use of our
-                website. For more information on the privacy practices of Heap,
-                please visit the{" "}
-                <Link
-                  href="https://heapanalytics.com/privacy"
-                  isExternal
-                  textDecoration="underline"
-                >
-                  Heap Privacy web page
-                </Link>
-                .
-              </ListItem>
-              <ListItem>
                 Logflare: Blaseball Reference uses Logflare to store logs
                 received from the Vercel cloud platform. These logs may contain
                 your IP address as well as pages visited. See{" "}

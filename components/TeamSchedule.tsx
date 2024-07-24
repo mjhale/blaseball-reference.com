@@ -354,7 +354,9 @@ function TeamDailySchedule({
                             key={game.id}
                           >
                             <Circle
-                              background={opposingTeam.team_main_color}
+                              background={
+                                opposingTeam?.team_main_color ?? "#000"
+                              }
                               border="1px solid"
                               borderColor="gray.500"
                               mb={2}
@@ -365,7 +367,10 @@ function TeamDailySchedule({
                                 fontSize={{ base: "sm", md: "2xl" }}
                                 role="img"
                               >
-                                {renderTeamEmoji(opposingTeam.team_emoji)}
+                                {/* Default to white question mark ornament for missing team data */}
+                                {opposingTeam
+                                  ? renderTeamEmoji(opposingTeam.team_emoji)
+                                  : renderTeamEmoji(0x2754)}
                               </Text>
                             </Circle>
                             <Box
@@ -376,32 +381,32 @@ function TeamDailySchedule({
                               {game.homeTeam === team.team_id ? (
                                 <>
                                   vs.{" "}
-                                  <NextLink
-                                    href={`/teams/${opposingTeam.url_slug}/schedule`}
-                                    passHref
-                                  >
-                                    <Link>
+                                  {opposingTeam ? (
+                                    <Link
+                                      href={`/teams/${opposingTeam.url_slug}/schedule`}
+                                      as={NextLink}
+                                    >
                                       {opposingTeam.nickname}{" "}
                                       <VisuallyHidden>
                                         team schedule
                                       </VisuallyHidden>
                                     </Link>
-                                  </NextLink>
+                                  ) : (
+                                    "?"
+                                  )}
                                 </>
                               ) : (
                                 <>
                                   @{" "}
-                                  <NextLink
-                                    href={`/teams/${opposingTeam.url_slug}/schedule`}
-                                    passHref
+                                  <Link
+                                    href={`/teams/${opposingTeam?.url_slug}/schedule`}
+                                    as={NextLink}
                                   >
-                                    <Link>
-                                      {opposingTeam.nickname}{" "}
-                                      <VisuallyHidden>
-                                        team schedule
-                                      </VisuallyHidden>
-                                    </Link>
-                                  </NextLink>
+                                    {opposingTeam?.nickname ?? "?"}{" "}
+                                    <VisuallyHidden>
+                                      team schedule
+                                    </VisuallyHidden>
+                                  </Link>
                                 </>
                               )}
                             </Box>
@@ -410,17 +415,16 @@ function TeamDailySchedule({
                                 <Text as="span" fontWeight="bold">
                                   {isWinningTeam ? "W" : "L"},{" "}
                                 </Text>
-                                <NextLink
+                                <Link
                                   href={`${process.env.NEXT_PUBLIC_REBLASE}/game/${game.id}`}
-                                  passHref
+                                  as={NextLink}
+                                  isExternal
                                 >
-                                  <Link isExternal>
-                                    {game.awayScore} - {game.homeScore}
-                                    <VisuallyHidden>
-                                      view game in Reblase
-                                    </VisuallyHidden>
-                                  </Link>
-                                </NextLink>
+                                  {game.awayScore} - {game.homeScore}
+                                  <VisuallyHidden>
+                                    view game in Reblase
+                                  </VisuallyHidden>
+                                </Link>
                               </Box>
                             ) : null}
                             {game.visibleOnSite || showForbiddenKnowledge ? (

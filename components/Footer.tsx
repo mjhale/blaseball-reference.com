@@ -70,9 +70,9 @@ export default function Footer() {
               -
             </ListItem>
             <ListItem display="inline" ml={1}>
-              <NextLink href="/privacy" passHref>
-                <Link textDecoration="underline">Privacy</Link>
-              </NextLink>
+              <Link href="/privacy" as={NextLink} textDecoration="underline">
+                Privacy
+              </Link>
             </ListItem>
           </List>
         </Box>
@@ -105,21 +105,6 @@ export default function Footer() {
             rel="nofollow"
           >
             <Image alt="Search by Algolia" src="/search-by-algolia.svg" />
-          </Link>
-          <Link
-            display="block"
-            href="https://heap.io/?utm_source=badge"
-            isExternal
-            mr={2}
-            rel="nofollow"
-          >
-            <Image
-              alt="Product analytics by Heap"
-              height="100%"
-              maxHeight="41px"
-              src="/heap-analytics.png"
-              width="108px"
-            />
           </Link>
           <Link
             display="block"

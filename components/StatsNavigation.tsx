@@ -65,13 +65,13 @@ function StatsNavigationLink({
   isActive,
 }: React.PropsWithChildren<StatsNavigationLinkProps>) {
   return (
-    <NextLink href={href} passHref>
-      <Link
-        color={isActive ? null : "gray.500"}
-        textDecoration={isActive ? "underline" : null}
-      >
-        {children}
-      </Link>
-    </NextLink>
+    <Link
+      href={href}
+      as={NextLink}
+      color={isActive ? null : "gray.500"}
+      textDecoration={isActive ? "underline" : null}
+    >
+      {children}
+    </Link>
   );
 }

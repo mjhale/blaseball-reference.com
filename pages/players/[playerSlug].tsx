@@ -185,9 +185,13 @@ function PlayerDetails({ player, team }: PlayerDetailsProps) {
         {team != null ? (
           <Text my={1}>
             Team:{" "}
-            <NextLink href={`/teams/${team.url_slug}`} passHref>
-              <Link textDecoration="underline">{team.full_name}</Link>
-            </NextLink>
+            <Link
+              href={`/teams/${team.url_slug}`}
+              as={NextLink}
+              textDecoration="underline"
+            >
+              {team.full_name}
+            </Link>
           </Text>
         ) : null}
 
@@ -220,14 +224,15 @@ function PlayerDetails({ player, team }: PlayerDetailsProps) {
         Player Pages
       </Heading>
       <Flex mb={2}>
-        <NextLink
+        <Link
           href={`${process.env.NEXT_PUBLIC_BLASEBALL_WIKI}/UUID:${player.player_id}`}
-          passHref
+          as={NextLink}
+          fontSize="md"
+          isExternal
+          textDecoration="underline"
         >
-          <Link fontSize="md" isExternal textDecoration="underline">
-            Blaseball Wiki
-          </Link>
-        </NextLink>
+          Blaseball Wiki
+        </Link>
       </Flex>
     </>
   );

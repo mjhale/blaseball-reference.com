@@ -7,7 +7,7 @@
 ### Prerequisites
 
 - Git
-- Node: any 12.x or 13.x version
+- Node: 16.14.0 minimum
 - Yarn
 - A fork of the repo, if you wish to contribute
 
@@ -61,5 +61,3 @@ We'd like to thank [Vercel](https://vercel.com/?utm_source=blaseball-reference-c
 [![Powered by Vercel](./public/powered-by-vercel.svg)](https://vercel.com/?utm_source=blaseball-reference-com&utm_campaign=oss)
 
 [![Search by Algolia](./public/search-by-algolia.svg)](https://algolia.com)
-
-[![Product analytics by Heap](./public/heap-analytics.png)](https://heap.io/?utm_source=badge)

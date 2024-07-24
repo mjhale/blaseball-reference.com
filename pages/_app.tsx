@@ -11,7 +11,11 @@ import { Chakra } from "components/Chakra";
 import { CSSReset } from "@chakra-ui/react";
 import Head from "next/head";
 
-export default function BRApp({ Component, pageProps }: AppProps) {
+interface BRPageProps {
+  cookies: string;
+}
+
+export default function BRApp({ Component, pageProps }: AppProps<BRPageProps>) {
   const DEPLOYMENT_ENV = process.env.NEXT_PUBLIC_DEPLOYMENT_ENV;
 
   return (
@@ -40,12 +44,6 @@ export default function BRApp({ Component, pageProps }: AppProps) {
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(r,a);for(var n=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],o=0;o<p.length;o++)heap[p[o]]=n(p[o])};
-              heap.load(${process.env.NEXT_PUBLIC_HEAP_IO_ID});`,
-          }}
-        />
         <meta
           key="og:image"
           property="og:image"

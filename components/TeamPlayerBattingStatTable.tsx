@@ -33,7 +33,7 @@ export default function TeamPlayerBattingStatTable({
   const teamData = teamBattingStats.splits[0];
 
   const columns = React.useMemo<
-    Column<StatSplit & { name: typeof NextLink | null }>[]
+    Column<StatSplit & { name: typeof Link | null }>[]
   >(
     () => [
       {
@@ -46,9 +46,9 @@ export default function TeamPlayerBattingStatTable({
         ),
         Cell: ({ row, value }: Cell<StatSplit>) => {
           return row.original?.player?.id ? (
-            <NextLink href={`/players/${row.original.player.id}`} passHref>
-              <Link>{value}</Link>
-            </NextLink>
+            <Link href={`/players/${row.original.player.id}`} as={NextLink}>
+              {value}
+            </Link>
           ) : null;
         },
       },
