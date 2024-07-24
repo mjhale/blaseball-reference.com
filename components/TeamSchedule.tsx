@@ -398,15 +398,19 @@ function TeamDailySchedule({
                               ) : (
                                 <>
                                   @{" "}
-                                  <Link
-                                    href={`/teams/${opposingTeam?.url_slug}/schedule`}
-                                    as={NextLink}
-                                  >
-                                    {opposingTeam?.nickname ?? "?"}{" "}
-                                    <VisuallyHidden>
-                                      team schedule
-                                    </VisuallyHidden>
-                                  </Link>
+                                  {opposingTeam ? (
+                                    <Link
+                                      href={`/teams/${opposingTeam.url_slug}/schedule`}
+                                      as={NextLink}
+                                    >
+                                      {opposingTeam.nickname}{" "}
+                                      <VisuallyHidden>
+                                        team schedule
+                                      </VisuallyHidden>
+                                    </Link>
+                                  ) : (
+                                    "?"
+                                  )}
                                 </>
                               )}
                             </Box>
