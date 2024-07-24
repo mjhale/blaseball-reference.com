@@ -30,13 +30,7 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
 
   const [selectedView, setSelectedView] = React.useState(null);
 
-  const {
-    data: team,
-    error: teamError,
-    isValidating: teamIsValidating,
-  } = useSWR(() => `/teams/${router.query.teamSlug}`, dbApiFetcher, {
-    initialData: props.team,
-  });
+  const { team } = props;
 
   const { data: playerStats, isValidating: playerStatsIsValidating } = useSWR(
     () =>
@@ -89,7 +83,7 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
     setSelectedView(evt.currentTarget.value);
   };
 
-  if (!router.isFallback && team == null && !teamIsValidating) {
+  if (!router.isFallback && team == null) {
     return <ErrorPage statusCode={404} />;
   }
 
@@ -116,53 +110,41 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
         />
       </Head>
       <Layout>
-        {teamError ? (
-          <Box>
-            Sorry, we're currently having a siesta and are unable to provide you
-            the latest team information.
-          </Box>
-        ) : (
-          <>
-            <TeamDetails team={team} teamIsValidating={teamIsValidating} />
-            <Box mb={2}>
-              <Heading as="h2" size="md">
-                Player Stats
-              </Heading>
-            </Box>
-            <SplitViewSelect
-              selectedView={selectedView}
-              handleSelectChange={handleSelectChange}
-            />
-            <TeamPlayerStatTables
-              playerStats={playerStats}
-              playerStatsIsValidating={playerStatsIsValidating}
-              playerPostseasonStats={playerPostseasonStats}
-              playerPostseasonStatsIsValidating={
-                playerPostseasonStatsIsValidating
-              }
-              selectedView={selectedView}
-              team={team}
-              teamIsValidating={teamIsValidating}
-              teamStats={teamStats}
-              teamStatsIsValidating={teamStatsIsValidating}
-              teamPostseasonStats={teamPostseasonStats}
-              teamPostseasonStatsIsValidating={teamPostseasonStatsIsValidating}
-            />
+        <TeamDetails team={team} />
+        <Box mb={2}>
+          <Heading as="h2" size="md">
+            Player Stats
+          </Heading>
+        </Box>
+        <SplitViewSelect
+          selectedView={selectedView}
+          handleSelectChange={handleSelectChange}
+        />
+        <TeamPlayerStatTables
+          playerStats={playerStats}
+          playerStatsIsValidating={playerStatsIsValidating}
+          playerPostseasonStats={playerPostseasonStats}
+          playerPostseasonStatsIsValidating={playerPostseasonStatsIsValidating}
+          selectedView={selectedView}
+          team={team}
+          teamStats={teamStats}
+          teamStatsIsValidating={teamStatsIsValidating}
+          teamPostseasonStats={teamPostseasonStats}
+          teamPostseasonStatsIsValidating={teamPostseasonStatsIsValidating}
+        />
 
-            <Flex justifyContent="center" mt={6}>
-              <ApiUsageHelper
-                apiCalls={[
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/config`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/teams/${router.query.teamSlug}`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team?.team_id}`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team?.team_id}`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team?.team_id}`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team?.team_id}`,
-                ]}
-              />
-            </Flex>
-          </>
-        )}
+        <Flex justifyContent="center" mt={6}>
+          <ApiUsageHelper
+            apiCalls={[
+              `${process.env.NEXT_PUBLIC_DATABLASE_API}/config`,
+              `${process.env.NEXT_PUBLIC_DATABLASE_API}/teams/${router.query.teamSlug}`,
+              `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team?.team_id}`,
+              `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team?.team_id}`,
+              `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team?.team_id}`,
+              `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team?.team_id}`,
+            ]}
+          />
+        </Flex>
       </Layout>
     </>
   );
@@ -175,7 +157,6 @@ type TeamPlayerStatTablesProps = {
   playerPostseasonStatsIsValidating: boolean;
   selectedView: string | null;
   team: Team;
-  teamIsValidating: boolean;
   teamStats: TeamPlayerStats[];
   teamStatsIsValidating: boolean;
   teamPostseasonStats: TeamPlayerStats[];
@@ -189,14 +170,13 @@ function TeamPlayerStatTables({
   playerPostseasonStatsIsValidating,
   selectedView,
   team,
-  teamIsValidating,
   teamStats,
   teamStatsIsValidating,
   teamPostseasonStats,
   teamPostseasonStatsIsValidating,
 }: TeamPlayerStatTablesProps) {
   if (
-    (team == null && !teamIsValidating) ||
+    team == null ||
     (!playerStats &&
       !playerStatsIsValidating &&
       !playerPostseasonStats &&
@@ -210,7 +190,7 @@ function TeamPlayerStatTables({
   }
 
   if (
-    (team == null && teamIsValidating) ||
+    team == null ||
     playerStatsIsValidating ||
     playerPostseasonStatsIsValidating ||
     teamStatsIsValidating ||

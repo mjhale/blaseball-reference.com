@@ -33,23 +33,7 @@ export default function TeamSchedulePage(props: Props) {
   const [seasonList, setSeasonList] = React.useState<number[]>([]);
   const [selectedSeason, setSelectedSeason] = React.useState<number>(null);
 
-  const { data: seasonStartDates } = useSWR(
-    "/seasonStartDates.json",
-    undefined,
-    {
-      initialData: props.seasonStartDates,
-    }
-  );
-  const { data: team, isValidating: teamIsValidating } = useSWR(
-    `/teams/${router.query.teamSlug}`,
-    dbApiFetcher,
-    {
-      initialData: props.team,
-    }
-  );
-  const { data: teams } = useSWR(`/teams`, dbApiFetcher, {
-    initialData: props.teams,
-  });
+  const { seasonStartDates, team, teams } = props;
 
   const { data: { data: schedule } = {}, isValidating: scheduleIsValidating } =
     useSWR<Chronicler<ChroniclerGame>>(
@@ -103,7 +87,7 @@ export default function TeamSchedulePage(props: Props) {
         />
       </Head>
       <Layout>
-        <TeamDetails team={team} teamIsValidating={teamIsValidating} />
+        <TeamDetails team={team} />
         <Heading as="h2" mb={4} size="md">
           Season Schedule
         </Heading>

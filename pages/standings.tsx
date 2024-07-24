@@ -1,11 +1,9 @@
 import apiFetcher, { dbApiFetcher } from "lib/api-fetcher";
-import useSWR from "swr";
-
 import { GetStaticProps } from "next";
 import Team from "types/team";
 
 import Head from "next/head";
-import { Box, Heading } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import Layout from "components/Layout";
 import Standings from "components/Standings";
 
@@ -16,25 +14,7 @@ type Props = {
 };
 
 export default function StandingsPage(props: Props) {
-  const { data: leaguesAndDivisions, error: leaguesAndDivisionsError } = useSWR(
-    "/leaguesAndDivisions.json",
-    undefined,
-    {
-      initialData: props.leaguesAndDivisions,
-    }
-  );
-
-  const { data: standings, error: standingsError } = useSWR(
-    "/standings/standings.json",
-    undefined,
-    {
-      initialData: props.standings,
-    }
-  );
-
-  const { data: teams, error: teamsError } = useSWR("/teams", dbApiFetcher, {
-    initialData: props.teams,
-  });
+  const { leaguesAndDivisions, standings, teams } = props;
 
   return (
     <>
@@ -55,13 +35,6 @@ export default function StandingsPage(props: Props) {
         <Heading as="h1" mb={4} size="lg">
           Blaseball Standings
         </Heading>
-        {standingsError || leaguesAndDivisionsError || teamsError ? (
-          <Box mb={4}>
-            {
-              "Sorry, we're currently having a siesta and couldn't load the latest standings."
-            }
-          </Box>
-        ) : null}
         <Standings
           leaguesAndDivisions={leaguesAndDivisions}
           standings={standings}

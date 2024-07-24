@@ -46,6 +46,8 @@ export default function SchedulePage(props: Props) {
   const [selectedSeason, setSelectedSeason] = React.useState<number>(null);
   const [selectedDay, setSelectedDay] = React.useState<number>(null);
 
+  const { teams } = props;
+
   const { data: { data: schedule } = {}, isValidating: scheduleIsValidating } =
     useSWR<Chronicler<ChroniclerGame>>(
       apiConfig != null
@@ -54,10 +56,6 @@ export default function SchedulePage(props: Props) {
           }&order=asc`
         : null
     );
-
-  const { data: teams } = useSWR<Team[]>("/teams", dbApiFetcher, {
-    initialData: props.teams,
-  });
 
   /**
    * Populate the season list with the Datablase API configuration response

@@ -35,9 +35,8 @@ export default function Standings({
   );
   const mostRecentSeason = () => sortedSeasonList[0];
 
-  const [selectedSeason, setSelectedSeason] = React.useState(
-    mostRecentSeason()
-  );
+  const [selectedSeason, setSelectedSeason] =
+    React.useState(mostRecentSeason());
   const [seasonList, setSeasonList] = React.useState(sortedSeasonList);
 
   React.useEffect(() => {

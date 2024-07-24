@@ -9,13 +9,12 @@ import TeamHistory from "components/TeamHistory";
 
 type Props = {
   team: Team | null;
-  teamIsValidating: boolean;
 };
 
-export default function TeamDetails({ team, teamIsValidating }: Props) {
+export default function TeamDetails({ team }: Props) {
   const router = useRouter();
 
-  if (team == null && teamIsValidating) {
+  if (team == null) {
     return (
       <>
         <Skeleton height="20px" mb={4} width="2xs" />

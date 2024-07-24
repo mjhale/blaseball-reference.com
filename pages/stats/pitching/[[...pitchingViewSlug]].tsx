@@ -48,7 +48,7 @@ export default function PitchingStats(props: PitchingStatsProps) {
         : null,
     dbApiFetcher,
     {
-      initialData: props.playerStats,
+      fallbackData: props.playerStats,
     }
   );
 

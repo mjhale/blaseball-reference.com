@@ -1,11 +1,9 @@
 import { dbApiFetcher } from "lib/api-fetcher";
 import { GetStaticProps } from "next";
-import useSWR from "swr";
 
 import Player from "types/player";
 
 import ApiUsageHelper from "components/ApiUsageHelper";
-import Error from "components/Error";
 import { Flex, Heading, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Layout from "components/Layout";
@@ -16,9 +14,7 @@ type Props = {
 };
 
 export default function PlayersPage(props: Props) {
-  const { data, error } = useSWR("/players", dbApiFetcher, {
-    initialData: props.players,
-  });
+  const { players } = props;
 
   return (
     <>
@@ -38,30 +34,22 @@ export default function PlayersPage(props: Props) {
         />
       </Head>
       <Layout>
-        {error != null ? (
-          <Error />
-        ) : (
-          <>
-            <Heading as="h1" size="lg">
-              Encyclopedia of Blaseball Players
-            </Heading>
+        <Heading as="h1" size="lg">
+          Encyclopedia of Blaseball Players
+        </Heading>
 
-            <Text>
-              Search the Blaseball encyclopedia of players by the first letter
-              of the player's last name.
-            </Text>
+        <Text>
+          Search the Blaseball encyclopedia of players by the first letter of
+          the player's last name.
+        </Text>
 
-            <PlayerList players={data} />
+        <PlayerList players={players} />
 
-            <Flex justifyContent="center" mt={6}>
-              <ApiUsageHelper
-                apiCalls={[
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/players`,
-                ]}
-              />
-            </Flex>
-          </>
-        )}
+        <Flex justifyContent="center" mt={6}>
+          <ApiUsageHelper
+            apiCalls={[`${process.env.NEXT_PUBLIC_DATABLASE_API}/players`]}
+          />
+        </Flex>
       </Layout>
     </>
   );

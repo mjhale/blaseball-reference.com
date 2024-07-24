@@ -48,7 +48,7 @@ export default function TeamHittingStats(props: TeamHittingStatsProps) {
         : null,
     dbApiFetcher,
     {
-      initialData: props.teamStats,
+      fallbackData: props.teamStats,
     }
   );
 
