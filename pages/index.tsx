@@ -1,4 +1,4 @@
-import apiFetcher, { dbApiFetcher } from "lib/api-fetcher";
+import { dbApiFetcher } from "lib/api-fetcher";
 import * as React from "react";
 
 import Player from "types/player";
@@ -8,60 +8,14 @@ import { Box, Heading, Text } from "@chakra-ui/react";
 import CommaSeparatedPlayerList from "components/CommaSeparatedPlayerList";
 import Head from "next/head";
 import Layout from "components/Layout";
-import UpcomingDates from "components/UpcomingDates";
-
-function sortPlayersByDebut(players: Player[]): Player[] {
-  const playersSortedByDebut: Player[] = Array.isArray(players)
-    ? [...players].sort((a, b) => {
-        const aDebutGame = a.debut_season * 1000 + a.debut_gameday;
-        const bDebutGame = b.debut_season * 1000 + b.debut_gameday;
-
-        return bDebutGame - aDebutGame;
-      })
-    : [];
-
-  return playersSortedByDebut;
-}
-
-function sortPlayersByIncineration(players: Player[]): Player[] {
-  const playersSortedByIncineration: Player[] = Array.isArray(players)
-    ? [...players]
-        .filter(
-          (player) =>
-            Number.isInteger(player.incineration_season) &&
-            Number.isInteger(player.incineration_gameday)
-        )
-        .sort((a, b) => {
-          const aIncinerationGame: number =
-            a.incineration_season * 1000 + a.incineration_gameday;
-          const bIncinerationGame: number =
-            b.incineration_season * 1000 + b.incineration_gameday;
-
-          return bIncinerationGame - aIncinerationGame;
-        })
-    : [];
-
-  return playersSortedByIncineration;
-}
 
 type IndexPageProps = {
-  players: Player[];
-  seasonStartDates: Record<string, string>;
+  deceasedPlayers: Player[];
+  recentPlayers: Player[];
 };
 
 export default function IndexPage(props: IndexPageProps) {
-  const { players, seasonStartDates } = props;
-
-  // @TODO: Fallback if `players` doesn't exist
-  const recentPlayerDebuts: Player[] = React.useMemo(
-    () => sortPlayersByDebut(players).slice(0, 15),
-    [players]
-  );
-
-  const recentPlayerIncinerations: Player[] = React.useMemo(
-    () => sortPlayersByIncineration(players),
-    [players]
-  );
+  const { deceasedPlayers, recentPlayers } = props;
 
   return (
     <>
@@ -93,21 +47,15 @@ export default function IndexPage(props: IndexPageProps) {
         </Box>
         <Box mb={4}>
           <Heading as="h2" mb={2} size="md">
-            Upcoming Dates
-          </Heading>
-          <UpcomingDates seasonStartDates={seasonStartDates} />
-        </Box>
-        <Box mb={4}>
-          <Heading as="h2" mb={2} size="md">
             Recent Debuts
           </Heading>
-          <CommaSeparatedPlayerList players={recentPlayerDebuts} />
+          <CommaSeparatedPlayerList players={recentPlayers} />
         </Box>
         <Box mb={4}>
           <Heading as="h2" mb={2} size="md">
             In Memoriam
           </Heading>
-          <CommaSeparatedPlayerList players={recentPlayerIncinerations} />
+          <CommaSeparatedPlayerList players={deceasedPlayers} />
         </Box>
       </Layout>
     </>
@@ -115,26 +63,29 @@ export default function IndexPage(props: IndexPageProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  let players = null;
-  let seasonStartDates = null;
+  let deceasedPlayers = null;
+  let recentPlayers = null;
 
   try {
-    players = await dbApiFetcher("/players");
+    deceasedPlayers = await dbApiFetcher(
+      "/players?fields=player_id,player_name,url_slug&playerPool=deceased&order=desc&sortField=incineration_season"
+    );
   } catch (error) {
     console.log(error);
   }
 
   try {
-    seasonStartDates = await apiFetcher("/seasonStartDates.json");
+    recentPlayers = await dbApiFetcher(
+      "/players?fields=player_id,player_name,url_slug&limit=50"
+    );
   } catch (error) {
     console.log(error);
   }
 
   return {
     props: {
-      players,
-      seasonStartDates,
+      deceasedPlayers,
+      recentPlayers,
     },
-    revalidate: 2700,
   };
 };

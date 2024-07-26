@@ -16,7 +16,7 @@ async function generate() {
     throw new Error("Missing environment variable for 'ALGOLIA_ADMIN_KEY'");
   }
 
-  const players = await apiFetcher("/players");
+  const players = await apiFetcher("/players?fields=player_id,player_name,url_slug,deceased");
   const teams = await apiFetcher("/teams");
 
   const client = algoliasearch(

@@ -47,7 +47,9 @@ export default function PlayersPage(props: Props) {
 
         <Flex justifyContent="center" mt={6}>
           <ApiUsageHelper
-            apiCalls={[`${process.env.NEXT_PUBLIC_DATABLASE_API}/players`]}
+            apiCalls={[
+              `${process.env.NEXT_PUBLIC_DATABLASE_API}/players?fields=player_id,player_name,url_slug,deceased`,
+            ]}
           />
         </Flex>
       </Layout>
@@ -59,7 +61,9 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   let players: Player[] | null = null;
 
   try {
-    players = await dbApiFetcher("/players");
+    players = await dbApiFetcher(
+      "/players?fields=player_id,player_name,url_slug,deceased"
+    );
   } catch (error) {
     console.log(error);
   }
@@ -69,6 +73,5 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       players,
       preview,
     },
-    revalidate: 2700,
   };
 };
