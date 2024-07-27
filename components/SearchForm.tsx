@@ -1,7 +1,7 @@
 import { getColor } from "@chakra-ui/theme-tools";
 import * as React from "react";
 import styled from "@emotion/styled";
-import useAlgoliaSearchResults from "hooks/useAlgoliaSearchResults";
+import useSearchResults from "hooks/useSearchResults";
 import { useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useTheme } from "@chakra-ui/react";
@@ -23,11 +23,9 @@ import {
   FormControl,
   FormLabel,
   Heading,
-  Image,
   Input,
   InputGroup,
   InputLeftElement,
-  Link,
   List,
   ListItem,
   Skeleton,
@@ -39,7 +37,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 export default function SearchForm() {
   const [hasSelected, setHasSelected] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("");
-  const [{ isLoading, results }, setSearchTerm] = useAlgoliaSearchResults();
+  const [{ isLoading, results }, setSearchTerm] = useSearchResults();
   const resultComboboxOptionData = React.useRef<{
     [name: string]: SearchRecord;
   }>({});
@@ -266,7 +264,7 @@ export default function SearchForm() {
                                       as={StyledComboboxOption}
                                       cursor="pointer"
                                       fontSize="sm"
-                                      key={result.objectID}
+                                      key={result.uuid}
                                       px={3}
                                       py={1}
                                       value={result.title}
@@ -279,25 +277,6 @@ export default function SearchForm() {
                         })}
                       </>
                     )}
-                    <Flex
-                      bgColor={comboListHeadingBackgroundColor}
-                      justifyContent="center"
-                    >
-                      <Link
-                        display="inlineBlock"
-                        href="https://algolia.com"
-                        isExternal
-                        tabIndex={-1}
-                      >
-                        <Image
-                          alt="Search by Algolia"
-                          height="16px"
-                          mb={2}
-                          mt={2}
-                          src="/search-by-algolia.svg"
-                        />
-                      </Link>
-                    </Flex>
                   </>
                 </ComboboxList>
               </ComboboxPopover>

@@ -1,4 +1,4 @@
-import useAlgoliaSearchResults from "hooks/useAlgoliaSearchResults";
+import useSearchResults from "hooks/useSearchResults";
 import * as React from "react";
 import { useRouter } from "next/router";
 
@@ -6,7 +6,7 @@ import { GetStaticProps } from "next";
 import Player from "types/player";
 import Team from "types/team";
 
-import { Box, Flex, Heading, Image, Link } from "@chakra-ui/react";
+import { Box, Heading, Link } from "@chakra-ui/react";
 import Head from "next/head";
 import NextLink from "next/link";
 import Layout from "components/Layout";
@@ -14,7 +14,7 @@ import Layout from "components/Layout";
 export default function SearchPage() {
   const router = useRouter();
   const [{ isError, isLoading, results }, setSearchTerm] =
-    useAlgoliaSearchResults();
+    useSearchResults();
 
   const searchTerm = String(router.query.searchTerm);
 
@@ -94,7 +94,7 @@ function SearchResults({
               {resultGroup}
             </Heading>
             {searchResults[resultGroup].map((result) => (
-              <Box key={result.objectID} py={1}>
+              <Box key={result.uuid} py={1}>
                 <Link href={result.anchor} as={NextLink}>
                   {result.title}
                 </Link>
@@ -103,15 +103,6 @@ function SearchResults({
           </Box>
         ))
       )}
-      <Flex justifyContent={{ base: "center", md: "flex-start" }} mt={6}>
-        <Link display="inlineBlock" href="https://algolia.com" isExternal>
-          <Image
-            alt="Search by Algolia"
-            height="16px"
-            src="/search-by-algolia.svg"
-          />
-        </Link>
-      </Flex>
     </>
   );
 }

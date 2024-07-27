@@ -66,20 +66,6 @@ export default function PrivacyPolicy() {
             analyze visitor traffic and usage behavior:
             <UnorderedList mt={2} spacing={2}>
               <ListItem>
-                Algolia: The search function on our website uses Algolia's
-                search technology services. If you use the search function, it
-                is necessary to transmit your IP address to Algolia. For more
-                information about how Algolia handles user data, see{" "}
-                <Link
-                  href="https://www.algolia.com/policies/privacy"
-                  isExternal
-                  textDecoration="underline"
-                >
-                  Algolia's privacy policy
-                </Link>
-                .
-              </ListItem>
-              <ListItem>
                 Logflare: Blaseball Reference uses Logflare to store logs
                 received from the Vercel cloud platform. These logs may contain
                 your IP address as well as pages visited. See{" "}

@@ -1,12 +1,55 @@
-import algoliasearch from "algoliasearch/lite";
 import useDebounce from "hooks/useDebounce";
 import * as React from "react";
+import fs from "flexsearch";
+import searchIndexJSON from "../lib/search-index.json";
 
 import Player from "types/player";
 import Team from "types/team";
 import SearchRecord from "types/searchRecord";
 
-export default function useAlgoliaSearchResults(): [
+function loadIndex(): [
+      {[index: string]: SearchRecord},
+      any,
+] {
+  // TODO cache this index probably
+  const index = new fs.Document({
+      id: "uuid",
+      index: [
+          {
+              field: "uuid",
+              tokenize: "strict",
+          },
+          {
+              field: "title",
+              tokenize: "forward",
+          },
+      ],
+  });
+  const indexRecords = {};
+  searchIndexJSON.p.forEach((record) => {
+      indexRecords[record[2]] = {
+          anchor: `/players/${record[0]}`,
+          title: record[1],
+          uuid: record[2],
+          type: 'players',
+      };
+  });
+  searchIndexJSON.t.forEach((record) => {
+      indexRecords[record[2]] = {
+          anchor: `/teams/${record[0]}`,
+          title: record[1],
+          uuid: record[2],
+          type: 'teams',
+      };
+  });
+  for (const key in indexRecords) {
+      index.add(indexRecords[key]);
+  }
+
+  return [indexRecords, index];
+}
+
+export default function useSearchResults(): [
   {
     isError: boolean;
     isLoading: boolean;
@@ -19,12 +62,9 @@ export default function useAlgoliaSearchResults(): [
   const [results, setResults] = React.useState({});
   const [searchTerm, setSearchTerm] = React.useState("");
 
-  const client = algoliasearch(
-    process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
-    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY
-  );
   const debouncedSearchTerm = useDebounce(searchTerm, 200);
-  const index = client.initIndex(process.env.NEXT_PUBLIC_ALGOLIA_INDEX);
+
+  const [indexRecords, index] = loadIndex();
 
   React.useEffect(() => {
     async function getSearchResults() {
@@ -35,9 +75,15 @@ export default function useAlgoliaSearchResults(): [
         setIsLoading(true);
 
         // Fetch autocomplete suggestion results and group into result types (i.e., players, teams)
-        await index.search(debouncedSearchTerm).then(
-          // @ts-expect-error: Argument not assignable error
-          ({ hits }: { hits: SearchRecord[] }) => {
+        await index.searchAsync(debouncedSearchTerm).then(
+          (results) => {
+            if (!results || results.length === 0) {
+                setResults({});
+                return;
+            };
+            const hits = results[0].result.map((r) => {
+                return indexRecords[r];
+            })
             const hitsGroupedByType = hits.reduce(
               (
                 acc: { [hitType: string]: SearchRecord[] },
