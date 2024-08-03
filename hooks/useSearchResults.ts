@@ -18,6 +18,8 @@ type IndexRecord = {
   type: "players" | "teams";
 };
 
+// Search index initialization strategy based in part on blog post by
+// Peter Bengtsson: https://hacks.mozilla.org/2021/08/mdns-autocomplete-search/
 function useSearchIndex(): readonly [
   null | SearchIndex,
   boolean,
