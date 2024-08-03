@@ -13,16 +13,21 @@ import Layout from "components/Layout";
 
 export default function SearchPage() {
   const router = useRouter();
-  const [{ isError, isLoading, results }, setSearchTerm] =
+  const [{ isError, isLoading, results }, setSearchTerm, setIsFocused] =
     useSearchResults();
 
-  const searchTerm = String(router.query.searchTerm);
+  const searchTerm = React.useMemo(
+    () => router.query?.searchTerm?.toString?.() ?? "",
+    [router.query?.searchTerm]
+  );
+
+  React.useEffect(() => setIsFocused(true), [setIsFocused]);
 
   React.useEffect(() => {
-    if (searchTerm != null) {
+    if (!isLoading && searchTerm !== "") {
       setSearchTerm(searchTerm);
     }
-  }, [searchTerm, setSearchTerm]);
+  }, [isLoading, searchTerm, setSearchTerm]);
 
   return (
     <>
@@ -45,15 +50,14 @@ export default function SearchPage() {
         <Heading as="h1" size="lg" mb={4}>
           Search Results
         </Heading>
-
-        {router.query?.searchTerm ? (
+        {searchTerm ? (
           <SearchResults
             isError={isError}
             isLoading={isLoading}
             searchResults={results}
           />
         ) : (
-          <Box>Please enter a search query.</Box>
+          <>Loading...</>
         )}
       </Layout>
     </>

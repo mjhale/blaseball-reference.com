@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fetch = require("@zeit/fetch-retry")(require("node-fetch"));
-const {writeFileSync} = require("fs");
+const { writeFileSync } = require("fs");
 
 async function apiFetcher(endpoint) {
   const res = await fetch(
@@ -13,6 +13,7 @@ async function apiFetcher(endpoint) {
 async function generate() {
   const players = await apiFetcher("/players?fields=player_id,player_name,url_slug,deceased");
   const teams = await apiFetcher("/teams");
+
   const indexRecords = {
     'p': [],
     't': [],
@@ -33,7 +34,8 @@ async function generate() {
       team.team_id,
     ]);
   }
-  writeFileSync("./lib/search-index.json", JSON.stringify(indexRecords))
+
+  writeFileSync("./public/data/search-index.json", JSON.stringify(indexRecords))
 }
 
 generate();

@@ -1,3 +1,4 @@
+import useDebounce from "hooks/useDebounce";
 import { getColor } from "@chakra-ui/theme-tools";
 import * as React from "react";
 import styled from "@emotion/styled";
@@ -37,12 +38,15 @@ import { SearchIcon } from "@chakra-ui/icons";
 export default function SearchForm() {
   const [hasSelected, setHasSelected] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("");
-  const [{ isLoading, results }, setSearchTerm] = useSearchResults();
+  const [{ isLoading, results }, setSearchTerm, setIsFocused] =
+    useSearchResults();
   const resultComboboxOptionData = React.useRef<{
     [name: string]: SearchRecord;
   }>({});
   const router = useRouter();
   const theme = useTheme();
+
+  const debouncedSearchTerm = useDebounce(inputValue, 200);
 
   // @TODO: Remove workarounds for Chakra / Combobox typing conflicts
   const ComboboxInput = ReachComboboxInput;
@@ -53,15 +57,17 @@ export default function SearchForm() {
     }
   `;
 
+  React.useEffect(() => {
+    if (inputValue.length > 2) {
+      setSearchTerm(debouncedSearchTerm);
+    }
+  }, [debouncedSearchTerm, inputValue, setSearchTerm]);
+
   function handleChange(evt: React.FormEvent<HTMLInputElement>): void {
     evt.preventDefault();
 
     const value = evt.currentTarget.value;
     setInputValue(value);
-
-    if (value.length >= 2) {
-      setSearchTerm(value);
-    }
   }
 
   function handleSelect(selectedItem: string): void {
@@ -150,7 +156,7 @@ export default function SearchForm() {
 
               <InputGroup>
                 <InputLeftElement>
-                  {isLoading ? (
+                  {isLoading && inputValue.length > 2 ? (
                     <CircularProgress
                       color={iconColor}
                       isIndeterminate
@@ -181,6 +187,8 @@ export default function SearchForm() {
                   inputMode="search"
                   name="searchTerm"
                   onChange={handleChange}
+                  onMouseOver={() => setIsFocused(true)}
+                  onFocus={() => setIsFocused(true)}
                   placeholder="Search players and teams"
                   selectOnClick={true}
                   value={inputValue}
@@ -188,7 +196,8 @@ export default function SearchForm() {
               </InputGroup>
             </FormControl>
 
-            {isLoading || Object.keys(results).length > 0 ? (
+            {(isLoading && inputValue.length > 2) ||
+            Object.keys(results).length > 0 ? (
               <ComboboxPopover
                 portal={false}
                 style={{ position: "relative", zIndex: 20 }}
@@ -208,7 +217,7 @@ export default function SearchForm() {
                   width="full"
                 >
                   <>
-                    {isLoading ? (
+                    {isLoading && inputValue.length > 2 ? (
                       <>
                         <Heading
                           as="h3"
