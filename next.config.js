@@ -47,8 +47,8 @@ module.exports = {
       },
     ];
   },
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && isServer) {
+  webpack: (config, { dev, isServer, nextRuntime }) => {
+    if (!dev && isServer && nextRuntime === 'nodejs') {
       const originalEntry = config.entry;
 
       config.entry = async () => {
