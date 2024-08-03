@@ -99,15 +99,6 @@ export default function Footer() {
         <Flex alignItems="center" justifyContent="center" mt={4}>
           <Link
             display="block"
-            href="https://algolia.com"
-            isExternal
-            mr={2}
-            rel="nofollow"
-          >
-            <Image alt="Search by Algolia" src="/search-by-algolia.svg" />
-          </Link>
-          <Link
-            display="block"
             href="https://vercel.com/?utm_source=blaseball-reference-com&utm_campaign=oss"
             isExternal
             rel="nofollow"

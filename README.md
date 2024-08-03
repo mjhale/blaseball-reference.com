@@ -56,8 +56,6 @@ To learn more about Next.js, take a look at the following resources:
 
 ## Project Sponsors
 
-We'd like to thank [Vercel](https://vercel.com/?utm_source=blaseball-reference-com&utm_campaign=oss), [Algolia](https://algolia.com), and [Heap.io](https://heap.io/?utm_source=badge) for supporting Blaseball Reference as well as the wider open source community.
+We'd like to thank [Vercel](https://vercel.com/?utm_source=blaseball-reference-com&utm_campaign=oss) for supporting Blaseball Reference as well as the wider open source community.
 
 [![Powered by Vercel](./public/powered-by-vercel.svg)](https://vercel.com/?utm_source=blaseball-reference-com&utm_campaign=oss)
-
-[![Search by Algolia](./public/search-by-algolia.svg)](https://algolia.com)
