@@ -4,10 +4,8 @@ import {
   getSplitViewFromSlugWithApiConfig,
   translateLeaderViewToSlug,
 } from "utils/slugHelpers";
-import { useApiConfigContext } from "context/ApiConfig";
 import * as React from "react";
 import { useRouter } from "next/router";
-import useSWR from "swr";
 
 import ApiConfig from "types/apiConfig";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -15,7 +13,7 @@ import PlayerStats from "types/playerStats";
 
 import ApiUsageHelper from "components/ApiUsageHelper";
 import BattingStatTable from "components/BattingStatTable";
-import { Box, Flex, Skeleton, Stack } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import Layout from "components/Layout";
@@ -24,57 +22,28 @@ import SplitViewSelect from "components/SplitViewSelect";
 
 type HittingStatsProps = {
   playerStats: PlayerStats[];
+  apiConfig: ApiConfig;
 };
 
 export default function HittingStats(props: HittingStatsProps) {
-  const apiConfig: ApiConfig = useApiConfigContext();
-  const [, setIsLoading] = React.useState(false);
+  const { apiConfig, playerStats } = props;
   const router = useRouter();
 
-  const leaderView = getSplitViewFromSlugWithApiConfig({
+  const splitView = getSplitViewFromSlugWithApiConfig({
     apiConfig,
     viewSlug: router.query.hittingViewSlug,
   });
-  const [selectedView, setSelectedView] = React.useState(leaderView);
-
-  const {
-    data: playerStats,
-    error: playerStatsError,
-    isValidating: playerStatsIsValidating,
-  } = useSWR(
-    () =>
-      selectedView != null
-        ? `/stats?group=hitting&type=seasonCombined&season=${selectedView}`
-        : null,
-    dbApiFetcher,
-    {
-      fallbackData: props.playerStats,
-    }
-  );
-
-  React.useEffect(() => {
-    if (apiConfig !== undefined) {
-      setSelectedView(leaderView);
-    }
-  }, [apiConfig, leaderView]);
-
-  React.useEffect(() => {
-    if (router.query.hittingViewSlug != null) {
-      setIsLoading(false);
-    }
-  }, [router.query.hittingViewSlug]);
+  const [selectedView, setSelectedView] = React.useState(splitView);
 
   const handleSelectChange = (
     evt: React.FormEvent<HTMLSelectElement>
   ): void => {
     evt.preventDefault();
     setSelectedView(evt.currentTarget.value);
-    setIsLoading(true);
-
     router.push(`/stats/${translateLeaderViewToSlug(evt.currentTarget.value)}`);
   };
 
-  if (!router.isFallback && playerStats == null && !playerStatsIsValidating) {
+  if (!router.isFallback && playerStats == null) {
     return <ErrorPage statusCode={404} />;
   }
 
@@ -94,36 +63,24 @@ export default function HittingStats(props: HittingStatsProps) {
         />
       </Head>
       <Layout>
-        {playerStatsError ? (
-          <Box>
-            Sorry, we're currently having a siesta and are unable to provide you
-            the requested data.
-          </Box>
-        ) : (
-          <>
-            <StatsNavigation group="player" statType="hitting" />
+        <StatsNavigation group="player" statType="hitting" />
 
-            <SplitViewSelect
-              handleSelectChange={handleSelectChange}
-              selectedView={selectedView}
-            />
+        <SplitViewSelect
+          apiConfig={apiConfig}
+          handleSelectChange={handleSelectChange}
+          selectedView={selectedView}
+        />
 
-            <StatsTable
-              playerStats={playerStats}
-              playerStatsIsValidating={playerStatsIsValidating}
-              selectedView={selectedView}
-            />
+        <StatsTable playerStats={playerStats} />
 
-            <Flex justifyContent="center" mt={6}>
-              <ApiUsageHelper
-                apiCalls={[
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/config`,
-                  `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=hitting&type=seasonCombined&season=${selectedView}`,
-                ]}
-              />
-            </Flex>
-          </>
-        )}
+        <Flex justifyContent="center" mt={6}>
+          <ApiUsageHelper
+            apiCalls={[
+              `${process.env.NEXT_PUBLIC_DATABLASE_API}/config`,
+              `${process.env.NEXT_PUBLIC_DATABLASE_API}/stats?group=hitting&type=seasonCombined&season=${splitView}`,
+            ]}
+          />
+        </Flex>
       </Layout>
     </>
   );
@@ -131,23 +88,11 @@ export default function HittingStats(props: HittingStatsProps) {
 
 type StatsTableProps = {
   playerStats: PlayerStats[];
-  playerStatsIsValidating: boolean;
-  selectedView: string | null;
 };
 
-function StatsTable({ playerStats, playerStatsIsValidating }: StatsTableProps) {
-  if (!playerStats && !playerStatsIsValidating) {
+function StatsTable({ playerStats }: StatsTableProps) {
+  if (!playerStats) {
     return null;
-  }
-
-  if (playerStatsIsValidating) {
-    return (
-      <Stack>
-        <Skeleton height="20px" />
-        <Skeleton height="20px" />
-        <Skeleton height="20px" />
-      </Stack>
-    );
   }
 
   const hittingStats: PlayerStats | null = playerStats
@@ -196,10 +141,10 @@ export const getStaticProps: GetStaticProps = async ({
 
   return {
     props: {
-      preview,
+      apiConfig,
       playerStats,
+      preview,
     },
-    revalidate: 2700,
   };
 };
 

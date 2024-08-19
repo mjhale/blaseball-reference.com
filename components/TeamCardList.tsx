@@ -8,10 +8,6 @@ type Props = {
 };
 
 export default function TeamCardList({ teams }: Props) {
-  // if (!teams) {
-  //   return "Loading...";
-  // }
-
   return (
     <Grid
       as={List}

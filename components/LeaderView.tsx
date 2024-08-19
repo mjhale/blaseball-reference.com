@@ -1,14 +1,12 @@
-import { useApiConfigContext } from "context/ApiConfig";
-
 import ApiConfig from "types/apiConfig";
 import { LeaderGroup } from "types/leader";
 import Team from "types/team";
 
 import LeaderTable from "components/LeaderTable";
-import { Heading, Grid, Skeleton, Stack } from "@chakra-ui/react";
+import { Heading, Grid } from "@chakra-ui/react";
 
 type Props = {
-  isLoading: boolean;
+  apiConfig: ApiConfig;
   leaders: LeaderGroup[];
   selectedView: string | null;
   teams: Team[];
@@ -16,23 +14,11 @@ type Props = {
 
 // A "view" contains data for "Career", "Season 1", "Season 2",  ..
 export default function LeaderView({
-  isLoading,
+  apiConfig,
   leaders,
   selectedView,
   teams,
 }: Props) {
-  const apiConfig: ApiConfig = useApiConfigContext();
-
-  if (
-    apiConfig == null ||
-    isLoading === true ||
-    selectedView === null ||
-    !leaders ||
-    !teams
-  ) {
-    return <LeaderTablesLoading />;
-  }
-
   const hittingGroup: LeaderGroup = leaders.find(
     (leaderGroup) => leaderGroup.statGroup === "hitting"
   );
@@ -96,15 +82,5 @@ export default function LeaderView({
         </>
       ) : null}
     </>
-  );
-}
-
-function LeaderTablesLoading() {
-  return (
-    <Stack>
-      <Skeleton height="20px" />
-      <Skeleton height="20px" />
-      <Skeleton height="20px" />
-    </Stack>
   );
 }

@@ -7,9 +7,7 @@ type SplitTypes =
   | "shame";
 
 export interface SeasonStandings {
-  [seasonNumber: string]: {
-    [divisionId: string]: Array<TeamStanding>;
-  };
+  [divisionId: string]: Array<TeamStanding>;
 }
 
 export interface TeamStanding {

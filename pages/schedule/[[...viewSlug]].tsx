@@ -1,16 +1,19 @@
 import buildSeasonList from "utils/buildSeasonList";
 import { dbApiFetcher } from "lib/api-fetcher";
+import {
+  getSplitViewFromSlugWithApiConfig,
+  translateLeaderViewToSlug,
+} from "utils/slugHelpers";
 import renderTeamEmoji from "utils/renderTeamEmoji";
 import * as React from "react";
-import { useApiConfigContext } from "context/ApiConfig";
+import { useRouter } from "next/router";
 import { useColorModeValue } from "@chakra-ui/react";
 import useForbiddenKnowledge from "hooks/useForbiddenKnowledge";
-import useSWR from "swr";
 
 import ApiConfig from "types/apiConfig";
 import Chronicler from "types/chronicler";
 import ChroniclerGame from "types/chroniclerGame";
-import { GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Team from "types/team";
 
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
@@ -34,28 +37,18 @@ import NextLink from "next/link";
 import { WeatherIcon, WeatherName } from "components/Weather";
 
 type Props = {
-  schedule: Chronicler<ChroniclerGame>;
+  apiConfig: ApiConfig;
+  schedule: ChroniclerGame[];
   teams: Team[];
 };
 
 export default function SchedulePage(props: Props) {
-  const apiConfig: ApiConfig = useApiConfigContext();
+  const { apiConfig, schedule, teams } = props;
 
   const [dayList, setDayList] = React.useState<number[]>([]);
   const [seasonList, setSeasonList] = React.useState<number[]>([]);
   const [selectedSeason, setSelectedSeason] = React.useState<number>(null);
   const [selectedDay, setSelectedDay] = React.useState<number>(null);
-
-  const { teams } = props;
-
-  const { data: { data: schedule } = {}, isValidating: scheduleIsValidating } =
-    useSWR<Chronicler<ChroniclerGame>>(
-      apiConfig != null
-        ? `${process.env.NEXT_PUBLIC_CHRONICLER_API}/v1/games?season=${
-            selectedSeason ?? apiConfig.seasons?.maxSeason
-          }&order=asc`
-        : null
-    );
 
   /**
    * Populate the season list with the Datablase API configuration response
@@ -123,10 +116,18 @@ export default function SchedulePage(props: Props) {
   return (
     <>
       <Head>
-        <title>Blaseball Schedule - Blaseball-Reference.com</title>
+        <title>
+          {selectedSeason == null
+            ? "Blaseball Schedule - Blaseball-Reference.com"
+            : `Blaseball Schedule for Season ${Number(selectedSeason) + 1}`}
+        </title>
         <meta
           property="og:title"
-          content="Blaseball Schedule - Blaseball-Reference.com"
+          content={
+            selectedSeason == null
+              ? "Blaseball Schedule - Blaseball-Reference.com"
+              : `Blaseball Schedule for Season ${Number(selectedSeason) + 1}`
+          }
           key="og:title"
         />
         <meta
@@ -141,7 +142,6 @@ export default function SchedulePage(props: Props) {
         </Heading>
         <ScheduleSelect
           dayList={dayList}
-          scheduleIsValidating={scheduleIsValidating}
           seasonList={seasonList}
           selectedDay={selectedDay}
           selectedSeason={selectedSeason}
@@ -150,7 +150,6 @@ export default function SchedulePage(props: Props) {
         />
         <DailySchedule
           schedule={schedule}
-          scheduleIsValidating={scheduleIsValidating}
           selectedDay={selectedDay}
           selectedSeason={selectedSeason}
           teams={teams}
@@ -163,7 +162,6 @@ export default function SchedulePage(props: Props) {
 
 type ScheduleSelectProps = {
   dayList: number[];
-  scheduleIsValidating: boolean;
   seasonList: number[];
   selectedDay: number | null;
   selectedSeason: number | null;
@@ -174,19 +172,22 @@ type ScheduleSelectProps = {
 function ScheduleSelect(props: ScheduleSelectProps) {
   const {
     dayList,
-    scheduleIsValidating,
     seasonList,
     selectedDay,
     selectedSeason,
     setSelectedDay,
     setSelectedSeason,
   } = props;
+  const router = useRouter();
 
   const handleSeasonSelectChange = (
     evt: React.FormEvent<HTMLSelectElement>
   ): void => {
     evt.preventDefault();
     setSelectedSeason(Number(evt.currentTarget.value));
+    router.push(
+      `/schedule/${translateLeaderViewToSlug(evt.currentTarget.value)}`
+    );
   };
 
   const handleDaySelectChange = (
@@ -208,7 +209,7 @@ function ScheduleSelect(props: ScheduleSelectProps) {
     }
   };
 
-  if (selectedSeason === null || selectedDay === null || scheduleIsValidating) {
+  if (selectedSeason === null || selectedDay === null) {
     return (
       <SeasonSelectLoading
         handleSeasonSelectChange={handleSeasonSelectChange}
@@ -336,13 +337,11 @@ function SeasonSelectLoading({
 
 function DailySchedule({
   schedule,
-  scheduleIsValidating,
   selectedDay,
   selectedSeason,
   teams,
 }: {
   schedule: ChroniclerGame[];
-  scheduleIsValidating: boolean;
   selectedDay: number;
   selectedSeason: number;
   teams: Team[];
@@ -357,7 +356,7 @@ function DailySchedule({
   );
   const secondaryFontColor = useColorModeValue("gray.600", "gray.400");
 
-  if (!schedule || !teams || scheduleIsValidating) {
+  if (!schedule || !teams) {
     return (
       <>
         <Skeleton height="20px" mb={4} width="2xs" />
@@ -532,19 +531,72 @@ function TeamBlock({ team }: { team: Team }) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  let teams = null;
+export const getStaticProps: GetStaticProps = async ({
+  params,
+  preview = false,
+}) => {
+  let apiConfig: ApiConfig | null = null;
+  let schedule: Chronicler<ChroniclerGame[]> | null = null;
+  let teams: Team[] | null = null;
 
   try {
-    teams = await dbApiFetcher("/teams");
+    apiConfig = await dbApiFetcher("/config");
+  } catch (error) {
+    console.log(error);
+  }
+
+  const splitView = getSplitViewFromSlugWithApiConfig({
+    apiConfig,
+    viewSlug:
+      params.viewSlug !== undefined ? String(params.viewSlug) : undefined,
+  });
+
+  try {
+    [teams, schedule] = await Promise.all([
+      dbApiFetcher("/teams"),
+      fetch(
+        `${process.env.NEXT_PUBLIC_CHRONICLER_API}/v1/games?season=${
+          splitView ?? apiConfig.seasons?.maxSeason
+        }&order=asc`
+      )
+        .then((r) => r.json())
+        .then((data) => data.data),
+    ]);
   } catch (error) {
     console.log(error);
   }
 
   return {
     props: {
+      apiConfig,
+      preview,
+      schedule,
       teams,
     },
-    revalidate: 14400,
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  let apiConfig: ApiConfig | null = null;
+
+  try {
+    apiConfig = await dbApiFetcher("/config");
+  } catch (error) {
+    console.log(error);
+  }
+
+  const minSeason =
+    apiConfig != null ? apiConfig.seasons?.minSeason : undefined;
+  const maxSeason =
+    apiConfig != null ? apiConfig.seasons?.maxSeason : undefined;
+  const seasonList = buildSeasonList({ minSeason, maxSeason });
+
+  const viewList = seasonList
+    ? seasonList.map((view) => translateLeaderViewToSlug(view))
+    : [];
+
+  return {
+    paths: ["/schedule", ...viewList.map((view) => `/schedule/${view}`)] || [],
+    fallback: false,
   };
 };

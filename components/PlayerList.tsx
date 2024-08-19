@@ -26,10 +26,6 @@ function groupPlayersByLastName(players: Player[]): {
 }
 
 export default function PlayerList({ players }: { players: Player[] }) {
-  if (!players) {
-    return <Box>Loading...</Box>;
-  }
-
   const playersGroupedByLastName = groupPlayersByLastName(players);
 
   return (

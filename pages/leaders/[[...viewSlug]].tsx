@@ -4,7 +4,6 @@ import {
   getSplitViewFromSlugWithApiConfig,
   translateLeaderViewToSlug,
 } from "utils/slugHelpers";
-import { useApiConfigContext } from "context/ApiConfig";
 import * as React from "react";
 import { useRouter } from "next/router";
 
@@ -15,22 +14,20 @@ import PlayerStats from "types/playerStats";
 import Team from "types/team";
 
 import ApiUsageHelper from "components/ApiUsageHelper";
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import Head from "next/head";
 import Layout from "components/Layout";
 import LeaderView from "components/LeaderView";
 import SplitViewSelect from "components/SplitViewSelect";
 
 type Props = {
+  apiConfig: ApiConfig;
   leaders: LeaderGroup[];
   teams: Team[];
 };
 
 export default function LeadersPage(props: Props) {
-  const { leaders, teams } = props;
-
-  const apiConfig: ApiConfig = useApiConfigContext();
-  const [isLoading, setIsLoading] = React.useState(false);
+  const { apiConfig, leaders, teams } = props;
   const router = useRouter();
 
   const leaderView = getSplitViewFromSlugWithApiConfig({
@@ -39,25 +36,11 @@ export default function LeadersPage(props: Props) {
   });
   const [selectedView, setSelectedView] = React.useState(leaderView);
 
-  React.useEffect(() => {
-    if (apiConfig !== undefined) {
-      setSelectedView(leaderView);
-    }
-  }, [apiConfig, leaderView]);
-
-  React.useEffect(() => {
-    if (router.query.viewSlug != null) {
-      setIsLoading(false);
-    }
-  }, [router.query.viewSlug]);
-
   const handleSelectChange = (
     evt: React.FormEvent<HTMLSelectElement>
   ): void => {
     evt.preventDefault();
     setSelectedView(evt.currentTarget.value);
-    setIsLoading(true);
-
     router.push(
       `/leaders/${translateLeaderViewToSlug(evt.currentTarget.value)}`
     );
@@ -66,10 +49,20 @@ export default function LeadersPage(props: Props) {
   return (
     <>
       <Head>
-        <title>Blaseball Leaders & Records - Blaseball-Reference.com</title>
+        <title>
+          {`${
+            isNaN(parseFloat(leaderView))
+              ? "Career Blaseball Leaders & Records"
+              : `Blaseball Leaders & Records for Season ${Number(leaderView) + 1}`
+          } - Blaseball-Reference.com`}
+        </title>
         <meta
           property="og:title"
-          content="Blaseball Leaders & Records - Blaseball-Reference.com"
+          content={`${
+            isNaN(parseFloat(leaderView))
+              ? "Career Blaseball Leaders & Records"
+              : `Blaseball Leaders & Records for Season ${Number(leaderView) + 1}`
+          } - Blaseball-Reference.com`}
           key="og:title"
         />
         <meta
@@ -83,22 +76,15 @@ export default function LeadersPage(props: Props) {
           Blaseball Stat Leaders
         </Heading>
 
-        {!leaders || !teams ? (
-          <Box mb={4}>
-            {
-              "Sorry, we're currently having a siesta and are unable to provide the latest stat leader information."
-            }
-          </Box>
-        ) : null}
-
         <SplitViewSelect
+          apiConfig={apiConfig}
           extraSelectOptions={[{ key: "career", content: "Career" }]}
           handleSelectChange={handleSelectChange}
           selectedView={selectedView}
         />
 
         <LeaderView
-          isLoading={isLoading}
+          apiConfig={apiConfig}
           leaders={leaders}
           selectedView={selectedView}
           teams={teams}
@@ -162,11 +148,11 @@ export const getStaticProps: GetStaticProps = async ({
 
   return {
     props: {
+      apiConfig,
       preview,
       leaders,
       teams,
     },
-    revalidate: 2700,
   };
 };
 

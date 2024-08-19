@@ -1,22 +1,13 @@
 import { dbApiFetcher } from "lib/api-fetcher";
 import { useRouter } from "next/router";
-import useSWR from "swr";
 
-// import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Player from "types/player";
 import PlayerStats from "types/playerStats";
 import Team from "types/team";
 
 import ApiUsageHelper from "components/ApiUsageHelper";
-import {
-  Box,
-  Heading,
-  Flex,
-  Link,
-  Skeleton,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Heading, Flex, Link, Text } from "@chakra-ui/react";
 import Error from "components/Error";
 import Head from "next/head";
 import Layout from "components/Layout";
@@ -24,66 +15,38 @@ import NextLink from "next/link";
 import PlayerBattingStatTable from "components/PlayerBattingStatTable";
 import PlayerPitchingStatTable from "components/PlayerPitchingStatTable";
 
-export default function PlayerPage() {
-  const router = useRouter();
+type Props = {
+  careerPostseasonStats: PlayerStats[];
+  careerStats: PlayerStats[];
+  player: Player | null;
+  postseasonStats: PlayerStats[];
+  stats: PlayerStats[];
+  team: Team | null;
+};
 
-  const { data: player, error: playerError } = useSWR(
-    router.query.playerSlug != null
-      ? `/players/${router.query.playerSlug}`
-      : null,
-    dbApiFetcher
-  );
-  const { data: stats, isValidating: isStatsValidating } = useSWR(
-    () =>
-      player !== undefined
-        ? `/stats?group=pitching,hitting&type=season&gameType=R&playerId=${player.player_id}`
-        : null,
-    dbApiFetcher
-  );
-  const { data: postseasonStats, isValidating: isPostseasonStatsValidating } =
-    useSWR(
-      () =>
-        player !== undefined
-          ? `/stats?group=pitching,hitting&type=season&gameType=P&playerId=${player.player_id}`
-          : null,
-      dbApiFetcher
-    );
-  const { data: careerStats, isValidating: isCareerStatsValidating } = useSWR(
-    () =>
-      player !== undefined
-        ? `/stats?group=pitching,hitting&type=career&gameType=R&playerId=${player.player_id}`
-        : null,
-    dbApiFetcher
-  );
+export default function PlayerPage(props: Props) {
   const {
-    data: careerPostseasonStats,
-    isValidating: isCareerPostseasonStatsValidating,
-  } = useSWR(
-    () =>
-      player !== undefined
-        ? `/stats?group=pitching,hitting&type=career&gameType=P&playerId=${player.player_id}`
-        : null,
-    dbApiFetcher
-  );
-  const { data: team } = useSWR(
-    () =>
-      player !== undefined && player.team_id != null
-        ? `/teams/${player.team_id}`
-        : null,
-    dbApiFetcher
-  );
+    careerPostseasonStats,
+    careerStats,
+    player,
+    postseasonStats,
+    stats,
+    team,
+  } = props;
+
+  const router = useRouter();
 
   return (
     <>
       <Head>
         <title>
-          {player != null ? player.player_name : "Player"} Stats -
-          Blaseball-Reference.com
+          {`${player?.player_name ?? "Player"} Stats -
+          Blaseball-Reference.com`}
         </title>
         <meta
           property="og:title"
           content={`${
-            player != null ? player.player_name : "Player"
+            player?.player_name ?? "Player"
           } Stats - Blaseball-Reference.com`}
           key="og:title"
         />
@@ -91,28 +54,22 @@ export default function PlayerPage() {
           name="description"
           property="og:description"
           content={`${
-            player != null ? player.player_name : "Player"
+            player?.player_name ?? "Player"
           } history and position statistics in Blaseball.`}
         />
       </Head>
       <Layout>
-        {playerError != null ? (
-          <Error type={playerError?.status} />
+        {player === null ? (
+          <Error />
         ) : (
           <>
             <PlayerDetails player={player} team={team} />
             <PlayerStatTables
-              stats={stats}
-              isStatsValidating={isStatsValidating}
-              postseasonStats={postseasonStats}
-              isPostseasonStatsValidating={isPostseasonStatsValidating}
-              careerStats={careerStats}
-              isCareerStatsValidating={isCareerStatsValidating}
               careerPostseasonStats={careerPostseasonStats}
-              isCareerPostseasonStatsValidating={
-                isCareerPostseasonStatsValidating
-              }
+              careerStats={careerStats}
               player={player}
+              postseasonStats={postseasonStats}
+              stats={stats}
             />
 
             <Flex justifyContent="center" mt={6}>
@@ -136,23 +93,10 @@ export default function PlayerPage() {
 
 type PlayerDetailsProps = {
   player: Player;
-  team: Team;
+  team: Team | null;
 };
 
 function PlayerDetails({ player, team }: PlayerDetailsProps) {
-  if (player == null) {
-    return (
-      <>
-        <Skeleton height="40px" mb={4} width="2xs" />
-        <Stack>
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-        </Stack>
-      </>
-    );
-  }
-
   return (
     <>
       <Heading as="h1" size="lg">
@@ -169,20 +113,7 @@ function PlayerDetails({ player, team }: PlayerDetailsProps) {
       </Heading>
 
       <Box fontSize="sm" mt={2} mb={4}>
-        {/* @TODO: Re-add aliases once database API provides them
-         {player.aliases.length > 0 ? (
-          <Text my={1}>
-            Aliases:{" "}
-            {player.aliases.map((alias, index) => (
-              <Fragment key={index}>
-                {alias}
-                {index < player.aliases.length - 1 && ", "}
-              </Fragment>
-            ))}
-          </Text>
-        ) : null} */}
-
-        {team != null ? (
+        {team !== null ? (
           <Text my={1}>
             Team:{" "}
             <Link
@@ -239,62 +170,22 @@ function PlayerDetails({ player, team }: PlayerDetailsProps) {
 }
 
 type PlayerStatTablesProps = {
-  stats: PlayerStats[];
-  isStatsValidating: boolean;
-  postseasonStats: PlayerStats[];
-  isPostseasonStatsValidating: boolean;
-  careerStats: PlayerStats[];
-  isCareerStatsValidating: boolean;
-  careerPostseasonStats: PlayerStats[];
-  isCareerPostseasonStatsValidating: boolean;
+  stats: PlayerStats[] | null;
+  postseasonStats: PlayerStats[] | null;
+  careerStats: PlayerStats[] | null;
+  careerPostseasonStats: PlayerStats[] | null;
   player: Player;
 };
 
 function PlayerStatTables({
-  stats,
-  isStatsValidating,
-  postseasonStats,
-  isPostseasonStatsValidating,
-  careerStats,
-  isCareerStatsValidating,
   careerPostseasonStats,
-  isCareerPostseasonStatsValidating,
+  careerStats,
   player,
+  postseasonStats,
+  stats,
 }: PlayerStatTablesProps) {
-  if (
-    !stats &&
-    !postseasonStats &&
-    !careerStats &&
-    !careerPostseasonStats &&
-    !isStatsValidating &&
-    !isPostseasonStatsValidating
-  ) {
+  if (!stats && !postseasonStats && !careerStats && !careerPostseasonStats) {
     return null;
-  }
-
-  if (
-    isStatsValidating ||
-    isPostseasonStatsValidating ||
-    isCareerStatsValidating ||
-    isCareerPostseasonStatsValidating
-  ) {
-    return (
-      <>
-        <Skeleton height="20px" mb={4} width="2xs" />
-        <Stack mb={4}>
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-        </Stack>
-
-        <Skeleton height="20px" mb={4} width="2xs" />
-        <Stack>
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-        </Stack>
-      </>
-    );
   }
 
   const battingStats: PlayerStats | null = stats
@@ -373,54 +264,83 @@ function PlayerStatTables({
   );
 }
 
-// export const getStaticProps: GetStaticProps = async ({
-//   params,
-//   preview = false,
-// }) => {
-//   let player: Player | null = null;
-//   let team: Team | null = null;
+export const getStaticProps: GetStaticProps = async ({
+  params,
+  preview = false,
+}) => {
+  let player: Player | null = null;
+  let team: Team | null = null;
+  let stats: PlayerStats[] = null;
+  let postseasonStats: PlayerStats[] = null;
+  let careerStats: PlayerStats[] = null;
+  let careerPostseasonStats: PlayerStats[] = null;
 
-//   try {
-//     player = await dbApiFetcher(`/players/${params.playerSlug}`);
-//   } catch (error) {
-//     console.log(error);
-//   }
+  try {
+    player = await dbApiFetcher(`/players/${params.playerSlug}`);
+  } catch (error) {
+    console.log(error);
+  }
 
-//   try {
-//     if (player?.team_id != null) {
-//       team = await dbApiFetcher(`/teams/${player.team_id}`);
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
+  try {
+    if (player?.team_id != null) {
+      team = await dbApiFetcher(`/teams/${player.team_id}`);
+    }
+  } catch (error) {
+    console.log(error);
+  }
 
-//   return {
-//     props: {
-//       player,
-//       preview,
-//       team,
-//     },
-//     revalidate: 2700,
-//   };
-// };
+  try {
+    if (player?.player_id != null) {
+      [stats, postseasonStats, careerStats, careerPostseasonStats] =
+        await Promise.all([
+          dbApiFetcher(
+            `/stats?group=pitching,hitting&type=season&gameType=R&playerId=${player.player_id}`
+          ),
+          dbApiFetcher(
+            `/stats?group=pitching,hitting&type=season&gameType=P&playerId=${player.player_id}`
+          ),
+          dbApiFetcher(
+            `/stats?group=pitching,hitting&type=career&gameType=R&playerId=${player.player_id}`
+          ),
+          dbApiFetcher(
+            `/stats?group=pitching,hitting&type=career&gameType=P&playerId=${player.player_id}`
+          ),
+        ]);
+    }
+  } catch (error) {
+    console.log(error);
+  }
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   let players: Player[] | undefined;
+  return {
+    props: {
+      careerPostseasonStats,
+      careerStats,
+      player,
+      postseasonStats,
+      preview,
+      stats,
+      team,
+    },
+  };
+};
 
-//   try {
-//     players = await dbApiFetcher("/players");
-//   } catch (error) {
-//     console.log(error);
-//   }
+export const getStaticPaths: GetStaticPaths = async () => {
+  let players: Player[] | undefined;
 
-//   const playerPaths = players
-//     .filter((player) =>
-//       player ? Object.prototype.hasOwnProperty.call(player, "url_slug") : false
-//     )
-//     .map((player) => `/players/${player.url_slug}`);
+  try {
+    players = await dbApiFetcher("/players?fields=url_slug");
+  } catch (error) {
+    console.log(error);
+  }
 
-//   return {
-//     paths: playerPaths || [],
-//     fallback: true,
-//   };
-// };
+  const playerPaths = players
+    .filter((player) =>
+      player ? Object.prototype.hasOwnProperty.call(player, "url_slug") : false
+    )
+    .map((player) => `/players/${player.url_slug}`);
+
+  return {
+    paths: playerPaths || [],
+    fallback: false,
+  };
+};

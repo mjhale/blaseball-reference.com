@@ -1,8 +1,7 @@
 import { dbApiFetcher } from "lib/api-fetcher";
-import { useApiConfigContext } from "context/ApiConfig";
 import * as React from "react";
 import { useRouter } from "next/router";
-import useSWR from "swr";
+import { translateLeaderViewToSlug } from "utils/slugHelpers";
 
 import ApiConfig from "types/apiConfig";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -11,7 +10,7 @@ import Team from "types/team";
 import TeamPlayerStats from "types/teamPlayerStats";
 
 import ApiUsageHelper from "components/ApiUsageHelper";
-import { Box, Flex, Heading, Skeleton, Stack } from "@chakra-ui/react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
 import ErrorPage from "next/error";
 import Head from "next/head";
 import Layout from "components/Layout";
@@ -21,69 +20,40 @@ import TeamPlayerPitchingStatTable from "components/TeamPlayerPitchingStatTable"
 import SplitViewSelect from "components/SplitViewSelect";
 
 type TeamDetailsAndStatsProps = {
+  apiConfig: ApiConfig;
+  playerStats: PlayerStats[];
+  playerPostseasonStats: PlayerStats[];
   team: Team;
+  teamStats: TeamPlayerStats[];
+  teamPostseasonStats: TeamPlayerStats[];
 };
 
 export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
-  const apiConfig: ApiConfig = useApiConfigContext();
+  const {
+    apiConfig,
+    playerStats,
+    playerPostseasonStats,
+    team,
+    teamStats,
+    teamPostseasonStats,
+  } = props;
   const router = useRouter();
 
   const [selectedView, setSelectedView] = React.useState(null);
-
-  const { team } = props;
-
-  const { data: playerStats, isValidating: playerStatsIsValidating } = useSWR(
-    () =>
-      selectedView && team
-        ? `/stats?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team.team_id}`
-        : null,
-    dbApiFetcher
-  );
-
-  const {
-    data: playerPostseasonStats,
-    isValidating: playerPostseasonStatsIsValidating,
-  } = useSWR(
-    () =>
-      selectedView && team
-        ? `/stats?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team.team_id}`
-        : null,
-    dbApiFetcher
-  );
-
-  const { data: teamStats, isValidating: teamStatsIsValidating } = useSWR(
-    () =>
-      selectedView && team
-        ? `/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&teamId=${team.team_id}`
-        : null,
-    dbApiFetcher
-  );
-
-  const {
-    data: teamPostseasonStats,
-    isValidating: teamPostseasonStatsIsValidating,
-  } = useSWR(
-    () =>
-      selectedView && team
-        ? `/stats/teams?group=hitting,pitching&type=season&season=${selectedView}&gameType=P&teamId=${team.team_id}`
-        : null,
-    dbApiFetcher
-  );
-
-  React.useEffect(() => {
-    if (apiConfig !== undefined) {
-      setSelectedView(apiConfig.seasons?.maxSeason);
-    }
-  }, [apiConfig]);
 
   const handleSelectChange = (
     evt: React.FormEvent<HTMLSelectElement>
   ): void => {
     evt.preventDefault();
     setSelectedView(evt.currentTarget.value);
+    router.push(
+      `/teams/${router.query.teamSlug}/stats/${translateLeaderViewToSlug(
+        evt.currentTarget.value
+      )}`
+    );
   };
 
-  if (!router.isFallback && team == null) {
+  if (team == null) {
     return <ErrorPage statusCode={404} />;
   }
 
@@ -91,8 +61,7 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
     <>
       <Head>
         <title>
-          {team != null ? team.full_name : "Team"} Stats -
-          Blaseball-Reference.com
+          {`${team != null ? team.full_name : "Team"} Stats - Blaseball-Reference.com`}
         </title>
         <meta
           property="og:title"
@@ -117,20 +86,17 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
           </Heading>
         </Box>
         <SplitViewSelect
+          apiConfig={apiConfig}
           selectedView={selectedView}
           handleSelectChange={handleSelectChange}
         />
         <TeamPlayerStatTables
           playerStats={playerStats}
-          playerStatsIsValidating={playerStatsIsValidating}
           playerPostseasonStats={playerPostseasonStats}
-          playerPostseasonStatsIsValidating={playerPostseasonStatsIsValidating}
           selectedView={selectedView}
           team={team}
           teamStats={teamStats}
-          teamStatsIsValidating={teamStatsIsValidating}
           teamPostseasonStats={teamPostseasonStats}
-          teamPostseasonStatsIsValidating={teamPostseasonStatsIsValidating}
         />
 
         <Flex justifyContent="center" mt={6}>
@@ -152,57 +118,29 @@ export default function TeamDetailsAndStats(props: TeamDetailsAndStatsProps) {
 
 type TeamPlayerStatTablesProps = {
   playerStats: PlayerStats[];
-  playerStatsIsValidating: boolean;
   playerPostseasonStats: PlayerStats[];
-  playerPostseasonStatsIsValidating: boolean;
   selectedView: string | null;
   team: Team;
   teamStats: TeamPlayerStats[];
-  teamStatsIsValidating: boolean;
   teamPostseasonStats: TeamPlayerStats[];
-  teamPostseasonStatsIsValidating: boolean;
 };
 
 function TeamPlayerStatTables({
   playerStats,
-  playerStatsIsValidating,
   playerPostseasonStats,
-  playerPostseasonStatsIsValidating,
   selectedView,
   team,
   teamStats,
-  teamStatsIsValidating,
   teamPostseasonStats,
-  teamPostseasonStatsIsValidating,
 }: TeamPlayerStatTablesProps) {
   if (
     team == null ||
     (!playerStats &&
-      !playerStatsIsValidating &&
       !playerPostseasonStats &&
-      !playerPostseasonStatsIsValidating &&
       !teamStats &&
-      !teamStatsIsValidating &&
-      !teamPostseasonStats &&
-      !teamPostseasonStatsIsValidating)
+      !teamPostseasonStats)
   ) {
     return null;
-  }
-
-  if (
-    team == null ||
-    playerStatsIsValidating ||
-    playerPostseasonStatsIsValidating ||
-    teamStatsIsValidating ||
-    teamPostseasonStatsIsValidating
-  ) {
-    return (
-      <Stack>
-        <Skeleton height="20px" />
-        <Skeleton height="20px" />
-        <Skeleton height="20px" />
-      </Stack>
-    );
   }
 
   const battingStats: PlayerStats | null = playerStats
@@ -284,6 +222,19 @@ export const getStaticProps: GetStaticProps = async ({
   preview = false,
 }) => {
   let team: Team | null = null;
+  let maxSeason: number;
+  let apiConfig: ApiConfig | null = null;
+  let playerStats: PlayerStats[] | null = null;
+  let playerPostseasonStats: PlayerStats[] | null = null;
+  let teamStats: TeamPlayerStats[] | null = null;
+  let teamPostseasonStats: TeamPlayerStats[] | null = null;
+
+  try {
+    apiConfig = await dbApiFetcher("/config");
+    maxSeason = apiConfig.seasons?.maxSeason;
+  } catch (error) {
+    console.log(error);
+  }
 
   try {
     team = await dbApiFetcher(`/teams/${params.teamSlug}`);
@@ -291,17 +242,43 @@ export const getStaticProps: GetStaticProps = async ({
     console.log(error);
   }
 
+  try {
+    if (team?.team_id != null && maxSeason != null) {
+      [playerStats, playerPostseasonStats, teamStats, teamPostseasonStats] =
+        await Promise.all([
+          dbApiFetcher(
+            `/stats?group=hitting,pitching&type=season&season=${maxSeason}&teamId=${team.team_id}`
+          ),
+          dbApiFetcher(
+            `/stats?group=hitting,pitching&type=season&season=${maxSeason}&gameType=P&teamId=${team.team_id}`
+          ),
+          dbApiFetcher(
+            `/stats/teams?group=hitting,pitching&type=season&season=${maxSeason}&teamId=${team.team_id}`
+          ),
+          dbApiFetcher(
+            `/stats/teams?group=hitting,pitching&type=season&season=${maxSeason}&gameType=P&teamId=${team.team_id}`
+          ),
+        ]);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
   return {
     props: {
-      team,
+      apiConfig,
+      playerStats,
+      playerPostseasonStats,
       preview,
+      team,
+      teamStats,
+      teamPostseasonStats,
     },
-    revalidate: 2700,
   };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  let teams: Team[] = null;
+  let teams: Team[] | null = null;
 
   try {
     teams = await dbApiFetcher("/teams");
@@ -314,6 +291,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
       Array.isArray(teams) && teams.length > 0
         ? teams.map((team) => `/teams/${team.url_slug}`)
         : [],
-    fallback: true,
+    fallback: false,
   };
 };

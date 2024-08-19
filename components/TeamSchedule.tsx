@@ -16,8 +16,6 @@ import {
   Heading,
   Link,
   SimpleGrid,
-  Skeleton,
-  Stack,
   Square,
   Text,
   VisuallyHidden,
@@ -30,7 +28,6 @@ import { WeatherIcon, WeatherName } from "components/Weather";
 
 type TeamScheduleProps = {
   schedule: ChroniclerGame[];
-  scheduleIsValidating: boolean;
   seasonStartDates: SeasonStartDates;
   selectedSeason: number;
   team: Team;
@@ -39,7 +36,6 @@ type TeamScheduleProps = {
 
 export default function TeamSchedule({
   schedule,
-  scheduleIsValidating,
   seasonStartDates,
   selectedSeason,
   team,
@@ -61,7 +57,6 @@ export default function TeamSchedule({
    *  */
   const seasonScheduleByDate = React.useMemo(() => {
     if (
-      scheduleIsValidating ||
       schedule == null ||
       selectedSeason == null ||
       seasonStartDates == null
@@ -199,16 +194,7 @@ export default function TeamSchedule({
     }
 
     return gamesByDay;
-  }, [scheduleIsValidating, seasonStartDates, selectedSeason, schedule]);
-
-  if (
-    scheduleIsValidating ||
-    seasonScheduleByDate == null ||
-    team == null ||
-    teams == null
-  ) {
-    return <TeamDailyScheduleLoading />;
-  }
+  }, [seasonStartDates, selectedSeason, schedule]);
 
   return (
     <>
@@ -220,26 +206,6 @@ export default function TeamSchedule({
       />
       <TeamDailyScheduleKey team={team} />
       <ForbiddenKnowledgeToggle />
-    </>
-  );
-}
-
-function TeamDailyScheduleLoading() {
-  return (
-    <>
-      <Flex mb={4}>
-        <Skeleton
-          startColor="gray.500"
-          endColor="black"
-          height={6}
-          width={20}
-        />
-      </Flex>
-      <Stack>
-        <Skeleton height="20px" />
-        <Skeleton height="20px" />
-        <Skeleton height="20px" />
-      </Stack>
     </>
   );
 }

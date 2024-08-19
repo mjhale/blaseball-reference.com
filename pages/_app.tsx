@@ -6,7 +6,6 @@ import "@reach/skip-nav/styles.css";
 
 import { GetServerSideProps } from "next";
 
-import { ApiConfigWrapper } from "context/ApiConfig";
 import { Chakra } from "components/Chakra";
 import { CSSReset } from "@chakra-ui/react";
 import Head from "next/head";
@@ -62,9 +61,7 @@ export default function BRApp({ Component, pageProps }: AppProps<BRPageProps>) {
             shouldRetryOnError: false,
           }}
         >
-          <ApiConfigWrapper>
-            <Component {...pageProps} />
-          </ApiConfigWrapper>
+          <Component {...pageProps} />
         </SWRConfig>
       </Chakra>
     </>
