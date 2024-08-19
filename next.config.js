@@ -9,36 +9,35 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-  // @TODO: Re-add support for UUID redirects
   // Build redirect lists for player IDs and team IDs
-  // redirects: async () => {
-  //   const players = await getPlayers();
-  //   const playerRedirects = players.map((player) => {
-  //     return {
-  //       source: `/players/${player.player_id}`,
-  //       destination: `/players/${player.url_slug}`,
-  //       permanent: false,
-  //     };
-  //   });
+  redirects: async () => {
+    const players = await getPlayers();
+    const playerRedirects = players.map((player) => {
+      return {
+        source: `/players/${player.player_id}`,
+        destination: `/players/${player.url_slug}`,
+        permanent: false,
+      };
+    });
 
-  //   const teams = await getTeams();
-  //   const teamRedirects = teams.map((team) => {
-  //     return {
-  //       source: `/teams/${team.team_id}`,
-  //       destination: `/teams/${team.url_slug}`,
-  //       permanent: false,
-  //     };
-  //   });
+    const teams = await getTeams();
+    const teamRedirects = teams.map((team) => {
+      return {
+        source: `/teams/${team.team_id}`,
+        destination: `/teams/${team.url_slug}`,
+        permanent: false,
+      };
+    });
 
-  //   return [
-  //     ...(Array.isArray(playerRedirects) && playerRedirects.length > 0
-  //       ? playerRedirects
-  //       : []),
-  //     ...(Array.isArray(teamRedirects) && teamRedirects.length > 0
-  //       ? teamRedirects
-  //       : []),
-  //   ];
-  // },
+    return [
+      ...(Array.isArray(playerRedirects) && playerRedirects.length > 0
+        ? playerRedirects
+        : []),
+      ...(Array.isArray(teamRedirects) && teamRedirects.length > 0
+        ? teamRedirects
+        : []),
+    ];
+  },
   rewrites: async () => {
     return [
       {
