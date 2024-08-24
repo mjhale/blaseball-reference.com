@@ -46,8 +46,8 @@ export default function PlayerBattingStatTable({
           return isPostseason
             ? Number(value) + 1
             : [0, 1].includes(Number(value))
-            ? `${Number(value) + 1}*`
-            : Number(value) + 1;
+              ? `${Number(value) + 1}*`
+              : Number(value) + 1;
         },
       },
       {
@@ -61,7 +61,11 @@ export default function PlayerBattingStatTable({
           const team: Team | undefined = row.original.team;
 
           return team ? (
-            <Link href={`/teams/${team.url_slug}`} as={NextLink}>
+            <Link
+              href={`/teams/${team.url_slug}`}
+              as={NextLink}
+              prefetch={false}
+            >
               {team.nickname}
             </Link>
           ) : null;

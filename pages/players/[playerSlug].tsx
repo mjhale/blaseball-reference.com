@@ -119,6 +119,7 @@ function PlayerDetails({ player, team }: PlayerDetailsProps) {
             <Link
               href={`/teams/${team.url_slug}`}
               as={NextLink}
+              prefetch={false}
               textDecoration="underline"
             >
               {team.full_name}

@@ -351,6 +351,7 @@ function TeamDailySchedule({
                                     <Link
                                       href={`/teams/${opposingTeam.url_slug}/schedule`}
                                       as={NextLink}
+                                      prefetch={false}
                                     >
                                       {opposingTeam.nickname}{" "}
                                       <VisuallyHidden>
@@ -368,6 +369,7 @@ function TeamDailySchedule({
                                     <Link
                                       href={`/teams/${opposingTeam.url_slug}/schedule`}
                                       as={NextLink}
+                                      prefetch={false}
                                     >
                                       {opposingTeam.nickname}{" "}
                                       <VisuallyHidden>

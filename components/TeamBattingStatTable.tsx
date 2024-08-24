@@ -42,7 +42,11 @@ export default function TeamBattingStatTable({
         ),
         Cell: ({ row, value }: Cell<StatSplit>) => {
           return row.original?.team?.team_id ? (
-            <Link href={`/teams/${row.original.team.team_id}`} as={NextLink}>
+            <Link
+              href={`/teams/${row.original.team.team_id}`}
+              as={NextLink}
+              prefetch={false}
+            >
               {value}
             </Link>
           ) : null;

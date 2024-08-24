@@ -81,7 +81,11 @@ export default function LeaderTable({
                       >
                         {leader.rank}
                       </Text>
-                      <Link href={`/players/${leader.player_id}`} as={NextLink}>
+                      <Link
+                        href={`/players/${leader.player_id}`}
+                        as={NextLink}
+                        prefetch={false}
+                      >
                         {leader.player_name}
                         <VisuallyHidden>player information</VisuallyHidden>
                       </Link>
@@ -93,6 +97,7 @@ export default function LeaderTable({
                           <Link
                             href={`/teams/${leaderTeam.url_slug}`}
                             as={NextLink}
+                            prefetch={false}
                           >
                             {leaderTeam.team_abbreviation}
                             <VisuallyHidden>team information</VisuallyHidden>

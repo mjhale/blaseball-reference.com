@@ -44,7 +44,11 @@ export default function TeamPlayerPitchingStatTable({
         ),
         Cell: ({ row, value }: Cell<any>) => {
           return row.original?.player?.id ? (
-            <Link href={`/players/${row.original.player.id}`} as={NextLink}>
+            <Link
+              href={`/players/${row.original.player.id}`}
+              as={NextLink}
+              prefetch={false}
+            >
               {value}
             </Link>
           ) : null;

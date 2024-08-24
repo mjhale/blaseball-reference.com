@@ -15,6 +15,7 @@ export default function TeamCard({ team }: Props) {
     <Link
       href={`/teams/${team.url_slug}`}
       as={NextLink}
+      prefetch={false}
       _hover={{
         bgColor: useColorModeValue("hsl(35, 100%, 98%)", "gray.700"),
         boxShadow: "md",

@@ -99,7 +99,7 @@ function SearchResults({
             </Heading>
             {searchResults[resultGroup].map((result) => (
               <Box key={result.uuid} py={1}>
-                <Link href={result.anchor} as={NextLink}>
+                <Link href={result.anchor} as={NextLink} prefetch={false}>
                   {result.title}
                 </Link>
               </Box>

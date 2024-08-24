@@ -41,7 +41,7 @@ export default function ContributePage() {
             assist in onboarding you and finding good first issues to work on.
             Please join the{" "}
             <Link
-              to="https://sibr.dev/"
+              href="https://sibr.dev/"
               isExternal
               textDecoration="underline"
               fontWeight="bold"
@@ -57,7 +57,7 @@ export default function ContributePage() {
             <UnorderedList mt={2} spacing={2}>
               <ListItem>
                 <Link
-                  to="https://github.com/Society-for-Internet-Blaseball-Research/prophesizer"
+                  href="https://github.com/Society-for-Internet-Blaseball-Research/prophesizer"
                   isExternal
                   textDecoration="underline"
                   fontWeight="bold"
@@ -75,7 +75,7 @@ export default function ContributePage() {
               </ListItem>
               <ListItem>
                 <Link
-                  to="https://github.com/Society-for-Internet-Blaseball-Research/datablase"
+                  href="https://github.com/Society-for-Internet-Blaseball-Research/datablase"
                   isExternal
                   textDecoration="underline"
                   fontWeight="bold"
@@ -88,7 +88,7 @@ export default function ContributePage() {
               </ListItem>
               <ListItem>
                 <Link
-                  to="https://github.com/xSke/Chronicler"
+                  href="https://github.com/xSke/Chronicler"
                   isExternal
                   textDecoration="underline"
                   fontWeight="bold"

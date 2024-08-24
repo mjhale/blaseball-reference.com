@@ -43,7 +43,11 @@ export default function StandingsTable({
           );
 
           return team ? (
-            <Link href={`/teams/${team.url_slug}`} as={NextLink}>
+            <Link
+              href={`/teams/${team.url_slug}`}
+              as={NextLink}
+              prefetch={false}
+            >
               {value}
             </Link>
           ) : null;
@@ -503,8 +507,8 @@ function sortByStreak({ rowA, rowB, column }) {
     return rowAStreakNumber === rowBStreakNumber
       ? 0
       : rowAStreakNumber > rowBStreakNumber
-      ? 1
-      : -1;
+        ? 1
+        : -1;
   }
 
   // Sort losing streak group by streak number (L5 > L10)
@@ -512,8 +516,8 @@ function sortByStreak({ rowA, rowB, column }) {
     return rowAStreakNumber === rowBStreakNumber
       ? 0
       : rowAStreakNumber > rowBStreakNumber
-      ? -1
-      : 1;
+        ? -1
+        : 1;
   }
 }
 
@@ -546,6 +550,6 @@ function sortByWinLossSplit({ rowA, rowB, column }) {
   return rowAWinningPct === rowBWinningPct
     ? 0
     : rowAWinningPct > rowBWinningPct
-    ? 1
-    : -1;
+      ? 1
+      : -1;
 }

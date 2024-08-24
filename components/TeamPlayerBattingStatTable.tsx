@@ -46,7 +46,11 @@ export default function TeamPlayerBattingStatTable({
         ),
         Cell: ({ row, value }: Cell<StatSplit>) => {
           return row.original?.player?.id ? (
-            <Link href={`/players/${row.original.player.id}`} as={NextLink}>
+            <Link
+              href={`/players/${row.original.player.id}`}
+              as={NextLink}
+              prefetch={false}
+            >
               {value}
             </Link>
           ) : null;

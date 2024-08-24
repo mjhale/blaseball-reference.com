@@ -60,7 +60,11 @@ export default function PlayerPitchingStatTable({
           const team: Team | undefined = row.original.team;
 
           return team && team.url_slug ? (
-            <Link href={`/teams/${team.url_slug}`} as={NextLink}>
+            <Link
+              href={`/teams/${team.url_slug}`}
+              as={NextLink}
+              prefetch={false}
+            >
               {team.nickname}
             </Link>
           ) : null;

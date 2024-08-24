@@ -439,6 +439,7 @@ function DailySchedule({
                     <Link
                       href={`${process.env.NEXT_PUBLIC_REBLASE}/game/${game.id}`}
                       as={NextLink}
+                      prefetch={false}
                       isExternal
                     >
                       {awayTeam.nickname} {game.awayScore}, {homeTeam.nickname}{" "}
@@ -520,7 +521,11 @@ function TeamBlock({ team }: { team: Team }) {
             fontWeight="bold"
             whiteSpace="nowrap"
           >
-            <Link href={`/teams/${team.url_slug}/schedule`} as={NextLink}>
+            <Link
+              href={`/teams/${team.url_slug}/schedule`}
+              as={NextLink}
+              prefetch={false}
+            >
               {team.nickname}
               <VisuallyHidden>season schedule</VisuallyHidden>
             </Link>
