@@ -1,13 +1,4 @@
-import {
-  Box,
-  Container,
-  Flex,
-  Image,
-  Link,
-  List,
-  ListItem,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Container, Link, List, ListItem, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 export default function Footer() {
