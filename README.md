@@ -7,7 +7,7 @@
 ### Prerequisites
 
 - Git
-- Node: 16.14.0 minimum
+- Node: 18.18 minimum
 - Yarn
 - A fork of the repo, if you wish to contribute
 
@@ -56,6 +56,4 @@ To learn more about Next.js, take a look at the following resources:
 
 ## Project Sponsors
 
-We'd like to thank [Vercel](https://vercel.com/?utm_source=blaseball-reference-com&utm_campaign=oss) for supporting Blaseball Reference as well as the wider open source community.
-
-[![Powered by Vercel](./public/powered-by-vercel.svg)](https://vercel.com/?utm_source=blaseball-reference-com&utm_campaign=oss)
+We'd like to thank the [Society for Internet Blaseball Research](https://sibr.dev/) for supporting Blaseball Reference as well as the entire Blaseball community.

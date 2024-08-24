@@ -61,38 +61,6 @@ export default function PrivacyPolicy() {
               </ListItem>
             </UnorderedList>
           </Text>
-          <Text>
-            We use the following services to help power our website and to
-            analyze visitor traffic and usage behavior:
-            <UnorderedList mt={2} spacing={2}>
-              <ListItem>
-                Logflare: Blaseball Reference uses Logflare to store logs
-                received from the Vercel cloud platform. These logs may contain
-                your IP address as well as pages visited. See{" "}
-                <Link
-                  href="https://logflare.app/privacy"
-                  isExternal
-                  textDecoration="underline"
-                >
-                  Logflare's privacy policy
-                </Link>{" "}
-                for additional information .
-              </ListItem>
-              <ListItem>
-                Vercel: Vercel is a cloud platform that hosts the Blaseball
-                Reference website. For information about how Vercel handles
-                visitor data, see{" "}
-                <Link
-                  href="https://vercel.com/legal/privacy-policy"
-                  isExternal
-                  textDecoration="underline"
-                >
-                  Vercel's privacy policy
-                </Link>
-                .
-              </ListItem>
-            </UnorderedList>
-          </Text>
         </Stack>
 
         <Heading as="h2" mt={2} size="md">

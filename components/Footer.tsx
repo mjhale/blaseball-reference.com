@@ -96,21 +96,6 @@ export default function Footer() {
           </Link>
           .
         </Box>
-        <Flex alignItems="center" justifyContent="center" mt={4}>
-          <Link
-            display="block"
-            href="https://vercel.com/?utm_source=blaseball-reference-com&utm_campaign=oss"
-            isExternal
-            rel="nofollow"
-          >
-            <Image
-              alt="Powered by Vercel"
-              height="100%"
-              maxHeight="35px"
-              src="/powered-by-vercel.svg"
-            />
-          </Link>
-        </Flex>
       </Box>
     </Container>
   );
